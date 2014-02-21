@@ -1,0 +1,3 @@
+[submodule "externals/PKMDS"]
+	path = externals/PKMDS
+	url = git://github.com/codemonkey85/PKMDS.git
