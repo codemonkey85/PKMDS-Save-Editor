@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using PKMDS_CS;
+
 namespace PKMDS_Save_Editor
 {
     public partial class frmMain : Form
@@ -14,6 +16,12 @@ namespace PKMDS_Save_Editor
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void loadSaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Test to make sure the dependencies are working correctly
+            //this.Text = PKMDS.GetPKMName(4, 9, "F:\\Dropbox\\PKMDS Databases\\veekun-pokedex.sqlite");
         }
     }
 }
