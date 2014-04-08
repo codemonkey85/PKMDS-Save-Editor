@@ -77,7 +77,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PKMDS-Win32-DLL\PKMDS-Win32-DLL\PKMDS_CS\PKMDS_CS.csproj">
+    <ProjectReference Include="..\..\externals\PKMDS-Win32-DLL\PKMDS-Win32-DLL\PKMDS_CS\PKMDS_CS.csproj">
       <Project>{8E70CFEC-312E-4B71-8496-996C7848166F}</Project>
       <Name>PKMDS_CS</Name>
     </ProjectReference>
