@@ -3,4 +3,4 @@
 	url = git://github.com/codemonkey85/PKMDS.git
 [submodule "externals/PKMDS-Win32-DLL"]
 	path = externals/PKMDS-Win32-DLL
-	url = https://github.com/codemonkey85/PKMDS-Win32-DLL.git
+	url = git@github.com:codemonkey85/PKMDS-Win32-DLL
