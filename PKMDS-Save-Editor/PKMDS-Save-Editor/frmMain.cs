@@ -20,10 +20,14 @@ namespace PKMDS_Save_Editor
 
         private void loadSaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lbTest.Items.Clear();
             // Test to make sure the dependencies are working correctly
             //PKMDS.OpenDB("F:\\Dropbox\\PKMDS Databases\\veekun-pokedex.sqlite");
             PKMDS.OpenDB("C:\\Users\\michaelbond\\Downloads\\PKMDS Databases\\veekun-pokedex.sqlite");
-            this.Text = PKMDS.GetPKMName(4, 9);
+            for (int i = 1; i <= 649; i++)
+            {
+                lbTest.Items.Add(PKMDS.GetPKMName(i));
+            }
             PKMDS.CloseDB();
         }
     }
