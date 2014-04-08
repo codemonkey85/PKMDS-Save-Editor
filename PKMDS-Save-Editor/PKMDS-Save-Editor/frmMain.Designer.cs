@@ -31,6 +31,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbTest = new System.Windows.Forms.ListBox();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,15 +56,27 @@
             // loadSaveToolStripMenuItem
             // 
             this.loadSaveToolStripMenuItem.Name = "loadSaveToolStripMenuItem";
-            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.loadSaveToolStripMenuItem.Text = "Load Save...";
             this.loadSaveToolStripMenuItem.Click += new System.EventHandler(this.loadSaveToolStripMenuItem_Click);
+            // 
+            // lbTest
+            // 
+            this.lbTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTest.FormattingEnabled = true;
+            this.lbTest.Location = new System.Drawing.Point(12, 27);
+            this.lbTest.Name = "lbTest";
+            this.lbTest.Size = new System.Drawing.Size(260, 225);
+            this.lbTest.TabIndex = 1;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.lbTest);
             this.Controls.Add(this.mainMenu);
             this.MainMenuStrip = this.mainMenu;
             this.Name = "frmMain";
@@ -80,6 +93,7 @@
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadSaveToolStripMenuItem;
+        private System.Windows.Forms.ListBox lbTest;
     }
 }
 
