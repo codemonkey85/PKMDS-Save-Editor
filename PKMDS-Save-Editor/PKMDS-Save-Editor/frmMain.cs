@@ -21,25 +21,6 @@ namespace PKMDS_Save_Editor
         }
         private void loadSaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Pokemon pkm = new Pokemon();
-            //UnencryptedData unenc = new UnencryptedData();
-            //BlockA blocka = new BlockA();
-            //BlockB blockb = new BlockB();
-            //BlockC blockc = new BlockC();
-            //BlockD blockd = new BlockD();
-            //int thesize = 0;
-            //thesize = System.Runtime.InteropServices.Marshal.SizeOf(pkm);
-            //MessageBox.Show(thesize.ToString("0"));
-            //thesize = System.Runtime.InteropServices.Marshal.SizeOf(unenc);
-            //MessageBox.Show(thesize.ToString("0"));
-            //thesize = System.Runtime.InteropServices.Marshal.SizeOf(blocka);
-            //MessageBox.Show(thesize.ToString("0"));
-            //thesize = System.Runtime.InteropServices.Marshal.SizeOf(blockb);
-            //MessageBox.Show(thesize.ToString("0"));
-            //thesize = System.Runtime.InteropServices.Marshal.SizeOf(blockc);
-            //MessageBox.Show(thesize.ToString("0"));
-            //thesize = System.Runtime.InteropServices.Marshal.SizeOf(blockd);
-            //MessageBox.Show(thesize.ToString("0"));
             if (fileOpen.ShowDialog() != DialogResult.Cancel)
             {
                 if (fileOpen.FileName != "")
@@ -61,11 +42,6 @@ namespace PKMDS_Save_Editor
                     {
                         Console.WriteLine(ex.Message);
                     }
-
-                    //Pokemon pkm = new Pokemon();
-                    ////PKMDS.GetPKMData(pkm, savefile, 0, 0);
-                    //PKMDS.GetPKMData(ref pkm, savefile, 0, 0);
-                    //MessageBox.Show(PKMDS.GetTrainerName_FromSav(sav));
                 }
             }
         }
@@ -77,13 +53,14 @@ namespace PKMDS_Save_Editor
                 if (cbBoxes.SelectedIndex >= 0)
                 {
                     Pokemon pkm = new Pokemon();
+                    //PKMDS.GetPKMData(ref pkm, sav, 0, 0);
+                    //string[] moves = PKMDS.GetPKMMoveNames(pkm);
+                    //MessageBox.Show(string.Join("\n", moves));
                     lstPokemon.Clear();
                     for (int slot = 0; slot < 30; slot++)
                     {
                         PKMDS.GetPKMData(ref pkm, sav, cbBoxes.SelectedIndex, slot);
-                        //System.Diagnostics.Debug.WriteLine(PKMDS.GetPKMName_FromObj(pkm))/*Sav(sav, cbBoxes.SelectedIndex, slot))*/;
                         lstPokemon.Items.Add(PKMDS.GetPKMName_FromObj(pkm))/*Sav(sav, 0, 0))*/;
-                        //lstPokemon.Items.Add(PKMDS.GetPKMName_FromSav(sav, /*cbBoxes.SelectedIndex*/5, slot));
                     }
                 }
             }
