@@ -13,6 +13,7 @@ namespace PKMDS_Save_Editor
     {
         string title = "";
         private string savefile = "";
+        Save sav = new Save();
         public frmMain()
         {
             InitializeComponent();
@@ -46,29 +47,54 @@ namespace PKMDS_Save_Editor
                     cbBoxes.SelectedIndex = -1;
                     cbBoxes.Items.Clear();
                     savefile = fileOpen.FileName;
-                    PKMDS.OpenDB(Properties.Settings.Default.veekunpokedex);
-                    this.Text = title + " - " + PKMDS.GetTrainerName_FromSav(savefile) + " (" + PKMDS.GetTrainerSID_FromSav(savefile).ToString("00000") + ")";
+                    PKMDS.GetSAVData(ref sav, savefile);
+                    this.Text = title + " - " + PKMDS.GetTrainerName_FromSav(sav) + " (" + PKMDS.GetTrainerSID_FromSav(sav).ToString("00000") + ")";
                     try
                     {
                         for (int box = 0; box < 24; box++)
                         {
-                            cbBoxes.Items.Add(PKMDS.GetBoxName(savefile, box));
+                            cbBoxes.Items.Add(PKMDS.GetBoxName(sav, box));
                         }
-                        cbBoxes.SelectedIndex = 0;
+                        cbBoxes.SelectedIndex = sav.Data[0];
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
 
-                    Pokemon pkm = new Pokemon();
-                    //PKMDS.GetPKMData(pkm, savefile, 0, 0);
-                    PKMDS.GetPKMData(ref pkm, savefile, 0, 0);
-                    MessageBox.Show(((int)(pkm.Species)).ToString("000"));
-
-                    PKMDS.CloseDB();
+                    //Pokemon pkm = new Pokemon();
+                    ////PKMDS.GetPKMData(pkm, savefile, 0, 0);
+                    //PKMDS.GetPKMData(ref pkm, savefile, 0, 0);
+                    //MessageBox.Show(PKMDS.GetTrainerName_FromSav(sav));
                 }
             }
+        }
+
+        private void cbBoxes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbBoxes.Items.Count > 0)
+            {
+                if (cbBoxes.SelectedIndex >= 0)
+                {
+                    Pokemon pkm = new Pokemon();
+                    lstPokemon.Clear();
+                    for (int slot = 0; slot < 30; slot++)
+                    {
+                        PKMDS.GetPKMData(ref pkm, sav, cbBoxes.SelectedIndex, slot);
+                        //System.Diagnostics.Debug.WriteLine(PKMDS.GetPKMName_FromObj(pkm))/*Sav(sav, cbBoxes.SelectedIndex, slot))*/;
+                        lstPokemon.Items.Add(PKMDS.GetPKMName_FromObj(pkm))/*Sav(sav, 0, 0))*/;
+                        //lstPokemon.Items.Add(PKMDS.GetPKMName_FromSav(sav, /*cbBoxes.SelectedIndex*/5, slot));
+                    }
+                }
+            }
+        }
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            PKMDS.OpenDB(Properties.Settings.Default.veekunpokedex);
+        }
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            PKMDS.CloseDB();
         }
     }
 }

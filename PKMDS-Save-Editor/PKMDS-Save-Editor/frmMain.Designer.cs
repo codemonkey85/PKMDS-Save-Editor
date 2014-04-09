@@ -34,6 +34,7 @@
             this.fileOpen = new System.Windows.Forms.OpenFileDialog();
             this.cbBoxes = new System.Windows.Forms.ComboBox();
             this.fileSave = new System.Windows.Forms.SaveFileDialog();
+            this.lstPokemon = new System.Windows.Forms.ListView();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,17 +77,33 @@
             this.cbBoxes.Name = "cbBoxes";
             this.cbBoxes.Size = new System.Drawing.Size(404, 21);
             this.cbBoxes.TabIndex = 1;
+            this.cbBoxes.SelectedIndexChanged += new System.EventHandler(this.cbBoxes_SelectedIndexChanged);
+            // 
+            // lstPokemon
+            // 
+            this.lstPokemon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstPokemon.Location = new System.Drawing.Point(12, 27);
+            this.lstPokemon.Name = "lstPokemon";
+            this.lstPokemon.Size = new System.Drawing.Size(404, 298);
+            this.lstPokemon.TabIndex = 2;
+            this.lstPokemon.UseCompatibleStateImageBehavior = false;
+            this.lstPokemon.View = System.Windows.Forms.View.List;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 364);
+            this.Controls.Add(this.lstPokemon);
             this.Controls.Add(this.cbBoxes);
             this.Controls.Add(this.mainMenu);
             this.MainMenuStrip = this.mainMenu;
             this.Name = "frmMain";
             this.Text = "PKMDS Save Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -102,6 +119,7 @@
         private System.Windows.Forms.OpenFileDialog fileOpen;
         private System.Windows.Forms.ComboBox cbBoxes;
         private System.Windows.Forms.SaveFileDialog fileSave;
+        private System.Windows.Forms.ListView lstPokemon;
     }
 }
 
