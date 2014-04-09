@@ -31,7 +31,9 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbTest = new System.Windows.Forms.ListBox();
+            this.fileOpen = new System.Windows.Forms.OpenFileDialog();
+            this.cbBoxes = new System.Windows.Forms.ComboBox();
+            this.fileSave = new System.Windows.Forms.SaveFileDialog();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +43,7 @@
             this.fileToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(284, 24);
+            this.mainMenu.Size = new System.Drawing.Size(428, 24);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -60,23 +62,27 @@
             this.loadSaveToolStripMenuItem.Text = "Load Save...";
             this.loadSaveToolStripMenuItem.Click += new System.EventHandler(this.loadSaveToolStripMenuItem_Click);
             // 
-            // lbTest
+            // fileOpen
             // 
-            this.lbTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbTest.FormattingEnabled = true;
-            this.lbTest.Location = new System.Drawing.Point(12, 27);
-            this.lbTest.Name = "lbTest";
-            this.lbTest.Size = new System.Drawing.Size(260, 225);
-            this.lbTest.TabIndex = 1;
+            this.fileOpen.Filter = "All files|*.*";
+            // 
+            // cbBoxes
+            // 
+            this.cbBoxes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBoxes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBoxes.FormattingEnabled = true;
+            this.cbBoxes.Location = new System.Drawing.Point(12, 331);
+            this.cbBoxes.Name = "cbBoxes";
+            this.cbBoxes.Size = new System.Drawing.Size(404, 21);
+            this.cbBoxes.TabIndex = 1;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.lbTest);
+            this.ClientSize = new System.Drawing.Size(428, 364);
+            this.Controls.Add(this.cbBoxes);
             this.Controls.Add(this.mainMenu);
             this.MainMenuStrip = this.mainMenu;
             this.Name = "frmMain";
@@ -93,7 +99,9 @@
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadSaveToolStripMenuItem;
-        private System.Windows.Forms.ListBox lbTest;
+        private System.Windows.Forms.OpenFileDialog fileOpen;
+        private System.Windows.Forms.ComboBox cbBoxes;
+        private System.Windows.Forms.SaveFileDialog fileSave;
     }
 }
 
