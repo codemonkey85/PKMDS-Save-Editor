@@ -54,7 +54,7 @@ namespace PKMDS_Save_Editor
                 {
                     Pokemon pkm = new Pokemon();
                     //PKMDS.GetPKMData(ref pkm, sav, 0, 0);
-                    //string[] moves = PKMDS.GetPKMMoveNames(pkm);
+                    //string[] moves = PKMDS.GetPKMMoveTypeNames(pkm);
                     //MessageBox.Show(string.Join("\n", moves));
                     lstPokemon.Clear();
                     for (int slot = 0; slot < 30; slot++)
