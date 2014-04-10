@@ -30,11 +30,6 @@ namespace PKMDS_Save_Editor
                     savefile = fileOpen.FileName;
                     PKMDS.GetSAVData(ref sav, savefile);
                     this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
-
-                    MessageBox.Show(sav.TrainerName);
-                    sav.TrainerName = "Test";
-                    MessageBox.Show(sav.TrainerName);
-
                     try
                     {
                         for (int box = 0; box < 24; box++)
