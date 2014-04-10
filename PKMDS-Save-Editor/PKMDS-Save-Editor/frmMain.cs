@@ -13,7 +13,7 @@ namespace PKMDS_Save_Editor
     {
         string title = "";
         private string savefile = "";
-        Save sav = new Save();
+        PKMDS.Save sav = new PKMDS.Save();
         public frmMain()
         {
             InitializeComponent();
@@ -29,14 +29,19 @@ namespace PKMDS_Save_Editor
                     cbBoxes.Items.Clear();
                     savefile = fileOpen.FileName;
                     PKMDS.GetSAVData(ref sav, savefile);
-                    this.Text = title + " - " + PKMDS.GetTrainerName_FromSav(sav) + " (" + PKMDS.GetTrainerSID_FromSav(sav).ToString("00000") + ")";
+                    this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
+
+                    MessageBox.Show(sav.TrainerName);
+                    sav.TrainerName = "Test";
+                    MessageBox.Show(sav.TrainerName);
+
                     try
                     {
                         for (int box = 0; box < 24; box++)
                         {
-                            cbBoxes.Items.Add(PKMDS.GetBoxName(sav, box));
+                            cbBoxes.Items.Add(sav.GetBoxName(box));
                         }
-                        cbBoxes.SelectedIndex = sav.Data[0];
+                        cbBoxes.SelectedIndex = /*sav.Data[*/0/*]*/;
                     }
                     catch (Exception ex)
                     {
@@ -52,12 +57,12 @@ namespace PKMDS_Save_Editor
             {
                 if (cbBoxes.SelectedIndex >= 0)
                 {
-                    Pokemon pkm = new Pokemon();
+                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
                     lstPokemon.Clear();
                     for (int slot = 0; slot < 30; slot++)
                     {
                         PKMDS.GetPKMData(ref pkm, sav, cbBoxes.SelectedIndex, slot);
-                        lstPokemon.Items.Add(PKMDS.GetPKMName_FromObj(pkm))/*Sav(sav, 0, 0))*/;
+                        lstPokemon.Items.Add(pkm.SpeciesName);
                     }
                 }
             }
@@ -66,6 +71,8 @@ namespace PKMDS_Save_Editor
         {
             PKMDS.OpenDB(Properties.Settings.Default.veekunpokedex);
             PKMDS.OpenImgDB(Properties.Settings.Default.imagedb);
+            //Pokemon pkm = new Pokemon();
+            //MessageBox.Show(System.Runtime.InteropServices.Marshal.SizeOf(pkm).ToString(""));
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -79,9 +86,12 @@ namespace PKMDS_Save_Editor
             {
                 if (lstPokemon.SelectedItems.Count > 0)
                 {
-                    Pokemon pkm = new Pokemon();
+                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
                     PKMDS.GetPKMData(ref pkm, sav, cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
-                    pbSprite.Image = PKMDS.GetPKMSprite(pkm);
+                    pbSprite.Image = pkm.Sprite;
+                    MessageBox.Show(pkm.SpeciesID.ToString("0"));
+                    pkm.SpeciesID = 25;
+                    MessageBox.Show(pkm.SpeciesID.ToString("0"));
                 }
             }
         }
