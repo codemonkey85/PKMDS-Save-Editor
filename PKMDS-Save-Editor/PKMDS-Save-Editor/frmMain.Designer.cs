@@ -35,7 +35,11 @@
             this.cbBoxes = new System.Windows.Forms.ComboBox();
             this.fileSave = new System.Windows.Forms.SaveFileDialog();
             this.lstPokemon = new System.Windows.Forms.ListView();
+            this.pbSprite = new System.Windows.Forms.PictureBox();
+            this.pbGender = new System.Windows.Forms.PictureBox();
             this.mainMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -44,7 +48,7 @@
             this.fileToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(428, 24);
+            this.mainMenu.Size = new System.Drawing.Size(472, 24);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -73,10 +77,10 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBoxes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBoxes.FormattingEnabled = true;
-            this.cbBoxes.Location = new System.Drawing.Point(12, 331);
+            this.cbBoxes.Location = new System.Drawing.Point(12, 356);
             this.cbBoxes.Name = "cbBoxes";
-            this.cbBoxes.Size = new System.Drawing.Size(404, 21);
-            this.cbBoxes.TabIndex = 1;
+            this.cbBoxes.Size = new System.Drawing.Size(448, 21);
+            this.cbBoxes.TabIndex = 2;
             this.cbBoxes.SelectedIndexChanged += new System.EventHandler(this.cbBoxes_SelectedIndexChanged);
             // 
             // lstPokemon
@@ -86,16 +90,37 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lstPokemon.Location = new System.Drawing.Point(12, 27);
             this.lstPokemon.Name = "lstPokemon";
-            this.lstPokemon.Size = new System.Drawing.Size(404, 298);
-            this.lstPokemon.TabIndex = 2;
+            this.lstPokemon.Size = new System.Drawing.Size(448, 144);
+            this.lstPokemon.TabIndex = 1;
             this.lstPokemon.UseCompatibleStateImageBehavior = false;
             this.lstPokemon.View = System.Windows.Forms.View.List;
+            this.lstPokemon.SelectedIndexChanged += new System.EventHandler(this.lstPokemon_SelectedIndexChanged);
+            // 
+            // pbSprite
+            // 
+            this.pbSprite.Location = new System.Drawing.Point(12, 177);
+            this.pbSprite.Name = "pbSprite";
+            this.pbSprite.Size = new System.Drawing.Size(83, 87);
+            this.pbSprite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbSprite.TabIndex = 3;
+            this.pbSprite.TabStop = false;
+            // 
+            // pbGender
+            // 
+            this.pbGender.Location = new System.Drawing.Point(142, 177);
+            this.pbGender.Name = "pbGender";
+            this.pbGender.Size = new System.Drawing.Size(235, 173);
+            this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbGender.TabIndex = 4;
+            this.pbGender.TabStop = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 364);
+            this.ClientSize = new System.Drawing.Size(472, 389);
+            this.Controls.Add(this.pbGender);
+            this.Controls.Add(this.pbSprite);
             this.Controls.Add(this.lstPokemon);
             this.Controls.Add(this.cbBoxes);
             this.Controls.Add(this.mainMenu);
@@ -106,6 +131,8 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,6 +147,8 @@
         private System.Windows.Forms.ComboBox cbBoxes;
         private System.Windows.Forms.SaveFileDialog fileSave;
         private System.Windows.Forms.ListView lstPokemon;
+        private System.Windows.Forms.PictureBox pbSprite;
+        private System.Windows.Forms.PictureBox pbGender;
     }
 }
 

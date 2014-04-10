@@ -46,16 +46,13 @@ namespace PKMDS_Save_Editor
             }
         }
 
-        private void cbBoxes_SelectedIndexChanged(object sender, EventArgs e)
+        private unsafe void cbBoxes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbBoxes.Items.Count > 0)
             {
                 if (cbBoxes.SelectedIndex >= 0)
                 {
                     Pokemon pkm = new Pokemon();
-                    //PKMDS.GetPKMData(ref pkm, sav, 0, 0);
-                    //string[] moves = PKMDS.GetPKMMoveTypeNames(pkm);
-                    //MessageBox.Show(string.Join("\n", moves));
                     lstPokemon.Clear();
                     for (int slot = 0; slot < 30; slot++)
                     {
@@ -68,10 +65,25 @@ namespace PKMDS_Save_Editor
         private void frmMain_Load(object sender, EventArgs e)
         {
             PKMDS.OpenDB(Properties.Settings.Default.veekunpokedex);
+            PKMDS.OpenImgDB(Properties.Settings.Default.imagedb);
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             PKMDS.CloseDB();
+            PKMDS.CloseImgDB();
+        }
+
+        private void lstPokemon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbBoxes.SelectedIndex != -1)
+            {
+                if (lstPokemon.SelectedItems.Count > 0)
+                {
+                    Pokemon pkm = new Pokemon();
+                    PKMDS.GetPKMData(ref pkm, sav, cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
+                    pbSprite.Image = PKMDS.GetPKMSprite(pkm);
+                }
+            }
         }
     }
 }
