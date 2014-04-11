@@ -93,8 +93,13 @@ namespace PKMDS_Save_Editor
             //PKMDS.GetPKMData(ref pkm, sav, 0, 0);
             //pkm.SpeciesID = 129;
             //PKMDS.SetPKMData(pkm, sav, 0, 0);
-            //MessageBox.Show(sav.TrainerName);
-            sav.TrainerName = "Stark";
+            MessageBox.Show(sav.TrainerName);
+            sav.TrainerName = "Feraligatr";
+            MessageBox.Show(sav.TrainerName);
+            PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+            PKMDS.GetPKMData(ref pkm, sav, 0, 0);
+            pkm.SpeciesID = 129;
+            //PKMDS.SetPKMData(pkm, sav, 0, 0);
             //MessageBox.Show(sav.TrainerName);
             if (fileSave.ShowDialog() != DialogResult.Cancel)
             {
