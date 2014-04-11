@@ -84,9 +84,22 @@ namespace PKMDS_Save_Editor
                     PKMDS.Pokemon pkm = new PKMDS.Pokemon();
                     PKMDS.GetPKMData(ref pkm, sav, cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
                     pbSprite.Image = pkm.Sprite;
-                    MessageBox.Show(pkm.SpeciesID.ToString("0"));
-                    pkm.SpeciesID = 25;
-                    MessageBox.Show(pkm.SpeciesID.ToString("0"));
+                }
+            }
+        }
+        private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+            //PKMDS.GetPKMData(ref pkm, sav, 0, 0);
+            //pkm.SpeciesID = 129;
+            //PKMDS.SetPKMData(pkm, sav, 0, 0);
+            sav.TrainerName = "Stark";
+            MessageBox.Show(sav.TrainerName);
+            if (fileSave.ShowDialog() != DialogResult.Cancel)
+            {
+                if (fileSave.FileName != "")
+                {
+                    sav.WriteToFile(fileSave.FileName);
                 }
             }
         }

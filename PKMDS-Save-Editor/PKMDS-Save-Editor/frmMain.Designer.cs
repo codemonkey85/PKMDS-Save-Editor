@@ -37,6 +37,7 @@
             this.lstPokemon = new System.Windows.Forms.ListView();
             this.pbSprite = new System.Windows.Forms.PictureBox();
             this.pbGender = new System.Windows.Forms.PictureBox();
+            this.savesavToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
@@ -55,7 +56,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadSaveToolStripMenuItem});
+            this.loadSaveToolStripMenuItem,
+            this.savesavToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -63,8 +65,8 @@
             // loadSaveToolStripMenuItem
             // 
             this.loadSaveToolStripMenuItem.Name = "loadSaveToolStripMenuItem";
-            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.loadSaveToolStripMenuItem.Text = "Load Save...";
+            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadSaveToolStripMenuItem.Text = "Load .sav";
             this.loadSaveToolStripMenuItem.Click += new System.EventHandler(this.loadSaveToolStripMenuItem_Click);
             // 
             // fileOpen
@@ -82,6 +84,10 @@
             this.cbBoxes.Size = new System.Drawing.Size(448, 21);
             this.cbBoxes.TabIndex = 2;
             this.cbBoxes.SelectedIndexChanged += new System.EventHandler(this.cbBoxes_SelectedIndexChanged);
+            // 
+            // fileSave
+            // 
+            this.fileSave.Filter = ".sav files|*.sav";
             // 
             // lstPokemon
             // 
@@ -113,6 +119,13 @@
             this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbGender.TabIndex = 4;
             this.pbGender.TabStop = false;
+            // 
+            // savesavToolStripMenuItem
+            // 
+            this.savesavToolStripMenuItem.Name = "savesavToolStripMenuItem";
+            this.savesavToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.savesavToolStripMenuItem.Text = "Save .sav";
+            this.savesavToolStripMenuItem.Click += new System.EventHandler(this.savesavToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -149,6 +162,7 @@
         private System.Windows.Forms.ListView lstPokemon;
         private System.Windows.Forms.PictureBox pbSprite;
         private System.Windows.Forms.PictureBox pbGender;
+        private System.Windows.Forms.ToolStripMenuItem savesavToolStripMenuItem;
     }
 }
 
