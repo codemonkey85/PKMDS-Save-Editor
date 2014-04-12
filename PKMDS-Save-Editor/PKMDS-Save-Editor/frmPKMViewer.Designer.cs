@@ -1,0 +1,925 @@
+﻿namespace PKMDS_Save_Editor
+{
+    partial class frmPKMViewer
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.tlMain = new System.Windows.Forms.TableLayoutPanel();
+            this.tlButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.tlControls = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlCommon = new System.Windows.Forms.Panel();
+            this.pbDiamond = new System.Windows.Forms.PictureBox();
+            this.pbStar = new System.Windows.Forms.PictureBox();
+            this.pbHeart = new System.Windows.Forms.PictureBox();
+            this.pbSquare = new System.Windows.Forms.PictureBox();
+            this.pbTriangle = new System.Windows.Forms.PictureBox();
+            this.pbCircle = new System.Windows.Forms.PictureBox();
+            this.pbShiny = new System.Windows.Forms.PictureBox();
+            this.pbHeldItem = new System.Windows.Forms.PictureBox();
+            this.pbPokerus = new System.Windows.Forms.PictureBox();
+            this.pbGender = new System.Windows.Forms.PictureBox();
+            this.pbSprite = new System.Windows.Forms.PictureBox();
+            this.pnlTabs = new System.Windows.Forms.Panel();
+            this.tcTabs = new System.Windows.Forms.TabControl();
+            this.tpBasic = new System.Windows.Forms.TabPage();
+            this.tpStat = new System.Windows.Forms.TabPage();
+            this.tpMove = new System.Windows.Forms.TabPage();
+            this.tpOrigin = new System.Windows.Forms.TabPage();
+            this.tpRibbon = new System.Windows.Forms.TabPage();
+            this.tpMisc = new System.Windows.Forms.TabPage();
+            this.fileSave = new System.Windows.Forms.SaveFileDialog();
+            this.cbHeldItem = new System.Windows.Forms.ComboBox();
+            this.lblHeldItem = new System.Windows.Forms.Label();
+            this.cbSpecies = new System.Windows.Forms.ComboBox();
+            this.cbForm = new System.Windows.Forms.ComboBox();
+            this.numSpecies = new System.Windows.Forms.NumericUpDown();
+            this.numLevel = new System.Windows.Forms.NumericUpDown();
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.cbBall = new System.Windows.Forms.ComboBox();
+            this.pbBall = new System.Windows.Forms.PictureBox();
+            this.lblNickname = new System.Windows.Forms.Label();
+            this.txtNickname = new System.Windows.Forms.TextBox();
+            this.chkNicknamed = new System.Windows.Forms.CheckBox();
+            this.gbOTInfo = new System.Windows.Forms.GroupBox();
+            this.txtOTName = new System.Windows.Forms.TextBox();
+            this.lblOTName = new System.Windows.Forms.Label();
+            this.rbOTMale = new System.Windows.Forms.RadioButton();
+            this.rbOTFemale = new System.Windows.Forms.RadioButton();
+            this.lblTID = new System.Windows.Forms.Label();
+            this.numTID = new System.Windows.Forms.NumericUpDown();
+            this.lblSID = new System.Windows.Forms.Label();
+            this.numSID = new System.Windows.Forms.NumericUpDown();
+            this.pbType1 = new System.Windows.Forms.PictureBox();
+            this.pbType2 = new System.Windows.Forms.PictureBox();
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblAbility = new System.Windows.Forms.Label();
+            this.cbAbility = new System.Windows.Forms.ComboBox();
+            this.lblEXP = new System.Windows.Forms.Label();
+            this.numEXP = new System.Windows.Forms.NumericUpDown();
+            this.lblTNL = new System.Windows.Forms.Label();
+            this.pbTNL = new System.Windows.Forms.ProgressBar();
+            this.numTNL = new System.Windows.Forms.NumericUpDown();
+            this.lblAbilityFlavor = new System.Windows.Forms.Label();
+            this.tlMain.SuspendLayout();
+            this.tlButtons.SuspendLayout();
+            this.tlControls.SuspendLayout();
+            this.pnlCommon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDiamond)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbStar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSquare)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriangle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCircle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShiny)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPokerus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).BeginInit();
+            this.pnlTabs.SuspendLayout();
+            this.tcTabs.SuspendLayout();
+            this.tpBasic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpecies)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBall)).BeginInit();
+            this.gbOTInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbType1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbType2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEXP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTNL)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // tlMain
+            // 
+            this.tlMain.ColumnCount = 1;
+            this.tlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlMain.Controls.Add(this.tlButtons, 0, 1);
+            this.tlMain.Controls.Add(this.tlControls, 0, 0);
+            this.tlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlMain.Location = new System.Drawing.Point(0, 0);
+            this.tlMain.Name = "tlMain";
+            this.tlMain.RowCount = 2;
+            this.tlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tlMain.Size = new System.Drawing.Size(591, 369);
+            this.tlMain.TabIndex = 0;
+            // 
+            // tlButtons
+            // 
+            this.tlButtons.ColumnCount = 4;
+            this.tlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlButtons.Controls.Add(this.btnApply, 0, 0);
+            this.tlButtons.Controls.Add(this.btnClose, 3, 0);
+            this.tlButtons.Controls.Add(this.btnExport, 2, 0);
+            this.tlButtons.Controls.Add(this.btnSave, 1, 0);
+            this.tlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlButtons.Location = new System.Drawing.Point(3, 334);
+            this.tlButtons.Name = "tlButtons";
+            this.tlButtons.RowCount = 1;
+            this.tlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlButtons.Size = new System.Drawing.Size(585, 32);
+            this.tlButtons.TabIndex = 0;
+            // 
+            // btnApply
+            // 
+            this.btnApply.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnApply.Enabled = false;
+            this.btnApply.Location = new System.Drawing.Point(35, 4);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(75, 23);
+            this.btnApply.TabIndex = 3;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(474, 4);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExport.Location = new System.Drawing.Point(327, 4);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 2;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSave.Location = new System.Drawing.Point(181, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // tlControls
+            // 
+            this.tlControls.ColumnCount = 2;
+            this.tlControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.16696F));
+            this.tlControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.83304F));
+            this.tlControls.Controls.Add(this.pnlCommon, 1, 0);
+            this.tlControls.Controls.Add(this.pnlTabs, 0, 0);
+            this.tlControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlControls.Location = new System.Drawing.Point(3, 3);
+            this.tlControls.Name = "tlControls";
+            this.tlControls.RowCount = 1;
+            this.tlControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlControls.Size = new System.Drawing.Size(585, 325);
+            this.tlControls.TabIndex = 1;
+            // 
+            // pnlCommon
+            // 
+            this.pnlCommon.Controls.Add(this.pbBall);
+            this.pnlCommon.Controls.Add(this.cbBall);
+            this.pnlCommon.Controls.Add(this.lblLevel);
+            this.pnlCommon.Controls.Add(this.numLevel);
+            this.pnlCommon.Controls.Add(this.numSpecies);
+            this.pnlCommon.Controls.Add(this.cbForm);
+            this.pnlCommon.Controls.Add(this.cbSpecies);
+            this.pnlCommon.Controls.Add(this.lblHeldItem);
+            this.pnlCommon.Controls.Add(this.cbHeldItem);
+            this.pnlCommon.Controls.Add(this.pbDiamond);
+            this.pnlCommon.Controls.Add(this.pbStar);
+            this.pnlCommon.Controls.Add(this.pbHeart);
+            this.pnlCommon.Controls.Add(this.pbSquare);
+            this.pnlCommon.Controls.Add(this.pbTriangle);
+            this.pnlCommon.Controls.Add(this.pbCircle);
+            this.pnlCommon.Controls.Add(this.pbShiny);
+            this.pnlCommon.Controls.Add(this.pbHeldItem);
+            this.pnlCommon.Controls.Add(this.pbPokerus);
+            this.pnlCommon.Controls.Add(this.pbGender);
+            this.pnlCommon.Controls.Add(this.pbSprite);
+            this.pnlCommon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCommon.Location = new System.Drawing.Point(366, 3);
+            this.pnlCommon.Name = "pnlCommon";
+            this.pnlCommon.Size = new System.Drawing.Size(216, 319);
+            this.pnlCommon.TabIndex = 1;
+            // 
+            // pbDiamond
+            // 
+            this.pbDiamond.Location = new System.Drawing.Point(141, 166);
+            this.pbDiamond.Name = "pbDiamond";
+            this.pbDiamond.Size = new System.Drawing.Size(10, 10);
+            this.pbDiamond.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbDiamond.TabIndex = 10;
+            this.pbDiamond.TabStop = false;
+            this.pbDiamond.Click += new System.EventHandler(this.pbDiamond_Click);
+            // 
+            // pbStar
+            // 
+            this.pbStar.Location = new System.Drawing.Point(125, 166);
+            this.pbStar.Name = "pbStar";
+            this.pbStar.Size = new System.Drawing.Size(10, 10);
+            this.pbStar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbStar.TabIndex = 9;
+            this.pbStar.TabStop = false;
+            this.pbStar.Click += new System.EventHandler(this.pbStar_Click);
+            // 
+            // pbHeart
+            // 
+            this.pbHeart.Location = new System.Drawing.Point(109, 166);
+            this.pbHeart.Name = "pbHeart";
+            this.pbHeart.Size = new System.Drawing.Size(10, 10);
+            this.pbHeart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbHeart.TabIndex = 8;
+            this.pbHeart.TabStop = false;
+            this.pbHeart.Click += new System.EventHandler(this.pbHeart_Click);
+            // 
+            // pbSquare
+            // 
+            this.pbSquare.Location = new System.Drawing.Point(93, 166);
+            this.pbSquare.Name = "pbSquare";
+            this.pbSquare.Size = new System.Drawing.Size(10, 10);
+            this.pbSquare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSquare.TabIndex = 7;
+            this.pbSquare.TabStop = false;
+            this.pbSquare.Click += new System.EventHandler(this.pbSquare_Click);
+            // 
+            // pbTriangle
+            // 
+            this.pbTriangle.Location = new System.Drawing.Point(77, 166);
+            this.pbTriangle.Name = "pbTriangle";
+            this.pbTriangle.Size = new System.Drawing.Size(10, 10);
+            this.pbTriangle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTriangle.TabIndex = 6;
+            this.pbTriangle.TabStop = false;
+            this.pbTriangle.Click += new System.EventHandler(this.pbTriangle_Click);
+            // 
+            // pbCircle
+            // 
+            this.pbCircle.Location = new System.Drawing.Point(61, 166);
+            this.pbCircle.Name = "pbCircle";
+            this.pbCircle.Size = new System.Drawing.Size(10, 10);
+            this.pbCircle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCircle.TabIndex = 5;
+            this.pbCircle.TabStop = false;
+            this.pbCircle.Click += new System.EventHandler(this.pbCircle_Click);
+            // 
+            // pbShiny
+            // 
+            this.pbShiny.Location = new System.Drawing.Point(135, 3);
+            this.pbShiny.Name = "pbShiny";
+            this.pbShiny.Size = new System.Drawing.Size(20, 20);
+            this.pbShiny.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbShiny.TabIndex = 4;
+            this.pbShiny.TabStop = false;
+            // 
+            // pbHeldItem
+            // 
+            this.pbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbHeldItem.Location = new System.Drawing.Point(3, 217);
+            this.pbHeldItem.Name = "pbHeldItem";
+            this.pbHeldItem.Size = new System.Drawing.Size(30, 30);
+            this.pbHeldItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbHeldItem.TabIndex = 3;
+            this.pbHeldItem.TabStop = false;
+            // 
+            // pbPokerus
+            // 
+            this.pbPokerus.Location = new System.Drawing.Point(161, 3);
+            this.pbPokerus.Name = "pbPokerus";
+            this.pbPokerus.Size = new System.Drawing.Size(40, 20);
+            this.pbPokerus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPokerus.TabIndex = 2;
+            this.pbPokerus.TabStop = false;
+            // 
+            // pbGender
+            // 
+            this.pbGender.Location = new System.Drawing.Point(109, 3);
+            this.pbGender.Name = "pbGender";
+            this.pbGender.Size = new System.Drawing.Size(20, 20);
+            this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbGender.TabIndex = 1;
+            this.pbGender.TabStop = false;
+            // 
+            // pbSprite
+            // 
+            this.pbSprite.Location = new System.Drawing.Point(3, 6);
+            this.pbSprite.Name = "pbSprite";
+            this.pbSprite.Size = new System.Drawing.Size(100, 100);
+            this.pbSprite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbSprite.TabIndex = 0;
+            this.pbSprite.TabStop = false;
+            // 
+            // pnlTabs
+            // 
+            this.pnlTabs.Controls.Add(this.tcTabs);
+            this.pnlTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTabs.Location = new System.Drawing.Point(3, 3);
+            this.pnlTabs.Name = "pnlTabs";
+            this.pnlTabs.Size = new System.Drawing.Size(357, 319);
+            this.pnlTabs.TabIndex = 0;
+            // 
+            // tcTabs
+            // 
+            this.tcTabs.Controls.Add(this.tpBasic);
+            this.tcTabs.Controls.Add(this.tpStat);
+            this.tcTabs.Controls.Add(this.tpMove);
+            this.tcTabs.Controls.Add(this.tpOrigin);
+            this.tcTabs.Controls.Add(this.tpRibbon);
+            this.tcTabs.Controls.Add(this.tpMisc);
+            this.tcTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcTabs.HotTrack = true;
+            this.tcTabs.Location = new System.Drawing.Point(0, 0);
+            this.tcTabs.Name = "tcTabs";
+            this.tcTabs.SelectedIndex = 0;
+            this.tcTabs.Size = new System.Drawing.Size(357, 319);
+            this.tcTabs.TabIndex = 0;
+            // 
+            // tpBasic
+            // 
+            this.tpBasic.Controls.Add(this.lblAbilityFlavor);
+            this.tpBasic.Controls.Add(this.numTNL);
+            this.tpBasic.Controls.Add(this.pbTNL);
+            this.tpBasic.Controls.Add(this.lblTNL);
+            this.tpBasic.Controls.Add(this.lblEXP);
+            this.tpBasic.Controls.Add(this.numEXP);
+            this.tpBasic.Controls.Add(this.cbAbility);
+            this.tpBasic.Controls.Add(this.lblAbility);
+            this.tpBasic.Controls.Add(this.lblType);
+            this.tpBasic.Controls.Add(this.pbType2);
+            this.tpBasic.Controls.Add(this.pbType1);
+            this.tpBasic.Controls.Add(this.gbOTInfo);
+            this.tpBasic.Controls.Add(this.chkNicknamed);
+            this.tpBasic.Controls.Add(this.txtNickname);
+            this.tpBasic.Controls.Add(this.lblNickname);
+            this.tpBasic.Location = new System.Drawing.Point(4, 22);
+            this.tpBasic.Name = "tpBasic";
+            this.tpBasic.Padding = new System.Windows.Forms.Padding(3);
+            this.tpBasic.Size = new System.Drawing.Size(349, 293);
+            this.tpBasic.TabIndex = 0;
+            this.tpBasic.Text = "Basic";
+            this.tpBasic.UseVisualStyleBackColor = true;
+            // 
+            // tpStat
+            // 
+            this.tpStat.Location = new System.Drawing.Point(4, 22);
+            this.tpStat.Name = "tpStat";
+            this.tpStat.Padding = new System.Windows.Forms.Padding(3);
+            this.tpStat.Size = new System.Drawing.Size(349, 293);
+            this.tpStat.TabIndex = 1;
+            this.tpStat.Text = "Stats";
+            this.tpStat.UseVisualStyleBackColor = true;
+            // 
+            // tpMove
+            // 
+            this.tpMove.Location = new System.Drawing.Point(4, 22);
+            this.tpMove.Name = "tpMove";
+            this.tpMove.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMove.Size = new System.Drawing.Size(349, 293);
+            this.tpMove.TabIndex = 2;
+            this.tpMove.Text = "Moves";
+            this.tpMove.UseVisualStyleBackColor = true;
+            // 
+            // tpOrigin
+            // 
+            this.tpOrigin.Location = new System.Drawing.Point(4, 22);
+            this.tpOrigin.Name = "tpOrigin";
+            this.tpOrigin.Padding = new System.Windows.Forms.Padding(3);
+            this.tpOrigin.Size = new System.Drawing.Size(349, 293);
+            this.tpOrigin.TabIndex = 3;
+            this.tpOrigin.Text = "Origins";
+            this.tpOrigin.UseVisualStyleBackColor = true;
+            // 
+            // tpRibbon
+            // 
+            this.tpRibbon.Location = new System.Drawing.Point(4, 22);
+            this.tpRibbon.Name = "tpRibbon";
+            this.tpRibbon.Padding = new System.Windows.Forms.Padding(3);
+            this.tpRibbon.Size = new System.Drawing.Size(349, 293);
+            this.tpRibbon.TabIndex = 4;
+            this.tpRibbon.Text = "Ribbons";
+            this.tpRibbon.UseVisualStyleBackColor = true;
+            // 
+            // tpMisc
+            // 
+            this.tpMisc.Location = new System.Drawing.Point(4, 22);
+            this.tpMisc.Name = "tpMisc";
+            this.tpMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMisc.Size = new System.Drawing.Size(349, 293);
+            this.tpMisc.TabIndex = 5;
+            this.tpMisc.Text = "Misc";
+            this.tpMisc.UseVisualStyleBackColor = true;
+            // 
+            // fileSave
+            // 
+            this.fileSave.Filter = "PK5 files|*.pk5|EK5 files|*.ek5|PKM files|*.pkm|All files|*.*";
+            // 
+            // cbHeldItem
+            // 
+            this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbHeldItem.FormattingEnabled = true;
+            this.cbHeldItem.Location = new System.Drawing.Point(39, 226);
+            this.cbHeldItem.Name = "cbHeldItem";
+            this.cbHeldItem.Size = new System.Drawing.Size(171, 21);
+            this.cbHeldItem.TabIndex = 11;
+            this.cbHeldItem.SelectedIndexChanged += new System.EventHandler(this.cbHeldItem_SelectedIndexChanged);
+            // 
+            // lblHeldItem
+            // 
+            this.lblHeldItem.Location = new System.Drawing.Point(39, 209);
+            this.lblHeldItem.Name = "lblHeldItem";
+            this.lblHeldItem.Size = new System.Drawing.Size(171, 14);
+            this.lblHeldItem.TabIndex = 12;
+            this.lblHeldItem.Text = "Held Item";
+            this.lblHeldItem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbSpecies
+            // 
+            this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSpecies.FormattingEnabled = true;
+            this.cbSpecies.Location = new System.Drawing.Point(3, 112);
+            this.cbSpecies.Name = "cbSpecies";
+            this.cbSpecies.Size = new System.Drawing.Size(146, 21);
+            this.cbSpecies.TabIndex = 13;
+            // 
+            // cbForm
+            // 
+            this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.FormattingEnabled = true;
+            this.cbForm.Location = new System.Drawing.Point(3, 139);
+            this.cbForm.Name = "cbForm";
+            this.cbForm.Size = new System.Drawing.Size(207, 21);
+            this.cbForm.TabIndex = 14;
+            // 
+            // numSpecies
+            // 
+            this.numSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numSpecies.Location = new System.Drawing.Point(155, 112);
+            this.numSpecies.Maximum = new decimal(new int[] {
+            649,
+            0,
+            0,
+            0});
+            this.numSpecies.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numSpecies.Name = "numSpecies";
+            this.numSpecies.Size = new System.Drawing.Size(55, 20);
+            this.numSpecies.TabIndex = 15;
+            this.numSpecies.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numLevel
+            // 
+            this.numLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numLevel.Location = new System.Drawing.Point(104, 186);
+            this.numLevel.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numLevel.Name = "numLevel";
+            this.numLevel.Size = new System.Drawing.Size(55, 20);
+            this.numLevel.TabIndex = 16;
+            this.numLevel.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblLevel
+            // 
+            this.lblLevel.Location = new System.Drawing.Point(65, 188);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(33, 13);
+            this.lblLevel.TabIndex = 17;
+            this.lblLevel.Text = "Level";
+            this.lblLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbBall
+            // 
+            this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBall.FormattingEnabled = true;
+            this.cbBall.Location = new System.Drawing.Point(109, 85);
+            this.cbBall.Name = "cbBall";
+            this.cbBall.Size = new System.Drawing.Size(101, 21);
+            this.cbBall.TabIndex = 18;
+            // 
+            // pbBall
+            // 
+            this.pbBall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbBall.Location = new System.Drawing.Point(109, 49);
+            this.pbBall.Name = "pbBall";
+            this.pbBall.Size = new System.Drawing.Size(30, 30);
+            this.pbBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbBall.TabIndex = 19;
+            this.pbBall.TabStop = false;
+            // 
+            // lblNickname
+            // 
+            this.lblNickname.Location = new System.Drawing.Point(32, 5);
+            this.lblNickname.Name = "lblNickname";
+            this.lblNickname.Size = new System.Drawing.Size(65, 21);
+            this.lblNickname.TabIndex = 18;
+            this.lblNickname.Text = "Nickname";
+            this.lblNickname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtNickname
+            // 
+            this.txtNickname.Location = new System.Drawing.Point(103, 6);
+            this.txtNickname.Name = "txtNickname";
+            this.txtNickname.Size = new System.Drawing.Size(100, 20);
+            this.txtNickname.TabIndex = 19;
+            // 
+            // chkNicknamed
+            // 
+            this.chkNicknamed.AutoSize = true;
+            this.chkNicknamed.Location = new System.Drawing.Point(209, 9);
+            this.chkNicknamed.Name = "chkNicknamed";
+            this.chkNicknamed.Size = new System.Drawing.Size(80, 17);
+            this.chkNicknamed.TabIndex = 20;
+            this.chkNicknamed.Text = "Nicknamed";
+            this.chkNicknamed.UseVisualStyleBackColor = true;
+            // 
+            // gbOTInfo
+            // 
+            this.gbOTInfo.Controls.Add(this.lblSID);
+            this.gbOTInfo.Controls.Add(this.numSID);
+            this.gbOTInfo.Controls.Add(this.lblTID);
+            this.gbOTInfo.Controls.Add(this.numTID);
+            this.gbOTInfo.Controls.Add(this.rbOTFemale);
+            this.gbOTInfo.Controls.Add(this.rbOTMale);
+            this.gbOTInfo.Controls.Add(this.txtOTName);
+            this.gbOTInfo.Controls.Add(this.lblOTName);
+            this.gbOTInfo.Location = new System.Drawing.Point(6, 38);
+            this.gbOTInfo.Name = "gbOTInfo";
+            this.gbOTInfo.Size = new System.Drawing.Size(337, 116);
+            this.gbOTInfo.TabIndex = 1;
+            this.gbOTInfo.TabStop = false;
+            this.gbOTInfo.Text = "groupBox1";
+            // 
+            // txtOTName
+            // 
+            this.txtOTName.Location = new System.Drawing.Point(90, 17);
+            this.txtOTName.Name = "txtOTName";
+            this.txtOTName.Size = new System.Drawing.Size(100, 20);
+            this.txtOTName.TabIndex = 21;
+            // 
+            // lblOTName
+            // 
+            this.lblOTName.Location = new System.Drawing.Point(19, 16);
+            this.lblOTName.Name = "lblOTName";
+            this.lblOTName.Size = new System.Drawing.Size(65, 21);
+            this.lblOTName.TabIndex = 20;
+            this.lblOTName.Text = "OT Name";
+            this.lblOTName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // rbOTMale
+            // 
+            this.rbOTMale.AutoSize = true;
+            this.rbOTMale.Checked = true;
+            this.rbOTMale.Location = new System.Drawing.Point(196, 17);
+            this.rbOTMale.Name = "rbOTMale";
+            this.rbOTMale.Size = new System.Drawing.Size(48, 17);
+            this.rbOTMale.TabIndex = 22;
+            this.rbOTMale.TabStop = true;
+            this.rbOTMale.Text = "Male";
+            this.rbOTMale.UseVisualStyleBackColor = true;
+            // 
+            // rbOTFemale
+            // 
+            this.rbOTFemale.AutoSize = true;
+            this.rbOTFemale.Location = new System.Drawing.Point(196, 40);
+            this.rbOTFemale.Name = "rbOTFemale";
+            this.rbOTFemale.Size = new System.Drawing.Size(59, 17);
+            this.rbOTFemale.TabIndex = 23;
+            this.rbOTFemale.Text = "Female";
+            this.rbOTFemale.UseVisualStyleBackColor = true;
+            // 
+            // lblTID
+            // 
+            this.lblTID.Location = new System.Drawing.Point(19, 79);
+            this.lblTID.Name = "lblTID";
+            this.lblTID.Size = new System.Drawing.Size(33, 13);
+            this.lblTID.TabIndex = 25;
+            this.lblTID.Text = "TID";
+            this.lblTID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numTID
+            // 
+            this.numTID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numTID.Location = new System.Drawing.Point(58, 77);
+            this.numTID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numTID.Name = "numTID";
+            this.numTID.Size = new System.Drawing.Size(55, 20);
+            this.numTID.TabIndex = 24;
+            this.numTID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblSID
+            // 
+            this.lblSID.Location = new System.Drawing.Point(136, 79);
+            this.lblSID.Name = "lblSID";
+            this.lblSID.Size = new System.Drawing.Size(33, 13);
+            this.lblSID.TabIndex = 27;
+            this.lblSID.Text = "SID";
+            this.lblSID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numSID
+            // 
+            this.numSID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numSID.Location = new System.Drawing.Point(175, 77);
+            this.numSID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numSID.Name = "numSID";
+            this.numSID.Size = new System.Drawing.Size(55, 20);
+            this.numSID.TabIndex = 26;
+            this.numSID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // pbType1
+            // 
+            this.pbType1.Location = new System.Drawing.Point(45, 160);
+            this.pbType1.Name = "pbType1";
+            this.pbType1.Size = new System.Drawing.Size(40, 20);
+            this.pbType1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbType1.TabIndex = 21;
+            this.pbType1.TabStop = false;
+            // 
+            // pbType2
+            // 
+            this.pbType2.Location = new System.Drawing.Point(96, 160);
+            this.pbType2.Name = "pbType2";
+            this.pbType2.Size = new System.Drawing.Size(40, 20);
+            this.pbType2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbType2.TabIndex = 22;
+            this.pbType2.TabStop = false;
+            // 
+            // lblType
+            // 
+            this.lblType.Location = new System.Drawing.Point(6, 163);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(33, 13);
+            this.lblType.TabIndex = 26;
+            this.lblType.Text = "Type";
+            this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblAbility
+            // 
+            this.lblAbility.Location = new System.Drawing.Point(156, 163);
+            this.lblAbility.Name = "lblAbility";
+            this.lblAbility.Size = new System.Drawing.Size(40, 13);
+            this.lblAbility.TabIndex = 27;
+            this.lblAbility.Text = "Ability";
+            this.lblAbility.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbAbility
+            // 
+            this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAbility.FormattingEnabled = true;
+            this.cbAbility.Location = new System.Drawing.Point(202, 160);
+            this.cbAbility.Name = "cbAbility";
+            this.cbAbility.Size = new System.Drawing.Size(101, 21);
+            this.cbAbility.TabIndex = 28;
+            // 
+            // lblEXP
+            // 
+            this.lblEXP.Location = new System.Drawing.Point(3, 188);
+            this.lblEXP.Name = "lblEXP";
+            this.lblEXP.Size = new System.Drawing.Size(33, 13);
+            this.lblEXP.TabIndex = 30;
+            this.lblEXP.Text = "EXP";
+            this.lblEXP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numEXP
+            // 
+            this.numEXP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numEXP.Location = new System.Drawing.Point(42, 186);
+            this.numEXP.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numEXP.Name = "numEXP";
+            this.numEXP.Size = new System.Drawing.Size(55, 20);
+            this.numEXP.TabIndex = 29;
+            this.numEXP.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblTNL
+            // 
+            this.lblTNL.Location = new System.Drawing.Point(8, 211);
+            this.lblTNL.Name = "lblTNL";
+            this.lblTNL.Size = new System.Drawing.Size(77, 21);
+            this.lblTNL.TabIndex = 31;
+            this.lblTNL.Text = "To Next Level:";
+            this.lblTNL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pbTNL
+            // 
+            this.pbTNL.Location = new System.Drawing.Point(6, 264);
+            this.pbTNL.Name = "pbTNL";
+            this.pbTNL.Size = new System.Drawing.Size(337, 23);
+            this.pbTNL.TabIndex = 32;
+            // 
+            // numTNL
+            // 
+            this.numTNL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numTNL.Location = new System.Drawing.Point(91, 213);
+            this.numTNL.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numTNL.Name = "numTNL";
+            this.numTNL.Size = new System.Drawing.Size(55, 20);
+            this.numTNL.TabIndex = 33;
+            this.numTNL.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblAbilityFlavor
+            // 
+            this.lblAbilityFlavor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblAbilityFlavor.Location = new System.Drawing.Point(192, 189);
+            this.lblAbilityFlavor.Name = "lblAbilityFlavor";
+            this.lblAbilityFlavor.Size = new System.Drawing.Size(124, 56);
+            this.lblAbilityFlavor.TabIndex = 34;
+            this.lblAbilityFlavor.Text = "Level";
+            this.lblAbilityFlavor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // frmPKMViewer
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(591, 369);
+            this.Controls.Add(this.tlMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "frmPKMViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frmPKMViewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPKMViewer_FormClosing);
+            this.Load += new System.EventHandler(this.frmPKMViewer_Load);
+            this.tlMain.ResumeLayout(false);
+            this.tlButtons.ResumeLayout(false);
+            this.tlControls.ResumeLayout(false);
+            this.pnlCommon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbDiamond)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbStar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSquare)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriangle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCircle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShiny)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPokerus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).EndInit();
+            this.pnlTabs.ResumeLayout(false);
+            this.tcTabs.ResumeLayout(false);
+            this.tpBasic.ResumeLayout(false);
+            this.tpBasic.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpecies)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBall)).EndInit();
+            this.gbOTInfo.ResumeLayout(false);
+            this.gbOTInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbType1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbType2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numEXP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTNL)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TableLayoutPanel tlMain;
+        private System.Windows.Forms.TableLayoutPanel tlButtons;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.SaveFileDialog fileSave;
+        private System.Windows.Forms.TableLayoutPanel tlControls;
+        private System.Windows.Forms.Panel pnlCommon;
+        private System.Windows.Forms.Panel pnlTabs;
+        private System.Windows.Forms.TabControl tcTabs;
+        private System.Windows.Forms.TabPage tpBasic;
+        private System.Windows.Forms.TabPage tpStat;
+        private System.Windows.Forms.TabPage tpMove;
+        private System.Windows.Forms.TabPage tpOrigin;
+        private System.Windows.Forms.TabPage tpRibbon;
+        private System.Windows.Forms.TabPage tpMisc;
+        private System.Windows.Forms.PictureBox pbDiamond;
+        private System.Windows.Forms.PictureBox pbStar;
+        private System.Windows.Forms.PictureBox pbHeart;
+        private System.Windows.Forms.PictureBox pbSquare;
+        private System.Windows.Forms.PictureBox pbTriangle;
+        private System.Windows.Forms.PictureBox pbCircle;
+        private System.Windows.Forms.PictureBox pbShiny;
+        private System.Windows.Forms.PictureBox pbHeldItem;
+        private System.Windows.Forms.PictureBox pbPokerus;
+        private System.Windows.Forms.PictureBox pbGender;
+        private System.Windows.Forms.PictureBox pbSprite;
+        private System.Windows.Forms.ComboBox cbHeldItem;
+        private System.Windows.Forms.Label lblHeldItem;
+        private System.Windows.Forms.ComboBox cbForm;
+        private System.Windows.Forms.ComboBox cbSpecies;
+        private System.Windows.Forms.NumericUpDown numSpecies;
+        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.NumericUpDown numLevel;
+        private System.Windows.Forms.PictureBox pbBall;
+        private System.Windows.Forms.ComboBox cbBall;
+        private System.Windows.Forms.CheckBox chkNicknamed;
+        private System.Windows.Forms.TextBox txtNickname;
+        private System.Windows.Forms.Label lblNickname;
+        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.PictureBox pbType2;
+        private System.Windows.Forms.PictureBox pbType1;
+        private System.Windows.Forms.GroupBox gbOTInfo;
+        private System.Windows.Forms.Label lblSID;
+        private System.Windows.Forms.NumericUpDown numSID;
+        private System.Windows.Forms.Label lblTID;
+        private System.Windows.Forms.NumericUpDown numTID;
+        private System.Windows.Forms.RadioButton rbOTFemale;
+        private System.Windows.Forms.RadioButton rbOTMale;
+        private System.Windows.Forms.TextBox txtOTName;
+        private System.Windows.Forms.Label lblOTName;
+        private System.Windows.Forms.Label lblTNL;
+        private System.Windows.Forms.Label lblEXP;
+        private System.Windows.Forms.NumericUpDown numEXP;
+        private System.Windows.Forms.ComboBox cbAbility;
+        private System.Windows.Forms.Label lblAbility;
+        private System.Windows.Forms.ProgressBar pbTNL;
+        private System.Windows.Forms.Label lblAbilityFlavor;
+        private System.Windows.Forms.NumericUpDown numTNL;
+    }
+}
