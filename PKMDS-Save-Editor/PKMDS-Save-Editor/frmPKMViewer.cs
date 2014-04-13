@@ -38,6 +38,14 @@ namespace PKMDS_Save_Editor
         }
         private void frmPKMViewer_Load(object sender, EventArgs e)
         {
+            try
+            {
+                tcTabs.TabPages.Remove(tcTabs.TabPages["tpRibbon"]);
+            }
+            catch (Exception ex)
+            {
+
+            }
             ClearForm();
             DisplayPokemon(TempPokemon);
         }
