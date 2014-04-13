@@ -59,6 +59,7 @@
             this.pnlTabs = new System.Windows.Forms.Panel();
             this.tcTabs = new System.Windows.Forms.TabControl();
             this.tpBasic = new System.Windows.Forms.TabPage();
+            this.txtTNL = new System.Windows.Forms.TextBox();
             this.lblAbilityFlavor = new System.Windows.Forms.Label();
             this.pbTNL = new System.Windows.Forms.ProgressBar();
             this.lblTNL = new System.Windows.Forms.Label();
@@ -83,8 +84,7 @@
             this.lblNickname = new System.Windows.Forms.Label();
             this.tpStat = new System.Windows.Forms.TabPage();
             this.lblNature = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.cbNature = new System.Windows.Forms.ComboBox();
             this.lblEggSteps = new System.Windows.Forms.Label();
             this.lblTameness = new System.Windows.Forms.Label();
             this.numTameness = new System.Windows.Forms.NumericUpDown();
@@ -92,26 +92,27 @@
             this.gbCalcStats = new System.Windows.Forms.GroupBox();
             this.gbEVs = new System.Windows.Forms.GroupBox();
             this.lblTotalEVs = new System.Windows.Forms.Label();
-            this.numTotalEVs = new System.Windows.Forms.NumericUpDown();
             this.gbIVs = new System.Windows.Forms.GroupBox();
             this.tpMove = new System.Windows.Forms.TabPage();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.numMove1PP = new System.Windows.Forms.NumericUpDown();
+            this.numMove1PPUps = new System.Windows.Forms.NumericUpDown();
+            this.lblMaxPP = new System.Windows.Forms.Label();
+            this.lblPP = new System.Windows.Forms.Label();
+            this.lblPPUps = new System.Windows.Forms.Label();
+            this.lblAccuracy = new System.Windows.Forms.Label();
+            this.lblPower = new System.Windows.Forms.Label();
+            this.cbMove1 = new System.Windows.Forms.ComboBox();
             this.tpOrigin = new System.Windows.Forms.TabPage();
             this.tpRibbon = new System.Windows.Forms.TabPage();
             this.tpMisc = new System.Windows.Forms.TabPage();
             this.fileSave = new System.Windows.Forms.SaveFileDialog();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTotalEVs = new System.Windows.Forms.TextBox();
+            this.txtMinHatchSteps = new System.Windows.Forms.TextBox();
+            this.txtMove1MaxPP = new System.Windows.Forms.TextBox();
+            this.tlMove1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlMove1Data = new System.Windows.Forms.TableLayoutPanel();
+            this.tlMoves = new System.Windows.Forms.TableLayoutPanel();
+            this.tlMoveLabels = new System.Windows.Forms.TableLayoutPanel();
             this.tlMain.SuspendLayout();
             this.tlButtons.SuspendLayout();
             this.tlControls.SuspendLayout();
@@ -140,14 +141,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTID)).BeginInit();
             this.tpStat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTameness)).BeginInit();
             this.gbEVs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTotalEVs)).BeginInit();
             this.tpMove.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMove1PP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMove1PPUps)).BeginInit();
+            this.tlMove1.SuspendLayout();
+            this.tlMove1Data.SuspendLayout();
+            this.tlMoves.SuspendLayout();
+            this.tlMoveLabels.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlMain
@@ -162,7 +164,7 @@
             this.tlMain.RowCount = 2;
             this.tlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tlMain.Size = new System.Drawing.Size(591, 369);
+            this.tlMain.Size = new System.Drawing.Size(591, 390);
             this.tlMain.TabIndex = 0;
             // 
             // tlButtons
@@ -177,7 +179,7 @@
             this.tlButtons.Controls.Add(this.btnExport, 2, 0);
             this.tlButtons.Controls.Add(this.btnSave, 1, 0);
             this.tlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlButtons.Location = new System.Drawing.Point(3, 334);
+            this.tlButtons.Location = new System.Drawing.Point(3, 355);
             this.tlButtons.Name = "tlButtons";
             this.tlButtons.RowCount = 1;
             this.tlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -241,7 +243,7 @@
             this.tlControls.Name = "tlControls";
             this.tlControls.RowCount = 1;
             this.tlControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlControls.Size = new System.Drawing.Size(585, 325);
+            this.tlControls.Size = new System.Drawing.Size(585, 346);
             this.tlControls.TabIndex = 1;
             // 
             // pnlCommon
@@ -269,13 +271,13 @@
             this.pnlCommon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCommon.Location = new System.Drawing.Point(398, 3);
             this.pnlCommon.Name = "pnlCommon";
-            this.pnlCommon.Size = new System.Drawing.Size(184, 319);
+            this.pnlCommon.Size = new System.Drawing.Size(184, 340);
             this.pnlCommon.TabIndex = 1;
             // 
             // pbBall
             // 
             this.pbBall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbBall.Location = new System.Drawing.Point(109, 55);
+            this.pbBall.Location = new System.Drawing.Point(109, 76);
             this.pbBall.Name = "pbBall";
             this.pbBall.Size = new System.Drawing.Size(30, 30);
             this.pbBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -287,7 +289,7 @@
             this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBall.FormattingEnabled = true;
-            this.cbBall.Location = new System.Drawing.Point(109, 91);
+            this.cbBall.Location = new System.Drawing.Point(109, 52);
             this.cbBall.Name = "cbBall";
             this.cbBall.Size = new System.Drawing.Size(69, 21);
             this.cbBall.TabIndex = 18;
@@ -322,7 +324,7 @@
             // numSpecies
             // 
             this.numSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numSpecies.Location = new System.Drawing.Point(123, 118);
+            this.numSpecies.Location = new System.Drawing.Point(123, 112);
             this.numSpecies.Maximum = new decimal(new int[] {
             649,
             0,
@@ -347,7 +349,7 @@
             this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbForm.FormattingEnabled = true;
-            this.cbForm.Location = new System.Drawing.Point(3, 145);
+            this.cbForm.Location = new System.Drawing.Point(6, 138);
             this.cbForm.Name = "cbForm";
             this.cbForm.Size = new System.Drawing.Size(175, 21);
             this.cbForm.TabIndex = 14;
@@ -357,7 +359,7 @@
             this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSpecies.FormattingEnabled = true;
-            this.cbSpecies.Location = new System.Drawing.Point(3, 118);
+            this.cbSpecies.Location = new System.Drawing.Point(3, 112);
             this.cbSpecies.Name = "cbSpecies";
             this.cbSpecies.Size = new System.Drawing.Size(114, 21);
             this.cbSpecies.TabIndex = 13;
@@ -376,7 +378,7 @@
             this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbHeldItem.FormattingEnabled = true;
-            this.cbHeldItem.Location = new System.Drawing.Point(39, 232);
+            this.cbHeldItem.Location = new System.Drawing.Point(39, 253);
             this.cbHeldItem.Name = "cbHeldItem";
             this.cbHeldItem.Size = new System.Drawing.Size(139, 21);
             this.cbHeldItem.TabIndex = 11;
@@ -454,7 +456,7 @@
             // pbHeldItem
             // 
             this.pbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbHeldItem.Location = new System.Drawing.Point(3, 223);
+            this.pbHeldItem.Location = new System.Drawing.Point(3, 244);
             this.pbHeldItem.Name = "pbHeldItem";
             this.pbHeldItem.Size = new System.Drawing.Size(30, 30);
             this.pbHeldItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -494,7 +496,7 @@
             this.pnlTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTabs.Location = new System.Drawing.Point(3, 3);
             this.pnlTabs.Name = "pnlTabs";
-            this.pnlTabs.Size = new System.Drawing.Size(389, 319);
+            this.pnlTabs.Size = new System.Drawing.Size(389, 340);
             this.pnlTabs.TabIndex = 0;
             // 
             // tcTabs
@@ -510,12 +512,12 @@
             this.tcTabs.Location = new System.Drawing.Point(0, 0);
             this.tcTabs.Name = "tcTabs";
             this.tcTabs.SelectedIndex = 0;
-            this.tcTabs.Size = new System.Drawing.Size(389, 319);
+            this.tcTabs.Size = new System.Drawing.Size(389, 340);
             this.tcTabs.TabIndex = 0;
             // 
             // tpBasic
             // 
-            this.tpBasic.Controls.Add(this.textBox1);
+            this.tpBasic.Controls.Add(this.txtTNL);
             this.tpBasic.Controls.Add(this.lblAbilityFlavor);
             this.tpBasic.Controls.Add(this.pbTNL);
             this.tpBasic.Controls.Add(this.lblTNL);
@@ -533,14 +535,22 @@
             this.tpBasic.Location = new System.Drawing.Point(4, 22);
             this.tpBasic.Name = "tpBasic";
             this.tpBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBasic.Size = new System.Drawing.Size(381, 293);
+            this.tpBasic.Size = new System.Drawing.Size(381, 314);
             this.tpBasic.TabIndex = 0;
             this.tpBasic.Text = "Basic";
             this.tpBasic.UseVisualStyleBackColor = true;
             // 
+            // txtTNL
+            // 
+            this.txtTNL.Location = new System.Drawing.Point(96, 211);
+            this.txtTNL.Name = "txtTNL";
+            this.txtTNL.ReadOnly = true;
+            this.txtTNL.Size = new System.Drawing.Size(69, 20);
+            this.txtTNL.TabIndex = 35;
+            // 
             // lblAbilityFlavor
             // 
-            this.lblAbilityFlavor.Location = new System.Drawing.Point(192, 189);
+            this.lblAbilityFlavor.Location = new System.Drawing.Point(199, 205);
             this.lblAbilityFlavor.Name = "lblAbilityFlavor";
             this.lblAbilityFlavor.Size = new System.Drawing.Size(124, 56);
             this.lblAbilityFlavor.TabIndex = 34;
@@ -576,26 +586,21 @@
             // 
             this.numEXP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numEXP.Location = new System.Drawing.Point(74, 186);
-            this.numEXP.Minimum = new decimal(new int[] {
-            1,
+            this.numEXP.Maximum = new decimal(new int[] {
+            -1,
             0,
             0,
             0});
             this.numEXP.Name = "numEXP";
             this.numEXP.Size = new System.Drawing.Size(55, 20);
             this.numEXP.TabIndex = 29;
-            this.numEXP.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // cbAbility
             // 
             this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbAbility.FormattingEnabled = true;
-            this.cbAbility.Location = new System.Drawing.Point(202, 160);
+            this.cbAbility.Location = new System.Drawing.Point(202, 181);
             this.cbAbility.Name = "cbAbility";
             this.cbAbility.Size = new System.Drawing.Size(133, 21);
             this.cbAbility.TabIndex = 28;
@@ -666,19 +671,14 @@
             // 
             this.numSID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numSID.Location = new System.Drawing.Point(175, 77);
-            this.numSID.Minimum = new decimal(new int[] {
-            1,
+            this.numSID.Maximum = new decimal(new int[] {
+            65535,
             0,
             0,
             0});
             this.numSID.Name = "numSID";
             this.numSID.Size = new System.Drawing.Size(55, 20);
             this.numSID.TabIndex = 26;
-            this.numSID.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // lblTID
             // 
@@ -693,19 +693,14 @@
             // 
             this.numTID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numTID.Location = new System.Drawing.Point(58, 77);
-            this.numTID.Minimum = new decimal(new int[] {
-            1,
+            this.numTID.Maximum = new decimal(new int[] {
+            65535,
             0,
             0,
             0});
             this.numTID.Name = "numTID";
             this.numTID.Size = new System.Drawing.Size(55, 20);
             this.numTID.TabIndex = 24;
-            this.numTID.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // rbOTFemale
             // 
@@ -773,9 +768,9 @@
             // 
             // tpStat
             // 
+            this.tpStat.Controls.Add(this.txtMinHatchSteps);
             this.tpStat.Controls.Add(this.lblNature);
-            this.tpStat.Controls.Add(this.comboBox1);
-            this.tpStat.Controls.Add(this.numericUpDown3);
+            this.tpStat.Controls.Add(this.cbNature);
             this.tpStat.Controls.Add(this.lblEggSteps);
             this.tpStat.Controls.Add(this.lblTameness);
             this.tpStat.Controls.Add(this.numTameness);
@@ -786,44 +781,35 @@
             this.tpStat.Location = new System.Drawing.Point(4, 22);
             this.tpStat.Name = "tpStat";
             this.tpStat.Padding = new System.Windows.Forms.Padding(3);
-            this.tpStat.Size = new System.Drawing.Size(381, 293);
+            this.tpStat.Size = new System.Drawing.Size(381, 314);
             this.tpStat.TabIndex = 1;
             this.tpStat.Text = "Stats";
             this.tpStat.UseVisualStyleBackColor = true;
             // 
             // lblNature
             // 
-            this.lblNature.Location = new System.Drawing.Point(256, 233);
+            this.lblNature.Location = new System.Drawing.Point(261, 244);
             this.lblNature.Name = "lblNature";
             this.lblNature.Size = new System.Drawing.Size(91, 14);
             this.lblNature.TabIndex = 26;
             this.lblNature.Text = "Nature";
             this.lblNature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // cbNature
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(260, 257);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(115, 21);
-            this.comboBox1.TabIndex = 25;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown3.Location = new System.Drawing.Point(162, 258);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(92, 20);
-            this.numericUpDown3.TabIndex = 24;
+            this.cbNature.FormattingEnabled = true;
+            this.cbNature.Location = new System.Drawing.Point(260, 278);
+            this.cbNature.Name = "cbNature";
+            this.cbNature.Size = new System.Drawing.Size(115, 21);
+            this.cbNature.TabIndex = 25;
             // 
             // lblEggSteps
             // 
             this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEggSteps.Location = new System.Drawing.Point(160, 204);
+            this.lblEggSteps.Location = new System.Drawing.Point(160, 225);
             this.lblEggSteps.Name = "lblEggSteps";
             this.lblEggSteps.Size = new System.Drawing.Size(92, 31);
             this.lblEggSteps.TabIndex = 23;
@@ -834,7 +820,7 @@
             // 
             this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTameness.Location = new System.Drawing.Point(259, 186);
+            this.lblTameness.Location = new System.Drawing.Point(259, 104);
             this.lblTameness.Name = "lblTameness";
             this.lblTameness.Size = new System.Drawing.Size(92, 21);
             this.lblTameness.TabIndex = 22;
@@ -845,7 +831,7 @@
             // 
             this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.numTameness.Location = new System.Drawing.Point(259, 210);
+            this.numTameness.Location = new System.Drawing.Point(260, 130);
             this.numTameness.Name = "numTameness";
             this.numTameness.Size = new System.Drawing.Size(92, 20);
             this.numTameness.TabIndex = 21;
@@ -854,7 +840,7 @@
             // 
             this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCharacteristic.Location = new System.Drawing.Point(6, 182);
+            this.lblCharacteristic.Location = new System.Drawing.Point(6, 203);
             this.lblCharacteristic.Name = "lblCharacteristic";
             this.lblCharacteristic.Size = new System.Drawing.Size(148, 108);
             this.lblCharacteristic.TabIndex = 20;
@@ -872,8 +858,8 @@
             // 
             // gbEVs
             // 
+            this.gbEVs.Controls.Add(this.txtTotalEVs);
             this.gbEVs.Controls.Add(this.lblTotalEVs);
-            this.gbEVs.Controls.Add(this.numTotalEVs);
             this.gbEVs.Location = new System.Drawing.Point(97, 27);
             this.gbEVs.Name = "gbEVs";
             this.gbEVs.Size = new System.Drawing.Size(72, 152);
@@ -892,15 +878,6 @@
             this.lblTotalEVs.Text = "Total EVs";
             this.lblTotalEVs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // numTotalEVs
-            // 
-            this.numTotalEVs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.numTotalEVs.Location = new System.Drawing.Point(6, 126);
-            this.numTotalEVs.Name = "numTotalEVs";
-            this.numTotalEVs.Size = new System.Drawing.Size(60, 20);
-            this.numTotalEVs.TabIndex = 3;
-            // 
             // gbIVs
             // 
             this.gbIVs.Location = new System.Drawing.Point(19, 27);
@@ -912,148 +889,106 @@
             // 
             // tpMove
             // 
-            this.tpMove.Controls.Add(this.numericUpDown4);
-            this.tpMove.Controls.Add(this.numericUpDown2);
-            this.tpMove.Controls.Add(this.numericUpDown1);
-            this.tpMove.Controls.Add(this.label5);
-            this.tpMove.Controls.Add(this.label4);
-            this.tpMove.Controls.Add(this.label3);
-            this.tpMove.Controls.Add(this.label2);
-            this.tpMove.Controls.Add(this.label1);
-            this.tpMove.Controls.Add(this.comboBox5);
-            this.tpMove.Controls.Add(this.comboBox4);
-            this.tpMove.Controls.Add(this.comboBox3);
-            this.tpMove.Controls.Add(this.comboBox2);
+            this.tpMove.Controls.Add(this.tlMoves);
             this.tpMove.Location = new System.Drawing.Point(4, 22);
             this.tpMove.Name = "tpMove";
             this.tpMove.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMove.Size = new System.Drawing.Size(381, 293);
+            this.tpMove.Size = new System.Drawing.Size(381, 314);
             this.tpMove.TabIndex = 2;
             this.tpMove.Text = "Moves";
             this.tpMove.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown4
+            // numMove1PP
             // 
-            this.numericUpDown4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown4.Location = new System.Drawing.Point(337, 33);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
+            this.numMove1PP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numMove1PP.Location = new System.Drawing.Point(284, 3);
+            this.numMove1PP.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown4.TabIndex = 20;
+            this.numMove1PP.Name = "numMove1PP";
+            this.numMove1PP.Size = new System.Drawing.Size(34, 20);
+            this.numMove1PP.TabIndex = 19;
             // 
-            // numericUpDown2
+            // numMove1PPUps
             // 
-            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown2.Location = new System.Drawing.Point(293, 33);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown2.TabIndex = 19;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown1.Location = new System.Drawing.Point(261, 33);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numMove1PPUps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numMove1PPUps.Location = new System.Drawing.Point(244, 3);
+            this.numMove1PPUps.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(26, 20);
-            this.numericUpDown1.TabIndex = 18;
+            this.numMove1PPUps.Name = "numMove1PPUps";
+            this.numMove1PPUps.Size = new System.Drawing.Size(34, 20);
+            this.numMove1PPUps.TabIndex = 18;
             // 
-            // label5
+            // lblMaxPP
             // 
-            this.label5.Location = new System.Drawing.Point(341, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(27, 27);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Max PP";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMaxPP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMaxPP.Location = new System.Drawing.Point(308, 0);
+            this.lblMaxPP.Name = "lblMaxPP";
+            this.lblMaxPP.Size = new System.Drawing.Size(58, 14);
+            this.lblMaxPP.TabIndex = 17;
+            this.lblMaxPP.Text = "Max PP";
+            this.lblMaxPP.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label4
+            // lblPP
             // 
-            this.label4.Location = new System.Drawing.Point(300, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(21, 27);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "PP";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPP.Location = new System.Drawing.Point(247, 0);
+            this.lblPP.Name = "lblPP";
+            this.lblPP.Size = new System.Drawing.Size(55, 14);
+            this.lblPP.TabIndex = 16;
+            this.lblPP.Text = "PP";
+            this.lblPP.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label3
+            // lblPPUps
             // 
-            this.label3.Location = new System.Drawing.Point(261, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 27);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "PP Ups";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPPUps.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPPUps.Location = new System.Drawing.Point(186, 0);
+            this.lblPPUps.Name = "lblPPUps";
+            this.lblPPUps.Size = new System.Drawing.Size(55, 14);
+            this.lblPPUps.TabIndex = 15;
+            this.lblPPUps.Text = "PP Ups";
+            this.lblPPUps.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label2
+            // lblAccuracy
             // 
-            this.label2.Location = new System.Drawing.Point(203, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 27);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Accuracy";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAccuracy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAccuracy.Location = new System.Drawing.Point(125, 0);
+            this.lblAccuracy.Name = "lblAccuracy";
+            this.lblAccuracy.Size = new System.Drawing.Size(55, 14);
+            this.lblAccuracy.TabIndex = 14;
+            this.lblAccuracy.Text = "Accuracy";
+            this.lblAccuracy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label1
+            // lblPower
             // 
-            this.label1.Location = new System.Drawing.Point(160, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 27);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Power";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPower.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPower.Location = new System.Drawing.Point(64, 0);
+            this.lblPower.Name = "lblPower";
+            this.lblPower.Size = new System.Drawing.Size(55, 14);
+            this.lblPower.TabIndex = 13;
+            this.lblPower.Text = "Power";
+            this.lblPower.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // comboBox5
+            // cbMove1
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(6, 145);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(149, 21);
-            this.comboBox5.TabIndex = 3;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(6, 118);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(149, 21);
-            this.comboBox4.TabIndex = 2;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(6, 91);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(149, 21);
-            this.comboBox3.TabIndex = 1;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(6, 64);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(149, 21);
-            this.comboBox2.TabIndex = 0;
+            this.cbMove1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove1.FormattingEnabled = true;
+            this.cbMove1.Location = new System.Drawing.Point(3, 3);
+            this.cbMove1.Name = "cbMove1";
+            this.cbMove1.Size = new System.Drawing.Size(155, 21);
+            this.cbMove1.TabIndex = 0;
             // 
             // tpOrigin
             // 
             this.tpOrigin.Location = new System.Drawing.Point(4, 22);
             this.tpOrigin.Name = "tpOrigin";
             this.tpOrigin.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOrigin.Size = new System.Drawing.Size(381, 293);
+            this.tpOrigin.Size = new System.Drawing.Size(381, 314);
             this.tpOrigin.TabIndex = 3;
             this.tpOrigin.Text = "Origins";
             this.tpOrigin.UseVisualStyleBackColor = true;
@@ -1063,7 +998,7 @@
             this.tpRibbon.Location = new System.Drawing.Point(4, 22);
             this.tpRibbon.Name = "tpRibbon";
             this.tpRibbon.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRibbon.Size = new System.Drawing.Size(381, 293);
+            this.tpRibbon.Size = new System.Drawing.Size(381, 314);
             this.tpRibbon.TabIndex = 4;
             this.tpRibbon.Text = "Ribbons";
             this.tpRibbon.UseVisualStyleBackColor = true;
@@ -1073,7 +1008,7 @@
             this.tpMisc.Location = new System.Drawing.Point(4, 22);
             this.tpMisc.Name = "tpMisc";
             this.tpMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMisc.Size = new System.Drawing.Size(381, 293);
+            this.tpMisc.Size = new System.Drawing.Size(381, 314);
             this.tpMisc.TabIndex = 5;
             this.tpMisc.Text = "Misc";
             this.tpMisc.UseVisualStyleBackColor = true;
@@ -1082,19 +1017,111 @@
             // 
             this.fileSave.Filter = "PK5 files|*.pk5|EK5 files|*.ek5|PKM files|*.pkm|All files|*.*";
             // 
-            // textBox1
+            // txtTotalEVs
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 211);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(69, 20);
-            this.textBox1.TabIndex = 35;
+            this.txtTotalEVs.Location = new System.Drawing.Point(6, 126);
+            this.txtTotalEVs.Name = "txtTotalEVs";
+            this.txtTotalEVs.ReadOnly = true;
+            this.txtTotalEVs.Size = new System.Drawing.Size(60, 20);
+            this.txtTotalEVs.TabIndex = 36;
+            // 
+            // txtMinHatchSteps
+            // 
+            this.txtMinHatchSteps.Location = new System.Drawing.Point(174, 259);
+            this.txtMinHatchSteps.Name = "txtMinHatchSteps";
+            this.txtMinHatchSteps.ReadOnly = true;
+            this.txtMinHatchSteps.Size = new System.Drawing.Size(69, 20);
+            this.txtMinHatchSteps.TabIndex = 36;
+            // 
+            // txtMove1MaxPP
+            // 
+            this.txtMove1MaxPP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMove1MaxPP.Location = new System.Drawing.Point(324, 3);
+            this.txtMove1MaxPP.Name = "txtMove1MaxPP";
+            this.txtMove1MaxPP.ReadOnly = true;
+            this.txtMove1MaxPP.Size = new System.Drawing.Size(36, 20);
+            this.txtMove1MaxPP.TabIndex = 37;
+            // 
+            // tlMove1
+            // 
+            this.tlMove1.ColumnCount = 1;
+            this.tlMove1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlMove1.Controls.Add(this.tlMove1Data, 0, 0);
+            this.tlMove1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlMove1.Location = new System.Drawing.Point(3, 23);
+            this.tlMove1.Name = "tlMove1";
+            this.tlMove1.RowCount = 2;
+            this.tlMove1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlMove1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlMove1.Size = new System.Drawing.Size(369, 66);
+            this.tlMove1.TabIndex = 39;
+            // 
+            // tlMove1Data
+            // 
+            this.tlMove1Data.ColumnCount = 6;
+            this.tlMove1Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
+            this.tlMove1Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tlMove1Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tlMove1Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tlMove1Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tlMove1Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tlMove1Data.Controls.Add(this.cbMove1, 0, 0);
+            this.tlMove1Data.Controls.Add(this.txtMove1MaxPP, 5, 0);
+            this.tlMove1Data.Controls.Add(this.numMove1PP, 4, 0);
+            this.tlMove1Data.Controls.Add(this.numMove1PPUps, 3, 0);
+            this.tlMove1Data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlMove1Data.Location = new System.Drawing.Point(3, 3);
+            this.tlMove1Data.Name = "tlMove1Data";
+            this.tlMove1Data.RowCount = 1;
+            this.tlMove1Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlMove1Data.Size = new System.Drawing.Size(363, 27);
+            this.tlMove1Data.TabIndex = 0;
+            // 
+            // tlMoves
+            // 
+            this.tlMoves.ColumnCount = 1;
+            this.tlMoves.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlMoves.Controls.Add(this.tlMoveLabels, 0, 0);
+            this.tlMoves.Controls.Add(this.tlMove1, 0, 1);
+            this.tlMoves.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlMoves.Location = new System.Drawing.Point(3, 3);
+            this.tlMoves.Name = "tlMoves";
+            this.tlMoves.RowCount = 5;
+            this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlMoves.Size = new System.Drawing.Size(375, 308);
+            this.tlMoves.TabIndex = 40;
+            // 
+            // tlMoveLabels
+            // 
+            this.tlMoveLabels.ColumnCount = 6;
+            this.tlMoveLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlMoveLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlMoveLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlMoveLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlMoveLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlMoveLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlMoveLabels.Controls.Add(this.lblMaxPP, 5, 0);
+            this.tlMoveLabels.Controls.Add(this.lblPP, 4, 0);
+            this.tlMoveLabels.Controls.Add(this.lblPower, 1, 0);
+            this.tlMoveLabels.Controls.Add(this.lblPPUps, 3, 0);
+            this.tlMoveLabels.Controls.Add(this.lblAccuracy, 2, 0);
+            this.tlMoveLabels.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlMoveLabels.Location = new System.Drawing.Point(3, 3);
+            this.tlMoveLabels.Name = "tlMoveLabels";
+            this.tlMoveLabels.RowCount = 1;
+            this.tlMoveLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlMoveLabels.Size = new System.Drawing.Size(369, 14);
+            this.tlMoveLabels.TabIndex = 41;
             // 
             // frmPKMViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 369);
+            this.ClientSize = new System.Drawing.Size(591, 390);
             this.Controls.Add(this.tlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -1133,14 +1160,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTID)).EndInit();
             this.tpStat.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            this.tpStat.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTameness)).EndInit();
             this.gbEVs.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numTotalEVs)).EndInit();
+            this.gbEVs.PerformLayout();
             this.tpMove.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMove1PP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMove1PPUps)).EndInit();
+            this.tlMove1.ResumeLayout(false);
+            this.tlMove1Data.ResumeLayout(false);
+            this.tlMove1Data.PerformLayout();
+            this.tlMoves.ResumeLayout(false);
+            this.tlMoveLabels.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1209,27 +1240,28 @@
         private System.Windows.Forms.GroupBox gbCalcStats;
         private System.Windows.Forms.GroupBox gbEVs;
         private System.Windows.Forms.GroupBox gbIVs;
-        private System.Windows.Forms.NumericUpDown numTotalEVs;
         private System.Windows.Forms.Label lblTotalEVs;
         private System.Windows.Forms.Label lblCharacteristic;
         private System.Windows.Forms.Label lblEggSteps;
         private System.Windows.Forms.Label lblTameness;
         private System.Windows.Forms.NumericUpDown numTameness;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Label lblNature;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbNature;
+        private System.Windows.Forms.ComboBox cbMove1;
+        private System.Windows.Forms.Label lblMaxPP;
+        private System.Windows.Forms.Label lblPP;
+        private System.Windows.Forms.Label lblPPUps;
+        private System.Windows.Forms.Label lblAccuracy;
+        private System.Windows.Forms.Label lblPower;
+        private System.Windows.Forms.NumericUpDown numMove1PP;
+        private System.Windows.Forms.NumericUpDown numMove1PPUps;
+        private System.Windows.Forms.TextBox txtTNL;
+        private System.Windows.Forms.TextBox txtMinHatchSteps;
+        private System.Windows.Forms.TextBox txtTotalEVs;
+        private System.Windows.Forms.TextBox txtMove1MaxPP;
+        private System.Windows.Forms.TableLayoutPanel tlMoves;
+        private System.Windows.Forms.TableLayoutPanel tlMoveLabels;
+        private System.Windows.Forms.TableLayoutPanel tlMove1;
+        private System.Windows.Forms.TableLayoutPanel tlMove1Data;
     }
 }
