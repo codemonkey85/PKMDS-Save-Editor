@@ -59,6 +59,7 @@
             this.pnlTabs = new System.Windows.Forms.Panel();
             this.tcTabs = new System.Windows.Forms.TabControl();
             this.tpBasic = new System.Windows.Forms.TabPage();
+            this.txtTNLPercent = new System.Windows.Forms.TextBox();
             this.txtTNL = new System.Windows.Forms.TextBox();
             this.lblAbilityFlavor = new System.Windows.Forms.Label();
             this.pbTNL = new System.Windows.Forms.ProgressBar();
@@ -92,14 +93,38 @@
             this.lblCharacteristic = new System.Windows.Forms.Label();
             this.gbCalcStats = new System.Windows.Forms.GroupBox();
             this.tlCalcStats = new System.Windows.Forms.TableLayoutPanel();
+            this.txtCalcSpeed = new System.Windows.Forms.TextBox();
+            this.txtCalcSpDef = new System.Windows.Forms.TextBox();
+            this.txtCalcSpAtk = new System.Windows.Forms.TextBox();
+            this.txtCalcDef = new System.Windows.Forms.TextBox();
+            this.txtCalcAtk = new System.Windows.Forms.TextBox();
+            this.txtCalcHP = new System.Windows.Forms.TextBox();
             this.gbEVs = new System.Windows.Forms.GroupBox();
             this.tlTotalEVs = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTotalEVs = new System.Windows.Forms.TextBox();
             this.lblTotalEVs = new System.Windows.Forms.Label();
             this.tlEVs = new System.Windows.Forms.TableLayoutPanel();
+            this.numSpeedEV = new System.Windows.Forms.NumericUpDown();
+            this.numSpDefEV = new System.Windows.Forms.NumericUpDown();
+            this.numSpAtkEV = new System.Windows.Forms.NumericUpDown();
+            this.numDefEV = new System.Windows.Forms.NumericUpDown();
+            this.numAtkEV = new System.Windows.Forms.NumericUpDown();
+            this.numHPEV = new System.Windows.Forms.NumericUpDown();
             this.gbIVs = new System.Windows.Forms.GroupBox();
             this.tlIVs = new System.Windows.Forms.TableLayoutPanel();
+            this.numSpeedIV = new System.Windows.Forms.NumericUpDown();
+            this.numSpDefIV = new System.Windows.Forms.NumericUpDown();
+            this.numSpAtkIV = new System.Windows.Forms.NumericUpDown();
+            this.numDefIV = new System.Windows.Forms.NumericUpDown();
+            this.numAtkIV = new System.Windows.Forms.NumericUpDown();
+            this.numHPIV = new System.Windows.Forms.NumericUpDown();
+            this.lblHPStats = new System.Windows.Forms.Label();
+            this.lblAtkStats = new System.Windows.Forms.Label();
+            this.lblDefStats = new System.Windows.Forms.Label();
+            this.lblSpAtkStats = new System.Windows.Forms.Label();
+            this.lblSpDefStats = new System.Windows.Forms.Label();
+            this.lblSpeedStats = new System.Windows.Forms.Label();
             this.tpMove = new System.Windows.Forms.TabPage();
             this.tlMoves = new System.Windows.Forms.TableLayoutPanel();
             this.tlMove4 = new System.Windows.Forms.TableLayoutPanel();
@@ -157,52 +182,27 @@
             this.pbMove3Type = new System.Windows.Forms.PictureBox();
             this.lblMove3Flavor = new System.Windows.Forms.Label();
             this.tpOrigin = new System.Windows.Forms.TabPage();
+            this.cbFateful = new System.Windows.Forms.CheckBox();
+            this.cbNsPokemon = new System.Windows.Forms.CheckBox();
+            this.cbIsEgg = new System.Windows.Forms.CheckBox();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
+            this.lblCountry = new System.Windows.Forms.Label();
+            this.cbGame = new System.Windows.Forms.ComboBox();
+            this.lblGame = new System.Windows.Forms.Label();
+            this.lblMetLevel = new System.Windows.Forms.Label();
+            this.numMetLevel = new System.Windows.Forms.NumericUpDown();
+            this.gbEggMet = new System.Windows.Forms.GroupBox();
+            this.tlEggMet = new System.Windows.Forms.TableLayoutPanel();
+            this.cbEggLocation = new System.Windows.Forms.ComboBox();
+            this.dtEggDate = new System.Windows.Forms.DateTimePicker();
+            this.cbMetAsEgg = new System.Windows.Forms.CheckBox();
+            this.gbMet = new System.Windows.Forms.GroupBox();
+            this.tlMet = new System.Windows.Forms.TableLayoutPanel();
+            this.cbMetLocation = new System.Windows.Forms.ComboBox();
+            this.dtMetDate = new System.Windows.Forms.DateTimePicker();
             this.tpRibbon = new System.Windows.Forms.TabPage();
             this.tpMisc = new System.Windows.Forms.TabPage();
             this.fileSave = new System.Windows.Forms.SaveFileDialog();
-            this.lblHPStats = new System.Windows.Forms.Label();
-            this.lblAtkStats = new System.Windows.Forms.Label();
-            this.lblDefStats = new System.Windows.Forms.Label();
-            this.lblSpAtkStats = new System.Windows.Forms.Label();
-            this.lblSpDefStats = new System.Windows.Forms.Label();
-            this.lblSpeedStats = new System.Windows.Forms.Label();
-            this.numHPIV = new System.Windows.Forms.NumericUpDown();
-            this.txtTNLPercent = new System.Windows.Forms.TextBox();
-            this.numAtkIV = new System.Windows.Forms.NumericUpDown();
-            this.numDefIV = new System.Windows.Forms.NumericUpDown();
-            this.numSpAtkIV = new System.Windows.Forms.NumericUpDown();
-            this.numSpDefIV = new System.Windows.Forms.NumericUpDown();
-            this.numSpeedIV = new System.Windows.Forms.NumericUpDown();
-            this.numHPEV = new System.Windows.Forms.NumericUpDown();
-            this.numAtkEV = new System.Windows.Forms.NumericUpDown();
-            this.numDefEV = new System.Windows.Forms.NumericUpDown();
-            this.numSpAtkEV = new System.Windows.Forms.NumericUpDown();
-            this.numSpDefEV = new System.Windows.Forms.NumericUpDown();
-            this.numSpeedEV = new System.Windows.Forms.NumericUpDown();
-            this.txtCalcHP = new System.Windows.Forms.TextBox();
-            this.txtCalcAtk = new System.Windows.Forms.TextBox();
-            this.txtCalcDef = new System.Windows.Forms.TextBox();
-            this.txtCalcSpAtk = new System.Windows.Forms.TextBox();
-            this.txtCalcSpDef = new System.Windows.Forms.TextBox();
-            this.txtCalcSpeed = new System.Windows.Forms.TextBox();
-            this.gbMet = new System.Windows.Forms.GroupBox();
-            this.tlMet = new System.Windows.Forms.TableLayoutPanel();
-            this.gbEggMet = new System.Windows.Forms.GroupBox();
-            this.tlEggMet = new System.Windows.Forms.TableLayoutPanel();
-            this.cbMetLocation = new System.Windows.Forms.ComboBox();
-            this.cbEggLocation = new System.Windows.Forms.ComboBox();
-            this.dtMetDate = new System.Windows.Forms.DateTimePicker();
-            this.dtEggDate = new System.Windows.Forms.DateTimePicker();
-            this.cbMetAsEgg = new System.Windows.Forms.CheckBox();
-            this.lblMetLevel = new System.Windows.Forms.Label();
-            this.numMetLevel = new System.Windows.Forms.NumericUpDown();
-            this.cbGame = new System.Windows.Forms.ComboBox();
-            this.lblGame = new System.Windows.Forms.Label();
-            this.cbCountry = new System.Windows.Forms.ComboBox();
-            this.lblCountry = new System.Windows.Forms.Label();
-            this.cbIsEgg = new System.Windows.Forms.CheckBox();
-            this.cbNsPokemon = new System.Windows.Forms.CheckBox();
-            this.cbFateful = new System.Windows.Forms.CheckBox();
             this.tlMain.SuspendLayout();
             this.tlButtons.SuspendLayout();
             this.tlControls.SuspendLayout();
@@ -238,8 +238,20 @@
             this.tlTotalEVs.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tlEVs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeedEV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpDefEV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkEV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDefEV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAtkEV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHPEV)).BeginInit();
             this.gbIVs.SuspendLayout();
             this.tlIVs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeedIV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpDefIV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkIV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDefIV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAtkIV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHPIV)).BeginInit();
             this.tpMove.SuspendLayout();
             this.tlMoves.SuspendLayout();
             this.tlMove4.SuspendLayout();
@@ -272,23 +284,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMove3Category)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove3Type)).BeginInit();
             this.tpOrigin.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numHPIV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAtkIV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDefIV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkIV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpDefIV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpeedIV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numHPEV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAtkEV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDefEV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkEV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpDefEV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpeedEV)).BeginInit();
-            this.gbMet.SuspendLayout();
-            this.tlMet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMetLevel)).BeginInit();
             this.gbEggMet.SuspendLayout();
             this.tlEggMet.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMetLevel)).BeginInit();
+            this.gbMet.SuspendLayout();
+            this.tlMet.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlMain
@@ -347,6 +347,7 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnExport
             // 
@@ -680,6 +681,17 @@
             this.tpBasic.Text = "Basic";
             this.tpBasic.UseVisualStyleBackColor = true;
             // 
+            // txtTNLPercent
+            // 
+            this.txtTNLPercent.Location = new System.Drawing.Point(341, 226);
+            this.txtTNLPercent.Multiline = true;
+            this.txtTNLPercent.Name = "txtTNLPercent";
+            this.txtTNLPercent.ReadOnly = true;
+            this.txtTNLPercent.Size = new System.Drawing.Size(34, 23);
+            this.txtTNLPercent.TabIndex = 13;
+            this.txtTNLPercent.TabStop = false;
+            this.txtTNLPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // txtTNL
             // 
             this.txtTNL.Location = new System.Drawing.Point(89, 200);
@@ -728,7 +740,7 @@
             this.numEXP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numEXP.Location = new System.Drawing.Point(89, 174);
             this.numEXP.Maximum = new decimal(new int[] {
-            -1,
+            1640000,
             0,
             0,
             0});
@@ -866,6 +878,7 @@
             // txtOTName
             // 
             this.txtOTName.Location = new System.Drawing.Point(49, 19);
+            this.txtOTName.MaxLength = 8;
             this.txtOTName.Name = "txtOTName";
             this.txtOTName.Size = new System.Drawing.Size(100, 20);
             this.txtOTName.TabIndex = 1;
@@ -893,6 +906,7 @@
             // txtNickname
             // 
             this.txtNickname.Location = new System.Drawing.Point(67, 6);
+            this.txtNickname.MaxLength = 11;
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(126, 20);
             this.txtNickname.TabIndex = 1;
@@ -982,6 +996,11 @@
             this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.numTameness.Location = new System.Drawing.Point(295, 22);
+            this.numTameness.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.numTameness.Name = "numTameness";
             this.numTameness.Size = new System.Drawing.Size(53, 20);
             this.numTameness.TabIndex = 4;
@@ -1029,6 +1048,60 @@
             this.tlCalcStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlCalcStats.Size = new System.Drawing.Size(92, 149);
             this.tlCalcStats.TabIndex = 0;
+            // 
+            // txtCalcSpeed
+            // 
+            this.txtCalcSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCalcSpeed.Location = new System.Drawing.Point(3, 123);
+            this.txtCalcSpeed.Name = "txtCalcSpeed";
+            this.txtCalcSpeed.ReadOnly = true;
+            this.txtCalcSpeed.Size = new System.Drawing.Size(86, 20);
+            this.txtCalcSpeed.TabIndex = 5;
+            // 
+            // txtCalcSpDef
+            // 
+            this.txtCalcSpDef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCalcSpDef.Location = new System.Drawing.Point(3, 99);
+            this.txtCalcSpDef.Name = "txtCalcSpDef";
+            this.txtCalcSpDef.ReadOnly = true;
+            this.txtCalcSpDef.Size = new System.Drawing.Size(86, 20);
+            this.txtCalcSpDef.TabIndex = 4;
+            // 
+            // txtCalcSpAtk
+            // 
+            this.txtCalcSpAtk.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCalcSpAtk.Location = new System.Drawing.Point(3, 75);
+            this.txtCalcSpAtk.Name = "txtCalcSpAtk";
+            this.txtCalcSpAtk.ReadOnly = true;
+            this.txtCalcSpAtk.Size = new System.Drawing.Size(86, 20);
+            this.txtCalcSpAtk.TabIndex = 3;
+            // 
+            // txtCalcDef
+            // 
+            this.txtCalcDef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCalcDef.Location = new System.Drawing.Point(3, 51);
+            this.txtCalcDef.Name = "txtCalcDef";
+            this.txtCalcDef.ReadOnly = true;
+            this.txtCalcDef.Size = new System.Drawing.Size(86, 20);
+            this.txtCalcDef.TabIndex = 2;
+            // 
+            // txtCalcAtk
+            // 
+            this.txtCalcAtk.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCalcAtk.Location = new System.Drawing.Point(3, 27);
+            this.txtCalcAtk.Name = "txtCalcAtk";
+            this.txtCalcAtk.ReadOnly = true;
+            this.txtCalcAtk.Size = new System.Drawing.Size(86, 20);
+            this.txtCalcAtk.TabIndex = 1;
+            // 
+            // txtCalcHP
+            // 
+            this.txtCalcHP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCalcHP.Location = new System.Drawing.Point(3, 3);
+            this.txtCalcHP.Name = "txtCalcHP";
+            this.txtCalcHP.ReadOnly = true;
+            this.txtCalcHP.Size = new System.Drawing.Size(86, 20);
+            this.txtCalcHP.TabIndex = 0;
             // 
             // gbEVs
             // 
@@ -1115,6 +1188,84 @@
             this.tlEVs.Size = new System.Drawing.Size(59, 146);
             this.tlEVs.TabIndex = 0;
             // 
+            // numSpeedEV
+            // 
+            this.numSpeedEV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numSpeedEV.Location = new System.Drawing.Point(3, 123);
+            this.numSpeedEV.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numSpeedEV.Name = "numSpeedEV";
+            this.numSpeedEV.Size = new System.Drawing.Size(53, 20);
+            this.numSpeedEV.TabIndex = 5;
+            // 
+            // numSpDefEV
+            // 
+            this.numSpDefEV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numSpDefEV.Location = new System.Drawing.Point(3, 99);
+            this.numSpDefEV.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numSpDefEV.Name = "numSpDefEV";
+            this.numSpDefEV.Size = new System.Drawing.Size(53, 20);
+            this.numSpDefEV.TabIndex = 4;
+            // 
+            // numSpAtkEV
+            // 
+            this.numSpAtkEV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numSpAtkEV.Location = new System.Drawing.Point(3, 75);
+            this.numSpAtkEV.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numSpAtkEV.Name = "numSpAtkEV";
+            this.numSpAtkEV.Size = new System.Drawing.Size(53, 20);
+            this.numSpAtkEV.TabIndex = 3;
+            // 
+            // numDefEV
+            // 
+            this.numDefEV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numDefEV.Location = new System.Drawing.Point(3, 51);
+            this.numDefEV.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numDefEV.Name = "numDefEV";
+            this.numDefEV.Size = new System.Drawing.Size(53, 20);
+            this.numDefEV.TabIndex = 2;
+            // 
+            // numAtkEV
+            // 
+            this.numAtkEV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numAtkEV.Location = new System.Drawing.Point(3, 27);
+            this.numAtkEV.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numAtkEV.Name = "numAtkEV";
+            this.numAtkEV.Size = new System.Drawing.Size(53, 20);
+            this.numAtkEV.TabIndex = 1;
+            // 
+            // numHPEV
+            // 
+            this.numHPEV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numHPEV.Location = new System.Drawing.Point(3, 3);
+            this.numHPEV.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numHPEV.Name = "numHPEV";
+            this.numHPEV.Size = new System.Drawing.Size(53, 20);
+            this.numHPEV.TabIndex = 0;
+            // 
             // gbIVs
             // 
             this.gbIVs.Controls.Add(this.tlIVs);
@@ -1154,6 +1305,144 @@
             this.tlIVs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlIVs.Size = new System.Drawing.Size(93, 149);
             this.tlIVs.TabIndex = 0;
+            // 
+            // numSpeedIV
+            // 
+            this.numSpeedIV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numSpeedIV.Location = new System.Drawing.Point(53, 123);
+            this.numSpeedIV.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.numSpeedIV.Name = "numSpeedIV";
+            this.numSpeedIV.Size = new System.Drawing.Size(37, 20);
+            this.numSpeedIV.TabIndex = 11;
+            // 
+            // numSpDefIV
+            // 
+            this.numSpDefIV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numSpDefIV.Location = new System.Drawing.Point(53, 99);
+            this.numSpDefIV.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.numSpDefIV.Name = "numSpDefIV";
+            this.numSpDefIV.Size = new System.Drawing.Size(37, 20);
+            this.numSpDefIV.TabIndex = 9;
+            // 
+            // numSpAtkIV
+            // 
+            this.numSpAtkIV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numSpAtkIV.Location = new System.Drawing.Point(53, 75);
+            this.numSpAtkIV.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.numSpAtkIV.Name = "numSpAtkIV";
+            this.numSpAtkIV.Size = new System.Drawing.Size(37, 20);
+            this.numSpAtkIV.TabIndex = 7;
+            // 
+            // numDefIV
+            // 
+            this.numDefIV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numDefIV.Location = new System.Drawing.Point(53, 51);
+            this.numDefIV.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.numDefIV.Name = "numDefIV";
+            this.numDefIV.Size = new System.Drawing.Size(37, 20);
+            this.numDefIV.TabIndex = 5;
+            // 
+            // numAtkIV
+            // 
+            this.numAtkIV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numAtkIV.Location = new System.Drawing.Point(53, 27);
+            this.numAtkIV.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.numAtkIV.Name = "numAtkIV";
+            this.numAtkIV.Size = new System.Drawing.Size(37, 20);
+            this.numAtkIV.TabIndex = 3;
+            // 
+            // numHPIV
+            // 
+            this.numHPIV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numHPIV.Location = new System.Drawing.Point(53, 3);
+            this.numHPIV.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.numHPIV.Name = "numHPIV";
+            this.numHPIV.Size = new System.Drawing.Size(37, 20);
+            this.numHPIV.TabIndex = 1;
+            // 
+            // lblHPStats
+            // 
+            this.lblHPStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblHPStats.Location = new System.Drawing.Point(3, 0);
+            this.lblHPStats.Name = "lblHPStats";
+            this.lblHPStats.Size = new System.Drawing.Size(44, 24);
+            this.lblHPStats.TabIndex = 0;
+            this.lblHPStats.Text = "HP";
+            this.lblHPStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblAtkStats
+            // 
+            this.lblAtkStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAtkStats.Location = new System.Drawing.Point(3, 24);
+            this.lblAtkStats.Name = "lblAtkStats";
+            this.lblAtkStats.Size = new System.Drawing.Size(44, 24);
+            this.lblAtkStats.TabIndex = 2;
+            this.lblAtkStats.Text = "Atk";
+            this.lblAtkStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDefStats
+            // 
+            this.lblDefStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDefStats.Location = new System.Drawing.Point(3, 48);
+            this.lblDefStats.Name = "lblDefStats";
+            this.lblDefStats.Size = new System.Drawing.Size(44, 24);
+            this.lblDefStats.TabIndex = 4;
+            this.lblDefStats.Text = "Def";
+            this.lblDefStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSpAtkStats
+            // 
+            this.lblSpAtkStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSpAtkStats.Location = new System.Drawing.Point(3, 72);
+            this.lblSpAtkStats.Name = "lblSpAtkStats";
+            this.lblSpAtkStats.Size = new System.Drawing.Size(44, 24);
+            this.lblSpAtkStats.TabIndex = 6;
+            this.lblSpAtkStats.Text = "Sp Atk";
+            this.lblSpAtkStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSpDefStats
+            // 
+            this.lblSpDefStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSpDefStats.Location = new System.Drawing.Point(3, 96);
+            this.lblSpDefStats.Name = "lblSpDefStats";
+            this.lblSpDefStats.Size = new System.Drawing.Size(44, 24);
+            this.lblSpDefStats.TabIndex = 8;
+            this.lblSpDefStats.Text = "Sp Def";
+            this.lblSpDefStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSpeedStats
+            // 
+            this.lblSpeedStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSpeedStats.Location = new System.Drawing.Point(3, 120);
+            this.lblSpeedStats.Name = "lblSpeedStats";
+            this.lblSpeedStats.Size = new System.Drawing.Size(44, 29);
+            this.lblSpeedStats.TabIndex = 10;
+            this.lblSpeedStats.Text = "Speed";
+            this.lblSpeedStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tpMove
             // 
@@ -1897,335 +2186,90 @@
             this.tpOrigin.Text = "Origins";
             this.tpOrigin.UseVisualStyleBackColor = true;
             // 
-            // tpRibbon
+            // cbFateful
             // 
-            this.tpRibbon.Location = new System.Drawing.Point(4, 22);
-            this.tpRibbon.Name = "tpRibbon";
-            this.tpRibbon.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRibbon.Size = new System.Drawing.Size(381, 314);
-            this.tpRibbon.TabIndex = 4;
-            this.tpRibbon.Text = "Ribbons";
-            this.tpRibbon.UseVisualStyleBackColor = true;
+            this.cbFateful.AutoSize = true;
+            this.cbFateful.Location = new System.Drawing.Point(199, 128);
+            this.cbFateful.Name = "cbFateful";
+            this.cbFateful.Size = new System.Drawing.Size(110, 17);
+            this.cbFateful.TabIndex = 10;
+            this.cbFateful.Text = "Fateful Encounter";
+            this.cbFateful.UseVisualStyleBackColor = true;
             // 
-            // tpMisc
+            // cbNsPokemon
             // 
-            this.tpMisc.Location = new System.Drawing.Point(4, 22);
-            this.tpMisc.Name = "tpMisc";
-            this.tpMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMisc.Size = new System.Drawing.Size(381, 314);
-            this.tpMisc.TabIndex = 5;
-            this.tpMisc.Text = "Misc";
-            this.tpMisc.UseVisualStyleBackColor = true;
+            this.cbNsPokemon.AutoSize = true;
+            this.cbNsPokemon.Location = new System.Drawing.Point(261, 105);
+            this.cbNsPokemon.Name = "cbNsPokemon";
+            this.cbNsPokemon.Size = new System.Drawing.Size(89, 17);
+            this.cbNsPokemon.TabIndex = 9;
+            this.cbNsPokemon.Text = "N\'s Pokémon";
+            this.cbNsPokemon.UseVisualStyleBackColor = true;
             // 
-            // fileSave
+            // cbIsEgg
             // 
-            this.fileSave.Filter = "PK5 files|*.pk5|EK5 files|*.ek5|PKM files|*.pkm|All files|*.*";
+            this.cbIsEgg.AutoSize = true;
+            this.cbIsEgg.Location = new System.Drawing.Point(199, 105);
+            this.cbIsEgg.Name = "cbIsEgg";
+            this.cbIsEgg.Size = new System.Drawing.Size(56, 17);
+            this.cbIsEgg.TabIndex = 8;
+            this.cbIsEgg.Text = "Is Egg";
+            this.cbIsEgg.UseVisualStyleBackColor = true;
             // 
-            // lblHPStats
+            // cbCountry
             // 
-            this.lblHPStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblHPStats.Location = new System.Drawing.Point(3, 0);
-            this.lblHPStats.Name = "lblHPStats";
-            this.lblHPStats.Size = new System.Drawing.Size(44, 24);
-            this.lblHPStats.TabIndex = 0;
-            this.lblHPStats.Text = "HP";
-            this.lblHPStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Location = new System.Drawing.Point(55, 140);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(133, 21);
+            this.cbCountry.TabIndex = 7;
             // 
-            // lblAtkStats
+            // lblCountry
             // 
-            this.lblAtkStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAtkStats.Location = new System.Drawing.Point(3, 24);
-            this.lblAtkStats.Name = "lblAtkStats";
-            this.lblAtkStats.Size = new System.Drawing.Size(44, 24);
-            this.lblAtkStats.TabIndex = 2;
-            this.lblAtkStats.Text = "Atk";
-            this.lblAtkStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCountry.Location = new System.Drawing.Point(6, 143);
+            this.lblCountry.Name = "lblCountry";
+            this.lblCountry.Size = new System.Drawing.Size(43, 13);
+            this.lblCountry.TabIndex = 6;
+            this.lblCountry.Text = "Country";
+            this.lblCountry.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblDefStats
+            // cbGame
             // 
-            this.lblDefStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDefStats.Location = new System.Drawing.Point(3, 48);
-            this.lblDefStats.Name = "lblDefStats";
-            this.lblDefStats.Size = new System.Drawing.Size(44, 24);
-            this.lblDefStats.TabIndex = 4;
-            this.lblDefStats.Text = "Def";
-            this.lblDefStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbGame.FormattingEnabled = true;
+            this.cbGame.Location = new System.Drawing.Point(55, 113);
+            this.cbGame.Name = "cbGame";
+            this.cbGame.Size = new System.Drawing.Size(133, 21);
+            this.cbGame.TabIndex = 5;
             // 
-            // lblSpAtkStats
+            // lblGame
             // 
-            this.lblSpAtkStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpAtkStats.Location = new System.Drawing.Point(3, 72);
-            this.lblSpAtkStats.Name = "lblSpAtkStats";
-            this.lblSpAtkStats.Size = new System.Drawing.Size(44, 24);
-            this.lblSpAtkStats.TabIndex = 6;
-            this.lblSpAtkStats.Text = "Sp Atk";
-            this.lblSpAtkStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGame.Location = new System.Drawing.Point(6, 116);
+            this.lblGame.Name = "lblGame";
+            this.lblGame.Size = new System.Drawing.Size(43, 13);
+            this.lblGame.TabIndex = 4;
+            this.lblGame.Text = "Game";
+            this.lblGame.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblSpDefStats
+            // lblMetLevel
             // 
-            this.lblSpDefStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpDefStats.Location = new System.Drawing.Point(3, 96);
-            this.lblSpDefStats.Name = "lblSpDefStats";
-            this.lblSpDefStats.Size = new System.Drawing.Size(44, 24);
-            this.lblSpDefStats.TabIndex = 8;
-            this.lblSpDefStats.Text = "Sp Def";
-            this.lblSpDefStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMetLevel.Location = new System.Drawing.Point(7, 85);
+            this.lblMetLevel.Name = "lblMetLevel";
+            this.lblMetLevel.Size = new System.Drawing.Size(54, 13);
+            this.lblMetLevel.TabIndex = 2;
+            this.lblMetLevel.Text = "Met Level";
+            this.lblMetLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblSpeedStats
+            // numMetLevel
             // 
-            this.lblSpeedStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpeedStats.Location = new System.Drawing.Point(3, 120);
-            this.lblSpeedStats.Name = "lblSpeedStats";
-            this.lblSpeedStats.Size = new System.Drawing.Size(44, 29);
-            this.lblSpeedStats.TabIndex = 10;
-            this.lblSpeedStats.Text = "Speed";
-            this.lblSpeedStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // numHPIV
-            // 
-            this.numHPIV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numHPIV.Location = new System.Drawing.Point(53, 3);
-            this.numHPIV.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.numHPIV.Name = "numHPIV";
-            this.numHPIV.Size = new System.Drawing.Size(37, 20);
-            this.numHPIV.TabIndex = 1;
-            // 
-            // txtTNLPercent
-            // 
-            this.txtTNLPercent.Location = new System.Drawing.Point(341, 226);
-            this.txtTNLPercent.Multiline = true;
-            this.txtTNLPercent.Name = "txtTNLPercent";
-            this.txtTNLPercent.ReadOnly = true;
-            this.txtTNLPercent.Size = new System.Drawing.Size(34, 23);
-            this.txtTNLPercent.TabIndex = 13;
-            this.txtTNLPercent.TabStop = false;
-            this.txtTNLPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // numAtkIV
-            // 
-            this.numAtkIV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numAtkIV.Location = new System.Drawing.Point(53, 27);
-            this.numAtkIV.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.numAtkIV.Name = "numAtkIV";
-            this.numAtkIV.Size = new System.Drawing.Size(37, 20);
-            this.numAtkIV.TabIndex = 3;
-            // 
-            // numDefIV
-            // 
-            this.numDefIV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numDefIV.Location = new System.Drawing.Point(53, 51);
-            this.numDefIV.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.numDefIV.Name = "numDefIV";
-            this.numDefIV.Size = new System.Drawing.Size(37, 20);
-            this.numDefIV.TabIndex = 5;
-            // 
-            // numSpAtkIV
-            // 
-            this.numSpAtkIV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numSpAtkIV.Location = new System.Drawing.Point(53, 75);
-            this.numSpAtkIV.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.numSpAtkIV.Name = "numSpAtkIV";
-            this.numSpAtkIV.Size = new System.Drawing.Size(37, 20);
-            this.numSpAtkIV.TabIndex = 7;
-            // 
-            // numSpDefIV
-            // 
-            this.numSpDefIV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numSpDefIV.Location = new System.Drawing.Point(53, 99);
-            this.numSpDefIV.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.numSpDefIV.Name = "numSpDefIV";
-            this.numSpDefIV.Size = new System.Drawing.Size(37, 20);
-            this.numSpDefIV.TabIndex = 9;
-            // 
-            // numSpeedIV
-            // 
-            this.numSpeedIV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numSpeedIV.Location = new System.Drawing.Point(53, 123);
-            this.numSpeedIV.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.numSpeedIV.Name = "numSpeedIV";
-            this.numSpeedIV.Size = new System.Drawing.Size(37, 20);
-            this.numSpeedIV.TabIndex = 11;
-            // 
-            // numHPEV
-            // 
-            this.numHPEV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numHPEV.Location = new System.Drawing.Point(3, 3);
-            this.numHPEV.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numHPEV.Name = "numHPEV";
-            this.numHPEV.Size = new System.Drawing.Size(53, 20);
-            this.numHPEV.TabIndex = 0;
-            // 
-            // numAtkEV
-            // 
-            this.numAtkEV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numAtkEV.Location = new System.Drawing.Point(3, 27);
-            this.numAtkEV.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numAtkEV.Name = "numAtkEV";
-            this.numAtkEV.Size = new System.Drawing.Size(53, 20);
-            this.numAtkEV.TabIndex = 1;
-            // 
-            // numDefEV
-            // 
-            this.numDefEV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numDefEV.Location = new System.Drawing.Point(3, 51);
-            this.numDefEV.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numDefEV.Name = "numDefEV";
-            this.numDefEV.Size = new System.Drawing.Size(53, 20);
-            this.numDefEV.TabIndex = 2;
-            // 
-            // numSpAtkEV
-            // 
-            this.numSpAtkEV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numSpAtkEV.Location = new System.Drawing.Point(3, 75);
-            this.numSpAtkEV.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numSpAtkEV.Name = "numSpAtkEV";
-            this.numSpAtkEV.Size = new System.Drawing.Size(53, 20);
-            this.numSpAtkEV.TabIndex = 3;
-            // 
-            // numSpDefEV
-            // 
-            this.numSpDefEV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numSpDefEV.Location = new System.Drawing.Point(3, 99);
-            this.numSpDefEV.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numSpDefEV.Name = "numSpDefEV";
-            this.numSpDefEV.Size = new System.Drawing.Size(53, 20);
-            this.numSpDefEV.TabIndex = 4;
-            // 
-            // numSpeedEV
-            // 
-            this.numSpeedEV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numSpeedEV.Location = new System.Drawing.Point(3, 123);
-            this.numSpeedEV.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numSpeedEV.Name = "numSpeedEV";
-            this.numSpeedEV.Size = new System.Drawing.Size(53, 20);
-            this.numSpeedEV.TabIndex = 5;
-            // 
-            // txtCalcHP
-            // 
-            this.txtCalcHP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCalcHP.Location = new System.Drawing.Point(3, 3);
-            this.txtCalcHP.Name = "txtCalcHP";
-            this.txtCalcHP.ReadOnly = true;
-            this.txtCalcHP.Size = new System.Drawing.Size(86, 20);
-            this.txtCalcHP.TabIndex = 0;
-            // 
-            // txtCalcAtk
-            // 
-            this.txtCalcAtk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCalcAtk.Location = new System.Drawing.Point(3, 27);
-            this.txtCalcAtk.Name = "txtCalcAtk";
-            this.txtCalcAtk.ReadOnly = true;
-            this.txtCalcAtk.Size = new System.Drawing.Size(86, 20);
-            this.txtCalcAtk.TabIndex = 1;
-            // 
-            // txtCalcDef
-            // 
-            this.txtCalcDef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCalcDef.Location = new System.Drawing.Point(3, 51);
-            this.txtCalcDef.Name = "txtCalcDef";
-            this.txtCalcDef.ReadOnly = true;
-            this.txtCalcDef.Size = new System.Drawing.Size(86, 20);
-            this.txtCalcDef.TabIndex = 2;
-            // 
-            // txtCalcSpAtk
-            // 
-            this.txtCalcSpAtk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCalcSpAtk.Location = new System.Drawing.Point(3, 75);
-            this.txtCalcSpAtk.Name = "txtCalcSpAtk";
-            this.txtCalcSpAtk.ReadOnly = true;
-            this.txtCalcSpAtk.Size = new System.Drawing.Size(86, 20);
-            this.txtCalcSpAtk.TabIndex = 3;
-            // 
-            // txtCalcSpDef
-            // 
-            this.txtCalcSpDef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCalcSpDef.Location = new System.Drawing.Point(3, 99);
-            this.txtCalcSpDef.Name = "txtCalcSpDef";
-            this.txtCalcSpDef.ReadOnly = true;
-            this.txtCalcSpDef.Size = new System.Drawing.Size(86, 20);
-            this.txtCalcSpDef.TabIndex = 4;
-            // 
-            // txtCalcSpeed
-            // 
-            this.txtCalcSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCalcSpeed.Location = new System.Drawing.Point(3, 123);
-            this.txtCalcSpeed.Name = "txtCalcSpeed";
-            this.txtCalcSpeed.ReadOnly = true;
-            this.txtCalcSpeed.Size = new System.Drawing.Size(86, 20);
-            this.txtCalcSpeed.TabIndex = 5;
-            // 
-            // gbMet
-            // 
-            this.gbMet.Controls.Add(this.tlMet);
-            this.gbMet.Location = new System.Drawing.Point(6, 6);
-            this.gbMet.Name = "gbMet";
-            this.gbMet.Size = new System.Drawing.Size(181, 71);
-            this.gbMet.TabIndex = 0;
-            this.gbMet.TabStop = false;
-            this.gbMet.Text = "Met";
-            // 
-            // tlMet
-            // 
-            this.tlMet.ColumnCount = 1;
-            this.tlMet.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlMet.Controls.Add(this.cbMetLocation, 0, 0);
-            this.tlMet.Controls.Add(this.dtMetDate, 0, 1);
-            this.tlMet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMet.Location = new System.Drawing.Point(3, 16);
-            this.tlMet.Name = "tlMet";
-            this.tlMet.RowCount = 2;
-            this.tlMet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tlMet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tlMet.Size = new System.Drawing.Size(175, 52);
-            this.tlMet.TabIndex = 0;
+            this.numMetLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numMetLevel.Location = new System.Drawing.Point(67, 83);
+            this.numMetLevel.Name = "numMetLevel";
+            this.numMetLevel.Size = new System.Drawing.Size(55, 20);
+            this.numMetLevel.TabIndex = 3;
             // 
             // gbEggMet
             // 
@@ -2254,15 +2298,6 @@
             this.tlEggMet.Size = new System.Drawing.Size(175, 77);
             this.tlEggMet.TabIndex = 0;
             // 
-            // cbMetLocation
-            // 
-            this.cbMetLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbMetLocation.FormattingEnabled = true;
-            this.cbMetLocation.Location = new System.Drawing.Point(3, 3);
-            this.cbMetLocation.Name = "cbMetLocation";
-            this.cbMetLocation.Size = new System.Drawing.Size(169, 21);
-            this.cbMetLocation.TabIndex = 0;
-            // 
             // cbEggLocation
             // 
             this.cbEggLocation.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2271,18 +2306,6 @@
             this.cbEggLocation.Name = "cbEggLocation";
             this.cbEggLocation.Size = new System.Drawing.Size(169, 21);
             this.cbEggLocation.TabIndex = 0;
-            // 
-            // dtMetDate
-            // 
-            this.dtMetDate.CustomFormat = "MM / dd / yyyy";
-            this.dtMetDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtMetDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtMetDate.Location = new System.Drawing.Point(3, 29);
-            this.dtMetDate.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
-            this.dtMetDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtMetDate.Name = "dtMetDate";
-            this.dtMetDate.Size = new System.Drawing.Size(169, 20);
-            this.dtMetDate.TabIndex = 1;
             // 
             // dtEggDate
             // 
@@ -2306,90 +2329,75 @@
             this.cbMetAsEgg.Text = "Met as egg";
             this.cbMetAsEgg.UseVisualStyleBackColor = true;
             // 
-            // lblMetLevel
+            // gbMet
             // 
-            this.lblMetLevel.Location = new System.Drawing.Point(7, 85);
-            this.lblMetLevel.Name = "lblMetLevel";
-            this.lblMetLevel.Size = new System.Drawing.Size(54, 13);
-            this.lblMetLevel.TabIndex = 2;
-            this.lblMetLevel.Text = "Met Level";
-            this.lblMetLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.gbMet.Controls.Add(this.tlMet);
+            this.gbMet.Location = new System.Drawing.Point(6, 6);
+            this.gbMet.Name = "gbMet";
+            this.gbMet.Size = new System.Drawing.Size(181, 71);
+            this.gbMet.TabIndex = 0;
+            this.gbMet.TabStop = false;
+            this.gbMet.Text = "Met";
             // 
-            // numMetLevel
+            // tlMet
             // 
-            this.numMetLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMetLevel.Location = new System.Drawing.Point(67, 83);
-            this.numMetLevel.Name = "numMetLevel";
-            this.numMetLevel.Size = new System.Drawing.Size(55, 20);
-            this.numMetLevel.TabIndex = 3;
+            this.tlMet.ColumnCount = 1;
+            this.tlMet.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlMet.Controls.Add(this.cbMetLocation, 0, 0);
+            this.tlMet.Controls.Add(this.dtMetDate, 0, 1);
+            this.tlMet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlMet.Location = new System.Drawing.Point(3, 16);
+            this.tlMet.Name = "tlMet";
+            this.tlMet.RowCount = 2;
+            this.tlMet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlMet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlMet.Size = new System.Drawing.Size(175, 52);
+            this.tlMet.TabIndex = 0;
             // 
-            // cbGame
+            // cbMetLocation
             // 
-            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbGame.FormattingEnabled = true;
-            this.cbGame.Location = new System.Drawing.Point(55, 113);
-            this.cbGame.Name = "cbGame";
-            this.cbGame.Size = new System.Drawing.Size(133, 21);
-            this.cbGame.TabIndex = 5;
+            this.cbMetLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbMetLocation.FormattingEnabled = true;
+            this.cbMetLocation.Location = new System.Drawing.Point(3, 3);
+            this.cbMetLocation.Name = "cbMetLocation";
+            this.cbMetLocation.Size = new System.Drawing.Size(169, 21);
+            this.cbMetLocation.TabIndex = 0;
             // 
-            // lblGame
+            // dtMetDate
             // 
-            this.lblGame.Location = new System.Drawing.Point(6, 116);
-            this.lblGame.Name = "lblGame";
-            this.lblGame.Size = new System.Drawing.Size(43, 13);
-            this.lblGame.TabIndex = 4;
-            this.lblGame.Text = "Game";
-            this.lblGame.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dtMetDate.CustomFormat = "MM / dd / yyyy";
+            this.dtMetDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtMetDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtMetDate.Location = new System.Drawing.Point(3, 29);
+            this.dtMetDate.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
+            this.dtMetDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtMetDate.Name = "dtMetDate";
+            this.dtMetDate.Size = new System.Drawing.Size(169, 20);
+            this.dtMetDate.TabIndex = 1;
             // 
-            // cbCountry
+            // tpRibbon
             // 
-            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(55, 140);
-            this.cbCountry.Name = "cbCountry";
-            this.cbCountry.Size = new System.Drawing.Size(133, 21);
-            this.cbCountry.TabIndex = 7;
+            this.tpRibbon.Location = new System.Drawing.Point(4, 22);
+            this.tpRibbon.Name = "tpRibbon";
+            this.tpRibbon.Padding = new System.Windows.Forms.Padding(3);
+            this.tpRibbon.Size = new System.Drawing.Size(381, 314);
+            this.tpRibbon.TabIndex = 4;
+            this.tpRibbon.Text = "Ribbons";
+            this.tpRibbon.UseVisualStyleBackColor = true;
             // 
-            // lblCountry
+            // tpMisc
             // 
-            this.lblCountry.Location = new System.Drawing.Point(6, 143);
-            this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(43, 13);
-            this.lblCountry.TabIndex = 6;
-            this.lblCountry.Text = "Country";
-            this.lblCountry.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tpMisc.Location = new System.Drawing.Point(4, 22);
+            this.tpMisc.Name = "tpMisc";
+            this.tpMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tpMisc.Size = new System.Drawing.Size(381, 314);
+            this.tpMisc.TabIndex = 5;
+            this.tpMisc.Text = "Misc";
+            this.tpMisc.UseVisualStyleBackColor = true;
             // 
-            // cbIsEgg
+            // fileSave
             // 
-            this.cbIsEgg.AutoSize = true;
-            this.cbIsEgg.Location = new System.Drawing.Point(199, 105);
-            this.cbIsEgg.Name = "cbIsEgg";
-            this.cbIsEgg.Size = new System.Drawing.Size(56, 17);
-            this.cbIsEgg.TabIndex = 8;
-            this.cbIsEgg.Text = "Is Egg";
-            this.cbIsEgg.UseVisualStyleBackColor = true;
-            // 
-            // cbNsPokemon
-            // 
-            this.cbNsPokemon.AutoSize = true;
-            this.cbNsPokemon.Location = new System.Drawing.Point(261, 105);
-            this.cbNsPokemon.Name = "cbNsPokemon";
-            this.cbNsPokemon.Size = new System.Drawing.Size(89, 17);
-            this.cbNsPokemon.TabIndex = 9;
-            this.cbNsPokemon.Text = "N\'s Pokémon";
-            this.cbNsPokemon.UseVisualStyleBackColor = true;
-            // 
-            // cbFateful
-            // 
-            this.cbFateful.AutoSize = true;
-            this.cbFateful.Location = new System.Drawing.Point(199, 128);
-            this.cbFateful.Name = "cbFateful";
-            this.cbFateful.Size = new System.Drawing.Size(110, 17);
-            this.cbFateful.TabIndex = 10;
-            this.cbFateful.Text = "Fateful Encounter";
-            this.cbFateful.UseVisualStyleBackColor = true;
+            this.fileSave.Filter = "PK5 files|*.pk5|EK5 files|*.ek5|PKM files|*.pkm|All files|*.*";
             // 
             // frmPKMViewer
             // 
@@ -2444,8 +2452,20 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tlEVs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeedEV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpDefEV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkEV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDefEV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAtkEV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHPEV)).EndInit();
             this.gbIVs.ResumeLayout(false);
             this.tlIVs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numSpeedIV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpDefIV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkIV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDefIV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAtkIV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHPIV)).EndInit();
             this.tpMove.ResumeLayout(false);
             this.tlMoves.ResumeLayout(false);
             this.tlMove4.ResumeLayout(false);
@@ -2487,24 +2507,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMove3Type)).EndInit();
             this.tpOrigin.ResumeLayout(false);
             this.tpOrigin.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numHPIV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAtkIV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDefIV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkIV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpDefIV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpeedIV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numHPEV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAtkEV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDefEV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpAtkEV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpDefEV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSpeedEV)).EndInit();
-            this.gbMet.ResumeLayout(false);
-            this.tlMet.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numMetLevel)).EndInit();
             this.gbEggMet.ResumeLayout(false);
             this.tlEggMet.ResumeLayout(false);
             this.tlEggMet.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMetLevel)).EndInit();
+            this.gbMet.ResumeLayout(false);
+            this.tlMet.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

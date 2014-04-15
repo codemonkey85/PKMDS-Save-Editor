@@ -26,15 +26,17 @@ namespace PKMDS_Save_Editor
         }
         public void SetPokemon(PKMDS.Pokemon pkm)
         {
-            this.SharedPokemon = pkm;
-            this.TempPokemon = this.SharedPokemon;
+            PokemonSet = false;
+            this.SharedPokemon = pkm.Clone();
+            this.TempPokemon = pkm.Clone();
             //this.IsParty = false;
         }
         public void SetPokemon(PKMDS.PartyPokemon ppkm)
         {
-            this.SharedPartyPokemon = ppkm;
-            this.SharedPokemon = ppkm.PokemonData;
-            this.TempPokemon = this.SharedPokemon;
+            PokemonSet = false;
+            //SetPokemon(ppkm.PokemonData);
+            this.SharedPokemon = ppkm.PokemonData.Clone();
+            this.TempPokemon = ppkm.PokemonData.Clone();
             //this.IsParty = true;
         }
         private void frmPKMViewer_Load(object sender, EventArgs e)
@@ -65,6 +67,7 @@ namespace PKMDS_Save_Editor
         {
             btnApply.Enabled = false;
             cbHeldItem.SelectedIndex = -1;
+            //cbHeldItem.SelectedValue = 0;
             pbHeldItem.Image = null;
             pbGender.Image = null;
         }
@@ -74,6 +77,12 @@ namespace PKMDS_Save_Editor
             UpdateGenderPic();
             UpdateMarkings();
             UpdateHeldItem();
+            UpdateShiny();
+            UpdateBall();
+            UpdatePokerus();
+            UpdateSpecies();
+            UpdateLevel();
+            UpdateForm();
         }
         private void UpdateBasicInfo()
         {
@@ -99,6 +108,7 @@ namespace PKMDS_Save_Editor
         {
 
         }
+
         private void UpdateSprite()
         {
             pbSprite.Image = TempPokemon.Sprite;
@@ -116,16 +126,40 @@ namespace PKMDS_Save_Editor
             pbStar.Image = TempPokemon.GetMarkingImage(4);
             pbDiamond.Image = TempPokemon.GetMarkingImage(5);
         }
-        private void UpdateNickname()
-        {
-            txtNickname.Text = TempPokemon.Nickname;
-            chkNicknamed.Checked = TempPokemon.IsNicknamed;
-        }
         private void UpdateHeldItem()
         {
             cbHeldItem.SelectedValue = TempPokemon.ItemID;
             pbHeldItem.Image = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemImage;
         }
+        private void UpdateShiny()
+        {
+            pbShiny.Image = TempPokemon.ShinyIcon;
+        }
+        private void UpdateBall() { }
+        private void UpdatePokerus()
+        {
+            pbPokerus.Image = TempPokemon.PokerusIcon;
+        }
+        private void UpdateSpecies()
+        {
+
+        }
+        private void UpdateLevel()
+        {
+            numLevel.Value = TempPokemon.Level;
+        }
+        private void UpdateForm()
+        {
+
+        }
+
+        private void UpdateNickname()
+        {
+            txtNickname.Text = TempPokemon.Nickname;
+            chkNicknamed.Checked = TempPokemon.IsNicknamed;
+        }
+        private void Update() { }
+
         private void SetUI()
         {
             SetItems();
@@ -136,7 +170,7 @@ namespace PKMDS_Save_Editor
             List<PKMDS.Item> items = new List<PKMDS.Item>();
             PKMDS.Item item = new PKMDS.Item();
             items.Add(item);
-            for (int itemindex = 0; itemindex <= 0x027E; itemindex++)
+            for (UInt16 itemindex = 0; itemindex <= 0x027E; itemindex++)
             {
                 item = new PKMDS.Item(itemindex);
                 if ((item.ItemName != "") & (item.ItemName != null))
@@ -151,15 +185,17 @@ namespace PKMDS_Save_Editor
         private void btnSave_Click(object sender, EventArgs e)
         {
             TempPokemon.FixChecksum();
-            this.SharedPokemon = this.TempPokemon;
-            SharedPartyPokemon.PokemonData = SharedPokemon;
+            this.SharedPokemon = this.TempPokemon.Clone();
+            this.SharedPartyPokemon = new PKMDS.PartyPokemon();
+            this.SharedPartyPokemon.PokemonData = this.TempPokemon.Clone();
             this.Close();
         }
         private void btnApply_Click(object sender, EventArgs e)
         {
             TempPokemon.FixChecksum();
-            this.SharedPokemon = this.TempPokemon;
-            SharedPartyPokemon.PokemonData = SharedPokemon;
+            this.SharedPokemon = this.TempPokemon.Clone();
+            this.SharedPartyPokemon = new PKMDS.PartyPokemon();
+            this.SharedPartyPokemon.PokemonData = this.TempPokemon.Clone();
             CheckApplyButton();
         }
         private void btnExport_Click(object sender, EventArgs e)
@@ -229,7 +265,7 @@ namespace PKMDS_Save_Editor
             {
                 if (cbHeldItem.SelectedIndex != -1)
                 {
-                    TempPokemon.ItemID = (int)(cbHeldItem.SelectedValue);
+                    TempPokemon.ItemID = (UInt16)(cbHeldItem.SelectedValue);
                     //TempPokemon.ItemID = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemID;
 
                     //MessageBox.Show(cbHeldItem.SelectedItem.ToString());
@@ -257,10 +293,17 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.Nickname = txtNickname.Text;
-                chkNicknamed.Checked = true;
-                CheckApplyButton();
+                if (txtNickname.Text.Length != 0)
+                {
+                    TempPokemon.Nickname = txtNickname.Text;
+                    chkNicknamed.Checked = true;
+                    CheckApplyButton();
+                }
             }
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

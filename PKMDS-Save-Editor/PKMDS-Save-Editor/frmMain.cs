@@ -145,9 +145,11 @@ namespace PKMDS_Save_Editor
         }
         private PKMDS.PartyPokemon ViewPokemon(PKMDS.PartyPokemon ppkm)
         {
-            pkmviewer.SetPokemon(ppkm);
+            pkmviewer.SetPokemon(ppkm.PokemonData.Clone());
             pkmviewer.ShowDialog();
-            return pkmviewer.SharedPartyPokemon;
+            PKMDS.PartyPokemon newppkm = new PKMDS.PartyPokemon();
+            newppkm.PokemonData = pkmviewer.SharedPokemon.Clone();
+            return newppkm;
         }
     }
 }
