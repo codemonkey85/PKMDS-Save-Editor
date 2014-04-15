@@ -266,16 +266,6 @@ namespace PKMDS_Save_Editor
                 if (cbHeldItem.SelectedIndex != -1)
                 {
                     TempPokemon.ItemID = (UInt16)(cbHeldItem.SelectedValue);
-                    //TempPokemon.ItemID = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemID;
-
-                    //MessageBox.Show(cbHeldItem.SelectedItem.ToString());
-                    //try
-                    //{
-                    //    MessageBox.Show(cbHeldItem.SelectedValue.ToString());
-                    //}
-                    //catch (Exception ex) { }
-
-                    ////TempPokemon.ItemID = (int)(cbHeldItem.SelectedValue);
                     pbHeldItem.Image = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemImage;
                     CheckApplyButton();
                 }
@@ -301,9 +291,353 @@ namespace PKMDS_Save_Editor
                 }
             }
         }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
 
+        private void txtOTName_TextChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
         }
+        private void numTID_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSID_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void rbOTMale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void rbOTFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbAbility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numEXP_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbBall_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSpecies_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbForm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numLevel_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numHPIV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numAtkIV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numDefIV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSpAtkIV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSpDefIV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSpeedIV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numHPEV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numAtkEV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numDefEV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSpAtkEV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSpDefEV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numSpeedEV_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbNature_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numTameness_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbMove1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbMove2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbMoves3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbMove4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove1PPUps_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove1PP_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove2PPUps_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove2PP_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove3PPUps_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove3PP_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove4PPUps_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMove4PP_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbMetLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void dtMetDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbEggLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void dtEggDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbMetAsEgg_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void numMetLevel_ValueChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbGame_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbIsEgg_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbNsPokemon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        private void cbFateful_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+
+            }
+        }
+        //private void btnClose_Click(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

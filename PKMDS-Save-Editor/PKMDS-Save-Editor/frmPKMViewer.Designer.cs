@@ -347,7 +347,6 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnExport
             // 
@@ -426,13 +425,14 @@
             // 
             // cbBall
             // 
-            this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBall.FormattingEnabled = true;
             this.cbBall.Location = new System.Drawing.Point(109, 52);
             this.cbBall.Name = "cbBall";
             this.cbBall.Size = new System.Drawing.Size(69, 21);
             this.cbBall.TabIndex = 0;
+            this.cbBall.SelectedIndexChanged += new System.EventHandler(this.cbBall_SelectedIndexChanged);
             // 
             // lblLevel
             // 
@@ -460,6 +460,7 @@
             0,
             0,
             0});
+            this.numLevel.ValueChanged += new System.EventHandler(this.numLevel_ValueChanged);
             // 
             // numSpecies
             // 
@@ -483,26 +484,29 @@
             0,
             0,
             0});
+            this.numSpecies.ValueChanged += new System.EventHandler(this.numSpecies_ValueChanged);
             // 
             // cbForm
             // 
-            this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbForm.FormattingEnabled = true;
             this.cbForm.Location = new System.Drawing.Point(3, 138);
             this.cbForm.Name = "cbForm";
             this.cbForm.Size = new System.Drawing.Size(175, 21);
             this.cbForm.TabIndex = 3;
+            this.cbForm.SelectedIndexChanged += new System.EventHandler(this.cbForm_SelectedIndexChanged);
             // 
             // cbSpecies
             // 
-            this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSpecies.FormattingEnabled = true;
             this.cbSpecies.Location = new System.Drawing.Point(3, 112);
             this.cbSpecies.Name = "cbSpecies";
             this.cbSpecies.Size = new System.Drawing.Size(114, 21);
             this.cbSpecies.TabIndex = 1;
+            this.cbSpecies.SelectedIndexChanged += new System.EventHandler(this.cbSpecies_SelectedIndexChanged);
             // 
             // lblHeldItem
             // 
@@ -515,8 +519,8 @@
             // 
             // cbHeldItem
             // 
-            this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbHeldItem.FormattingEnabled = true;
             this.cbHeldItem.Location = new System.Drawing.Point(39, 224);
             this.cbHeldItem.Name = "cbHeldItem";
@@ -747,16 +751,18 @@
             this.numEXP.Name = "numEXP";
             this.numEXP.Size = new System.Drawing.Size(104, 20);
             this.numEXP.TabIndex = 8;
+            this.numEXP.ValueChanged += new System.EventHandler(this.numEXP_ValueChanged);
             // 
             // cbAbility
             // 
-            this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbAbility.FormattingEnabled = true;
             this.cbAbility.Location = new System.Drawing.Point(202, 143);
             this.cbAbility.Name = "cbAbility";
             this.cbAbility.Size = new System.Drawing.Size(133, 21);
             this.cbAbility.TabIndex = 6;
+            this.cbAbility.SelectedIndexChanged += new System.EventHandler(this.cbAbility_SelectedIndexChanged);
             // 
             // lblAbility
             // 
@@ -831,6 +837,7 @@
             this.numSID.Name = "numSID";
             this.numSID.Size = new System.Drawing.Size(55, 20);
             this.numSID.TabIndex = 5;
+            this.numSID.ValueChanged += new System.EventHandler(this.numSID_ValueChanged);
             // 
             // lblTID
             // 
@@ -852,6 +859,7 @@
             this.numTID.Name = "numTID";
             this.numTID.Size = new System.Drawing.Size(55, 20);
             this.numTID.TabIndex = 3;
+            this.numTID.ValueChanged += new System.EventHandler(this.numTID_ValueChanged);
             // 
             // rbOTFemale
             // 
@@ -862,6 +870,7 @@
             this.rbOTFemale.TabIndex = 7;
             this.rbOTFemale.Text = "Female";
             this.rbOTFemale.UseVisualStyleBackColor = true;
+            this.rbOTFemale.CheckedChanged += new System.EventHandler(this.rbOTFemale_CheckedChanged);
             // 
             // rbOTMale
             // 
@@ -874,6 +883,7 @@
             this.rbOTMale.TabStop = true;
             this.rbOTMale.Text = "Male";
             this.rbOTMale.UseVisualStyleBackColor = true;
+            this.rbOTMale.CheckedChanged += new System.EventHandler(this.rbOTMale_CheckedChanged);
             // 
             // txtOTName
             // 
@@ -882,6 +892,7 @@
             this.txtOTName.Name = "txtOTName";
             this.txtOTName.Size = new System.Drawing.Size(100, 20);
             this.txtOTName.TabIndex = 1;
+            this.txtOTName.TextChanged += new System.EventHandler(this.txtOTName_TextChanged);
             // 
             // lblOTName
             // 
@@ -961,18 +972,19 @@
             // 
             // cbNature
             // 
-            this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbNature.FormattingEnabled = true;
             this.cbNature.Location = new System.Drawing.Point(12, 193);
             this.cbNature.Name = "cbNature";
             this.cbNature.Size = new System.Drawing.Size(96, 21);
             this.cbNature.TabIndex = 9;
+            this.cbNature.SelectedIndexChanged += new System.EventHandler(this.cbNature_SelectedIndexChanged);
             // 
             // lblEggSteps
             // 
-            this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEggSteps.Location = new System.Drawing.Point(289, 45);
             this.lblEggSteps.Name = "lblEggSteps";
             this.lblEggSteps.Size = new System.Drawing.Size(72, 27);
@@ -982,8 +994,8 @@
             // 
             // lblTameness
             // 
-            this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTameness.Location = new System.Drawing.Point(292, 6);
             this.lblTameness.Name = "lblTameness";
             this.lblTameness.Size = new System.Drawing.Size(56, 13);
@@ -993,8 +1005,8 @@
             // 
             // numTameness
             // 
-            this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numTameness.Location = new System.Drawing.Point(295, 22);
             this.numTameness.Maximum = new decimal(new int[] {
             255,
@@ -1004,11 +1016,12 @@
             this.numTameness.Name = "numTameness";
             this.numTameness.Size = new System.Drawing.Size(53, 20);
             this.numTameness.TabIndex = 4;
+            this.numTameness.ValueChanged += new System.EventHandler(this.numTameness_ValueChanged);
             // 
             // lblCharacteristic
             // 
-            this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCharacteristic.Location = new System.Drawing.Point(289, 98);
             this.lblCharacteristic.Name = "lblCharacteristic";
             this.lblCharacteristic.Size = new System.Drawing.Size(85, 76);
@@ -1200,6 +1213,7 @@
             this.numSpeedEV.Name = "numSpeedEV";
             this.numSpeedEV.Size = new System.Drawing.Size(53, 20);
             this.numSpeedEV.TabIndex = 5;
+            this.numSpeedEV.ValueChanged += new System.EventHandler(this.numSpeedEV_ValueChanged);
             // 
             // numSpDefEV
             // 
@@ -1213,6 +1227,7 @@
             this.numSpDefEV.Name = "numSpDefEV";
             this.numSpDefEV.Size = new System.Drawing.Size(53, 20);
             this.numSpDefEV.TabIndex = 4;
+            this.numSpDefEV.ValueChanged += new System.EventHandler(this.numSpDefEV_ValueChanged);
             // 
             // numSpAtkEV
             // 
@@ -1226,6 +1241,7 @@
             this.numSpAtkEV.Name = "numSpAtkEV";
             this.numSpAtkEV.Size = new System.Drawing.Size(53, 20);
             this.numSpAtkEV.TabIndex = 3;
+            this.numSpAtkEV.ValueChanged += new System.EventHandler(this.numSpAtkEV_ValueChanged);
             // 
             // numDefEV
             // 
@@ -1239,6 +1255,7 @@
             this.numDefEV.Name = "numDefEV";
             this.numDefEV.Size = new System.Drawing.Size(53, 20);
             this.numDefEV.TabIndex = 2;
+            this.numDefEV.ValueChanged += new System.EventHandler(this.numDefEV_ValueChanged);
             // 
             // numAtkEV
             // 
@@ -1252,6 +1269,7 @@
             this.numAtkEV.Name = "numAtkEV";
             this.numAtkEV.Size = new System.Drawing.Size(53, 20);
             this.numAtkEV.TabIndex = 1;
+            this.numAtkEV.ValueChanged += new System.EventHandler(this.numAtkEV_ValueChanged);
             // 
             // numHPEV
             // 
@@ -1265,6 +1283,7 @@
             this.numHPEV.Name = "numHPEV";
             this.numHPEV.Size = new System.Drawing.Size(53, 20);
             this.numHPEV.TabIndex = 0;
+            this.numHPEV.ValueChanged += new System.EventHandler(this.numHPEV_ValueChanged);
             // 
             // gbIVs
             // 
@@ -1318,6 +1337,7 @@
             this.numSpeedIV.Name = "numSpeedIV";
             this.numSpeedIV.Size = new System.Drawing.Size(37, 20);
             this.numSpeedIV.TabIndex = 11;
+            this.numSpeedIV.ValueChanged += new System.EventHandler(this.numSpeedIV_ValueChanged);
             // 
             // numSpDefIV
             // 
@@ -1331,6 +1351,7 @@
             this.numSpDefIV.Name = "numSpDefIV";
             this.numSpDefIV.Size = new System.Drawing.Size(37, 20);
             this.numSpDefIV.TabIndex = 9;
+            this.numSpDefIV.ValueChanged += new System.EventHandler(this.numSpDefIV_ValueChanged);
             // 
             // numSpAtkIV
             // 
@@ -1344,6 +1365,7 @@
             this.numSpAtkIV.Name = "numSpAtkIV";
             this.numSpAtkIV.Size = new System.Drawing.Size(37, 20);
             this.numSpAtkIV.TabIndex = 7;
+            this.numSpAtkIV.ValueChanged += new System.EventHandler(this.numSpAtkIV_ValueChanged);
             // 
             // numDefIV
             // 
@@ -1357,6 +1379,7 @@
             this.numDefIV.Name = "numDefIV";
             this.numDefIV.Size = new System.Drawing.Size(37, 20);
             this.numDefIV.TabIndex = 5;
+            this.numDefIV.ValueChanged += new System.EventHandler(this.numDefIV_ValueChanged);
             // 
             // numAtkIV
             // 
@@ -1370,6 +1393,7 @@
             this.numAtkIV.Name = "numAtkIV";
             this.numAtkIV.Size = new System.Drawing.Size(37, 20);
             this.numAtkIV.TabIndex = 3;
+            this.numAtkIV.ValueChanged += new System.EventHandler(this.numAtkIV_ValueChanged);
             // 
             // numHPIV
             // 
@@ -1383,6 +1407,7 @@
             this.numHPIV.Name = "numHPIV";
             this.numHPIV.Size = new System.Drawing.Size(37, 20);
             this.numHPIV.TabIndex = 1;
+            this.numHPIV.ValueChanged += new System.EventHandler(this.numHPIV_ValueChanged);
             // 
             // lblHPStats
             // 
@@ -1533,6 +1558,7 @@
             this.cbMove4.Name = "cbMove4";
             this.cbMove4.Size = new System.Drawing.Size(143, 21);
             this.cbMove4.TabIndex = 0;
+            this.cbMove4.SelectedIndexChanged += new System.EventHandler(this.cbMove4_SelectedIndexChanged);
             // 
             // txtMove4MaxPP
             // 
@@ -1556,6 +1582,7 @@
             this.numMove4PP.Name = "numMove4PP";
             this.numMove4PP.Size = new System.Drawing.Size(38, 20);
             this.numMove4PP.TabIndex = 4;
+            this.numMove4PP.ValueChanged += new System.EventHandler(this.numMove4PP_ValueChanged);
             // 
             // numMove4PPUps
             // 
@@ -1569,6 +1596,7 @@
             this.numMove4PPUps.Name = "numMove4PPUps";
             this.numMove4PPUps.Size = new System.Drawing.Size(31, 20);
             this.numMove4PPUps.TabIndex = 3;
+            this.numMove4PPUps.ValueChanged += new System.EventHandler(this.numMove4PPUps_ValueChanged);
             // 
             // lblMove4Power
             // 
@@ -1763,6 +1791,7 @@
             this.cbMove1.Name = "cbMove1";
             this.cbMove1.Size = new System.Drawing.Size(143, 21);
             this.cbMove1.TabIndex = 0;
+            this.cbMove1.SelectedIndexChanged += new System.EventHandler(this.cbMove1_SelectedIndexChanged);
             // 
             // txtMove1MaxPP
             // 
@@ -1786,6 +1815,7 @@
             this.numMove1PP.Name = "numMove1PP";
             this.numMove1PP.Size = new System.Drawing.Size(38, 20);
             this.numMove1PP.TabIndex = 4;
+            this.numMove1PP.ValueChanged += new System.EventHandler(this.numMove1PP_ValueChanged);
             // 
             // numMove1PPUps
             // 
@@ -1799,6 +1829,7 @@
             this.numMove1PPUps.Name = "numMove1PPUps";
             this.numMove1PPUps.Size = new System.Drawing.Size(31, 20);
             this.numMove1PPUps.TabIndex = 3;
+            this.numMove1PPUps.ValueChanged += new System.EventHandler(this.numMove1PPUps_ValueChanged);
             // 
             // lblMove1Power
             // 
@@ -1916,6 +1947,7 @@
             this.cbMove2.Name = "cbMove2";
             this.cbMove2.Size = new System.Drawing.Size(143, 21);
             this.cbMove2.TabIndex = 0;
+            this.cbMove2.SelectedIndexChanged += new System.EventHandler(this.cbMove2_SelectedIndexChanged);
             // 
             // txtMove2MaxPP
             // 
@@ -1939,6 +1971,7 @@
             this.numMove2PP.Name = "numMove2PP";
             this.numMove2PP.Size = new System.Drawing.Size(38, 20);
             this.numMove2PP.TabIndex = 4;
+            this.numMove2PP.ValueChanged += new System.EventHandler(this.numMove2PP_ValueChanged);
             // 
             // numMove2PPUps
             // 
@@ -1952,6 +1985,7 @@
             this.numMove2PPUps.Name = "numMove2PPUps";
             this.numMove2PPUps.Size = new System.Drawing.Size(31, 20);
             this.numMove2PPUps.TabIndex = 3;
+            this.numMove2PPUps.ValueChanged += new System.EventHandler(this.numMove2PPUps_ValueChanged);
             // 
             // lblMove2Power
             // 
@@ -2069,6 +2103,7 @@
             this.cbMoves3.Name = "cbMoves3";
             this.cbMoves3.Size = new System.Drawing.Size(143, 21);
             this.cbMoves3.TabIndex = 0;
+            this.cbMoves3.SelectedIndexChanged += new System.EventHandler(this.cbMoves3_SelectedIndexChanged);
             // 
             // txtMove3MaxPP
             // 
@@ -2092,6 +2127,7 @@
             this.numMove3PP.Name = "numMove3PP";
             this.numMove3PP.Size = new System.Drawing.Size(38, 20);
             this.numMove3PP.TabIndex = 4;
+            this.numMove3PP.ValueChanged += new System.EventHandler(this.numMove3PP_ValueChanged);
             // 
             // numMove3PPUps
             // 
@@ -2105,6 +2141,7 @@
             this.numMove3PPUps.Name = "numMove3PPUps";
             this.numMove3PPUps.Size = new System.Drawing.Size(31, 20);
             this.numMove3PPUps.TabIndex = 3;
+            this.numMove3PPUps.ValueChanged += new System.EventHandler(this.numMove3PPUps_ValueChanged);
             // 
             // lblMove3Power
             // 
@@ -2195,6 +2232,7 @@
             this.cbFateful.TabIndex = 10;
             this.cbFateful.Text = "Fateful Encounter";
             this.cbFateful.UseVisualStyleBackColor = true;
+            this.cbFateful.CheckedChanged += new System.EventHandler(this.cbFateful_CheckedChanged);
             // 
             // cbNsPokemon
             // 
@@ -2205,6 +2243,7 @@
             this.cbNsPokemon.TabIndex = 9;
             this.cbNsPokemon.Text = "N\'s Pokémon";
             this.cbNsPokemon.UseVisualStyleBackColor = true;
+            this.cbNsPokemon.CheckedChanged += new System.EventHandler(this.cbNsPokemon_CheckedChanged);
             // 
             // cbIsEgg
             // 
@@ -2215,16 +2254,18 @@
             this.cbIsEgg.TabIndex = 8;
             this.cbIsEgg.Text = "Is Egg";
             this.cbIsEgg.UseVisualStyleBackColor = true;
+            this.cbIsEgg.CheckedChanged += new System.EventHandler(this.cbIsEgg_CheckedChanged);
             // 
             // cbCountry
             // 
-            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Location = new System.Drawing.Point(55, 140);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(133, 21);
             this.cbCountry.TabIndex = 7;
+            this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.cbCountry_SelectedIndexChanged);
             // 
             // lblCountry
             // 
@@ -2237,13 +2278,14 @@
             // 
             // cbGame
             // 
-            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbGame.FormattingEnabled = true;
             this.cbGame.Location = new System.Drawing.Point(55, 113);
             this.cbGame.Name = "cbGame";
             this.cbGame.Size = new System.Drawing.Size(133, 21);
             this.cbGame.TabIndex = 5;
+            this.cbGame.SelectedIndexChanged += new System.EventHandler(this.cbGame_SelectedIndexChanged);
             // 
             // lblGame
             // 
@@ -2270,6 +2312,7 @@
             this.numMetLevel.Name = "numMetLevel";
             this.numMetLevel.Size = new System.Drawing.Size(55, 20);
             this.numMetLevel.TabIndex = 3;
+            this.numMetLevel.ValueChanged += new System.EventHandler(this.numMetLevel_ValueChanged);
             // 
             // gbEggMet
             // 
@@ -2306,6 +2349,7 @@
             this.cbEggLocation.Name = "cbEggLocation";
             this.cbEggLocation.Size = new System.Drawing.Size(169, 21);
             this.cbEggLocation.TabIndex = 0;
+            this.cbEggLocation.SelectedIndexChanged += new System.EventHandler(this.cbEggLocation_SelectedIndexChanged);
             // 
             // dtEggDate
             // 
@@ -2318,6 +2362,7 @@
             this.dtEggDate.Name = "dtEggDate";
             this.dtEggDate.Size = new System.Drawing.Size(169, 20);
             this.dtEggDate.TabIndex = 1;
+            this.dtEggDate.ValueChanged += new System.EventHandler(this.dtEggDate_ValueChanged);
             // 
             // cbMetAsEgg
             // 
@@ -2328,6 +2373,7 @@
             this.cbMetAsEgg.TabIndex = 2;
             this.cbMetAsEgg.Text = "Met as egg";
             this.cbMetAsEgg.UseVisualStyleBackColor = true;
+            this.cbMetAsEgg.CheckedChanged += new System.EventHandler(this.cbMetAsEgg_CheckedChanged);
             // 
             // gbMet
             // 
@@ -2362,6 +2408,7 @@
             this.cbMetLocation.Name = "cbMetLocation";
             this.cbMetLocation.Size = new System.Drawing.Size(169, 21);
             this.cbMetLocation.TabIndex = 0;
+            this.cbMetLocation.SelectedIndexChanged += new System.EventHandler(this.cbMetLocation_SelectedIndexChanged);
             // 
             // dtMetDate
             // 
@@ -2374,6 +2421,7 @@
             this.dtMetDate.Name = "dtMetDate";
             this.dtMetDate.Size = new System.Drawing.Size(169, 20);
             this.dtMetDate.TabIndex = 1;
+            this.dtMetDate.ValueChanged += new System.EventHandler(this.dtMetDate_ValueChanged);
             // 
             // tpRibbon
             // 
