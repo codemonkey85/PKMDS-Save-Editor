@@ -296,91 +296,105 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-
+                if (txtOTName.Text.Length != 0) 
+                {
+                    TempPokemon.OTName = txtOTName.Text;
+                    CheckApplyButton();
+                }
             }
         }
         private void numTID_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.TID = (UInt16)(numTID.Value);
+                CheckApplyButton();
             }
         }
         private void numSID_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SID = (UInt16)(numSID.Value);
+                CheckApplyButton();
             }
         }
         private void rbOTMale_CheckedChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                if (rbOTMale.Checked) 
+                {
+                    TempPokemon.OTGenderID = 0;
+                    txtOTName.ForeColor = Color.Blue;
+                }
             }
         }
         private void rbOTFemale_CheckedChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                if (rbOTFemale.Checked) 
+                {
+                    TempPokemon.OTGenderID = 1;
+                    txtOTName.ForeColor = Color.Red;
+                }
             }
         }
         private void cbAbility_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: ability
             }
         }
         private void numEXP_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.EXP = (UInt32)(numEXP.Value);
             }
         }
         private void cbBall_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: ball
             }
         }
         private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: species
             }
         }
         private void numSpecies_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: species
             }
         }
         private void cbForm_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: form
             }
         }
         private void numLevel_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.Level = (int)(numLevel.Value);
             }
         }
         private void numHPIV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetIV(0, (int)(numHPIV.Value));
             }
         }
         private void numAtkIV_ValueChanged(object sender, EventArgs e)
@@ -464,7 +478,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: nature
             }
         }
         private void numTameness_ValueChanged(object sender, EventArgs e)
@@ -478,42 +492,42 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: moves
             }
         }
         private void cbMove2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: moves
             }
         }
-        private void cbMoves3_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbMove3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: moves
             }
         }
         private void cbMove4_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: moves
             }
         }
         private void numMove1PPUps_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePPUp(0, (int)(numMove1PPUps.Value));
             }
         }
         private void numMove1PP_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePP(0, (int)(numMove1PP.Value));
             }
         }
         private void numMove2PPUps_ValueChanged(object sender, EventArgs e)
@@ -562,77 +576,77 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: location
             }
         }
         private void dtMetDate_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.MetDate = dtMetDate.Value;
             }
         }
         private void cbEggLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: location
             }
         }
         private void dtEggDate_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.EggDate = dtEggDate.Value;
             }
         }
         private void cbMetAsEgg_CheckedChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: met as egg
             }
         }
         private void numMetLevel_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.MetLevel = (int)(numMetLevel.Value);
             }
         }
         private void cbGame_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: game
             }
         }
         private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                // TODO: country
             }
         }
         private void cbIsEgg_CheckedChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.IsEgg = cbIsEgg.Checked;
             }
         }
         private void cbNsPokemon_CheckedChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.IsNsPokemon = cbNsPokemon.Checked;
             }
         }
         private void cbFateful_CheckedChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.IsFateful = cbFateful.Checked;
             }
         }
         //private void btnClose_Click(object sender, EventArgs e)

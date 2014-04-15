@@ -172,7 +172,7 @@
             this.tlMove3 = new System.Windows.Forms.TableLayoutPanel();
             this.tlMove3Data = new System.Windows.Forms.TableLayoutPanel();
             this.lblMove3Accuracy = new System.Windows.Forms.Label();
-            this.cbMoves3 = new System.Windows.Forms.ComboBox();
+            this.cbMove3 = new System.Windows.Forms.ComboBox();
             this.txtMove3MaxPP = new System.Windows.Forms.TextBox();
             this.numMove3PP = new System.Windows.Forms.NumericUpDown();
             this.numMove3PPUps = new System.Windows.Forms.NumericUpDown();
@@ -2071,7 +2071,7 @@
             this.tlMove3Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.34F));
             this.tlMove3Data.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.259999F));
             this.tlMove3Data.Controls.Add(this.lblMove3Accuracy, 2, 0);
-            this.tlMove3Data.Controls.Add(this.cbMoves3, 0, 0);
+            this.tlMove3Data.Controls.Add(this.cbMove3, 0, 0);
             this.tlMove3Data.Controls.Add(this.txtMove3MaxPP, 5, 0);
             this.tlMove3Data.Controls.Add(this.numMove3PP, 4, 0);
             this.tlMove3Data.Controls.Add(this.numMove3PPUps, 3, 0);
@@ -2095,15 +2095,15 @@
             this.lblMove3Accuracy.Text = "acc";
             this.lblMove3Accuracy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cbMoves3
+            // cbMove3
             // 
-            this.cbMoves3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbMoves3.FormattingEnabled = true;
-            this.cbMoves3.Location = new System.Drawing.Point(3, 3);
-            this.cbMoves3.Name = "cbMoves3";
-            this.cbMoves3.Size = new System.Drawing.Size(143, 21);
-            this.cbMoves3.TabIndex = 0;
-            this.cbMoves3.SelectedIndexChanged += new System.EventHandler(this.cbMoves3_SelectedIndexChanged);
+            this.cbMove3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove3.FormattingEnabled = true;
+            this.cbMove3.Location = new System.Drawing.Point(3, 3);
+            this.cbMove3.Name = "cbMove3";
+            this.cbMove3.Size = new System.Drawing.Size(143, 21);
+            this.cbMove3.TabIndex = 0;
+            this.cbMove3.SelectedIndexChanged += new System.EventHandler(this.cbMove3_SelectedIndexChanged);
             // 
             // txtMove3MaxPP
             // 
@@ -2684,7 +2684,7 @@
         private System.Windows.Forms.TableLayoutPanel tlMove3;
         private System.Windows.Forms.TableLayoutPanel tlMove3Data;
         private System.Windows.Forms.Label lblMove3Accuracy;
-        private System.Windows.Forms.ComboBox cbMoves3;
+        private System.Windows.Forms.ComboBox cbMove3;
         private System.Windows.Forms.TextBox txtMove3MaxPP;
         private System.Windows.Forms.NumericUpDown numMove3PP;
         private System.Windows.Forms.NumericUpDown numMove3PPUps;
