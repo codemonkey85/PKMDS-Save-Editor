@@ -71,6 +71,8 @@ namespace PKMDS_Save_Editor
             pbHeldItem.Image = null;
             pbGender.Image = null;
         }
+
+        #region UpdateCommonInfo
         private void UpdateCommonInfo()
         {
             UpdateSprite();
@@ -84,31 +86,6 @@ namespace PKMDS_Save_Editor
             UpdateLevel();
             UpdateForm();
         }
-        private void UpdateBasicInfo()
-        {
-            UpdateNickname();
-        }
-        private void UpdateStatsInfo()
-        {
-
-        }
-        private void UpdateMovesInfo()
-        {
-
-        }
-        private void UpdateOriginsInfo()
-        {
-
-        }
-        private void UpdateRibbonsInfo()
-        {
-
-        }
-        private void UpdateMiscInfo()
-        {
-
-        }
-
         private void UpdateSprite()
         {
             pbSprite.Image = TempPokemon.Sprite;
@@ -152,13 +129,143 @@ namespace PKMDS_Save_Editor
         {
 
         }
+        #endregion
 
+        #region UpdateBasicInfo
+        private void UpdateBasicInfo()
+        {
+            UpdateNickname();
+            UpdateOTName();
+            UpdateTIDSID();
+            UpdateTypes();
+            UpdateAbility();
+            UpdateEXP();
+        }
         private void UpdateNickname()
         {
             txtNickname.Text = TempPokemon.Nickname;
             chkNicknamed.Checked = TempPokemon.IsNicknamed;
         }
-        private void Update() { }
+        private void UpdateOTName()
+        {
+            txtOTName.Text = TempPokemon.OTName;
+            if (TempPokemon.OTGenderID == 0)
+            {
+                txtOTName.ForeColor = Color.Blue;
+            }
+            else
+            {
+                txtOTName.ForeColor = Color.Red;
+            }
+        }
+        private void UpdateTIDSID()
+        {
+            numTID.Value = (Decimal)(TempPokemon.TID);
+            numSID.Value = (Decimal)(TempPokemon.SID);
+        }
+        private void UpdateTypes()
+        {
+            pbType1.Image = TempPokemon.GetTypePic(1);
+            pbType2.Image = TempPokemon.GetTypePic(2);
+        }
+        private void UpdateAbility()
+        {
+            // TODO: ability
+        }
+        private void UpdateEXP()
+        {
+            numEXP.Value = (Decimal)(TempPokemon.EXP);
+            txtTNL.Text = TempPokemon.TNL.ToString();
+            if (TempPokemon.TNL == 0)
+            {
+                pbTNL.Minimum = 0;
+                pbTNL.Maximum = 1;
+                pbTNL.Value = 0;
+                txtTNL.Text = (0).ToString();
+                txtTNLPercent.Visible = false;
+            }
+            else
+            {
+                pbTNL.Minimum = 0;
+                pbTNL.Maximum = (int)((int)(TempPokemon.EXPAtGivenLevel(TempPokemon.Level + 1)) - TempPokemon.EXPAtCurLevel); // (int)(TempPokemon.EXPAtGivenLevel(TempPokemon.Level + 1));
+                pbTNL.Value = (int)(TempPokemon.EXP - TempPokemon.EXPAtCurLevel);
+                txtTNL.Text = TempPokemon.TNL.ToString();
+                txtTNLPercent.Visible = true;
+                int percent = (100 * pbTNL.Value) / pbTNL.Maximum;
+                txtTNLPercent.Text = percent.ToString("0") + "%";
+            }
+        }
+        #endregion
+
+        #region UpdateStatsInfo
+        private void UpdateStatsInfo()
+        {
+            UpdateIVs();
+            UpdateEVs();
+            UpdateTotalEVs();
+        }
+        private void UpdateIVs()
+        {
+            numHPIV.Value = (Decimal)(TempPokemon.GetIV(0));
+            numAtkIV.Value = (Decimal)(TempPokemon.GetIV(1));
+            numDefIV.Value = (Decimal)(TempPokemon.GetIV(2));
+            numSpAtkIV.Value = (Decimal)(TempPokemon.GetIV(3));
+            numSpDefIV.Value = (Decimal)(TempPokemon.GetIV(4));
+            numSpeedIV.Value = (Decimal)(TempPokemon.GetIV(5));
+        }
+        private void UpdateEVs()
+        {
+            numHPEV.Value = (Decimal)(TempPokemon.GetEV(0));
+            numAtkEV.Value = (Decimal)(TempPokemon.GetEV(1));
+            numDefEV.Value = (Decimal)(TempPokemon.GetEV(2));
+            numSpAtkEV.Value = (Decimal)(TempPokemon.GetEV(3));
+            numSpDefEV.Value = (Decimal)(TempPokemon.GetEV(4));
+            numSpeedEV.Value = (Decimal)(TempPokemon.GetEV(5));
+        }
+        private void UpdateTotalEVs()
+        {
+            txtTotalEVs.Text =
+                (numHPEV.Value +
+                numAtkEV.Value +
+                numDefEV.Value +
+                numSpAtkEV.Value +
+                numSpDefEV.Value +
+                numSpeedEV.Value).ToString();
+        }
+
+        #endregion
+
+        #region UpdateMovesInfo
+        private void UpdateMovesInfo()
+        {
+
+        }
+
+        #endregion
+
+        #region UpdateOriginsInfo
+        private void UpdateOriginsInfo()
+        {
+
+        }
+
+        #endregion
+
+        #region UpdateRibbonsInfo
+        private void UpdateRibbonsInfo()
+        {
+
+        }
+
+        #endregion
+
+        #region UpdateMiscInfo
+        private void UpdateMiscInfo()
+        {
+
+        }
+
+        #endregion
 
         private void SetUI()
         {
@@ -296,7 +403,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                if (txtOTName.Text.Length != 0) 
+                if (txtOTName.Text.Length != 0)
                 {
                     TempPokemon.OTName = txtOTName.Text;
                     CheckApplyButton();
@@ -323,7 +430,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                if (rbOTMale.Checked) 
+                if (rbOTMale.Checked)
                 {
                     TempPokemon.OTGenderID = 0;
                     txtOTName.ForeColor = Color.Blue;
@@ -334,7 +441,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                if (rbOTFemale.Checked) 
+                if (rbOTFemale.Checked)
                 {
                     TempPokemon.OTGenderID = 1;
                     txtOTName.ForeColor = Color.Red;
