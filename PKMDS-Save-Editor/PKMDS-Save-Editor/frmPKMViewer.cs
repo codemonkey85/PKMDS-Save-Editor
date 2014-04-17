@@ -107,6 +107,7 @@ namespace PKMDS_Save_Editor
         {
             cbHeldItem.SelectedValue = TempPokemon.ItemID;
             pbHeldItem.Image = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemImage;
+            lblHeldItemFlavor.Text = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemFlavor;
         }
         private void UpdateShiny()
         {
@@ -488,6 +489,7 @@ namespace PKMDS_Save_Editor
                 {
                     TempPokemon.ItemID = (UInt16)(cbHeldItem.SelectedValue);
                     pbHeldItem.Image = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemImage;
+                    lblHeldItemFlavor.Text = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemFlavor;
                     CheckApplyButton();
                 }
             }
