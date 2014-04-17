@@ -425,8 +425,8 @@
             // 
             // cbBall
             // 
-            this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBall.FormattingEnabled = true;
             this.cbBall.Location = new System.Drawing.Point(109, 52);
             this.cbBall.Name = "cbBall";
@@ -488,8 +488,8 @@
             // 
             // cbForm
             // 
-            this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbForm.FormattingEnabled = true;
             this.cbForm.Location = new System.Drawing.Point(3, 138);
             this.cbForm.Name = "cbForm";
@@ -499,8 +499,8 @@
             // 
             // cbSpecies
             // 
-            this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSpecies.FormattingEnabled = true;
             this.cbSpecies.Location = new System.Drawing.Point(3, 112);
             this.cbSpecies.Name = "cbSpecies";
@@ -519,8 +519,8 @@
             // 
             // cbHeldItem
             // 
-            this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbHeldItem.FormattingEnabled = true;
             this.cbHeldItem.Location = new System.Drawing.Point(39, 224);
             this.cbHeldItem.Name = "cbHeldItem";
@@ -755,8 +755,8 @@
             // 
             // cbAbility
             // 
-            this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbAbility.FormattingEnabled = true;
             this.cbAbility.Location = new System.Drawing.Point(202, 143);
             this.cbAbility.Name = "cbAbility";
@@ -972,8 +972,8 @@
             // 
             // cbNature
             // 
-            this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbNature.FormattingEnabled = true;
             this.cbNature.Location = new System.Drawing.Point(12, 193);
             this.cbNature.Name = "cbNature";
@@ -983,8 +983,8 @@
             // 
             // lblEggSteps
             // 
-            this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEggSteps.Location = new System.Drawing.Point(289, 45);
             this.lblEggSteps.Name = "lblEggSteps";
             this.lblEggSteps.Size = new System.Drawing.Size(72, 27);
@@ -994,8 +994,8 @@
             // 
             // lblTameness
             // 
-            this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTameness.Location = new System.Drawing.Point(292, 6);
             this.lblTameness.Name = "lblTameness";
             this.lblTameness.Size = new System.Drawing.Size(56, 13);
@@ -1005,8 +1005,8 @@
             // 
             // numTameness
             // 
-            this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.numTameness.Location = new System.Drawing.Point(295, 22);
             this.numTameness.Maximum = new decimal(new int[] {
             255,
@@ -1020,8 +1020,8 @@
             // 
             // lblCharacteristic
             // 
-            this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCharacteristic.Location = new System.Drawing.Point(289, 98);
             this.lblCharacteristic.Name = "lblCharacteristic";
             this.lblCharacteristic.Size = new System.Drawing.Size(85, 76);
@@ -2258,8 +2258,8 @@
             // 
             // cbCountry
             // 
-            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Location = new System.Drawing.Point(55, 140);
             this.cbCountry.Name = "cbCountry";
@@ -2278,8 +2278,8 @@
             // 
             // cbGame
             // 
-            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cbGame.FormattingEnabled = true;
             this.cbGame.Location = new System.Drawing.Point(55, 113);
             this.cbGame.Name = "cbGame";

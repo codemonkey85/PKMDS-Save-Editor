@@ -160,8 +160,8 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateTIDSID()
         {
-            numTID.Value = (Decimal)(TempPokemon.TID);
-            numSID.Value = (Decimal)(TempPokemon.SID);
+            numTID.Value = TempPokemon.TID;
+            numSID.Value = TempPokemon.SID;
         }
         private void UpdateTypes()
         {
@@ -174,7 +174,7 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateEXP()
         {
-            numEXP.Value = (Decimal)(TempPokemon.EXP);
+            numEXP.Value = TempPokemon.EXP;
             txtTNL.Text = TempPokemon.TNL.ToString();
             if (TempPokemon.TNL == 0)
             {
@@ -203,24 +203,28 @@ namespace PKMDS_Save_Editor
             UpdateIVs();
             UpdateEVs();
             UpdateTotalEVs();
+            UpdateNature();
+            UpdateCalculatedStats();
+            UpdateTameness();
+            UpdateCharacteristic();
         }
         private void UpdateIVs()
         {
-            numHPIV.Value = (Decimal)(TempPokemon.GetIV(0));
-            numAtkIV.Value = (Decimal)(TempPokemon.GetIV(1));
-            numDefIV.Value = (Decimal)(TempPokemon.GetIV(2));
-            numSpAtkIV.Value = (Decimal)(TempPokemon.GetIV(3));
-            numSpDefIV.Value = (Decimal)(TempPokemon.GetIV(4));
-            numSpeedIV.Value = (Decimal)(TempPokemon.GetIV(5));
+            numHPIV.Value = TempPokemon.GetIV(0);
+            numAtkIV.Value = TempPokemon.GetIV(1);
+            numDefIV.Value = TempPokemon.GetIV(2);
+            numSpAtkIV.Value = TempPokemon.GetIV(3);
+            numSpDefIV.Value = TempPokemon.GetIV(4);
+            numSpeedIV.Value = TempPokemon.GetIV(5);
         }
         private void UpdateEVs()
         {
-            numHPEV.Value = (Decimal)(TempPokemon.GetEV(0));
-            numAtkEV.Value = (Decimal)(TempPokemon.GetEV(1));
-            numDefEV.Value = (Decimal)(TempPokemon.GetEV(2));
-            numSpAtkEV.Value = (Decimal)(TempPokemon.GetEV(3));
-            numSpDefEV.Value = (Decimal)(TempPokemon.GetEV(4));
-            numSpeedEV.Value = (Decimal)(TempPokemon.GetEV(5));
+            numHPEV.Value = TempPokemon.GetEV(0);
+            numAtkEV.Value = TempPokemon.GetEV(1);
+            numDefEV.Value = TempPokemon.GetEV(2);
+            numSpAtkEV.Value = TempPokemon.GetEV(3);
+            numSpDefEV.Value = TempPokemon.GetEV(4);
+            numSpeedEV.Value = TempPokemon.GetEV(5);
         }
         private void UpdateTotalEVs()
         {
@@ -233,6 +237,93 @@ namespace PKMDS_Save_Editor
                 numSpeedEV.Value).ToString();
         }
 
+        /*
+         void pkmviewer::updatestatcolors()
+{
+    if(redisplayok)
+    {
+        QLabel * statlbls[6] =
+        {
+            ui->lblHPIV,
+            ui->lblAtkIV,
+            ui->lblDefIV,
+            ui->lblSpAtkIV,
+            ui->lblSpDefIV,
+            ui->lblSpeedIV
+        };
+        QColor statcolor;
+        int incr = 0;
+        int decr = 0;
+        for(int i = 0; i < 6; i++)
+        {
+            statcolor = Qt::black;
+            incr = getnatureincrease(temppkm)-1;
+            decr = getnaturedecrease(temppkm)-1;
+
+            if(incr == i)
+            {
+                if(decr == i)
+                {
+                    statcolor = Qt::black;
+                }
+                else
+                {
+                    statcolor = Qt::red;
+                }
+            }
+            if(decr == i)
+            {
+                if(incr == i)
+                {
+                    statcolor = Qt::black;
+                }
+                else
+                {
+                    statcolor = Qt::blue;
+                }
+            }
+            QPalette statpalette = statlbls[i]->palette();
+            statpalette.setColor(statlbls[i]->foregroundRole(), statcolor);
+            statlbls[i]->setPalette(statpalette);
+        }
+    }
+}
+         */
+
+        private void UpdateNature()
+        {
+            // TODO: nature
+            int inc = TempPokemon.NatureIncrease;
+            int dec = TempPokemon.NatureDecrease;
+            if (inc == 2) { lblAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (inc == 3) { lblDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (inc == 4) { lblSpAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (inc == 5) { lblSpDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (inc == 6) { lblSpeedStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (dec == 2) { lblAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (dec == 3) { lblDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (dec == 4) { lblSpAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (dec == 5) { lblSpDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+            if (dec == 6) { lblSpeedStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+        }
+        private void UpdateCalculatedStats()
+        {
+            int[] calcstats = TempPokemon.GetStats;
+            txtCalcHP.Text = calcstats[0].ToString();
+            txtCalcAtk.Text = calcstats[1].ToString();
+            txtCalcDef.Text = calcstats[2].ToString();
+            txtCalcSpAtk.Text = calcstats[3].ToString();
+            txtCalcSpDef.Text = calcstats[4].ToString();
+            txtCalcSpeed.Text = calcstats[5].ToString();
+        }
+        private void UpdateTameness()
+        {
+            numTameness.Value = TempPokemon.Tameness;
+        }
+        private void UpdateCharacteristic()
+        {
+            lblCharacteristic.Text = TempPokemon.Characteristic;
+        }
         #endregion
 
         #region UpdateMovesInfo
@@ -266,6 +357,29 @@ namespace PKMDS_Save_Editor
         }
 
         #endregion
+
+        private void SetControlFont(ref NumericUpDown control, bool bold = false)
+        {
+            if (numTameness.Value == 255M)
+            {
+                control.Font = new Font(control.Font, FontStyle.Bold);
+            }
+            else
+            {
+                control.Font = new Font(control.Font, FontStyle.Regular);
+            }
+        }
+        private void SetControlFont(ref TextBox control, bool bold = false)
+        {
+            if (numTameness.Value == 255M)
+            {
+                control.Font = new Font(control.Font, FontStyle.Bold);
+            }
+            else
+            {
+                control.Font = new Font(control.Font, FontStyle.Regular);
+            }
+        }
 
         private void SetUI()
         {
@@ -398,7 +512,6 @@ namespace PKMDS_Save_Editor
                 }
             }
         }
-
         private void txtOTName_TextChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
@@ -435,6 +548,7 @@ namespace PKMDS_Save_Editor
                     TempPokemon.OTGenderID = 0;
                     txtOTName.ForeColor = Color.Blue;
                 }
+                CheckApplyButton();
             }
         }
         private void rbOTFemale_CheckedChanged(object sender, EventArgs e)
@@ -446,6 +560,7 @@ namespace PKMDS_Save_Editor
                     TempPokemon.OTGenderID = 1;
                     txtOTName.ForeColor = Color.Red;
                 }
+                CheckApplyButton();
             }
         }
         private void cbAbility_SelectedIndexChanged(object sender, EventArgs e)
@@ -453,6 +568,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: ability
+                CheckApplyButton();
             }
         }
         private void numEXP_ValueChanged(object sender, EventArgs e)
@@ -460,6 +576,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.EXP = (UInt32)(numEXP.Value);
+                CheckApplyButton();
             }
         }
         private void cbBall_SelectedIndexChanged(object sender, EventArgs e)
@@ -467,6 +584,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: ball
+                CheckApplyButton();
             }
         }
         private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
@@ -474,6 +592,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: species
+                CheckApplyButton();
             }
         }
         private void numSpecies_ValueChanged(object sender, EventArgs e)
@@ -481,6 +600,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: species
+                CheckApplyButton();
             }
         }
         private void cbForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -488,6 +608,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: form
+                CheckApplyButton();
             }
         }
         private void numLevel_ValueChanged(object sender, EventArgs e)
@@ -495,6 +616,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.Level = (int)(numLevel.Value);
+                CheckApplyButton();
             }
         }
         private void numHPIV_ValueChanged(object sender, EventArgs e)
@@ -502,83 +624,101 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetIV(0, (int)(numHPIV.Value));
+                CheckApplyButton();
             }
         }
         private void numAtkIV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetIV(1, (int)(numAtkIV.Value));
+                CheckApplyButton();
             }
         }
         private void numDefIV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetIV(2, (int)(numDefIV.Value));
+                CheckApplyButton();
             }
         }
         private void numSpAtkIV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetIV(3, (int)(numSpAtkIV.Value));
+                CheckApplyButton();
             }
         }
         private void numSpDefIV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetIV(4, (int)(numSpDefIV.Value));
+                CheckApplyButton();
             }
         }
         private void numSpeedIV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetIV(5, (int)(numSpeedIV.Value));
+                CheckApplyButton();
             }
         }
         private void numHPEV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetEV(0, (int)(numHPEV.Value));
+                SetControlFont(ref numHPEV, numHPEV.Value >= 252M);
+                CheckApplyButton();
             }
         }
         private void numAtkEV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetEV(1, (int)(numAtkEV.Value));
+                SetControlFont(ref numAtkEV, numAtkEV.Value >= 252M);
+                CheckApplyButton();
             }
         }
         private void numDefEV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetEV(2, (int)(numDefEV.Value));
+                SetControlFont(ref numDefEV, numDefEV.Value >= 252M);
+                CheckApplyButton();
             }
         }
         private void numSpAtkEV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetEV(3, (int)(numSpAtkEV.Value));
+                SetControlFont(ref numSpAtkEV, numSpAtkEV.Value >= 252M);
+                CheckApplyButton();
             }
         }
         private void numSpDefEV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetEV(4, (int)(numSpDefEV.Value));
+                SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
+                CheckApplyButton();
             }
         }
         private void numSpeedEV_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetEV(5, (int)(numSpeedEV.Value));
+                SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
+                CheckApplyButton();
             }
         }
         private void cbNature_SelectedIndexChanged(object sender, EventArgs e)
@@ -586,13 +726,28 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: nature
+                int inc = TempPokemon.NatureIncrease;
+                int dec = TempPokemon.NatureDecrease;
+                if (inc == 2) { lblAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (inc == 3) { lblDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (inc == 4) { lblSpAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (inc == 5) { lblSpDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (inc == 6) { lblSpeedStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (dec == 2) { lblAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (dec == 3) { lblDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (dec == 4) { lblSpAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (dec == 5) { lblSpDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+                if (dec == 6) { lblSpeedStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+                CheckApplyButton();
             }
         }
         private void numTameness_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.Tameness = (int)(numTameness.Value);
+                SetControlFont(ref numTameness, numTameness.Value == 255M);
+                CheckApplyButton();
             }
         }
         private void cbMove1_SelectedIndexChanged(object sender, EventArgs e)
@@ -600,6 +755,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+                CheckApplyButton();
             }
         }
         private void cbMove2_SelectedIndexChanged(object sender, EventArgs e)
@@ -607,6 +763,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+                CheckApplyButton();
             }
         }
         private void cbMove3_SelectedIndexChanged(object sender, EventArgs e)
@@ -614,6 +771,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+                CheckApplyButton();
             }
         }
         private void cbMove4_SelectedIndexChanged(object sender, EventArgs e)
@@ -621,6 +779,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+                CheckApplyButton();
             }
         }
         private void numMove1PPUps_ValueChanged(object sender, EventArgs e)
@@ -628,6 +787,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetMovePPUp(0, (int)(numMove1PPUps.Value));
+                CheckApplyButton();
             }
         }
         private void numMove1PP_ValueChanged(object sender, EventArgs e)
@@ -635,48 +795,55 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetMovePP(0, (int)(numMove1PP.Value));
+                CheckApplyButton();
             }
         }
         private void numMove2PPUps_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePPUp(1, (int)(numMove2PPUps.Value));
+                CheckApplyButton();
             }
         }
         private void numMove2PP_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePP(1, (int)(numMove2PP.Value));
+                CheckApplyButton();
             }
         }
         private void numMove3PPUps_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePPUp(2, (int)(numMove3PPUps.Value));
+                CheckApplyButton();
             }
         }
         private void numMove3PP_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePP(2, (int)(numMove3PP.Value));
+                CheckApplyButton();
             }
         }
         private void numMove4PPUps_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePPUp(3, (int)(numMove4PPUps.Value));
+                CheckApplyButton();
             }
         }
         private void numMove4PP_ValueChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-
+                TempPokemon.SetMovePP(3, (int)(numMove4PP.Value));
+                CheckApplyButton();
             }
         }
         private void cbMetLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -684,6 +851,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: location
+                CheckApplyButton();
             }
         }
         private void dtMetDate_ValueChanged(object sender, EventArgs e)
@@ -691,6 +859,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.MetDate = dtMetDate.Value;
+                CheckApplyButton();
             }
         }
         private void cbEggLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -698,6 +867,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: location
+                CheckApplyButton();
             }
         }
         private void dtEggDate_ValueChanged(object sender, EventArgs e)
@@ -705,6 +875,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.EggDate = dtEggDate.Value;
+                CheckApplyButton();
             }
         }
         private void cbMetAsEgg_CheckedChanged(object sender, EventArgs e)
@@ -712,6 +883,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: met as egg
+                CheckApplyButton();
             }
         }
         private void numMetLevel_ValueChanged(object sender, EventArgs e)
@@ -719,6 +891,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.MetLevel = (int)(numMetLevel.Value);
+                CheckApplyButton();
             }
         }
         private void cbGame_SelectedIndexChanged(object sender, EventArgs e)
@@ -726,6 +899,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: game
+                CheckApplyButton();
             }
         }
         private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -733,6 +907,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: country
+                CheckApplyButton();
             }
         }
         private void cbIsEgg_CheckedChanged(object sender, EventArgs e)
@@ -740,6 +915,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.IsEgg = cbIsEgg.Checked;
+                CheckApplyButton();
             }
         }
         private void cbNsPokemon_CheckedChanged(object sender, EventArgs e)
@@ -747,6 +923,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.IsNsPokemon = cbNsPokemon.Checked;
+                CheckApplyButton();
             }
         }
         private void cbFateful_CheckedChanged(object sender, EventArgs e)
@@ -754,6 +931,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.IsFateful = cbFateful.Checked;
+                CheckApplyButton();
             }
         }
         //private void btnClose_Click(object sender, EventArgs e)
