@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PKMDS_Save_Editor.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="veekunpokedex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">veekun-pokedex.sqlite</Value>
+    </Setting>
+    <Setting Name="imagedb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">images.sqlite</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
