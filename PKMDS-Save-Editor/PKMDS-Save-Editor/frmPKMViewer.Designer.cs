@@ -85,6 +85,11 @@
             this.txtNickname = new System.Windows.Forms.TextBox();
             this.lblNickname = new System.Windows.Forms.Label();
             this.tpStat = new System.Windows.Forms.TabPage();
+            this.gbPKRS = new System.Windows.Forms.GroupBox();
+            this.lblPKRSStrain = new System.Windows.Forms.Label();
+            this.lblPKRSDays = new System.Windows.Forms.Label();
+            this.cbPKRSStrain = new System.Windows.Forms.ComboBox();
+            this.cbPKRSDays = new System.Windows.Forms.ComboBox();
             this.txtMinHatchSteps = new System.Windows.Forms.TextBox();
             this.lblNature = new System.Windows.Forms.Label();
             this.cbNature = new System.Windows.Forms.ComboBox();
@@ -232,6 +237,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTID)).BeginInit();
             this.tpStat.SuspendLayout();
+            this.gbPKRS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTameness)).BeginInit();
             this.gbCalcStats.SuspendLayout();
             this.tlCalcStats.SuspendLayout();
@@ -435,8 +441,8 @@
             // 
             // cbBall
             // 
-            this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBall.FormattingEnabled = true;
             this.cbBall.Location = new System.Drawing.Point(109, 52);
             this.cbBall.Name = "cbBall";
@@ -498,8 +504,8 @@
             // 
             // cbForm
             // 
-            this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbForm.FormattingEnabled = true;
             this.cbForm.Location = new System.Drawing.Point(3, 138);
             this.cbForm.Name = "cbForm";
@@ -509,8 +515,8 @@
             // 
             // cbSpecies
             // 
-            this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSpecies.FormattingEnabled = true;
             this.cbSpecies.Location = new System.Drawing.Point(3, 112);
             this.cbSpecies.Name = "cbSpecies";
@@ -529,8 +535,8 @@
             // 
             // cbHeldItem
             // 
-            this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbHeldItem.FormattingEnabled = true;
             this.cbHeldItem.Location = new System.Drawing.Point(39, 224);
             this.cbHeldItem.Name = "cbHeldItem";
@@ -765,8 +771,8 @@
             // 
             // cbAbility
             // 
-            this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbAbility.FormattingEnabled = true;
             this.cbAbility.Location = new System.Drawing.Point(202, 143);
             this.cbAbility.Name = "cbAbility";
@@ -944,6 +950,7 @@
             // 
             // tpStat
             // 
+            this.tpStat.Controls.Add(this.gbPKRS);
             this.tpStat.Controls.Add(this.txtMinHatchSteps);
             this.tpStat.Controls.Add(this.lblNature);
             this.tpStat.Controls.Add(this.cbNature);
@@ -961,6 +968,67 @@
             this.tpStat.TabIndex = 1;
             this.tpStat.Text = "Stats";
             this.tpStat.UseVisualStyleBackColor = true;
+            // 
+            // gbPKRS
+            // 
+            this.gbPKRS.Controls.Add(this.lblPKRSStrain);
+            this.gbPKRS.Controls.Add(this.lblPKRSDays);
+            this.gbPKRS.Controls.Add(this.cbPKRSStrain);
+            this.gbPKRS.Controls.Add(this.cbPKRSDays);
+            this.gbPKRS.Location = new System.Drawing.Point(6, 245);
+            this.gbPKRS.Name = "gbPKRS";
+            this.gbPKRS.Size = new System.Drawing.Size(122, 63);
+            this.gbPKRS.TabIndex = 10;
+            this.gbPKRS.TabStop = false;
+            this.gbPKRS.Text = "Pokérus";
+            // 
+            // lblPKRSStrain
+            // 
+            this.lblPKRSStrain.Location = new System.Drawing.Point(6, 16);
+            this.lblPKRSStrain.Name = "lblPKRSStrain";
+            this.lblPKRSStrain.Size = new System.Drawing.Size(51, 13);
+            this.lblPKRSStrain.TabIndex = 0;
+            this.lblPKRSStrain.Text = "Strain";
+            this.lblPKRSStrain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPKRSDays
+            // 
+            this.lblPKRSDays.Location = new System.Drawing.Point(63, 16);
+            this.lblPKRSDays.Name = "lblPKRSDays";
+            this.lblPKRSDays.Size = new System.Drawing.Size(51, 13);
+            this.lblPKRSDays.TabIndex = 2;
+            this.lblPKRSDays.Text = "Days";
+            this.lblPKRSDays.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbPKRSStrain
+            // 
+            this.cbPKRSStrain.FormattingEnabled = true;
+            this.cbPKRSStrain.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cbPKRSStrain.Location = new System.Drawing.Point(6, 32);
+            this.cbPKRSStrain.Name = "cbPKRSStrain";
+            this.cbPKRSStrain.Size = new System.Drawing.Size(51, 21);
+            this.cbPKRSStrain.TabIndex = 1;
+            this.cbPKRSStrain.SelectedIndexChanged += new System.EventHandler(this.cbPKRSStrain_SelectedIndexChanged);
+            // 
+            // cbPKRSDays
+            // 
+            this.cbPKRSDays.FormattingEnabled = true;
+            this.cbPKRSDays.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.cbPKRSDays.Location = new System.Drawing.Point(63, 32);
+            this.cbPKRSDays.Name = "cbPKRSDays";
+            this.cbPKRSDays.Size = new System.Drawing.Size(51, 21);
+            this.cbPKRSDays.TabIndex = 3;
+            this.cbPKRSDays.SelectedIndexChanged += new System.EventHandler(this.cbPKRSDays_SelectedIndexChanged);
             // 
             // txtMinHatchSteps
             // 
@@ -982,8 +1050,8 @@
             // 
             // cbNature
             // 
-            this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbNature.FormattingEnabled = true;
             this.cbNature.Location = new System.Drawing.Point(12, 193);
             this.cbNature.Name = "cbNature";
@@ -993,8 +1061,8 @@
             // 
             // lblEggSteps
             // 
-            this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEggSteps.Location = new System.Drawing.Point(289, 45);
             this.lblEggSteps.Name = "lblEggSteps";
             this.lblEggSteps.Size = new System.Drawing.Size(72, 27);
@@ -1004,8 +1072,8 @@
             // 
             // lblTameness
             // 
-            this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTameness.Location = new System.Drawing.Point(292, 6);
             this.lblTameness.Name = "lblTameness";
             this.lblTameness.Size = new System.Drawing.Size(56, 13);
@@ -1015,8 +1083,8 @@
             // 
             // numTameness
             // 
-            this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numTameness.Location = new System.Drawing.Point(295, 22);
             this.numTameness.Maximum = new decimal(new int[] {
             255,
@@ -1030,8 +1098,8 @@
             // 
             // lblCharacteristic
             // 
-            this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCharacteristic.Location = new System.Drawing.Point(289, 98);
             this.lblCharacteristic.Name = "lblCharacteristic";
             this.lblCharacteristic.Size = new System.Drawing.Size(85, 76);
@@ -2268,8 +2336,8 @@
             // 
             // cbCountry
             // 
-            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Location = new System.Drawing.Point(55, 140);
             this.cbCountry.Name = "cbCountry";
@@ -2288,8 +2356,8 @@
             // 
             // cbGame
             // 
-            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbGame.FormattingEnabled = true;
             this.cbGame.Location = new System.Drawing.Point(55, 113);
             this.cbGame.Name = "cbGame";
@@ -2501,6 +2569,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numTID)).EndInit();
             this.tpStat.ResumeLayout(false);
             this.tpStat.PerformLayout();
+            this.gbPKRS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numTameness)).EndInit();
             this.gbCalcStats.ResumeLayout(false);
             this.tlCalcStats.ResumeLayout(false);
@@ -2753,5 +2822,10 @@
         private System.Windows.Forms.CheckBox cbFateful;
         private System.Windows.Forms.CheckBox cbNsPokemon;
         private System.Windows.Forms.Label lblHeldItemFlavor;
+        private System.Windows.Forms.GroupBox gbPKRS;
+        private System.Windows.Forms.Label lblPKRSStrain;
+        private System.Windows.Forms.Label lblPKRSDays;
+        private System.Windows.Forms.ComboBox cbPKRSStrain;
+        private System.Windows.Forms.ComboBox cbPKRSDays;
     }
 }

@@ -113,14 +113,19 @@ namespace PKMDS_Save_Editor
         {
             pbShiny.Image = TempPokemon.ShinyIcon;
         }
-        private void UpdateBall() { }
+        private void UpdateBall()
+        {
+            // TODO: ball
+        }
         private void UpdatePokerus()
         {
             pbPokerus.Image = TempPokemon.PokerusIcon;
+            cbPKRSStrain.SelectedIndex = TempPokemon.PokerusStrain;
+            cbPKRSDays.SelectedIndex = TempPokemon.PokerusDays;
         }
         private void UpdateSpecies()
         {
-
+            // TODO: species
         }
         private void UpdateLevel()
         {
@@ -136,6 +141,7 @@ namespace PKMDS_Save_Editor
         private void UpdateBasicInfo()
         {
             UpdateNickname();
+            UpdateOTGender();
             UpdateOTName();
             UpdateTIDSID();
             UpdateTypes();
@@ -146,6 +152,17 @@ namespace PKMDS_Save_Editor
         {
             txtNickname.Text = TempPokemon.Nickname;
             chkNicknamed.Checked = TempPokemon.IsNicknamed;
+        }
+        private void UpdateOTGender()
+        {
+            if (TempPokemon.OTGenderID == 1)
+            {
+                rbOTFemale.Checked = true;
+            }
+            else
+            {
+                rbOTMale.Checked = true;
+            }
         }
         private void UpdateOTName()
         {
@@ -217,6 +234,12 @@ namespace PKMDS_Save_Editor
             numSpAtkIV.Value = TempPokemon.GetIV(3);
             numSpDefIV.Value = TempPokemon.GetIV(4);
             numSpeedIV.Value = TempPokemon.GetIV(5);
+            SetControlFont(ref numHPIV, numHPIV.Value == numHPIV.Maximum);
+            SetControlFont(ref numAtkIV, numAtkIV.Value == numAtkIV.Maximum);
+            SetControlFont(ref numDefIV, numDefIV.Value == numDefIV.Maximum);
+            SetControlFont(ref numSpAtkIV, numSpAtkIV.Value == numSpAtkIV.Maximum);
+            SetControlFont(ref numSpDefIV, numSpDefIV.Value == numSpDefIV.Maximum);
+            SetControlFont(ref numSpeedIV, numSpeedIV.Value == numSpeedIV.Maximum);
         }
         private void UpdateEVs()
         {
@@ -226,86 +249,67 @@ namespace PKMDS_Save_Editor
             numSpAtkEV.Value = TempPokemon.GetEV(3);
             numSpDefEV.Value = TempPokemon.GetEV(4);
             numSpeedEV.Value = TempPokemon.GetEV(5);
+            SetControlFont(ref numHPEV, numHPEV.Value >= 252M);
+            SetControlFont(ref numAtkEV, numAtkEV.Value >= 252M);
+            SetControlFont(ref numDefEV, numDefEV.Value >= 252M);
+            SetControlFont(ref numSpAtkEV, numSpAtkEV.Value >= 252M);
+            SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
+            SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
         }
         private void UpdateTotalEVs()
         {
-            txtTotalEVs.Text =
-                (numHPEV.Value +
-                numAtkEV.Value +
-                numDefEV.Value +
-                numSpAtkEV.Value +
-                numSpDefEV.Value +
-                numSpeedEV.Value).ToString();
+            int totalEVs =
+                ((int)(numHPEV.Value) +
+                (int)(numAtkEV.Value) +
+                (int)(numDefEV.Value) +
+                (int)(numSpAtkEV.Value) +
+                (int)(numSpDefEV.Value) +
+                (int)(numSpeedEV.Value));
+            txtTotalEVs.Text = totalEVs.ToString();
+            SetControlFont(ref txtTotalEVs, totalEVs >= 510);
         }
-
-        /*
-         void pkmviewer::updatestatcolors()
-{
-    if(redisplayok)
-    {
-        QLabel * statlbls[6] =
-        {
-            ui->lblHPIV,
-            ui->lblAtkIV,
-            ui->lblDefIV,
-            ui->lblSpAtkIV,
-            ui->lblSpDefIV,
-            ui->lblSpeedIV
-        };
-        QColor statcolor;
-        int incr = 0;
-        int decr = 0;
-        for(int i = 0; i < 6; i++)
-        {
-            statcolor = Qt::black;
-            incr = getnatureincrease(temppkm)-1;
-            decr = getnaturedecrease(temppkm)-1;
-
-            if(incr == i)
-            {
-                if(decr == i)
-                {
-                    statcolor = Qt::black;
-                }
-                else
-                {
-                    statcolor = Qt::red;
-                }
-            }
-            if(decr == i)
-            {
-                if(incr == i)
-                {
-                    statcolor = Qt::black;
-                }
-                else
-                {
-                    statcolor = Qt::blue;
-                }
-            }
-            QPalette statpalette = statlbls[i]->palette();
-            statpalette.setColor(statlbls[i]->foregroundRole(), statcolor);
-            statlbls[i]->setPalette(statpalette);
-        }
-    }
-}
-         */
-
         private void UpdateNature()
         {
             // TODO: nature
-            int inc = TempPokemon.NatureIncrease;
-            int dec = TempPokemon.NatureDecrease;
-            if (inc == 2) { lblAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (inc == 3) { lblDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (inc == 4) { lblSpAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (inc == 5) { lblSpDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (inc == 6) { lblSpeedStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (dec == 2) { lblAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (dec == 3) { lblDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (dec == 4) { lblSpAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (dec == 5) { lblSpDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-            if (dec == 6) { lblSpeedStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+            int inc = TempPokemon.NatureIncrease - 1;
+            int dec = TempPokemon.NatureDecrease - 1;
+            Color statcolor = new Color();
+            Label[] statlbls =
+        {
+            lblHPStats,
+            lblAtkStats,
+            lblDefStats,
+            lblSpAtkStats,
+            lblSpDefStats,
+            lblSpeedStats
+        };
+            for (int i = 0; i < 6; i++)
+            {
+                statcolor = Color.Black;
+                if (inc == i)
+                {
+                    if (dec == i)
+                    {
+                        statcolor = Color.Black;
+                    }
+                    else
+                    {
+                        statcolor = Color.Red;
+                    }
+                }
+                if (dec == i)
+                {
+                    if (inc == i)
+                    {
+                        statcolor = Color.Black;
+                    }
+                    else
+                    {
+                        statcolor = Color.Blue;
+                    }
+                }
+                statlbls[i].ForeColor = statcolor;
+            }
         }
         private void UpdateCalculatedStats()
         {
@@ -320,6 +324,7 @@ namespace PKMDS_Save_Editor
         private void UpdateTameness()
         {
             numTameness.Value = TempPokemon.Tameness;
+            SetControlFont(ref numTameness, numTameness.Value == numTameness.Maximum);
         }
         private void UpdateCharacteristic()
         {
@@ -361,7 +366,7 @@ namespace PKMDS_Save_Editor
 
         private void SetControlFont(ref NumericUpDown control, bool bold = false)
         {
-            if (numTameness.Value == 255M)
+            if (bold)
             {
                 control.Font = new Font(control.Font, FontStyle.Bold);
             }
@@ -372,7 +377,7 @@ namespace PKMDS_Save_Editor
         }
         private void SetControlFont(ref TextBox control, bool bold = false)
         {
-            if (numTameness.Value == 255M)
+            if (bold)
             {
                 control.Font = new Font(control.Font, FontStyle.Bold);
             }
@@ -626,6 +631,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetIV(0, (int)(numHPIV.Value));
+                SetControlFont(ref numHPIV, numHPIV.Value == numHPIV.Maximum);
                 CheckApplyButton();
             }
         }
@@ -634,6 +640,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetIV(1, (int)(numAtkIV.Value));
+                SetControlFont(ref numAtkIV, numAtkIV.Value == numAtkIV.Maximum);
                 CheckApplyButton();
             }
         }
@@ -642,6 +649,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetIV(2, (int)(numDefIV.Value));
+                SetControlFont(ref numDefIV, numDefIV.Value == numDefIV.Maximum);
                 CheckApplyButton();
             }
         }
@@ -650,6 +658,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetIV(3, (int)(numSpAtkIV.Value));
+                SetControlFont(ref numSpAtkIV, numSpAtkIV.Value == numSpAtkIV.Maximum);
                 CheckApplyButton();
             }
         }
@@ -658,6 +667,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetIV(4, (int)(numSpDefIV.Value));
+                SetControlFont(ref numSpDefIV, numSpDefIV.Value == numSpDefIV.Maximum);
                 CheckApplyButton();
             }
         }
@@ -666,6 +676,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetIV(5, (int)(numSpeedIV.Value));
+                SetControlFont(ref numSpeedIV, numSpeedIV.Value == numSpeedIV.Maximum);
                 CheckApplyButton();
             }
         }
@@ -675,6 +686,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetEV(0, (int)(numHPEV.Value));
                 SetControlFont(ref numHPEV, numHPEV.Value >= 252M);
+                UpdateTotalEVs();
                 CheckApplyButton();
             }
         }
@@ -684,6 +696,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetEV(1, (int)(numAtkEV.Value));
                 SetControlFont(ref numAtkEV, numAtkEV.Value >= 252M);
+                UpdateTotalEVs();
                 CheckApplyButton();
             }
         }
@@ -693,6 +706,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetEV(2, (int)(numDefEV.Value));
                 SetControlFont(ref numDefEV, numDefEV.Value >= 252M);
+                UpdateTotalEVs();
                 CheckApplyButton();
             }
         }
@@ -702,6 +716,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetEV(3, (int)(numSpAtkEV.Value));
                 SetControlFont(ref numSpAtkEV, numSpAtkEV.Value >= 252M);
+                UpdateTotalEVs();
                 CheckApplyButton();
             }
         }
@@ -711,6 +726,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetEV(4, (int)(numSpDefEV.Value));
                 SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
+                UpdateTotalEVs();
                 CheckApplyButton();
             }
         }
@@ -720,6 +736,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetEV(5, (int)(numSpeedEV.Value));
                 SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
+                UpdateTotalEVs();
                 CheckApplyButton();
             }
         }
@@ -748,7 +765,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.Tameness = (int)(numTameness.Value);
-                SetControlFont(ref numTameness, numTameness.Value == 255M);
+                SetControlFont(ref numTameness, numTameness.Value == numTameness.Maximum);
                 CheckApplyButton();
             }
         }
@@ -933,6 +950,24 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.IsFateful = cbFateful.Checked;
+                CheckApplyButton();
+            }
+        }
+        private void cbPKRSStrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+                TempPokemon.PokerusStrain = cbPKRSStrain.SelectedIndex;
+                UpdatePokerus();
+                CheckApplyButton();
+            }
+        }
+        private void cbPKRSDays_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UISet && PokemonSet)
+            {
+                TempPokemon.PokerusDays = cbPKRSDays.SelectedIndex;
+                UpdatePokerus();
                 CheckApplyButton();
             }
         }
