@@ -24,7 +24,7 @@ namespace PKMDS_Save_Editor
             InitializeComponent();
             SetUI();
         }
-        public void SetPokemon(PKMDS.Pokemon pkm)
+        public unsafe void SetPokemon(PKMDS.Pokemon pkm)
         {
             PokemonSet = false;
             this.SharedPokemon = pkm.Clone();
