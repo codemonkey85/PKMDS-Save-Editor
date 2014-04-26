@@ -44,6 +44,7 @@ namespace PKMDS_Save_Editor
             try
             {
                 tcTabs.TabPages.Remove(tcTabs.TabPages["tpRibbon"]);
+                tcTabs.TabPages.Remove(tcTabs.TabPages["tpMisc"]);
             }
             catch (Exception ex)
             {
@@ -188,7 +189,8 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateAbility()
         {
-            // TODO: ability
+            cbAbility.SelectedValue = TempPokemon.AbilityID;
+            lblAbilityFlavor.Text = ((PKMDS.Ability)(cbAbility.SelectedItem)).AbilityFlavor;
         }
         private void UpdateEXP()
         {
@@ -390,6 +392,14 @@ namespace PKMDS_Save_Editor
         private void SetUI()
         {
             SetItems();
+            SetAbilities();
+            SetSpecies();
+            SetBalls();
+            SetNatures();
+            SetLocations();
+            SetMoves();
+            SetHometowns();
+            SetCountries();
             UISet = true;
         }
         private void SetItems()
@@ -408,6 +418,71 @@ namespace PKMDS_Save_Editor
             cbHeldItem.DataSource = items;
             cbHeldItem.DisplayMember = "ItemName";
             cbHeldItem.ValueMember = "ItemID";
+        }
+        private void SetAbilities()
+        {
+            List<PKMDS.Ability> abilities = new List<PKMDS.Ability>();
+            PKMDS.Ability ability = new PKMDS.Ability();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) 
+            {
+                ability = new PKMDS.Ability(abilityindex);
+                if ((ability.AbilityName != "") & (ability.AbilityName != null) & (ability.AbilityID != 0))
+                {
+                    abilities.Add(ability);
+                }
+            }
+            cbAbility.DataSource = abilities;
+            cbAbility.DisplayMember = "AbilityName";
+            cbAbility.ValueMember = "AbilityID";
+        }
+        private void SetSpecies()
+        {
+            List<PKMDS.Species> species_l = new List<PKMDS.Species>();
+            PKMDS.Species species = new PKMDS.Species();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+
+        }
+        private void SetBalls()
+        {
+            List<PKMDS.Ball> balls = new List<PKMDS.Ball>();
+            PKMDS.Ball ball = new PKMDS.Ball();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+
+        }
+        private void SetNatures()
+        {
+            List<PKMDS.Nature> natures = new List<PKMDS.Nature>();
+            PKMDS.Nature nature = new PKMDS.Nature();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+
+        }
+        private void SetLocations()
+        {
+            List<PKMDS.Location> locations = new List<PKMDS.Location>();
+            PKMDS.Location location = new PKMDS.Location();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+
+        }
+        private void SetMoves()
+        {
+            List<PKMDS.Move> moves = new List<PKMDS.Move>();
+            PKMDS.Move move = new PKMDS.Move();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+
+        }
+        private void SetHometowns()
+        {
+            List<PKMDS.Hometown> hometowns = new List<PKMDS.Hometown>();
+            PKMDS.Hometown hometown = new PKMDS.Hometown();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+
+        }
+        private void SetCountries()
+        {
+            List<PKMDS.Country> countries = new List<PKMDS.Country>();
+            PKMDS.Country ability = new PKMDS.Country();
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -574,8 +649,12 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: ability
-                CheckApplyButton();
+                if (cbAbility.SelectedIndex != -1)
+                {
+                    TempPokemon.AbilityID = (UInt16)(cbAbility.SelectedValue);
+                    lblAbilityFlavor.Text = ((PKMDS.Ability)(cbAbility.SelectedItem)).AbilityFlavor;
+                    CheckApplyButton();
+                }
             }
         }
         private void numEXP_ValueChanged(object sender, EventArgs e)
