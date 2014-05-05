@@ -35,13 +35,13 @@
             this.fileOpen = new System.Windows.Forms.OpenFileDialog();
             this.cbBoxes = new System.Windows.Forms.ComboBox();
             this.fileSave = new System.Windows.Forms.SaveFileDialog();
-            this.lstPokemon = new System.Windows.Forms.ListView();
+            this.lstBoxPokemon = new System.Windows.Forms.ListView();
             this.pbSprite = new System.Windows.Forms.PictureBox();
-            this.pbGender = new System.Windows.Forms.PictureBox();
-            this.lstParty = new System.Windows.Forms.ListView();
+            this.pbWallpaper = new System.Windows.Forms.PictureBox();
+            this.lstPartyPokemon = new System.Windows.Forms.ListView();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWallpaper)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -83,8 +83,8 @@
             // 
             // cbBoxes
             // 
-            this.cbBoxes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBoxes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBoxes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBoxes.FormattingEnabled = true;
             this.cbBoxes.Location = new System.Drawing.Point(12, 535);
@@ -97,20 +97,20 @@
             // 
             this.fileSave.Filter = ".sav files|*.sav";
             // 
-            // lstPokemon
+            // lstBoxPokemon
             // 
-            this.lstPokemon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstPokemon.Location = new System.Drawing.Point(12, 99);
-            this.lstPokemon.MultiSelect = false;
-            this.lstPokemon.Name = "lstPokemon";
-            this.lstPokemon.Size = new System.Drawing.Size(607, 251);
-            this.lstPokemon.TabIndex = 1;
-            this.lstPokemon.UseCompatibleStateImageBehavior = false;
-            this.lstPokemon.View = System.Windows.Forms.View.List;
-            this.lstPokemon.SelectedIndexChanged += new System.EventHandler(this.lstPokemon_SelectedIndexChanged);
-            this.lstPokemon.DoubleClick += new System.EventHandler(this.lstPokemon_DoubleClick);
+            this.lstBoxPokemon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstBoxPokemon.Location = new System.Drawing.Point(12, 99);
+            this.lstBoxPokemon.MultiSelect = false;
+            this.lstBoxPokemon.Name = "lstBoxPokemon";
+            this.lstBoxPokemon.Size = new System.Drawing.Size(607, 251);
+            this.lstBoxPokemon.TabIndex = 1;
+            this.lstBoxPokemon.UseCompatibleStateImageBehavior = false;
+            this.lstBoxPokemon.View = System.Windows.Forms.View.List;
+            this.lstBoxPokemon.SelectedIndexChanged += new System.EventHandler(this.lstPokemon_SelectedIndexChanged);
+            this.lstBoxPokemon.DoubleClick += new System.EventHandler(this.lstPokemon_DoubleClick);
             // 
             // pbSprite
             // 
@@ -121,39 +121,39 @@
             this.pbSprite.TabIndex = 3;
             this.pbSprite.TabStop = false;
             // 
-            // pbGender
+            // pbWallpaper
             // 
-            this.pbGender.Location = new System.Drawing.Point(118, 356);
-            this.pbGender.Name = "pbGender";
-            this.pbGender.Size = new System.Drawing.Size(235, 173);
-            this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbGender.TabIndex = 4;
-            this.pbGender.TabStop = false;
+            this.pbWallpaper.Location = new System.Drawing.Point(118, 356);
+            this.pbWallpaper.Name = "pbWallpaper";
+            this.pbWallpaper.Size = new System.Drawing.Size(235, 173);
+            this.pbWallpaper.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbWallpaper.TabIndex = 4;
+            this.pbWallpaper.TabStop = false;
             // 
-            // lstParty
+            // lstPartyPokemon
             // 
-            this.lstParty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstParty.Location = new System.Drawing.Point(12, 27);
-            this.lstParty.MultiSelect = false;
-            this.lstParty.Name = "lstParty";
-            this.lstParty.Size = new System.Drawing.Size(607, 66);
-            this.lstParty.TabIndex = 5;
-            this.lstParty.UseCompatibleStateImageBehavior = false;
-            this.lstParty.View = System.Windows.Forms.View.List;
-            this.lstParty.SelectedIndexChanged += new System.EventHandler(this.lstParty_SelectedIndexChanged);
-            this.lstParty.DoubleClick += new System.EventHandler(this.lstParty_DoubleClick);
+            this.lstPartyPokemon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstPartyPokemon.Location = new System.Drawing.Point(12, 27);
+            this.lstPartyPokemon.MultiSelect = false;
+            this.lstPartyPokemon.Name = "lstPartyPokemon";
+            this.lstPartyPokemon.Size = new System.Drawing.Size(607, 66);
+            this.lstPartyPokemon.TabIndex = 5;
+            this.lstPartyPokemon.UseCompatibleStateImageBehavior = false;
+            this.lstPartyPokemon.View = System.Windows.Forms.View.List;
+            this.lstPartyPokemon.SelectedIndexChanged += new System.EventHandler(this.lstParty_SelectedIndexChanged);
+            this.lstPartyPokemon.DoubleClick += new System.EventHandler(this.lstParty_DoubleClick);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 568);
-            this.Controls.Add(this.lstParty);
-            this.Controls.Add(this.pbGender);
+            this.Controls.Add(this.lstPartyPokemon);
+            this.Controls.Add(this.pbWallpaper);
             this.Controls.Add(this.pbSprite);
-            this.Controls.Add(this.lstPokemon);
+            this.Controls.Add(this.lstBoxPokemon);
             this.Controls.Add(this.cbBoxes);
             this.Controls.Add(this.mainMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -166,7 +166,7 @@
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWallpaper)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,11 +180,11 @@
         private System.Windows.Forms.OpenFileDialog fileOpen;
         private System.Windows.Forms.ComboBox cbBoxes;
         private System.Windows.Forms.SaveFileDialog fileSave;
-        private System.Windows.Forms.ListView lstPokemon;
+        private System.Windows.Forms.ListView lstBoxPokemon;
         private System.Windows.Forms.PictureBox pbSprite;
-        private System.Windows.Forms.PictureBox pbGender;
+        private System.Windows.Forms.PictureBox pbWallpaper;
         private System.Windows.Forms.ToolStripMenuItem savesavToolStripMenuItem;
-        private System.Windows.Forms.ListView lstParty;
+        private System.Windows.Forms.ListView lstPartyPokemon;
     }
 }
 

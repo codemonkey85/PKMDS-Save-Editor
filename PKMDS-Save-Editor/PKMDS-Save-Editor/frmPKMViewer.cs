@@ -24,7 +24,7 @@ namespace PKMDS_Save_Editor
             InitializeComponent();
             SetUI();
         }
-        public unsafe void SetPokemon(PKMDS.Pokemon pkm)
+        public void SetPokemon(PKMDS.Pokemon pkm)
         {
             PokemonSet = false;
             this.SharedPokemon = pkm.Clone();
@@ -71,6 +71,10 @@ namespace PKMDS_Save_Editor
             //cbHeldItem.SelectedValue = 0;
             pbHeldItem.Image = null;
             pbGender.Image = null;
+            //pbType1.Image = null;
+            //pbType2.Image = null;
+            //pbShiny.Image = null;
+            //pbPokerus.Image = null;
         }
 
         #region UpdateCommonInfo
@@ -117,6 +121,7 @@ namespace PKMDS_Save_Editor
         private void UpdateBall()
         {
             // TODO: ball
+
         }
         private void UpdatePokerus()
         {
@@ -126,7 +131,8 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateSpecies()
         {
-            // TODO: species
+            cbSpecies.SelectedValue = TempPokemon.SpeciesID;
+            numSpecies.Value = (Decimal)(TempPokemon.SpeciesID);
         }
         private void UpdateLevel()
         {
@@ -134,7 +140,7 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateForm()
         {
-
+            // TODO: forms
         }
         #endregion
 
@@ -272,7 +278,6 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateNature()
         {
-            // TODO: nature
             int inc = TempPokemon.NatureIncrease - 1;
             int dec = TempPokemon.NatureDecrease - 1;
             Color statcolor = new Color();
@@ -337,7 +342,57 @@ namespace PKMDS_Save_Editor
         #region UpdateMovesInfo
         private void UpdateMovesInfo()
         {
+            UpdateMove1();
+            UpdateMove2();
+            UpdateMove3();
+            UpdateMove4();
+        }
 
+        private void UpdateMove1()
+        {
+            // TODO: moves
+            UInt16 move = TempPokemon.GetMoveIDs[0];
+            cbMove1.SelectedValue = move;
+            //lblAbilityFlavor.Text = ((PKMDS.Move)(cbAbility.SelectedItem)).AbilityFlavor;
+        }
+        private void UpdateMove2()
+        {
+            // TODO: moves
+            UInt16 move = TempPokemon.GetMoveIDs[1];
+            if (move == 0)
+            {
+                cbMove2.SelectedIndex = -1;
+            }
+            else
+            {
+                cbMove2.SelectedValue = move;
+            }
+        }
+        private void UpdateMove3()
+        {
+            // TODO: moves
+            UInt16 move = TempPokemon.GetMoveIDs[2];
+            if (move == 0)
+            {
+                cbMove3.SelectedIndex = -1;
+            }
+            else
+            {
+                cbMove3.SelectedValue = move;
+            }
+        }
+        private void UpdateMove4()
+        {
+            // TODO: moves
+            UInt16 move = TempPokemon.GetMoveIDs[3];
+            if (move == 0)
+            {
+                cbMove4.SelectedIndex = -1;
+            }
+            else
+            {
+                cbMove4.SelectedValue = move;
+            }
         }
 
         #endregion
@@ -345,7 +400,7 @@ namespace PKMDS_Save_Editor
         #region UpdateOriginsInfo
         private void UpdateOriginsInfo()
         {
-
+            // TODO: Origins
         }
 
         #endregion
@@ -353,7 +408,7 @@ namespace PKMDS_Save_Editor
         #region UpdateRibbonsInfo
         private void UpdateRibbonsInfo()
         {
-
+            // TODO: Ribbons
         }
 
         #endregion
@@ -361,7 +416,7 @@ namespace PKMDS_Save_Editor
         #region UpdateMiscInfo
         private void UpdateMiscInfo()
         {
-
+            // TODO: Misc
         }
 
         #endregion
@@ -423,7 +478,7 @@ namespace PKMDS_Save_Editor
         {
             List<PKMDS.Ability> abilities = new List<PKMDS.Ability>();
             PKMDS.Ability ability = new PKMDS.Ability();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) 
+            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++)
             {
                 ability = new PKMDS.Ability(abilityindex);
                 if ((ability.AbilityName != "") & (ability.AbilityName != null) & (ability.AbilityID != 0))
@@ -439,50 +494,162 @@ namespace PKMDS_Save_Editor
         {
             List<PKMDS.Species> species_l = new List<PKMDS.Species>();
             PKMDS.Species species = new PKMDS.Species();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
-
+            for (UInt16 speciesindex = 0; speciesindex <= 649; speciesindex++)
+            {
+                species = new PKMDS.Species(speciesindex);
+                if ((species.SpeciesName != "") & (species.SpeciesName != null) & (species.SpeciesID != 0))
+                {
+                    species_l.Add(species);
+                }
+            }
+            cbSpecies.DataSource = species_l;
+            cbSpecies.DisplayMember = "SpeciesName";
+            cbSpecies.ValueMember = "SpeciesID";
         }
         private void SetBalls()
         {
             List<PKMDS.Ball> balls = new List<PKMDS.Ball>();
             PKMDS.Ball ball = new PKMDS.Ball();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
-
+            for (UInt16 ballindex = 0; ballindex <= 25; ballindex++)
+            {
+                ball = new PKMDS.Ball(ballindex);
+                if ((ball.BallName != "") & (ball.BallName != null) & (ball.BallID != 0))
+                {
+                    balls.Add(ball);
+                }
+            }
+            cbBall.DataSource = balls;
+            cbBall.DisplayMember = "BallName";
+            cbBall.ValueMember = "BallID";
         }
         private void SetNatures()
         {
             List<PKMDS.Nature> natures = new List<PKMDS.Nature>();
             PKMDS.Nature nature = new PKMDS.Nature();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
-
+            for (UInt16 natureindex = 0; natureindex <= 24; natureindex++)
+            {
+                nature = new PKMDS.Nature(natureindex);
+                if ((nature.NatureName != "") & (nature.NatureName != null) & (nature.NatureID != 0))
+                {
+                    natures.Add(nature);
+                }
+            }
+            cbNature.DataSource = natures;
+            cbNature.DisplayMember = "NatureName";
+            cbNature.ValueMember = "NatureID";
         }
         private void SetLocations()
         {
-            List<PKMDS.Location> locations = new List<PKMDS.Location>();
+            List<PKMDS.Location> metlocations = new List<PKMDS.Location>();
+            List<PKMDS.Location> egglocations = new List<PKMDS.Location>();
             PKMDS.Location location = new PKMDS.Location();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
+            for (UInt16 locationindex = 0; locationindex <= 153; locationindex++)
+            {
+                location = new PKMDS.Location(locationindex);
+                if ((location.LocationName != "") & (location.LocationName != null) & (location.LocationID != 0))
+                {
+                    metlocations.Add(location);
+                    egglocations.Add(location);
+                }
+            }
+            location = new PKMDS.Location(2000);
+            metlocations.Add(location);
+            egglocations.Add(location);
+            location = new PKMDS.Location(30001);
+            metlocations.Add(location);
+            egglocations.Add(location);
+            location = new PKMDS.Location(30015);
+            metlocations.Add(location);
+            egglocations.Add(location);
+            location = new PKMDS.Location(40001);
+            metlocations.Add(location);
+            egglocations.Add(location);
+            location = new PKMDS.Location(60002);
+            metlocations.Add(location);
+            egglocations.Add(location);
 
+            cbMetLocation.DataSource = metlocations;
+            cbMetLocation.DisplayMember = "LocationName";
+            cbMetLocation.ValueMember = "LocationID";
+            cbEggLocation.DataSource = egglocations;
+            cbEggLocation.DisplayMember = "LocationName";
+            cbEggLocation.ValueMember = "LocationID";
         }
         private void SetMoves()
         {
-            List<PKMDS.Move> moves = new List<PKMDS.Move>();
+            List<PKMDS.Move> moves1 = new List<PKMDS.Move>();
+            List<PKMDS.Move> moves2 = new List<PKMDS.Move>();
+            List<PKMDS.Move> moves3 = new List<PKMDS.Move>();
+            List<PKMDS.Move> moves4 = new List<PKMDS.Move>();
             PKMDS.Move move = new PKMDS.Move();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
-
+            for (UInt16 moveindex = 0; moveindex <= 559; moveindex++)
+            {
+                move = new PKMDS.Move(moveindex);
+                if ((move.MoveName != "") & (move.MoveName != null) & (move.MoveID != 0))
+                {
+                    moves1.Add(move);
+                }
+                moves2.Add(move);
+                moves3.Add(move);
+                moves4.Add(move);
+            }
+            cbMove1.DataSource = moves1;
+            cbMove1.DisplayMember = "MoveName";
+            cbMove1.ValueMember = "MoveID";
+            cbMove2.DataSource = moves2;
+            cbMove2.DisplayMember = "MoveName";
+            cbMove2.ValueMember = "MoveID";
+            cbMove3.DataSource = moves3;
+            cbMove3.DisplayMember = "MoveName";
+            cbMove3.ValueMember = "MoveID";
+            cbMove4.DataSource = moves4;
+            cbMove4.DisplayMember = "MoveName";
+            cbMove4.ValueMember = "MoveID";
         }
         private void SetHometowns()
         {
             List<PKMDS.Hometown> hometowns = new List<PKMDS.Hometown>();
             PKMDS.Hometown hometown = new PKMDS.Hometown();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
-
+            for (UInt16 hometownindex = 0; hometownindex <= 25; hometownindex++)
+            {
+                if ((hometownindex != 6) ||
+                    (hometownindex != 9) ||
+                    (hometownindex != 13) ||
+                    (hometownindex != 14) ||
+                    (hometownindex != 16) ||
+                    (hometownindex != 17) ||
+                    (hometownindex != 18) ||
+                    (hometownindex != 19))
+                {
+                    hometown = new PKMDS.Hometown(hometownindex);
+                    if ((hometown.HometownName != "") & (hometown.HometownName != null) & (hometown.HometownID != 0))
+                    {
+                        hometowns.Add(hometown);
+                    }
+                }
+            }
+            cbGame.DataSource = hometowns;
+            cbGame.DisplayMember = "HometownName";
+            cbGame.ValueMember = "HometownID";
         }
         private void SetCountries()
         {
             List<PKMDS.Country> countries = new List<PKMDS.Country>();
-            PKMDS.Country ability = new PKMDS.Country();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++) { }
-
+            PKMDS.Country country = new PKMDS.Country();
+            for (UInt16 countryindex = 0; countryindex <= 8; countryindex++)
+            {
+                if (countryindex != 6)
+                {
+                    country = new PKMDS.Country(countryindex);
+                    if ((country.CountryName != "") & (country.CountryName != null) & (country.CountryID != 0))
+                    {
+                        countries.Add(country);
+                    }
+                }
+            }
+            cbCountry.DataSource = countries;
+            cbCountry.DisplayMember = "CountryName";
+            cbCountry.ValueMember = "CountryID";
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -670,23 +837,37 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: ball
-                CheckApplyButton();
+                if (cbBall.SelectedIndex != -1)
+                {
+                    //TempPokemon.BallID = (int)(cbBall.SelectedValue);
+                    CheckApplyButton();
+                }
             }
         }
         private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-                // TODO: species
-                CheckApplyButton();
+                if (cbSpecies.SelectedIndex != -1)
+                {
+                    TempPokemon.SpeciesID = (UInt16)(cbSpecies.SelectedValue);
+                    numSpecies.Value = (Decimal)(TempPokemon.SpeciesID);
+                    UpdateSprite();
+                    UpdateTypes();
+                    UpdateForm();
+                    UpdateGenderPic();
+                    UpdateLevel();
+                    UpdateCalculatedStats();
+                    CheckApplyButton();
+                }
             }
         }
         private void numSpecies_ValueChanged(object sender, EventArgs e)
         {
-            if (UISet && PokemonSet)
+            if (UISet && PokemonSet && ((int)(numSpecies.Value - 1)) != cbSpecies.SelectedIndex)
             {
-                // TODO: species
-                CheckApplyButton();
+                cbSpecies.SelectedIndex = (int)(numSpecies.Value - 1);
+                //CheckApplyButton();
             }
         }
         private void cbForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -694,6 +875,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: form
+
                 CheckApplyButton();
             }
         }
@@ -823,7 +1005,6 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: nature
                 int inc = TempPokemon.NatureIncrease;
                 int dec = TempPokemon.NatureDecrease;
                 if (inc == 2) { lblAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
@@ -853,6 +1034,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+
                 CheckApplyButton();
             }
         }
@@ -861,6 +1043,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+
                 CheckApplyButton();
             }
         }
@@ -869,6 +1052,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+
                 CheckApplyButton();
             }
         }
@@ -877,6 +1061,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: moves
+
                 CheckApplyButton();
             }
         }
@@ -949,6 +1134,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: location
+
                 CheckApplyButton();
             }
         }
@@ -965,6 +1151,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: location
+
                 CheckApplyButton();
             }
         }
@@ -981,6 +1168,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: met as egg
+
                 CheckApplyButton();
             }
         }
@@ -997,6 +1185,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: game
+
                 CheckApplyButton();
             }
         }
@@ -1005,6 +1194,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 // TODO: country
+
                 CheckApplyButton();
             }
         }

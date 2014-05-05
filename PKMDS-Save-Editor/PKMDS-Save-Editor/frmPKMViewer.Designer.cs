@@ -506,6 +506,7 @@
             // 
             this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.Enabled = false;
             this.cbForm.FormattingEnabled = true;
             this.cbForm.Location = new System.Drawing.Point(3, 138);
             this.cbForm.Name = "cbForm";

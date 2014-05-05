@@ -29,8 +29,8 @@ namespace PKMDS_Save_Editor
                 {
                     cbBoxes.SelectedIndex = -1;
                     cbBoxes.Items.Clear();
-                    lstPokemon.Clear();
-                    lstParty.Clear();
+                    lstBoxPokemon.Clear();
+                    lstPartyPokemon.Clear();
                     savefile = fileOpen.FileName;
                     sav = PKMDS.ReadSaveFile(savefile);
                     this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
@@ -41,7 +41,7 @@ namespace PKMDS_Save_Editor
                         {
                             ppkm = sav.GetPartyPokemon(slot);
                             System.Diagnostics.Debug.Write("");
-                            lstParty.Items.Add(ppkm.PokemonData.SpeciesName);
+                            lstPartyPokemon.Items.Add(ppkm.PokemonData.SpeciesName);
                         }
                         for (int box = 0; box < 24; box++)
                         {
@@ -64,13 +64,13 @@ namespace PKMDS_Save_Editor
                 {
                     sav.CurrentBox = cbBoxes.SelectedIndex;
                     PKMDS.Pokemon pkm = new PKMDS.Pokemon();
-                    lstPokemon.Clear();
+                    lstBoxPokemon.Clear();
                     for (int slot = 0; slot < 30; slot++)
                     {
                         pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, slot);
-                        lstPokemon.Items.Add(pkm.SpeciesName);
+                        lstBoxPokemon.Items.Add(pkm.SpeciesName);
                     }
-                    pbGender.Image = sav.GetBoxWallpaper(cbBoxes.SelectedIndex);
+                    pbWallpaper.Image = sav.GetBoxWallpaper(cbBoxes.SelectedIndex);
                 }
             }
         }
@@ -83,11 +83,11 @@ namespace PKMDS_Save_Editor
         {
             if (cbBoxes.SelectedIndex != -1)
             {
-                if (lstPokemon.SelectedItems.Count > 0)
+                if (lstBoxPokemon.SelectedItems.Count > 0)
                 {
-                    lstParty.SelectedItems.Clear();
+                    lstPartyPokemon.SelectedItems.Clear();
                     PKMDS.Pokemon pkm = new PKMDS.Pokemon();
-                    pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
+                    pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, lstBoxPokemon.SelectedItems[0].Index);
                     pbSprite.Image = pkm.Sprite;
                 }
             }
@@ -105,35 +105,35 @@ namespace PKMDS_Save_Editor
         }
         private void lstParty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstParty.SelectedItems.Count > 0)
+            if (lstPartyPokemon.SelectedItems.Count > 0)
             {
-                lstPokemon.SelectedItems.Clear();
+                lstBoxPokemon.SelectedItems.Clear();
                 PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
-                ppkm = sav.GetPartyPokemon(lstParty.SelectedItems[0].Index);
+                ppkm = sav.GetPartyPokemon(lstPartyPokemon.SelectedItems[0].Index);
                 pbSprite.Image = ppkm.PokemonData.Sprite;
             }
         }
         private void lstPokemon_DoubleClick(object sender, EventArgs e)
         {
-            if (lstPokemon.Items.Count > 0)
+            if (lstBoxPokemon.Items.Count > 0)
             {
-                if (lstPokemon.SelectedItems.Count > 0)
+                if (lstBoxPokemon.SelectedItems.Count > 0)
                 {
                     PKMDS.Pokemon pkm = new PKMDS.Pokemon();
-                    pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
-                    sav.SetStoredPokemon(ViewPokemon(pkm), cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
+                    pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, lstBoxPokemon.SelectedItems[0].Index);
+                    sav.SetStoredPokemon(ViewPokemon(pkm), cbBoxes.SelectedIndex, lstBoxPokemon.SelectedItems[0].Index);
                 }
             }
         }
         private void lstParty_DoubleClick(object sender, EventArgs e)
         {
-            if (lstParty.Items.Count > 0)
+            if (lstPartyPokemon.Items.Count > 0)
             {
-                if (lstParty.SelectedItems.Count > 0)
+                if (lstPartyPokemon.SelectedItems.Count > 0)
                 {
                     PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
-                    ppkm = sav.GetPartyPokemon(lstParty.SelectedItems[0].Index);
-                    sav.SetPartyPokemon(ViewPokemon(ppkm), lstParty.SelectedItems[0].Index);
+                    ppkm = sav.GetPartyPokemon(lstPartyPokemon.SelectedItems[0].Index);
+                    sav.SetPartyPokemon(ViewPokemon(ppkm), lstPartyPokemon.SelectedItems[0].Index);
                 }
             }
         }
