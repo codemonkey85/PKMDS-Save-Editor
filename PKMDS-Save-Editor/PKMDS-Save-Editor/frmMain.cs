@@ -71,6 +71,7 @@ namespace PKMDS_Save_Editor
                         lstBoxPokemon.Items.Add(pkm.SpeciesName);
                     }
                     pbWallpaper.Image = sav.GetBoxWallpaper(cbBoxes.SelectedIndex);
+                    pbColors.Image = sav.GetBoxGrid(cbBoxes.SelectedIndex);
                 }
             }
         }
@@ -89,6 +90,7 @@ namespace PKMDS_Save_Editor
                     PKMDS.Pokemon pkm = new PKMDS.Pokemon();
                     pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, lstBoxPokemon.SelectedItems[0].Index);
                     pbSprite.Image = pkm.Sprite;
+                    pbBallTest.Image = pkm.BallPic;
                 }
             }
         }
@@ -111,6 +113,7 @@ namespace PKMDS_Save_Editor
                 PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
                 ppkm = sav.GetPartyPokemon(lstPartyPokemon.SelectedItems[0].Index);
                 pbSprite.Image = ppkm.PokemonData.Sprite;
+                pbBallTest.Image = ppkm.PokemonData.BallPic;
             }
         }
         private void lstPokemon_DoubleClick(object sender, EventArgs e)

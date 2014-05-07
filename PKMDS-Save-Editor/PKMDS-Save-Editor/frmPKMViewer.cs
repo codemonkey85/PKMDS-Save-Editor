@@ -75,6 +75,8 @@ namespace PKMDS_Save_Editor
             //pbType2.Image = null;
             //pbShiny.Image = null;
             //pbPokerus.Image = null;
+            cbForm.Items.Clear();
+            cbForm.Text = "";
         }
 
         #region UpdateCommonInfo
@@ -120,8 +122,7 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateBall()
         {
-            // TODO: ball
-
+            pbBall.Image = TempPokemon.BallPic;
         }
         private void UpdatePokerus()
         {
@@ -140,7 +141,11 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateForm()
         {
-            // TODO: forms
+            SetForms();
+            if (cbForm.Enabled)
+            {
+                cbForm.SelectedIndex = TempPokemon.FormID;
+            }
         }
         #endregion
 
@@ -278,6 +283,7 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateNature()
         {
+            cbNature.SelectedValue = TempPokemon.NatureID;
             int inc = TempPokemon.NatureIncrease - 1;
             int dec = TempPokemon.NatureDecrease - 1;
             Color statcolor = new Color();
@@ -348,50 +354,135 @@ namespace PKMDS_Save_Editor
             UpdateMove4();
         }
 
+        private void AutosizeFont(ref System.Windows.Forms.Label ctrl)
+        {
+            //       while ((Decimal)(ctrl.Width) > (Decimal)(System.Windows.Forms.TextRenderer.MeasureText(ctrl.Text,
+            //new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width) / 1.00M)
+            //       {
+            //           ctrl.Font = new Font(ctrl.Font.FontFamily, ctrl.Font.Size + 0.5f, ctrl.Font.Style);
+            //       }
+            while ((Decimal)(ctrl.Width) < (Decimal)(System.Windows.Forms.TextRenderer.MeasureText(ctrl.Text,
+     new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width) / 1.90M)
+            {
+                ctrl.Font = new Font(ctrl.Font.FontFamily, ctrl.Font.Size - 0.5f, ctrl.Font.Style);
+            }
+        }
+
         private void UpdateMove1()
         {
-            // TODO: moves
-            UInt16 move = TempPokemon.GetMoveIDs[0];
-            cbMove1.SelectedValue = move;
-            //lblAbilityFlavor.Text = ((PKMDS.Move)(cbAbility.SelectedItem)).AbilityFlavor;
+            UInt16 moveid = TempPokemon.GetMoveIDs[0];
+            cbMove1.SelectedValue = moveid;
+            PKMDS.Move move = (PKMDS.Move)(cbMove1.SelectedItem);
+            lblMove1Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+            lblMove1Flavor.Text = move.MoveFlavor;
+            lblMove1Power.Text = move.MovePower.ToString();
+            numMove1PP.Value = TempPokemon.GetMovePP(0);
+            numMove1PPUps.Value = TempPokemon.GetMovePPUp(0);
+            txtMove1MaxPP.Text = (move.MoveBasePP + (numMove1PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+            pbMove1Type.Image = move.MoveTypeImage;
+            pbMove1Category.Image = move.MoveCategoryImage;
+            AutosizeFont(ref lblMove1Flavor);
         }
         private void UpdateMove2()
         {
-            // TODO: moves
-            UInt16 move = TempPokemon.GetMoveIDs[1];
-            if (move == 0)
+            UInt16 moveid = TempPokemon.GetMoveIDs[1];
+            if (moveid == 0)
             {
                 cbMove2.SelectedIndex = -1;
+                numMove2PPUps.Enabled = false;
+                numMove2PP.Enabled = false;
+                lblMove2Accuracy.Text = "";
+                lblMove2Flavor.Text = "";
+                lblMove2Power.Text = "";
+                numMove2PP.Value = 0M;
+                numMove2PPUps.Value = 0M;
+                txtMove2MaxPP.Text = "";
+                pbMove2Type.Image = null;
+                pbMove2Category.Image = null;
             }
             else
             {
-                cbMove2.SelectedValue = move;
+                cbMove2.SelectedValue = moveid;
+                numMove2PPUps.Enabled = true;
+                numMove2PP.Enabled = true;
+                PKMDS.Move move = (PKMDS.Move)(cbMove2.SelectedItem);
+                lblMove2Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+                lblMove2Flavor.Text = move.MoveFlavor;
+                lblMove2Power.Text = move.MovePower.ToString();
+                numMove2PP.Value = TempPokemon.GetMovePP(1);
+                numMove2PPUps.Value = TempPokemon.GetMovePPUp(1);
+                txtMove2MaxPP.Text = (move.MoveBasePP + (numMove2PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+                pbMove2Type.Image = move.MoveTypeImage;
+                pbMove2Category.Image = move.MoveCategoryImage;
+                AutosizeFont(ref lblMove2Flavor);
             }
         }
         private void UpdateMove3()
         {
-            // TODO: moves
-            UInt16 move = TempPokemon.GetMoveIDs[2];
-            if (move == 0)
+            UInt16 moveid = TempPokemon.GetMoveIDs[2];
+            if (moveid == 0)
             {
                 cbMove3.SelectedIndex = -1;
+                numMove3PPUps.Enabled = false;
+                numMove3PP.Enabled = false;
+                lblMove3Accuracy.Text = "";
+                lblMove3Flavor.Text = "";
+                lblMove3Power.Text = "";
+                numMove3PP.Value = 0M;
+                numMove3PPUps.Value = 0M;
+                txtMove3MaxPP.Text = "";
+                pbMove3Type.Image = null;
+                pbMove3Category.Image = null;
             }
             else
             {
-                cbMove3.SelectedValue = move;
+                cbMove3.SelectedValue = moveid;
+                numMove3PPUps.Enabled = true;
+                numMove3PP.Enabled = true;
+                PKMDS.Move move = (PKMDS.Move)(cbMove3.SelectedItem);
+                lblMove3Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+                lblMove3Flavor.Text = move.MoveFlavor;
+                lblMove3Power.Text = move.MovePower.ToString();
+                numMove3PP.Value = TempPokemon.GetMovePP(2);
+                numMove3PPUps.Value = TempPokemon.GetMovePPUp(2);
+                txtMove3MaxPP.Text = (move.MoveBasePP + (numMove3PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+                pbMove3Type.Image = move.MoveTypeImage;
+                pbMove3Category.Image = move.MoveCategoryImage;
+                AutosizeFont(ref lblMove3Flavor);
             }
         }
         private void UpdateMove4()
         {
-            // TODO: moves
-            UInt16 move = TempPokemon.GetMoveIDs[3];
-            if (move == 0)
+            UInt16 moveid = TempPokemon.GetMoveIDs[3];
+            if (moveid == 0)
             {
                 cbMove4.SelectedIndex = -1;
+                numMove4PPUps.Enabled = false;
+                numMove4PP.Enabled = false;
+                lblMove4Accuracy.Text = "";
+                lblMove4Flavor.Text = "";
+                lblMove4Power.Text = "";
+                numMove4PP.Value = 0M;
+                numMove4PPUps.Value = 0M;
+                txtMove4MaxPP.Text = "";
+                pbMove4Type.Image = null;
+                pbMove4Category.Image = null;
             }
             else
             {
-                cbMove4.SelectedValue = move;
+                cbMove4.SelectedValue = moveid;
+                numMove4PPUps.Enabled = true;
+                numMove4PP.Enabled = true;
+                PKMDS.Move move = (PKMDS.Move)(cbMove4.SelectedItem);
+                lblMove4Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+                lblMove4Flavor.Text = move.MoveFlavor;
+                lblMove4Power.Text = move.MovePower.ToString();
+                numMove4PP.Value = TempPokemon.GetMovePP(3);
+                numMove4PPUps.Value = TempPokemon.GetMovePPUp(3);
+                txtMove4MaxPP.Text = (move.MoveBasePP + (numMove4PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+                pbMove4Type.Image = move.MoveTypeImage;
+                pbMove4Category.Image = move.MoveCategoryImage;
+                AutosizeFont(ref lblMove4Flavor);
             }
         }
 
@@ -400,7 +491,23 @@ namespace PKMDS_Save_Editor
         #region UpdateOriginsInfo
         private void UpdateOriginsInfo()
         {
-            // TODO: Origins
+            numMetLevel.Value = (Decimal)(TempPokemon.MetLevel);
+            cbNsPokemon.Checked = TempPokemon.IsNsPokemon;
+            cbFateful.Checked = TempPokemon.IsFateful;
+            cbGame.SelectedValue = (Byte)(TempPokemon.HometownID);
+            cbCountry.SelectedValue = (Byte)(TempPokemon.LanguageID);
+            cbMetLocation.SelectedValue = TempPokemon.MetLocationID;
+            dtMetDate.Value = TempPokemon.MetDate;
+            cbMetAsEgg.Checked = TempPokemon.MetAsEgg;
+            cbEggLocation.Enabled = false;
+            dtEggDate.Enabled = false;
+            if (TempPokemon.MetAsEgg)
+            {
+                cbEggLocation.Enabled = true;
+                cbEggLocation.SelectedValue = TempPokemon.EggLocationID;
+                dtEggDate.Enabled = true;
+                dtEggDate.Value = TempPokemon.EggDate;
+            }
         }
 
         #endregion
@@ -457,6 +564,30 @@ namespace PKMDS_Save_Editor
             SetCountries();
             UISet = true;
         }
+        private void SetForms()
+        {
+            cbForm.Items.Clear();
+            if (TempPokemon.SpeciesID != 0)
+            {
+                string[] formnames = PKMDS.GetPKMFormNames(TempPokemon.SpeciesID);
+                if (formnames.Length != 0)
+                {
+                    if (!((formnames.Length == 1) && (formnames[0] == "")))
+                    {
+                        cbForm.Items.AddRange(PKMDS.GetPKMFormNames(TempPokemon.SpeciesID));
+                        cbForm.Enabled = true;
+                    }
+                    else
+                    {
+                        cbForm.Enabled = false;
+                    }
+                }
+                else
+                {
+                    cbForm.Enabled = false;
+                }
+            }
+        }
         private void SetItems()
         {
             List<PKMDS.Item> items = new List<PKMDS.Item>();
@@ -510,10 +641,10 @@ namespace PKMDS_Save_Editor
         {
             List<PKMDS.Ball> balls = new List<PKMDS.Ball>();
             PKMDS.Ball ball = new PKMDS.Ball();
-            for (UInt16 ballindex = 0; ballindex <= 25; ballindex++)
+            for (Byte ballindex = 0; ballindex <= 25; ballindex++)
             {
                 ball = new PKMDS.Ball(ballindex);
-                if ((ball.BallName != "") & (ball.BallName != null) & (ball.BallID != 0))
+                if ((ball.BallName != "") & (ball.BallName != null))
                 {
                     balls.Add(ball);
                 }
@@ -526,10 +657,10 @@ namespace PKMDS_Save_Editor
         {
             List<PKMDS.Nature> natures = new List<PKMDS.Nature>();
             PKMDS.Nature nature = new PKMDS.Nature();
-            for (UInt16 natureindex = 0; natureindex <= 24; natureindex++)
+            for (Byte natureindex = 0; natureindex <= 24; natureindex++)
             {
                 nature = new PKMDS.Nature(natureindex);
-                if ((nature.NatureName != "") & (nature.NatureName != null) & (nature.NatureID != 0))
+                if ((nature.NatureName != "") & (nature.NatureName != null))
                 {
                     natures.Add(nature);
                 }
@@ -562,6 +693,9 @@ namespace PKMDS_Save_Editor
             metlocations.Add(location);
             egglocations.Add(location);
             location = new PKMDS.Location(40001);
+            metlocations.Add(location);
+            egglocations.Add(location);
+            location = new PKMDS.Location(40069);
             metlocations.Add(location);
             egglocations.Add(location);
             location = new PKMDS.Location(60002);
@@ -610,7 +744,7 @@ namespace PKMDS_Save_Editor
         {
             List<PKMDS.Hometown> hometowns = new List<PKMDS.Hometown>();
             PKMDS.Hometown hometown = new PKMDS.Hometown();
-            for (UInt16 hometownindex = 0; hometownindex <= 25; hometownindex++)
+            for (Byte hometownindex = 0; hometownindex <= 25; hometownindex++)
             {
                 if ((hometownindex != 6) ||
                     (hometownindex != 9) ||
@@ -636,7 +770,7 @@ namespace PKMDS_Save_Editor
         {
             List<PKMDS.Country> countries = new List<PKMDS.Country>();
             PKMDS.Country country = new PKMDS.Country();
-            for (UInt16 countryindex = 0; countryindex <= 8; countryindex++)
+            for (Byte countryindex = 0; countryindex <= 8; countryindex++)
             {
                 if (countryindex != 6)
                 {
@@ -829,6 +963,11 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.EXP = (UInt32)(numEXP.Value);
+                UISet = false;
+                UpdateLevel();
+                UpdateEXP();
+                UISet = true;
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -836,10 +975,10 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: ball
                 if (cbBall.SelectedIndex != -1)
                 {
-                    //TempPokemon.BallID = (int)(cbBall.SelectedValue);
+                    TempPokemon.BallID = (Byte)(cbBall.SelectedValue);
+                    UpdateBall();
                     CheckApplyButton();
                 }
             }
@@ -856,7 +995,9 @@ namespace PKMDS_Save_Editor
                     UpdateTypes();
                     UpdateForm();
                     UpdateGenderPic();
+                    UISet = false;
                     UpdateLevel();
+                    UISet = true;
                     UpdateCalculatedStats();
                     CheckApplyButton();
                 }
@@ -867,15 +1008,16 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet && ((int)(numSpecies.Value - 1)) != cbSpecies.SelectedIndex)
             {
                 cbSpecies.SelectedIndex = (int)(numSpecies.Value - 1);
-                //CheckApplyButton();
             }
         }
         private void cbForm_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UISet && PokemonSet)
             {
-                // TODO: form
-
+                TempPokemon.FormID = (Byte)(cbForm.SelectedIndex);
+                UpdateSprite();
+                UpdateTypes();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -884,6 +1026,10 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.Level = (int)(numLevel.Value);
+                UISet = false;
+                UpdateEXP();
+                UISet = true;
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -893,6 +1039,8 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetIV(0, (int)(numHPIV.Value));
                 SetControlFont(ref numHPIV, numHPIV.Value == numHPIV.Maximum);
+                UpdateCharacteristic();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -902,6 +1050,8 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetIV(1, (int)(numAtkIV.Value));
                 SetControlFont(ref numAtkIV, numAtkIV.Value == numAtkIV.Maximum);
+                UpdateCharacteristic();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -911,6 +1061,8 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetIV(2, (int)(numDefIV.Value));
                 SetControlFont(ref numDefIV, numDefIV.Value == numDefIV.Maximum);
+                UpdateCharacteristic();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -920,6 +1072,8 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetIV(3, (int)(numSpAtkIV.Value));
                 SetControlFont(ref numSpAtkIV, numSpAtkIV.Value == numSpAtkIV.Maximum);
+                UpdateCharacteristic();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -929,6 +1083,8 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetIV(4, (int)(numSpDefIV.Value));
                 SetControlFont(ref numSpDefIV, numSpDefIV.Value == numSpDefIV.Maximum);
+                UpdateCharacteristic();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -938,6 +1094,8 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.SetIV(5, (int)(numSpeedIV.Value));
                 SetControlFont(ref numSpeedIV, numSpeedIV.Value == numSpeedIV.Maximum);
+                UpdateCharacteristic();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -948,6 +1106,7 @@ namespace PKMDS_Save_Editor
                 TempPokemon.SetEV(0, (int)(numHPEV.Value));
                 SetControlFont(ref numHPEV, numHPEV.Value >= 252M);
                 UpdateTotalEVs();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -958,6 +1117,7 @@ namespace PKMDS_Save_Editor
                 TempPokemon.SetEV(1, (int)(numAtkEV.Value));
                 SetControlFont(ref numAtkEV, numAtkEV.Value >= 252M);
                 UpdateTotalEVs();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -968,6 +1128,7 @@ namespace PKMDS_Save_Editor
                 TempPokemon.SetEV(2, (int)(numDefEV.Value));
                 SetControlFont(ref numDefEV, numDefEV.Value >= 252M);
                 UpdateTotalEVs();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -978,6 +1139,7 @@ namespace PKMDS_Save_Editor
                 TempPokemon.SetEV(3, (int)(numSpAtkEV.Value));
                 SetControlFont(ref numSpAtkEV, numSpAtkEV.Value >= 252M);
                 UpdateTotalEVs();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -988,6 +1150,7 @@ namespace PKMDS_Save_Editor
                 TempPokemon.SetEV(4, (int)(numSpDefEV.Value));
                 SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
                 UpdateTotalEVs();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -998,6 +1161,7 @@ namespace PKMDS_Save_Editor
                 TempPokemon.SetEV(5, (int)(numSpeedEV.Value));
                 SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
                 UpdateTotalEVs();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -1005,18 +1169,9 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                int inc = TempPokemon.NatureIncrease;
-                int dec = TempPokemon.NatureDecrease;
-                if (inc == 2) { lblAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (inc == 3) { lblDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (inc == 4) { lblSpAtkStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (inc == 5) { lblSpDefStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (inc == 6) { lblSpeedStats.ForeColor = Color.Red; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (dec == 2) { lblAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (dec == 3) { lblDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (dec == 4) { lblSpAtkStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (dec == 5) { lblSpDefStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
-                if (dec == 6) { lblSpeedStats.ForeColor = Color.Blue; } else { lblAtkStats.ForeColor = Color.Black; }
+                TempPokemon.NatureID = (Byte)(cbNature.SelectedValue);
+                UpdateNature();
+                UpdateCalculatedStats();
                 CheckApplyButton();
             }
         }
@@ -1033,8 +1188,9 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: moves
-
+                TempPokemon.SetMoveID(0, (UInt16)(cbMove1.SelectedValue));
+                numMove1PP.Value = (Decimal)(((PKMDS.Move)(cbMove1.SelectedItem)).MoveBasePP);
+                UpdateMove1();
                 CheckApplyButton();
             }
         }
@@ -1042,8 +1198,20 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: moves
-
+                if (cbMove2.SelectedValue == null)
+                {
+                    TempPokemon.SetMoveID(1, 0);
+                    numMove2PPUps.Enabled = false;
+                    numMove2PP.Enabled = false;
+                }
+                else
+                {
+                    TempPokemon.SetMoveID(1, (UInt16)(cbMove2.SelectedValue));
+                    numMove2PPUps.Enabled = true;
+                    numMove2PP.Enabled = true;
+                    numMove2PP.Value = (Decimal)(((PKMDS.Move)(cbMove2.SelectedItem)).MoveBasePP);
+                }
+                UpdateMove2();
                 CheckApplyButton();
             }
         }
@@ -1051,8 +1219,20 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: moves
-
+                if (cbMove3.SelectedValue == null)
+                {
+                    TempPokemon.SetMoveID(2, 0);
+                    numMove3PPUps.Enabled = false;
+                    numMove3PP.Enabled = false;
+                }
+                else
+                {
+                    TempPokemon.SetMoveID(2, (UInt16)(cbMove3.SelectedValue));
+                    numMove3PPUps.Enabled = true;
+                    numMove3PP.Enabled = true;
+                    numMove3PP.Value = (Decimal)(((PKMDS.Move)(cbMove3.SelectedItem)).MoveBasePP);
+                }
+                UpdateMove3();
                 CheckApplyButton();
             }
         }
@@ -1060,8 +1240,20 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: moves
-
+                if (cbMove4.SelectedValue == null)
+                {
+                    TempPokemon.SetMoveID(3, 0);
+                    numMove4PPUps.Enabled = false;
+                    numMove4PP.Enabled = false;
+                }
+                else
+                {
+                    TempPokemon.SetMoveID(3, (UInt16)(cbMove4.SelectedValue));
+                    numMove4PPUps.Enabled = true;
+                    numMove4PP.Enabled = true;
+                    numMove4PP.Value = (Decimal)(((PKMDS.Move)(cbMove4.SelectedItem)).MoveBasePP);
+                }
+                UpdateMove4();
                 CheckApplyButton();
             }
         }
@@ -1070,6 +1262,11 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetMovePPUp(0, (int)(numMove1PPUps.Value));
+                PKMDS.Move move = ((PKMDS.Move)(cbMove1.SelectedItem));
+                if (move != null)
+                {
+                    txtMove1MaxPP.Text = (move.MoveBasePP + (numMove1PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+                }
                 CheckApplyButton();
             }
         }
@@ -1086,6 +1283,11 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetMovePPUp(1, (int)(numMove2PPUps.Value));
+                PKMDS.Move move = ((PKMDS.Move)(cbMove2.SelectedItem));
+                if (move != null)
+                {
+                    txtMove2MaxPP.Text = (move.MoveBasePP + (numMove2PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+                }
                 CheckApplyButton();
             }
         }
@@ -1102,6 +1304,11 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetMovePPUp(2, (int)(numMove3PPUps.Value));
+                PKMDS.Move move = ((PKMDS.Move)(cbMove3.SelectedItem));
+                if (move != null)
+                {
+                    txtMove3MaxPP.Text = (move.MoveBasePP + (numMove3PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+                }
                 CheckApplyButton();
             }
         }
@@ -1118,6 +1325,11 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SetMovePPUp(3, (int)(numMove4PPUps.Value));
+                PKMDS.Move move = ((PKMDS.Move)(cbMove4.SelectedItem));
+                if (move != null)
+                {
+                    txtMove4MaxPP.Text = (move.MoveBasePP + (numMove4PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
+                }
                 CheckApplyButton();
             }
         }
@@ -1133,8 +1345,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: location
-
+                TempPokemon.MetLocationID = (UInt16)(cbMetLocation.SelectedValue);
                 CheckApplyButton();
             }
         }
@@ -1150,8 +1361,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: location
-
+                TempPokemon.EggLocationID = (UInt16)(cbEggLocation.SelectedValue);
                 CheckApplyButton();
             }
         }
@@ -1167,8 +1377,18 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: met as egg
-
+                if (cbMetAsEgg.Checked)
+                {
+                    cbEggLocation.Enabled = true;
+                    dtEggDate.Enabled = true;
+                    TempPokemon.EggDate = dtEggDate.Value;
+                }
+                else
+                {
+                    cbEggLocation.Enabled = false;
+                    dtEggDate.Enabled = false;
+                    TempPokemon.SetNoEggDate();
+                }
                 CheckApplyButton();
             }
         }
@@ -1176,7 +1396,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.MetLevel = (int)(numMetLevel.Value);
+                TempPokemon.MetLevel = (Byte)(numMetLevel.Value);
                 CheckApplyButton();
             }
         }
@@ -1184,8 +1404,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: game
-
+                TempPokemon.HometownID = (Byte)(cbGame.SelectedValue);
                 CheckApplyButton();
             }
         }
@@ -1193,8 +1412,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                // TODO: country
-
+                TempPokemon.LanguageID = (Byte)(cbCountry.SelectedValue);
                 CheckApplyButton();
             }
         }
@@ -1203,6 +1421,7 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.IsEgg = cbIsEgg.Checked;
+                UpdateSprite();
                 CheckApplyButton();
             }
         }
@@ -1240,9 +1459,5 @@ namespace PKMDS_Save_Editor
                 CheckApplyButton();
             }
         }
-        //private void btnClose_Click(object sender, EventArgs e)
-        //{
-
-        //}
     }
 }

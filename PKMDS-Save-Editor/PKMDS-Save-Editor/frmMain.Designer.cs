@@ -39,9 +39,13 @@
             this.pbSprite = new System.Windows.Forms.PictureBox();
             this.pbWallpaper = new System.Windows.Forms.PictureBox();
             this.lstPartyPokemon = new System.Windows.Forms.ListView();
+            this.pbBallTest = new System.Windows.Forms.PictureBox();
+            this.pbColors = new System.Windows.Forms.PictureBox();
             this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWallpaper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBallTest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbColors)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -145,11 +149,31 @@
             this.lstPartyPokemon.SelectedIndexChanged += new System.EventHandler(this.lstParty_SelectedIndexChanged);
             this.lstPartyPokemon.DoubleClick += new System.EventHandler(this.lstParty_DoubleClick);
             // 
+            // pbBallTest
+            // 
+            this.pbBallTest.Location = new System.Drawing.Point(359, 356);
+            this.pbBallTest.Name = "pbBallTest";
+            this.pbBallTest.Size = new System.Drawing.Size(100, 100);
+            this.pbBallTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbBallTest.TabIndex = 6;
+            this.pbBallTest.TabStop = false;
+            // 
+            // pbColors
+            // 
+            this.pbColors.Location = new System.Drawing.Point(465, 356);
+            this.pbColors.Name = "pbColors";
+            this.pbColors.Size = new System.Drawing.Size(100, 100);
+            this.pbColors.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbColors.TabIndex = 7;
+            this.pbColors.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 568);
+            this.Controls.Add(this.pbColors);
+            this.Controls.Add(this.pbBallTest);
             this.Controls.Add(this.lstPartyPokemon);
             this.Controls.Add(this.pbWallpaper);
             this.Controls.Add(this.pbSprite);
@@ -167,6 +191,8 @@
             this.mainMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWallpaper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBallTest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbColors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,6 +211,8 @@
         private System.Windows.Forms.PictureBox pbWallpaper;
         private System.Windows.Forms.ToolStripMenuItem savesavToolStripMenuItem;
         private System.Windows.Forms.ListView lstPartyPokemon;
+        private System.Windows.Forms.PictureBox pbBallTest;
+        private System.Windows.Forms.PictureBox pbColors;
     }
 }
 
