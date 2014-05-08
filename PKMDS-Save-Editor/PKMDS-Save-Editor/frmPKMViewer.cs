@@ -492,6 +492,8 @@ namespace PKMDS_Save_Editor
         private void UpdateOriginsInfo()
         {
             numMetLevel.Value = (Decimal)(TempPokemon.MetLevel);
+            cbIsEgg.Checked = TempPokemon.IsEgg;
+            UpdateHatchSteps();
             cbNsPokemon.Checked = TempPokemon.IsNsPokemon;
             cbFateful.Checked = TempPokemon.IsFateful;
             cbGame.SelectedValue = (Byte)(TempPokemon.HometownID);
@@ -1181,6 +1183,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.Tameness = (int)(numTameness.Value);
                 SetControlFont(ref numTameness, numTameness.Value == numTameness.Maximum);
+                UpdateHatchSteps();
                 CheckApplyButton();
             }
         }
@@ -1421,8 +1424,25 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.IsEgg = cbIsEgg.Checked;
+                UpdateHatchSteps();
+                cbMetAsEgg.Checked = true;
+                cbEggLocation.SelectedIndex = 0;
+                dtEggDate.Value = System.DateTime.Today;
                 UpdateSprite();
                 CheckApplyButton();
+            }
+        }
+        private void UpdateHatchSteps()
+        {
+            if (TempPokemon.IsEgg)
+            {
+                txtMinHatchSteps.Enabled = true;
+                txtMinHatchSteps.Text = (255 * TempPokemon.Tameness).ToString("N0");
+            }
+            else
+            {
+                txtMinHatchSteps.Enabled = false;
+                txtMinHatchSteps.Text = "";
             }
         }
         private void cbNsPokemon_CheckedChanged(object sender, EventArgs e)

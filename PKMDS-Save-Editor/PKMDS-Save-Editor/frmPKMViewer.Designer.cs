@@ -36,6 +36,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tlControls = new System.Windows.Forms.TableLayoutPanel();
             this.pnlCommon = new System.Windows.Forms.Panel();
+            this.lblForm = new System.Windows.Forms.Label();
             this.lblHeldItemFlavor = new System.Windows.Forms.Label();
             this.pbBall = new System.Windows.Forms.PictureBox();
             this.cbBall = new System.Windows.Forms.ComboBox();
@@ -209,7 +210,6 @@
             this.tpRibbon = new System.Windows.Forms.TabPage();
             this.tpMisc = new System.Windows.Forms.TabPage();
             this.fileSave = new System.Windows.Forms.SaveFileDialog();
-            this.lblForm = new System.Windows.Forms.Label();
             this.tlMain.SuspendLayout();
             this.tlButtons.SuspendLayout();
             this.tlControls.SuspendLayout();
@@ -422,6 +422,15 @@
             this.pnlCommon.Name = "pnlCommon";
             this.pnlCommon.Size = new System.Drawing.Size(184, 340);
             this.pnlCommon.TabIndex = 0;
+            // 
+            // lblForm
+            // 
+            this.lblForm.Location = new System.Drawing.Point(6, 136);
+            this.lblForm.Name = "lblForm";
+            this.lblForm.Size = new System.Drawing.Size(172, 15);
+            this.lblForm.TabIndex = 21;
+            this.lblForm.Text = "Form";
+            this.lblForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHeldItemFlavor
             // 
@@ -1049,6 +1058,7 @@
             this.txtMinHatchSteps.Size = new System.Drawing.Size(69, 20);
             this.txtMinHatchSteps.TabIndex = 6;
             this.txtMinHatchSteps.TabStop = false;
+            this.txtMinHatchSteps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblNature
             // 
@@ -2583,15 +2593,6 @@
             // fileSave
             // 
             this.fileSave.Filter = "PK5 files|*.pk5|EK5 files|*.ek5|PKM files|*.pkm|All files|*.*";
-            // 
-            // lblForm
-            // 
-            this.lblForm.Location = new System.Drawing.Point(6, 136);
-            this.lblForm.Name = "lblForm";
-            this.lblForm.Size = new System.Drawing.Size(172, 15);
-            this.lblForm.TabIndex = 21;
-            this.lblForm.Text = "Form";
-            this.lblForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmPKMViewer
             // 
