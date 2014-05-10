@@ -94,23 +94,6 @@ namespace PKMDS_Save_Editor
             UpdateBoxNameLabels();
             UpdateBoxCountLabels();
             UpdateBoxGrids();
-
-
-            //PKMDS.SwapBoxParty(sav, 0, 0, 0);
-            //UpdateParty();
-            //UpdateBoxGrid(0);
-
-
-            //sav.DepositPokemon(sav.GetPartyPokemon(5).PokemonData, 23);
-            //sav.RemovePartyPokemon(5);
-            //sav.WithdrawPokemon(sav.GetStoredPokemon(0, 0));
-            //sav.RemoveStoredPokemon(0, 0);
-
-            //UpdateParty();
-            //UpdateBox();
-            //UpdateBoxCountLabels();
-            //UpdateBoxGrids();
-
         }
         private void UpdateParty()
         {
@@ -128,6 +111,7 @@ namespace PKMDS_Save_Editor
                     partyPics[partySlot].Image = null;
                 }
             }
+            lblPartySize.Text = "Party - " + sav.PartySize.ToString() + " / 6";
         }
         private void UpdateBox()
         {
@@ -440,8 +424,6 @@ namespace PKMDS_Save_Editor
                 {
                     if (dragtoparty)
                     {
-                        //sav.WithdrawPokemon(sav.GetPartyPokemon(fromslot).PokemonData);
-                        //sav.RemovePartyPokemon(fromslot);
                         if (pkm_to.SpeciesID == 0)
                         {
                             sav.WithdrawPokemon(sav.GetPartyPokemon(fromslot).PokemonData);
@@ -459,8 +441,6 @@ namespace PKMDS_Save_Editor
                 {
                     if (dragtoparty)
                     {
-                        //sav.WithdrawPokemon(sav.GetStoredPokemon(frombox, fromslot));
-                        //sav.RemoveStoredPokemon(frombox, fromslot);
                         if (pkm_to.SpeciesID == 0)
                         {
                             sav.WithdrawPokemon(sav.GetStoredPokemon(frombox, fromslot));
@@ -487,8 +467,6 @@ namespace PKMDS_Save_Editor
                 {
                     if (!dragtoparty)
                     {
-                        //sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
-                        //sav.RemovePartyPokemon(fromslot);
                         PKMDS.SwapPartyBox(sav, fromslot, tobox, toslot);
                         if (pkm_to.SpeciesID == 0)
                         {
@@ -504,8 +482,6 @@ namespace PKMDS_Save_Editor
                 {
                     if (!dragtoparty)
                     {
-                        //sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
-                        //sav.RemoveStoredPokemon(sav.CurrentBox, fromslot);
                         PKMDS.SwapBoxBox(sav, frombox, fromslot, tobox, toslot);
                         UpdateParty();
                         UpdateBox();
@@ -582,7 +558,6 @@ namespace PKMDS_Save_Editor
                 {
                     sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
                     sav.RemovePartyPokemon(fromslot);
-                    //PKMDS.SwapPartyBox(sav, fromslot, tobox, toslot);
                     if (pkm_to.SpeciesID == 0)
                     {
                         sav.RemovePartyPokemon(fromslot);
@@ -595,7 +570,6 @@ namespace PKMDS_Save_Editor
                     {
                         sav.DepositPokemon(sav.GetStoredPokemon(frombox, fromslot), tobox);
                         sav.RemoveStoredPokemon(frombox, fromslot);
-                        //PKMDS.SwapBoxBox(sav, frombox, fromslot, tobox, toslot);
                         UpdateBox();
                         UpdateBoxGrid(frombox);
                         UpdateBoxCountLabel(frombox);

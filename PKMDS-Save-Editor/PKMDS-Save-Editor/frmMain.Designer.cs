@@ -199,6 +199,7 @@
             this.tlBoxGrid01 = new System.Windows.Forms.TableLayoutPanel();
             this.lblBoxGrid01 = new System.Windows.Forms.Label();
             this.pbBoxGrid01 = new System.Windows.Forms.PictureBox();
+            this.lblPartySize = new System.Windows.Forms.Label();
             this.mainMenu.SuspendLayout();
             this.tlParty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot06)).BeginInit();
@@ -325,7 +326,7 @@
             this.fileToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(379, 24);
+            this.mainMenu.Size = new System.Drawing.Size(381, 24);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -1043,7 +1044,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitMain.IsSplitterFixed = true;
-            this.splitMain.Location = new System.Drawing.Point(9, 24);
+            this.splitMain.Location = new System.Drawing.Point(0, 37);
             this.splitMain.Margin = new System.Windows.Forms.Padding(0);
             this.splitMain.Name = "splitMain";
             // 
@@ -1084,7 +1085,7 @@
             this.splitMain.Panel2.Controls.Add(this.lblBoxCount01);
             this.splitMain.Panel2.Controls.Add(this.tlBoxGrids);
             this.splitMain.Panel2.Enabled = false;
-            this.splitMain.Size = new System.Drawing.Size(361, 218);
+            this.splitMain.Size = new System.Drawing.Size(363, 218);
             this.splitMain.SplitterDistance = 192;
             this.splitMain.SplitterWidth = 1;
             this.splitMain.TabIndex = 7;
@@ -2588,11 +2589,20 @@
             this.pbBoxGrid01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid01.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             // 
+            // lblPartySize
+            // 
+            this.lblPartySize.AutoSize = true;
+            this.lblPartySize.Location = new System.Drawing.Point(12, 24);
+            this.lblPartySize.Name = "lblPartySize";
+            this.lblPartySize.Size = new System.Drawing.Size(0, 13);
+            this.lblPartySize.TabIndex = 8;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 265);
+            this.ClientSize = new System.Drawing.Size(381, 262);
+            this.Controls.Add(this.lblPartySize);
             this.Controls.Add(this.splitMain);
             this.Controls.Add(this.mainMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -2901,6 +2911,7 @@
         private System.Windows.Forms.Label lblBoxCount03;
         private System.Windows.Forms.Label lblBoxCount02;
         private System.Windows.Forms.Label lblBoxCount01;
+        private System.Windows.Forms.Label lblPartySize;
     }
 }
 
