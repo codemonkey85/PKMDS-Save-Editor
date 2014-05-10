@@ -48,7 +48,7 @@ namespace PKMDS_Save_Editor
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             ClearForm();
             DisplayPokemon(TempPokemon);
