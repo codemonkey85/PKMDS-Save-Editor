@@ -507,6 +507,7 @@ namespace PKMDS_Save_Editor
                         //sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
                         //sav.RemoveStoredPokemon(sav.CurrentBox, fromslot);
                         PKMDS.SwapBoxBox(sav, frombox, fromslot, tobox, toslot);
+                        UpdateParty();
                         UpdateBox();
                         UpdateBoxGrid(sav.CurrentBox);
                         UpdateBoxCountLabel(sav.CurrentBox);
