@@ -36,6 +36,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tlControls = new System.Windows.Forms.TableLayoutPanel();
             this.pnlCommon = new System.Windows.Forms.Panel();
+            this.lblForm = new System.Windows.Forms.Label();
             this.lblHeldItemFlavor = new System.Windows.Forms.Label();
             this.pbBall = new System.Windows.Forms.PictureBox();
             this.cbBall = new System.Windows.Forms.ComboBox();
@@ -394,6 +395,7 @@
             // 
             // pnlCommon
             // 
+            this.pnlCommon.Controls.Add(this.lblForm);
             this.pnlCommon.Controls.Add(this.lblHeldItemFlavor);
             this.pnlCommon.Controls.Add(this.pbBall);
             this.pnlCommon.Controls.Add(this.cbBall);
@@ -421,18 +423,28 @@
             this.pnlCommon.Size = new System.Drawing.Size(184, 340);
             this.pnlCommon.TabIndex = 0;
             // 
+            // lblForm
+            // 
+            this.lblForm.Location = new System.Drawing.Point(6, 136);
+            this.lblForm.Name = "lblForm";
+            this.lblForm.Size = new System.Drawing.Size(172, 15);
+            this.lblForm.TabIndex = 21;
+            this.lblForm.Text = "Form";
+            this.lblForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblHeldItemFlavor
             // 
-            this.lblHeldItemFlavor.Location = new System.Drawing.Point(3, 248);
+            this.lblHeldItemFlavor.Location = new System.Drawing.Point(3, 264);
             this.lblHeldItemFlavor.Name = "lblHeldItemFlavor";
-            this.lblHeldItemFlavor.Size = new System.Drawing.Size(175, 88);
+            this.lblHeldItemFlavor.Size = new System.Drawing.Size(175, 72);
             this.lblHeldItemFlavor.TabIndex = 20;
             this.lblHeldItemFlavor.Text = "Item Flavor";
             // 
             // pbBall
             // 
             this.pbBall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbBall.Location = new System.Drawing.Point(109, 76);
+            this.pbBall.Location = new System.Drawing.Point(103, 64);
+            this.pbBall.Margin = new System.Windows.Forms.Padding(0);
             this.pbBall.Name = "pbBall";
             this.pbBall.Size = new System.Drawing.Size(30, 30);
             this.pbBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -444,15 +456,16 @@
             this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbBall.FormattingEnabled = true;
-            this.cbBall.Location = new System.Drawing.Point(109, 52);
+            this.cbBall.Location = new System.Drawing.Point(103, 43);
+            this.cbBall.Margin = new System.Windows.Forms.Padding(0);
             this.cbBall.Name = "cbBall";
-            this.cbBall.Size = new System.Drawing.Size(69, 21);
+            this.cbBall.Size = new System.Drawing.Size(78, 21);
             this.cbBall.TabIndex = 0;
             this.cbBall.SelectedIndexChanged += new System.EventHandler(this.cbBall_SelectedIndexChanged);
             // 
             // lblLevel
             // 
-            this.lblLevel.Location = new System.Drawing.Point(33, 186);
+            this.lblLevel.Location = new System.Drawing.Point(33, 202);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(33, 13);
             this.lblLevel.TabIndex = 4;
@@ -462,7 +475,7 @@
             // numLevel
             // 
             this.numLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numLevel.Location = new System.Drawing.Point(72, 184);
+            this.numLevel.Location = new System.Drawing.Point(72, 200);
             this.numLevel.Minimum = new decimal(new int[] {
             1,
             0,
@@ -506,8 +519,9 @@
             // 
             this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.Enabled = false;
             this.cbForm.FormattingEnabled = true;
-            this.cbForm.Location = new System.Drawing.Point(3, 138);
+            this.cbForm.Location = new System.Drawing.Point(3, 154);
             this.cbForm.Name = "cbForm";
             this.cbForm.Size = new System.Drawing.Size(175, 21);
             this.cbForm.TabIndex = 3;
@@ -526,7 +540,7 @@
             // 
             // lblHeldItem
             // 
-            this.lblHeldItem.Location = new System.Drawing.Point(39, 207);
+            this.lblHeldItem.Location = new System.Drawing.Point(39, 223);
             this.lblHeldItem.Name = "lblHeldItem";
             this.lblHeldItem.Size = new System.Drawing.Size(139, 14);
             this.lblHeldItem.TabIndex = 6;
@@ -538,7 +552,7 @@
             this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbHeldItem.FormattingEnabled = true;
-            this.cbHeldItem.Location = new System.Drawing.Point(39, 224);
+            this.cbHeldItem.Location = new System.Drawing.Point(39, 240);
             this.cbHeldItem.Name = "cbHeldItem";
             this.cbHeldItem.Size = new System.Drawing.Size(139, 21);
             this.cbHeldItem.TabIndex = 7;
@@ -546,7 +560,7 @@
             // 
             // pbDiamond
             // 
-            this.pbDiamond.Location = new System.Drawing.Point(131, 165);
+            this.pbDiamond.Location = new System.Drawing.Point(131, 181);
             this.pbDiamond.Name = "pbDiamond";
             this.pbDiamond.Size = new System.Drawing.Size(10, 10);
             this.pbDiamond.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -556,7 +570,7 @@
             // 
             // pbStar
             // 
-            this.pbStar.Location = new System.Drawing.Point(115, 165);
+            this.pbStar.Location = new System.Drawing.Point(115, 181);
             this.pbStar.Name = "pbStar";
             this.pbStar.Size = new System.Drawing.Size(10, 10);
             this.pbStar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -566,7 +580,7 @@
             // 
             // pbHeart
             // 
-            this.pbHeart.Location = new System.Drawing.Point(99, 165);
+            this.pbHeart.Location = new System.Drawing.Point(99, 181);
             this.pbHeart.Name = "pbHeart";
             this.pbHeart.Size = new System.Drawing.Size(10, 10);
             this.pbHeart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -576,7 +590,7 @@
             // 
             // pbSquare
             // 
-            this.pbSquare.Location = new System.Drawing.Point(83, 165);
+            this.pbSquare.Location = new System.Drawing.Point(83, 181);
             this.pbSquare.Name = "pbSquare";
             this.pbSquare.Size = new System.Drawing.Size(10, 10);
             this.pbSquare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -586,7 +600,7 @@
             // 
             // pbTriangle
             // 
-            this.pbTriangle.Location = new System.Drawing.Point(67, 165);
+            this.pbTriangle.Location = new System.Drawing.Point(67, 181);
             this.pbTriangle.Name = "pbTriangle";
             this.pbTriangle.Size = new System.Drawing.Size(10, 10);
             this.pbTriangle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -596,7 +610,7 @@
             // 
             // pbCircle
             // 
-            this.pbCircle.Location = new System.Drawing.Point(51, 165);
+            this.pbCircle.Location = new System.Drawing.Point(51, 181);
             this.pbCircle.Name = "pbCircle";
             this.pbCircle.Size = new System.Drawing.Size(10, 10);
             this.pbCircle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -606,7 +620,8 @@
             // 
             // pbShiny
             // 
-            this.pbShiny.Location = new System.Drawing.Point(135, 3);
+            this.pbShiny.Location = new System.Drawing.Point(123, 3);
+            this.pbShiny.Margin = new System.Windows.Forms.Padding(0);
             this.pbShiny.Name = "pbShiny";
             this.pbShiny.Size = new System.Drawing.Size(20, 20);
             this.pbShiny.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -616,7 +631,7 @@
             // pbHeldItem
             // 
             this.pbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbHeldItem.Location = new System.Drawing.Point(3, 215);
+            this.pbHeldItem.Location = new System.Drawing.Point(3, 231);
             this.pbHeldItem.Name = "pbHeldItem";
             this.pbHeldItem.Size = new System.Drawing.Size(30, 30);
             this.pbHeldItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -625,7 +640,8 @@
             // 
             // pbPokerus
             // 
-            this.pbPokerus.Location = new System.Drawing.Point(109, 29);
+            this.pbPokerus.Location = new System.Drawing.Point(103, 23);
+            this.pbPokerus.Margin = new System.Windows.Forms.Padding(0);
             this.pbPokerus.Name = "pbPokerus";
             this.pbPokerus.Size = new System.Drawing.Size(40, 20);
             this.pbPokerus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -634,7 +650,8 @@
             // 
             // pbGender
             // 
-            this.pbGender.Location = new System.Drawing.Point(109, 3);
+            this.pbGender.Location = new System.Drawing.Point(103, 3);
+            this.pbGender.Margin = new System.Windows.Forms.Padding(0);
             this.pbGender.Name = "pbGender";
             this.pbGender.Size = new System.Drawing.Size(20, 20);
             this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -644,6 +661,7 @@
             // pbSprite
             // 
             this.pbSprite.Location = new System.Drawing.Point(3, 6);
+            this.pbSprite.Margin = new System.Windows.Forms.Padding(0);
             this.pbSprite.Name = "pbSprite";
             this.pbSprite.Size = new System.Drawing.Size(100, 100);
             this.pbSprite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -654,9 +672,10 @@
             // 
             this.pnlTabs.Controls.Add(this.tcTabs);
             this.pnlTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTabs.Location = new System.Drawing.Point(3, 3);
+            this.pnlTabs.Location = new System.Drawing.Point(0, 0);
+            this.pnlTabs.Margin = new System.Windows.Forms.Padding(0);
             this.pnlTabs.Name = "pnlTabs";
-            this.pnlTabs.Size = new System.Drawing.Size(389, 340);
+            this.pnlTabs.Size = new System.Drawing.Size(395, 346);
             this.pnlTabs.TabIndex = 0;
             // 
             // tcTabs
@@ -670,9 +689,10 @@
             this.tcTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcTabs.HotTrack = true;
             this.tcTabs.Location = new System.Drawing.Point(0, 0);
+            this.tcTabs.Margin = new System.Windows.Forms.Padding(0);
             this.tcTabs.Name = "tcTabs";
             this.tcTabs.SelectedIndex = 0;
-            this.tcTabs.Size = new System.Drawing.Size(389, 340);
+            this.tcTabs.Size = new System.Drawing.Size(395, 346);
             this.tcTabs.TabIndex = 0;
             // 
             // tpBasic
@@ -696,14 +716,14 @@
             this.tpBasic.Location = new System.Drawing.Point(4, 22);
             this.tpBasic.Name = "tpBasic";
             this.tpBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBasic.Size = new System.Drawing.Size(381, 314);
+            this.tpBasic.Size = new System.Drawing.Size(387, 320);
             this.tpBasic.TabIndex = 0;
             this.tpBasic.Text = "Basic";
             this.tpBasic.UseVisualStyleBackColor = true;
             // 
             // txtTNLPercent
             // 
-            this.txtTNLPercent.Location = new System.Drawing.Point(341, 226);
+            this.txtTNLPercent.Location = new System.Drawing.Point(341, 195);
             this.txtTNLPercent.Multiline = true;
             this.txtTNLPercent.Name = "txtTNLPercent";
             this.txtTNLPercent.ReadOnly = true;
@@ -714,7 +734,7 @@
             // 
             // txtTNL
             // 
-            this.txtTNL.Location = new System.Drawing.Point(89, 200);
+            this.txtTNL.Location = new System.Drawing.Point(89, 169);
             this.txtTNL.Name = "txtTNL";
             this.txtTNL.ReadOnly = true;
             this.txtTNL.Size = new System.Drawing.Size(104, 20);
@@ -723,7 +743,7 @@
             // 
             // lblAbilityFlavor
             // 
-            this.lblAbilityFlavor.Location = new System.Drawing.Point(199, 167);
+            this.lblAbilityFlavor.Location = new System.Drawing.Point(199, 114);
             this.lblAbilityFlavor.Name = "lblAbilityFlavor";
             this.lblAbilityFlavor.Size = new System.Drawing.Size(136, 56);
             this.lblAbilityFlavor.TabIndex = 9;
@@ -732,14 +752,14 @@
             // 
             // pbTNL
             // 
-            this.pbTNL.Location = new System.Drawing.Point(6, 226);
+            this.pbTNL.Location = new System.Drawing.Point(6, 195);
             this.pbTNL.Name = "pbTNL";
             this.pbTNL.Size = new System.Drawing.Size(329, 23);
             this.pbTNL.TabIndex = 12;
             // 
             // lblTNL
             // 
-            this.lblTNL.Location = new System.Drawing.Point(6, 202);
+            this.lblTNL.Location = new System.Drawing.Point(6, 171);
             this.lblTNL.Name = "lblTNL";
             this.lblTNL.Size = new System.Drawing.Size(77, 21);
             this.lblTNL.TabIndex = 10;
@@ -748,7 +768,7 @@
             // 
             // lblEXP
             // 
-            this.lblEXP.Location = new System.Drawing.Point(50, 176);
+            this.lblEXP.Location = new System.Drawing.Point(50, 145);
             this.lblEXP.Name = "lblEXP";
             this.lblEXP.Size = new System.Drawing.Size(33, 13);
             this.lblEXP.TabIndex = 7;
@@ -758,7 +778,7 @@
             // numEXP
             // 
             this.numEXP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numEXP.Location = new System.Drawing.Point(89, 174);
+            this.numEXP.Location = new System.Drawing.Point(89, 143);
             this.numEXP.Maximum = new decimal(new int[] {
             1640000,
             0,
@@ -774,15 +794,15 @@
             this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbAbility.FormattingEnabled = true;
-            this.cbAbility.Location = new System.Drawing.Point(202, 143);
+            this.cbAbility.Location = new System.Drawing.Point(199, 90);
             this.cbAbility.Name = "cbAbility";
-            this.cbAbility.Size = new System.Drawing.Size(133, 21);
+            this.cbAbility.Size = new System.Drawing.Size(139, 21);
             this.cbAbility.TabIndex = 6;
             this.cbAbility.SelectedIndexChanged += new System.EventHandler(this.cbAbility_SelectedIndexChanged);
             // 
             // lblAbility
             // 
-            this.lblAbility.Location = new System.Drawing.Point(156, 146);
+            this.lblAbility.Location = new System.Drawing.Point(199, 74);
             this.lblAbility.Name = "lblAbility";
             this.lblAbility.Size = new System.Drawing.Size(40, 13);
             this.lblAbility.TabIndex = 5;
@@ -791,7 +811,7 @@
             // 
             // lblType
             // 
-            this.lblType.Location = new System.Drawing.Point(6, 146);
+            this.lblType.Location = new System.Drawing.Point(199, 36);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(33, 13);
             this.lblType.TabIndex = 4;
@@ -800,7 +820,7 @@
             // 
             // pbType2
             // 
-            this.pbType2.Location = new System.Drawing.Point(96, 143);
+            this.pbType2.Location = new System.Drawing.Point(289, 33);
             this.pbType2.Name = "pbType2";
             this.pbType2.Size = new System.Drawing.Size(40, 20);
             this.pbType2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -809,7 +829,7 @@
             // 
             // pbType1
             // 
-            this.pbType1.Location = new System.Drawing.Point(45, 143);
+            this.pbType1.Location = new System.Drawing.Point(238, 33);
             this.pbType1.Name = "pbType1";
             this.pbType1.Size = new System.Drawing.Size(40, 20);
             this.pbType1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -964,7 +984,7 @@
             this.tpStat.Location = new System.Drawing.Point(4, 22);
             this.tpStat.Name = "tpStat";
             this.tpStat.Padding = new System.Windows.Forms.Padding(3);
-            this.tpStat.Size = new System.Drawing.Size(381, 314);
+            this.tpStat.Size = new System.Drawing.Size(387, 320);
             this.tpStat.TabIndex = 1;
             this.tpStat.Text = "Stats";
             this.tpStat.UseVisualStyleBackColor = true;
@@ -975,7 +995,7 @@
             this.gbPKRS.Controls.Add(this.lblPKRSDays);
             this.gbPKRS.Controls.Add(this.cbPKRSStrain);
             this.gbPKRS.Controls.Add(this.cbPKRSDays);
-            this.gbPKRS.Location = new System.Drawing.Point(6, 245);
+            this.gbPKRS.Location = new System.Drawing.Point(188, 180);
             this.gbPKRS.Name = "gbPKRS";
             this.gbPKRS.Size = new System.Drawing.Size(122, 63);
             this.gbPKRS.TabIndex = 10;
@@ -1032,12 +1052,13 @@
             // 
             // txtMinHatchSteps
             // 
-            this.txtMinHatchSteps.Location = new System.Drawing.Point(292, 75);
+            this.txtMinHatchSteps.Location = new System.Drawing.Point(292, 81);
             this.txtMinHatchSteps.Name = "txtMinHatchSteps";
             this.txtMinHatchSteps.ReadOnly = true;
             this.txtMinHatchSteps.Size = new System.Drawing.Size(69, 20);
             this.txtMinHatchSteps.TabIndex = 6;
             this.txtMinHatchSteps.TabStop = false;
+            this.txtMinHatchSteps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblNature
             // 
@@ -1053,9 +1074,9 @@
             this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbNature.FormattingEnabled = true;
-            this.cbNature.Location = new System.Drawing.Point(12, 193);
+            this.cbNature.Location = new System.Drawing.Point(6, 193);
             this.cbNature.Name = "cbNature";
-            this.cbNature.Size = new System.Drawing.Size(96, 21);
+            this.cbNature.Size = new System.Drawing.Size(102, 21);
             this.cbNature.TabIndex = 9;
             this.cbNature.SelectedIndexChanged += new System.EventHandler(this.cbNature_SelectedIndexChanged);
             // 
@@ -1063,9 +1084,9 @@
             // 
             this.lblEggSteps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEggSteps.Location = new System.Drawing.Point(289, 45);
+            this.lblEggSteps.Location = new System.Drawing.Point(289, 51);
             this.lblEggSteps.Name = "lblEggSteps";
-            this.lblEggSteps.Size = new System.Drawing.Size(72, 27);
+            this.lblEggSteps.Size = new System.Drawing.Size(78, 27);
             this.lblEggSteps.TabIndex = 5;
             this.lblEggSteps.Text = "Min steps to hatch";
             this.lblEggSteps.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1074,9 +1095,9 @@
             // 
             this.lblTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTameness.Location = new System.Drawing.Point(292, 6);
+            this.lblTameness.Location = new System.Drawing.Point(292, 12);
             this.lblTameness.Name = "lblTameness";
-            this.lblTameness.Size = new System.Drawing.Size(56, 13);
+            this.lblTameness.Size = new System.Drawing.Size(62, 13);
             this.lblTameness.TabIndex = 3;
             this.lblTameness.Text = "Tameness";
             this.lblTameness.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1085,14 +1106,14 @@
             // 
             this.numTameness.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numTameness.Location = new System.Drawing.Point(295, 22);
+            this.numTameness.Location = new System.Drawing.Point(295, 28);
             this.numTameness.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numTameness.Name = "numTameness";
-            this.numTameness.Size = new System.Drawing.Size(53, 20);
+            this.numTameness.Size = new System.Drawing.Size(59, 20);
             this.numTameness.TabIndex = 4;
             this.numTameness.ValueChanged += new System.EventHandler(this.numTameness_ValueChanged);
             // 
@@ -1100,9 +1121,9 @@
             // 
             this.lblCharacteristic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCharacteristic.Location = new System.Drawing.Point(289, 98);
+            this.lblCharacteristic.Location = new System.Drawing.Point(286, 104);
             this.lblCharacteristic.Name = "lblCharacteristic";
-            this.lblCharacteristic.Size = new System.Drawing.Size(85, 76);
+            this.lblCharacteristic.Size = new System.Drawing.Size(91, 67);
             this.lblCharacteristic.TabIndex = 7;
             this.lblCharacteristic.Text = "Characteristic";
             this.lblCharacteristic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1551,9 +1572,10 @@
             // 
             this.tpMove.Controls.Add(this.tlMoves);
             this.tpMove.Location = new System.Drawing.Point(4, 22);
+            this.tpMove.Margin = new System.Windows.Forms.Padding(0);
             this.tpMove.Name = "tpMove";
             this.tpMove.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMove.Size = new System.Drawing.Size(381, 314);
+            this.tpMove.Size = new System.Drawing.Size(387, 320);
             this.tpMove.TabIndex = 2;
             this.tpMove.Text = "Moves";
             this.tpMove.UseVisualStyleBackColor = true;
@@ -1569,6 +1591,7 @@
             this.tlMoves.Controls.Add(this.tlMove3, 0, 3);
             this.tlMoves.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlMoves.Location = new System.Drawing.Point(3, 3);
+            this.tlMoves.Margin = new System.Windows.Forms.Padding(0);
             this.tlMoves.Name = "tlMoves";
             this.tlMoves.RowCount = 5;
             this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -1576,7 +1599,7 @@
             this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tlMoves.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
-            this.tlMoves.Size = new System.Drawing.Size(375, 308);
+            this.tlMoves.Size = new System.Drawing.Size(381, 314);
             this.tlMoves.TabIndex = 0;
             // 
             // tlMove4
@@ -1586,12 +1609,13 @@
             this.tlMove4.Controls.Add(this.tlMove4Data, 0, 0);
             this.tlMove4.Controls.Add(this.tlMove4MoreData, 0, 1);
             this.tlMove4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove4.Location = new System.Drawing.Point(3, 240);
+            this.tlMove4.Location = new System.Drawing.Point(0, 241);
+            this.tlMove4.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove4.Name = "tlMove4";
             this.tlMove4.RowCount = 2;
             this.tlMove4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlMove4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlMove4.Size = new System.Drawing.Size(369, 65);
+            this.tlMove4.Size = new System.Drawing.Size(381, 73);
             this.tlMove4.TabIndex = 4;
             // 
             // tlMove4Data
@@ -1614,16 +1638,16 @@
             this.tlMove4Data.Name = "tlMove4Data";
             this.tlMove4Data.RowCount = 1;
             this.tlMove4Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove4Data.Size = new System.Drawing.Size(363, 26);
+            this.tlMove4Data.Size = new System.Drawing.Size(375, 30);
             this.tlMove4Data.TabIndex = 0;
             // 
             // lblMove4Accuracy
             // 
             this.lblMove4Accuracy.AutoSize = true;
             this.lblMove4Accuracy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove4Accuracy.Location = new System.Drawing.Point(195, 0);
+            this.lblMove4Accuracy.Location = new System.Drawing.Point(201, 0);
             this.lblMove4Accuracy.Name = "lblMove4Accuracy";
-            this.lblMove4Accuracy.Size = new System.Drawing.Size(52, 26);
+            this.lblMove4Accuracy.Size = new System.Drawing.Size(54, 30);
             this.lblMove4Accuracy.TabIndex = 2;
             this.lblMove4Accuracy.Text = "acc";
             this.lblMove4Accuracy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1632,47 +1656,53 @@
             // 
             this.cbMove4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbMove4.FormattingEnabled = true;
-            this.cbMove4.Location = new System.Drawing.Point(3, 3);
+            this.cbMove4.Location = new System.Drawing.Point(0, 4);
+            this.cbMove4.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove4.Name = "cbMove4";
-            this.cbMove4.Size = new System.Drawing.Size(143, 21);
+            this.cbMove4.Size = new System.Drawing.Size(153, 21);
             this.cbMove4.TabIndex = 0;
             this.cbMove4.SelectedIndexChanged += new System.EventHandler(this.cbMove4_SelectedIndexChanged);
             // 
             // txtMove4MaxPP
             // 
             this.txtMove4MaxPP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMove4MaxPP.Location = new System.Drawing.Point(334, 3);
+            this.txtMove4MaxPP.Location = new System.Drawing.Point(342, 5);
+            this.txtMove4MaxPP.Margin = new System.Windows.Forms.Padding(0);
             this.txtMove4MaxPP.Name = "txtMove4MaxPP";
             this.txtMove4MaxPP.ReadOnly = true;
-            this.txtMove4MaxPP.Size = new System.Drawing.Size(26, 20);
+            this.txtMove4MaxPP.Size = new System.Drawing.Size(33, 20);
             this.txtMove4MaxPP.TabIndex = 5;
             this.txtMove4MaxPP.TabStop = false;
             // 
             // numMove4PP
             // 
             this.numMove4PP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove4PP.Location = new System.Drawing.Point(290, 3);
+            this.numMove4PP.Enabled = false;
+            this.numMove4PP.Location = new System.Drawing.Point(296, 5);
+            this.numMove4PP.Margin = new System.Windows.Forms.Padding(0);
             this.numMove4PP.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numMove4PP.Name = "numMove4PP";
-            this.numMove4PP.Size = new System.Drawing.Size(38, 20);
+            this.numMove4PP.Size = new System.Drawing.Size(46, 20);
             this.numMove4PP.TabIndex = 4;
             this.numMove4PP.ValueChanged += new System.EventHandler(this.numMove4PP_ValueChanged);
             // 
             // numMove4PPUps
             // 
             this.numMove4PPUps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove4PPUps.Location = new System.Drawing.Point(253, 3);
+            this.numMove4PPUps.Enabled = false;
+            this.numMove4PPUps.Location = new System.Drawing.Point(258, 5);
+            this.numMove4PPUps.Margin = new System.Windows.Forms.Padding(0);
             this.numMove4PPUps.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
             this.numMove4PPUps.Name = "numMove4PPUps";
-            this.numMove4PPUps.Size = new System.Drawing.Size(31, 20);
+            this.numMove4PPUps.Size = new System.Drawing.Size(38, 20);
             this.numMove4PPUps.TabIndex = 3;
             this.numMove4PPUps.ValueChanged += new System.EventHandler(this.numMove4PPUps_ValueChanged);
             // 
@@ -1680,9 +1710,9 @@
             // 
             this.lblMove4Power.AutoSize = true;
             this.lblMove4Power.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove4Power.Location = new System.Drawing.Point(152, 0);
+            this.lblMove4Power.Location = new System.Drawing.Point(156, 0);
             this.lblMove4Power.Name = "lblMove4Power";
-            this.lblMove4Power.Size = new System.Drawing.Size(37, 26);
+            this.lblMove4Power.Size = new System.Drawing.Size(39, 30);
             this.lblMove4Power.TabIndex = 1;
             this.lblMove4Power.Text = "pwr";
             this.lblMove4Power.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1690,26 +1720,28 @@
             // tlMove4MoreData
             // 
             this.tlMove4MoreData.ColumnCount = 3;
-            this.tlMove4MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tlMove4MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tlMove4MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlMove4MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlMove4MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlMove4MoreData.Controls.Add(this.pbMove4Category, 0, 0);
             this.tlMove4MoreData.Controls.Add(this.pbMove4Type, 0, 0);
             this.tlMove4MoreData.Controls.Add(this.lblMove4Flavor, 2, 0);
             this.tlMove4MoreData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove4MoreData.Location = new System.Drawing.Point(3, 35);
+            this.tlMove4MoreData.Location = new System.Drawing.Point(0, 36);
+            this.tlMove4MoreData.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove4MoreData.Name = "tlMove4MoreData";
             this.tlMove4MoreData.RowCount = 1;
             this.tlMove4MoreData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove4MoreData.Size = new System.Drawing.Size(363, 27);
+            this.tlMove4MoreData.Size = new System.Drawing.Size(381, 37);
             this.tlMove4MoreData.TabIndex = 1;
             // 
             // pbMove4Category
             // 
             this.pbMove4Category.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove4Category.Location = new System.Drawing.Point(46, 3);
+            this.pbMove4Category.Location = new System.Drawing.Point(40, 0);
+            this.pbMove4Category.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove4Category.Name = "pbMove4Category";
-            this.pbMove4Category.Size = new System.Drawing.Size(37, 21);
+            this.pbMove4Category.Size = new System.Drawing.Size(40, 37);
             this.pbMove4Category.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove4Category.TabIndex = 40;
             this.pbMove4Category.TabStop = false;
@@ -1717,23 +1749,24 @@
             // pbMove4Type
             // 
             this.pbMove4Type.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove4Type.Location = new System.Drawing.Point(3, 3);
+            this.pbMove4Type.Location = new System.Drawing.Point(0, 0);
+            this.pbMove4Type.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove4Type.Name = "pbMove4Type";
-            this.pbMove4Type.Size = new System.Drawing.Size(37, 21);
+            this.pbMove4Type.Size = new System.Drawing.Size(40, 37);
             this.pbMove4Type.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove4Type.TabIndex = 22;
             this.pbMove4Type.TabStop = false;
             // 
             // lblMove4Flavor
             // 
-            this.lblMove4Flavor.AutoSize = true;
             this.lblMove4Flavor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove4Flavor.Location = new System.Drawing.Point(89, 0);
+            this.lblMove4Flavor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMove4Flavor.Location = new System.Drawing.Point(80, 0);
+            this.lblMove4Flavor.Margin = new System.Windows.Forms.Padding(0);
             this.lblMove4Flavor.Name = "lblMove4Flavor";
-            this.lblMove4Flavor.Size = new System.Drawing.Size(271, 27);
+            this.lblMove4Flavor.Size = new System.Drawing.Size(301, 37);
             this.lblMove4Flavor.TabIndex = 0;
             this.lblMove4Flavor.Text = "flavor";
-            this.lblMove4Flavor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlMoveLabels
             // 
@@ -1750,20 +1783,22 @@
             this.tlMoveLabels.Controls.Add(this.lblPPUps, 3, 0);
             this.tlMoveLabels.Controls.Add(this.lblAccuracy, 2, 0);
             this.tlMoveLabels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMoveLabels.Location = new System.Drawing.Point(3, 3);
+            this.tlMoveLabels.Location = new System.Drawing.Point(0, 0);
+            this.tlMoveLabels.Margin = new System.Windows.Forms.Padding(0);
             this.tlMoveLabels.Name = "tlMoveLabels";
             this.tlMoveLabels.RowCount = 1;
             this.tlMoveLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMoveLabels.Size = new System.Drawing.Size(369, 24);
+            this.tlMoveLabels.Size = new System.Drawing.Size(381, 31);
             this.tlMoveLabels.TabIndex = 0;
             // 
             // lblMaxPP
             // 
             this.lblMaxPP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMaxPP.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaxPP.Location = new System.Drawing.Point(339, 0);
+            this.lblMaxPP.Location = new System.Drawing.Point(348, 0);
+            this.lblMaxPP.Margin = new System.Windows.Forms.Padding(0);
             this.lblMaxPP.Name = "lblMaxPP";
-            this.lblMaxPP.Size = new System.Drawing.Size(27, 24);
+            this.lblMaxPP.Size = new System.Drawing.Size(33, 31);
             this.lblMaxPP.TabIndex = 4;
             this.lblMaxPP.Text = "Max PP";
             this.lblMaxPP.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1772,9 +1807,10 @@
             // 
             this.lblPP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPP.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPP.Location = new System.Drawing.Point(294, 0);
+            this.lblPP.Location = new System.Drawing.Point(301, 0);
+            this.lblPP.Margin = new System.Windows.Forms.Padding(0);
             this.lblPP.Name = "lblPP";
-            this.lblPP.Size = new System.Drawing.Size(39, 24);
+            this.lblPP.Size = new System.Drawing.Size(47, 31);
             this.lblPP.TabIndex = 3;
             this.lblPP.Text = "PP";
             this.lblPP.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1783,9 +1819,10 @@
             // 
             this.lblPower.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPower.Location = new System.Drawing.Point(154, 0);
+            this.lblPower.Location = new System.Drawing.Point(156, 0);
+            this.lblPower.Margin = new System.Windows.Forms.Padding(0);
             this.lblPower.Name = "lblPower";
-            this.lblPower.Size = new System.Drawing.Size(38, 24);
+            this.lblPower.Size = new System.Drawing.Size(45, 31);
             this.lblPower.TabIndex = 0;
             this.lblPower.Text = "Power";
             this.lblPower.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -1793,21 +1830,23 @@
             // lblPPUps
             // 
             this.lblPPUps.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPPUps.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPPUps.Location = new System.Drawing.Point(257, 0);
+            this.lblPPUps.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPPUps.Location = new System.Drawing.Point(262, 0);
+            this.lblPPUps.Margin = new System.Windows.Forms.Padding(0);
             this.lblPPUps.Name = "lblPPUps";
-            this.lblPPUps.Size = new System.Drawing.Size(31, 24);
+            this.lblPPUps.Size = new System.Drawing.Size(39, 31);
             this.lblPPUps.TabIndex = 2;
-            this.lblPPUps.Text = "PP Ups";
+            this.lblPPUps.Text = "PP\r\nUps";
             this.lblPPUps.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblAccuracy
             // 
             this.lblAccuracy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblAccuracy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccuracy.Location = new System.Drawing.Point(198, 0);
+            this.lblAccuracy.Location = new System.Drawing.Point(201, 0);
+            this.lblAccuracy.Margin = new System.Windows.Forms.Padding(0);
             this.lblAccuracy.Name = "lblAccuracy";
-            this.lblAccuracy.Size = new System.Drawing.Size(53, 24);
+            this.lblAccuracy.Size = new System.Drawing.Size(61, 31);
             this.lblAccuracy.TabIndex = 1;
             this.lblAccuracy.Text = "Accuracy";
             this.lblAccuracy.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -1819,12 +1858,13 @@
             this.tlMove1.Controls.Add(this.tlMove1Data, 0, 0);
             this.tlMove1.Controls.Add(this.tlMove1MoreData, 0, 1);
             this.tlMove1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove1.Location = new System.Drawing.Point(3, 33);
+            this.tlMove1.Location = new System.Drawing.Point(0, 31);
+            this.tlMove1.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove1.Name = "tlMove1";
             this.tlMove1.RowCount = 2;
             this.tlMove1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlMove1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlMove1.Size = new System.Drawing.Size(369, 63);
+            this.tlMove1.Size = new System.Drawing.Size(381, 70);
             this.tlMove1.TabIndex = 1;
             // 
             // tlMove1Data
@@ -1847,16 +1887,16 @@
             this.tlMove1Data.Name = "tlMove1Data";
             this.tlMove1Data.RowCount = 1;
             this.tlMove1Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove1Data.Size = new System.Drawing.Size(363, 25);
+            this.tlMove1Data.Size = new System.Drawing.Size(375, 29);
             this.tlMove1Data.TabIndex = 0;
             // 
             // lblMove1Accuracy
             // 
             this.lblMove1Accuracy.AutoSize = true;
             this.lblMove1Accuracy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove1Accuracy.Location = new System.Drawing.Point(195, 0);
+            this.lblMove1Accuracy.Location = new System.Drawing.Point(201, 0);
             this.lblMove1Accuracy.Name = "lblMove1Accuracy";
-            this.lblMove1Accuracy.Size = new System.Drawing.Size(52, 25);
+            this.lblMove1Accuracy.Size = new System.Drawing.Size(54, 29);
             this.lblMove1Accuracy.TabIndex = 2;
             this.lblMove1Accuracy.Text = "acc";
             this.lblMove1Accuracy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1865,47 +1905,51 @@
             // 
             this.cbMove1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbMove1.FormattingEnabled = true;
-            this.cbMove1.Location = new System.Drawing.Point(3, 3);
+            this.cbMove1.Location = new System.Drawing.Point(0, 4);
+            this.cbMove1.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove1.Name = "cbMove1";
-            this.cbMove1.Size = new System.Drawing.Size(143, 21);
+            this.cbMove1.Size = new System.Drawing.Size(153, 21);
             this.cbMove1.TabIndex = 0;
             this.cbMove1.SelectedIndexChanged += new System.EventHandler(this.cbMove1_SelectedIndexChanged);
             // 
             // txtMove1MaxPP
             // 
             this.txtMove1MaxPP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMove1MaxPP.Location = new System.Drawing.Point(334, 3);
+            this.txtMove1MaxPP.Location = new System.Drawing.Point(342, 4);
+            this.txtMove1MaxPP.Margin = new System.Windows.Forms.Padding(0);
             this.txtMove1MaxPP.Name = "txtMove1MaxPP";
             this.txtMove1MaxPP.ReadOnly = true;
-            this.txtMove1MaxPP.Size = new System.Drawing.Size(26, 20);
+            this.txtMove1MaxPP.Size = new System.Drawing.Size(33, 20);
             this.txtMove1MaxPP.TabIndex = 5;
             this.txtMove1MaxPP.TabStop = false;
             // 
             // numMove1PP
             // 
             this.numMove1PP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove1PP.Location = new System.Drawing.Point(290, 3);
+            this.numMove1PP.Location = new System.Drawing.Point(296, 4);
+            this.numMove1PP.Margin = new System.Windows.Forms.Padding(0);
             this.numMove1PP.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numMove1PP.Name = "numMove1PP";
-            this.numMove1PP.Size = new System.Drawing.Size(38, 20);
+            this.numMove1PP.Size = new System.Drawing.Size(46, 20);
             this.numMove1PP.TabIndex = 4;
             this.numMove1PP.ValueChanged += new System.EventHandler(this.numMove1PP_ValueChanged);
             // 
             // numMove1PPUps
             // 
             this.numMove1PPUps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove1PPUps.Location = new System.Drawing.Point(253, 3);
+            this.numMove1PPUps.Location = new System.Drawing.Point(258, 4);
+            this.numMove1PPUps.Margin = new System.Windows.Forms.Padding(0);
             this.numMove1PPUps.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
             this.numMove1PPUps.Name = "numMove1PPUps";
-            this.numMove1PPUps.Size = new System.Drawing.Size(31, 20);
+            this.numMove1PPUps.Size = new System.Drawing.Size(38, 20);
             this.numMove1PPUps.TabIndex = 3;
             this.numMove1PPUps.ValueChanged += new System.EventHandler(this.numMove1PPUps_ValueChanged);
             // 
@@ -1913,9 +1957,9 @@
             // 
             this.lblMove1Power.AutoSize = true;
             this.lblMove1Power.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove1Power.Location = new System.Drawing.Point(152, 0);
+            this.lblMove1Power.Location = new System.Drawing.Point(156, 0);
             this.lblMove1Power.Name = "lblMove1Power";
-            this.lblMove1Power.Size = new System.Drawing.Size(37, 25);
+            this.lblMove1Power.Size = new System.Drawing.Size(39, 29);
             this.lblMove1Power.TabIndex = 1;
             this.lblMove1Power.Text = "pwr";
             this.lblMove1Power.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1923,26 +1967,28 @@
             // tlMove1MoreData
             // 
             this.tlMove1MoreData.ColumnCount = 3;
-            this.tlMove1MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tlMove1MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tlMove1MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlMove1MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlMove1MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlMove1MoreData.Controls.Add(this.pbMove1Category, 0, 0);
             this.tlMove1MoreData.Controls.Add(this.pbMove1Type, 0, 0);
             this.tlMove1MoreData.Controls.Add(this.lblMove1Flavor, 2, 0);
             this.tlMove1MoreData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove1MoreData.Location = new System.Drawing.Point(3, 34);
+            this.tlMove1MoreData.Location = new System.Drawing.Point(0, 35);
+            this.tlMove1MoreData.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove1MoreData.Name = "tlMove1MoreData";
             this.tlMove1MoreData.RowCount = 1;
             this.tlMove1MoreData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove1MoreData.Size = new System.Drawing.Size(363, 26);
+            this.tlMove1MoreData.Size = new System.Drawing.Size(381, 35);
             this.tlMove1MoreData.TabIndex = 1;
             // 
             // pbMove1Category
             // 
             this.pbMove1Category.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove1Category.Location = new System.Drawing.Point(46, 3);
+            this.pbMove1Category.Location = new System.Drawing.Point(40, 0);
+            this.pbMove1Category.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove1Category.Name = "pbMove1Category";
-            this.pbMove1Category.Size = new System.Drawing.Size(37, 20);
+            this.pbMove1Category.Size = new System.Drawing.Size(40, 35);
             this.pbMove1Category.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove1Category.TabIndex = 40;
             this.pbMove1Category.TabStop = false;
@@ -1950,23 +1996,24 @@
             // pbMove1Type
             // 
             this.pbMove1Type.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove1Type.Location = new System.Drawing.Point(3, 3);
+            this.pbMove1Type.Location = new System.Drawing.Point(0, 0);
+            this.pbMove1Type.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove1Type.Name = "pbMove1Type";
-            this.pbMove1Type.Size = new System.Drawing.Size(37, 20);
+            this.pbMove1Type.Size = new System.Drawing.Size(40, 35);
             this.pbMove1Type.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove1Type.TabIndex = 22;
             this.pbMove1Type.TabStop = false;
             // 
             // lblMove1Flavor
             // 
-            this.lblMove1Flavor.AutoSize = true;
             this.lblMove1Flavor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove1Flavor.Location = new System.Drawing.Point(89, 0);
+            this.lblMove1Flavor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMove1Flavor.Location = new System.Drawing.Point(80, 0);
+            this.lblMove1Flavor.Margin = new System.Windows.Forms.Padding(0);
             this.lblMove1Flavor.Name = "lblMove1Flavor";
-            this.lblMove1Flavor.Size = new System.Drawing.Size(271, 26);
+            this.lblMove1Flavor.Size = new System.Drawing.Size(301, 35);
             this.lblMove1Flavor.TabIndex = 0;
             this.lblMove1Flavor.Text = "flavor";
-            this.lblMove1Flavor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlMove2
             // 
@@ -1975,12 +2022,13 @@
             this.tlMove2.Controls.Add(this.tlMove2Data, 0, 0);
             this.tlMove2.Controls.Add(this.tlMove2MoreData, 0, 1);
             this.tlMove2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove2.Location = new System.Drawing.Point(3, 102);
+            this.tlMove2.Location = new System.Drawing.Point(0, 101);
+            this.tlMove2.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove2.Name = "tlMove2";
             this.tlMove2.RowCount = 2;
             this.tlMove2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlMove2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlMove2.Size = new System.Drawing.Size(369, 63);
+            this.tlMove2.Size = new System.Drawing.Size(381, 70);
             this.tlMove2.TabIndex = 2;
             // 
             // tlMove2Data
@@ -2003,16 +2051,16 @@
             this.tlMove2Data.Name = "tlMove2Data";
             this.tlMove2Data.RowCount = 1;
             this.tlMove2Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove2Data.Size = new System.Drawing.Size(363, 25);
+            this.tlMove2Data.Size = new System.Drawing.Size(375, 29);
             this.tlMove2Data.TabIndex = 0;
             // 
             // lblMove2Accuracy
             // 
             this.lblMove2Accuracy.AutoSize = true;
             this.lblMove2Accuracy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove2Accuracy.Location = new System.Drawing.Point(195, 0);
+            this.lblMove2Accuracy.Location = new System.Drawing.Point(201, 0);
             this.lblMove2Accuracy.Name = "lblMove2Accuracy";
-            this.lblMove2Accuracy.Size = new System.Drawing.Size(52, 25);
+            this.lblMove2Accuracy.Size = new System.Drawing.Size(54, 29);
             this.lblMove2Accuracy.TabIndex = 2;
             this.lblMove2Accuracy.Text = "acc";
             this.lblMove2Accuracy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2021,47 +2069,53 @@
             // 
             this.cbMove2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbMove2.FormattingEnabled = true;
-            this.cbMove2.Location = new System.Drawing.Point(3, 3);
+            this.cbMove2.Location = new System.Drawing.Point(0, 4);
+            this.cbMove2.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove2.Name = "cbMove2";
-            this.cbMove2.Size = new System.Drawing.Size(143, 21);
+            this.cbMove2.Size = new System.Drawing.Size(153, 21);
             this.cbMove2.TabIndex = 0;
             this.cbMove2.SelectedIndexChanged += new System.EventHandler(this.cbMove2_SelectedIndexChanged);
             // 
             // txtMove2MaxPP
             // 
             this.txtMove2MaxPP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMove2MaxPP.Location = new System.Drawing.Point(334, 3);
+            this.txtMove2MaxPP.Location = new System.Drawing.Point(342, 4);
+            this.txtMove2MaxPP.Margin = new System.Windows.Forms.Padding(0);
             this.txtMove2MaxPP.Name = "txtMove2MaxPP";
             this.txtMove2MaxPP.ReadOnly = true;
-            this.txtMove2MaxPP.Size = new System.Drawing.Size(26, 20);
+            this.txtMove2MaxPP.Size = new System.Drawing.Size(33, 20);
             this.txtMove2MaxPP.TabIndex = 5;
             this.txtMove2MaxPP.TabStop = false;
             // 
             // numMove2PP
             // 
             this.numMove2PP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove2PP.Location = new System.Drawing.Point(290, 3);
+            this.numMove2PP.Enabled = false;
+            this.numMove2PP.Location = new System.Drawing.Point(296, 4);
+            this.numMove2PP.Margin = new System.Windows.Forms.Padding(0);
             this.numMove2PP.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numMove2PP.Name = "numMove2PP";
-            this.numMove2PP.Size = new System.Drawing.Size(38, 20);
+            this.numMove2PP.Size = new System.Drawing.Size(46, 20);
             this.numMove2PP.TabIndex = 4;
             this.numMove2PP.ValueChanged += new System.EventHandler(this.numMove2PP_ValueChanged);
             // 
             // numMove2PPUps
             // 
             this.numMove2PPUps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove2PPUps.Location = new System.Drawing.Point(253, 3);
+            this.numMove2PPUps.Enabled = false;
+            this.numMove2PPUps.Location = new System.Drawing.Point(258, 4);
+            this.numMove2PPUps.Margin = new System.Windows.Forms.Padding(0);
             this.numMove2PPUps.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
             this.numMove2PPUps.Name = "numMove2PPUps";
-            this.numMove2PPUps.Size = new System.Drawing.Size(31, 20);
+            this.numMove2PPUps.Size = new System.Drawing.Size(38, 20);
             this.numMove2PPUps.TabIndex = 3;
             this.numMove2PPUps.ValueChanged += new System.EventHandler(this.numMove2PPUps_ValueChanged);
             // 
@@ -2069,9 +2123,9 @@
             // 
             this.lblMove2Power.AutoSize = true;
             this.lblMove2Power.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove2Power.Location = new System.Drawing.Point(152, 0);
+            this.lblMove2Power.Location = new System.Drawing.Point(156, 0);
             this.lblMove2Power.Name = "lblMove2Power";
-            this.lblMove2Power.Size = new System.Drawing.Size(37, 25);
+            this.lblMove2Power.Size = new System.Drawing.Size(39, 29);
             this.lblMove2Power.TabIndex = 1;
             this.lblMove2Power.Text = "pwr";
             this.lblMove2Power.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2079,26 +2133,28 @@
             // tlMove2MoreData
             // 
             this.tlMove2MoreData.ColumnCount = 3;
-            this.tlMove2MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tlMove2MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tlMove2MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlMove2MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlMove2MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlMove2MoreData.Controls.Add(this.pbMove2Category, 0, 0);
             this.tlMove2MoreData.Controls.Add(this.pbMove2Type, 0, 0);
             this.tlMove2MoreData.Controls.Add(this.lblMove2Flavor, 2, 0);
             this.tlMove2MoreData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove2MoreData.Location = new System.Drawing.Point(3, 34);
+            this.tlMove2MoreData.Location = new System.Drawing.Point(0, 35);
+            this.tlMove2MoreData.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove2MoreData.Name = "tlMove2MoreData";
             this.tlMove2MoreData.RowCount = 1;
             this.tlMove2MoreData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove2MoreData.Size = new System.Drawing.Size(363, 26);
+            this.tlMove2MoreData.Size = new System.Drawing.Size(381, 35);
             this.tlMove2MoreData.TabIndex = 1;
             // 
             // pbMove2Category
             // 
             this.pbMove2Category.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove2Category.Location = new System.Drawing.Point(46, 3);
+            this.pbMove2Category.Location = new System.Drawing.Point(40, 0);
+            this.pbMove2Category.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove2Category.Name = "pbMove2Category";
-            this.pbMove2Category.Size = new System.Drawing.Size(37, 20);
+            this.pbMove2Category.Size = new System.Drawing.Size(40, 35);
             this.pbMove2Category.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove2Category.TabIndex = 40;
             this.pbMove2Category.TabStop = false;
@@ -2106,23 +2162,24 @@
             // pbMove2Type
             // 
             this.pbMove2Type.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove2Type.Location = new System.Drawing.Point(3, 3);
+            this.pbMove2Type.Location = new System.Drawing.Point(0, 0);
+            this.pbMove2Type.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove2Type.Name = "pbMove2Type";
-            this.pbMove2Type.Size = new System.Drawing.Size(37, 20);
+            this.pbMove2Type.Size = new System.Drawing.Size(40, 35);
             this.pbMove2Type.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove2Type.TabIndex = 22;
             this.pbMove2Type.TabStop = false;
             // 
             // lblMove2Flavor
             // 
-            this.lblMove2Flavor.AutoSize = true;
             this.lblMove2Flavor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove2Flavor.Location = new System.Drawing.Point(89, 0);
+            this.lblMove2Flavor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMove2Flavor.Location = new System.Drawing.Point(80, 0);
+            this.lblMove2Flavor.Margin = new System.Windows.Forms.Padding(0);
             this.lblMove2Flavor.Name = "lblMove2Flavor";
-            this.lblMove2Flavor.Size = new System.Drawing.Size(271, 26);
+            this.lblMove2Flavor.Size = new System.Drawing.Size(301, 35);
             this.lblMove2Flavor.TabIndex = 0;
             this.lblMove2Flavor.Text = "flavor";
-            this.lblMove2Flavor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlMove3
             // 
@@ -2131,12 +2188,13 @@
             this.tlMove3.Controls.Add(this.tlMove3Data, 0, 0);
             this.tlMove3.Controls.Add(this.tlMove3MoreData, 0, 1);
             this.tlMove3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove3.Location = new System.Drawing.Point(3, 171);
+            this.tlMove3.Location = new System.Drawing.Point(0, 171);
+            this.tlMove3.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove3.Name = "tlMove3";
             this.tlMove3.RowCount = 2;
             this.tlMove3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlMove3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlMove3.Size = new System.Drawing.Size(369, 63);
+            this.tlMove3.Size = new System.Drawing.Size(381, 70);
             this.tlMove3.TabIndex = 3;
             // 
             // tlMove3Data
@@ -2159,16 +2217,16 @@
             this.tlMove3Data.Name = "tlMove3Data";
             this.tlMove3Data.RowCount = 1;
             this.tlMove3Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove3Data.Size = new System.Drawing.Size(363, 25);
+            this.tlMove3Data.Size = new System.Drawing.Size(375, 29);
             this.tlMove3Data.TabIndex = 0;
             // 
             // lblMove3Accuracy
             // 
             this.lblMove3Accuracy.AutoSize = true;
             this.lblMove3Accuracy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove3Accuracy.Location = new System.Drawing.Point(195, 0);
+            this.lblMove3Accuracy.Location = new System.Drawing.Point(201, 0);
             this.lblMove3Accuracy.Name = "lblMove3Accuracy";
-            this.lblMove3Accuracy.Size = new System.Drawing.Size(52, 25);
+            this.lblMove3Accuracy.Size = new System.Drawing.Size(54, 29);
             this.lblMove3Accuracy.TabIndex = 2;
             this.lblMove3Accuracy.Text = "acc";
             this.lblMove3Accuracy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2177,47 +2235,53 @@
             // 
             this.cbMove3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbMove3.FormattingEnabled = true;
-            this.cbMove3.Location = new System.Drawing.Point(3, 3);
+            this.cbMove3.Location = new System.Drawing.Point(0, 4);
+            this.cbMove3.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove3.Name = "cbMove3";
-            this.cbMove3.Size = new System.Drawing.Size(143, 21);
+            this.cbMove3.Size = new System.Drawing.Size(153, 21);
             this.cbMove3.TabIndex = 0;
             this.cbMove3.SelectedIndexChanged += new System.EventHandler(this.cbMove3_SelectedIndexChanged);
             // 
             // txtMove3MaxPP
             // 
             this.txtMove3MaxPP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMove3MaxPP.Location = new System.Drawing.Point(334, 3);
+            this.txtMove3MaxPP.Location = new System.Drawing.Point(342, 4);
+            this.txtMove3MaxPP.Margin = new System.Windows.Forms.Padding(0);
             this.txtMove3MaxPP.Name = "txtMove3MaxPP";
             this.txtMove3MaxPP.ReadOnly = true;
-            this.txtMove3MaxPP.Size = new System.Drawing.Size(26, 20);
+            this.txtMove3MaxPP.Size = new System.Drawing.Size(33, 20);
             this.txtMove3MaxPP.TabIndex = 5;
             this.txtMove3MaxPP.TabStop = false;
             // 
             // numMove3PP
             // 
             this.numMove3PP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove3PP.Location = new System.Drawing.Point(290, 3);
+            this.numMove3PP.Enabled = false;
+            this.numMove3PP.Location = new System.Drawing.Point(296, 4);
+            this.numMove3PP.Margin = new System.Windows.Forms.Padding(0);
             this.numMove3PP.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numMove3PP.Name = "numMove3PP";
-            this.numMove3PP.Size = new System.Drawing.Size(38, 20);
+            this.numMove3PP.Size = new System.Drawing.Size(46, 20);
             this.numMove3PP.TabIndex = 4;
             this.numMove3PP.ValueChanged += new System.EventHandler(this.numMove3PP_ValueChanged);
             // 
             // numMove3PPUps
             // 
             this.numMove3PPUps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMove3PPUps.Location = new System.Drawing.Point(253, 3);
+            this.numMove3PPUps.Enabled = false;
+            this.numMove3PPUps.Location = new System.Drawing.Point(258, 4);
+            this.numMove3PPUps.Margin = new System.Windows.Forms.Padding(0);
             this.numMove3PPUps.Maximum = new decimal(new int[] {
             3,
             0,
             0,
             0});
             this.numMove3PPUps.Name = "numMove3PPUps";
-            this.numMove3PPUps.Size = new System.Drawing.Size(31, 20);
+            this.numMove3PPUps.Size = new System.Drawing.Size(38, 20);
             this.numMove3PPUps.TabIndex = 3;
             this.numMove3PPUps.ValueChanged += new System.EventHandler(this.numMove3PPUps_ValueChanged);
             // 
@@ -2225,9 +2289,9 @@
             // 
             this.lblMove3Power.AutoSize = true;
             this.lblMove3Power.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove3Power.Location = new System.Drawing.Point(152, 0);
+            this.lblMove3Power.Location = new System.Drawing.Point(156, 0);
             this.lblMove3Power.Name = "lblMove3Power";
-            this.lblMove3Power.Size = new System.Drawing.Size(37, 25);
+            this.lblMove3Power.Size = new System.Drawing.Size(39, 29);
             this.lblMove3Power.TabIndex = 1;
             this.lblMove3Power.Text = "pwr";
             this.lblMove3Power.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2235,26 +2299,28 @@
             // tlMove3MoreData
             // 
             this.tlMove3MoreData.ColumnCount = 3;
-            this.tlMove3MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tlMove3MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tlMove3MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlMove3MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlMove3MoreData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlMove3MoreData.Controls.Add(this.pbMove3Category, 0, 0);
             this.tlMove3MoreData.Controls.Add(this.pbMove3Type, 0, 0);
             this.tlMove3MoreData.Controls.Add(this.lblMove3Flavor, 2, 0);
             this.tlMove3MoreData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMove3MoreData.Location = new System.Drawing.Point(3, 34);
+            this.tlMove3MoreData.Location = new System.Drawing.Point(0, 35);
+            this.tlMove3MoreData.Margin = new System.Windows.Forms.Padding(0);
             this.tlMove3MoreData.Name = "tlMove3MoreData";
             this.tlMove3MoreData.RowCount = 1;
             this.tlMove3MoreData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMove3MoreData.Size = new System.Drawing.Size(363, 26);
+            this.tlMove3MoreData.Size = new System.Drawing.Size(381, 35);
             this.tlMove3MoreData.TabIndex = 0;
             // 
             // pbMove3Category
             // 
             this.pbMove3Category.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove3Category.Location = new System.Drawing.Point(46, 3);
+            this.pbMove3Category.Location = new System.Drawing.Point(40, 0);
+            this.pbMove3Category.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove3Category.Name = "pbMove3Category";
-            this.pbMove3Category.Size = new System.Drawing.Size(37, 20);
+            this.pbMove3Category.Size = new System.Drawing.Size(40, 35);
             this.pbMove3Category.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove3Category.TabIndex = 40;
             this.pbMove3Category.TabStop = false;
@@ -2262,23 +2328,24 @@
             // pbMove3Type
             // 
             this.pbMove3Type.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMove3Type.Location = new System.Drawing.Point(3, 3);
+            this.pbMove3Type.Location = new System.Drawing.Point(0, 0);
+            this.pbMove3Type.Margin = new System.Windows.Forms.Padding(0);
             this.pbMove3Type.Name = "pbMove3Type";
-            this.pbMove3Type.Size = new System.Drawing.Size(37, 20);
+            this.pbMove3Type.Size = new System.Drawing.Size(40, 35);
             this.pbMove3Type.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbMove3Type.TabIndex = 22;
             this.pbMove3Type.TabStop = false;
             // 
             // lblMove3Flavor
             // 
-            this.lblMove3Flavor.AutoSize = true;
             this.lblMove3Flavor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMove3Flavor.Location = new System.Drawing.Point(89, 0);
+            this.lblMove3Flavor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMove3Flavor.Location = new System.Drawing.Point(80, 0);
+            this.lblMove3Flavor.Margin = new System.Windows.Forms.Padding(0);
             this.lblMove3Flavor.Name = "lblMove3Flavor";
-            this.lblMove3Flavor.Size = new System.Drawing.Size(271, 26);
+            this.lblMove3Flavor.Size = new System.Drawing.Size(301, 35);
             this.lblMove3Flavor.TabIndex = 0;
             this.lblMove3Flavor.Text = "flavor";
-            this.lblMove3Flavor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tpOrigin
             // 
@@ -2296,7 +2363,7 @@
             this.tpOrigin.Location = new System.Drawing.Point(4, 22);
             this.tpOrigin.Name = "tpOrigin";
             this.tpOrigin.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOrigin.Size = new System.Drawing.Size(381, 314);
+            this.tpOrigin.Size = new System.Drawing.Size(387, 320);
             this.tpOrigin.TabIndex = 3;
             this.tpOrigin.Text = "Origins";
             this.tpOrigin.UseVisualStyleBackColor = true;
@@ -2339,9 +2406,9 @@
             this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(55, 140);
+            this.cbCountry.Location = new System.Drawing.Point(55, 146);
             this.cbCountry.Name = "cbCountry";
-            this.cbCountry.Size = new System.Drawing.Size(133, 21);
+            this.cbCountry.Size = new System.Drawing.Size(139, 21);
             this.cbCountry.TabIndex = 7;
             this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.cbCountry_SelectedIndexChanged);
             // 
@@ -2359,9 +2426,9 @@
             this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbGame.FormattingEnabled = true;
-            this.cbGame.Location = new System.Drawing.Point(55, 113);
+            this.cbGame.Location = new System.Drawing.Point(55, 119);
             this.cbGame.Name = "cbGame";
-            this.cbGame.Size = new System.Drawing.Size(133, 21);
+            this.cbGame.Size = new System.Drawing.Size(139, 21);
             this.cbGame.TabIndex = 5;
             this.cbGame.SelectedIndexChanged += new System.EventHandler(this.cbGame_SelectedIndexChanged);
             // 
@@ -2386,7 +2453,7 @@
             // numMetLevel
             // 
             this.numMetLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMetLevel.Location = new System.Drawing.Point(67, 83);
+            this.numMetLevel.Location = new System.Drawing.Point(73, 83);
             this.numMetLevel.Name = "numMetLevel";
             this.numMetLevel.Size = new System.Drawing.Size(55, 20);
             this.numMetLevel.TabIndex = 3;
@@ -2422,6 +2489,7 @@
             // cbEggLocation
             // 
             this.cbEggLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbEggLocation.Enabled = false;
             this.cbEggLocation.FormattingEnabled = true;
             this.cbEggLocation.Location = new System.Drawing.Point(3, 3);
             this.cbEggLocation.Name = "cbEggLocation";
@@ -2433,6 +2501,7 @@
             // 
             this.dtEggDate.CustomFormat = "MM / dd / yyyy";
             this.dtEggDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtEggDate.Enabled = false;
             this.dtEggDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtEggDate.Location = new System.Drawing.Point(3, 29);
             this.dtEggDate.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
@@ -2506,7 +2575,7 @@
             this.tpRibbon.Location = new System.Drawing.Point(4, 22);
             this.tpRibbon.Name = "tpRibbon";
             this.tpRibbon.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRibbon.Size = new System.Drawing.Size(381, 314);
+            this.tpRibbon.Size = new System.Drawing.Size(387, 320);
             this.tpRibbon.TabIndex = 4;
             this.tpRibbon.Text = "Ribbons";
             this.tpRibbon.UseVisualStyleBackColor = true;
@@ -2516,7 +2585,7 @@
             this.tpMisc.Location = new System.Drawing.Point(4, 22);
             this.tpMisc.Name = "tpMisc";
             this.tpMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMisc.Size = new System.Drawing.Size(381, 314);
+            this.tpMisc.Size = new System.Drawing.Size(387, 320);
             this.tpMisc.TabIndex = 5;
             this.tpMisc.Text = "Misc";
             this.tpMisc.UseVisualStyleBackColor = true;
@@ -2601,7 +2670,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMove4PP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMove4PPUps)).EndInit();
             this.tlMove4MoreData.ResumeLayout(false);
-            this.tlMove4MoreData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove4Category)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove4Type)).EndInit();
             this.tlMoveLabels.ResumeLayout(false);
@@ -2611,7 +2679,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMove1PP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMove1PPUps)).EndInit();
             this.tlMove1MoreData.ResumeLayout(false);
-            this.tlMove1MoreData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove1Category)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove1Type)).EndInit();
             this.tlMove2.ResumeLayout(false);
@@ -2620,7 +2687,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMove2PP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMove2PPUps)).EndInit();
             this.tlMove2MoreData.ResumeLayout(false);
-            this.tlMove2MoreData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove2Category)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove2Type)).EndInit();
             this.tlMove3.ResumeLayout(false);
@@ -2629,7 +2695,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMove3PP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMove3PPUps)).EndInit();
             this.tlMove3MoreData.ResumeLayout(false);
-            this.tlMove3MoreData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove3Category)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMove3Type)).EndInit();
             this.tpOrigin.ResumeLayout(false);
@@ -2827,5 +2892,6 @@
         private System.Windows.Forms.Label lblPKRSDays;
         private System.Windows.Forms.ComboBox cbPKRSStrain;
         private System.Windows.Forms.ComboBox cbPKRSDays;
+        private System.Windows.Forms.Label lblForm;
     }
 }

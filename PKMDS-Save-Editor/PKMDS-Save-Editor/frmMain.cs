@@ -11,10 +11,25 @@ namespace PKMDS_Save_Editor
 {
     public partial class frmMain : Form
     {
+        private List<PictureBox> partyPics = new List<PictureBox>();
+        private List<PictureBox> boxPics = new List<PictureBox>();
+        private List<PictureBox> boxGridPics = new List<PictureBox>();
+        private List<Label> boxNameLabels = new List<Label>();
+        private List<Label> boxcountLabels = new List<Label>();
         string title = "";
         private string savefile = "";
         PKMDS.Save sav = new PKMDS.Save();
+        PKMDS.Pokemon pkm_from = new PKMDS.Pokemon();
+        PKMDS.Pokemon pkm_to = new PKMDS.Pokemon();
         frmPKMViewer pkmviewer = new frmPKMViewer();
+        bool dragfromparty = false;
+        bool dragtoparty = false;
+        //bool dragtobox = false;
+        int frombox = -1;
+        int fromslot = -1;
+        int tobox = -1;
+        int toslot = -1;
+        bool uiset = false;
         public frmMain()
         {
             InitializeComponent();
@@ -27,50 +42,11 @@ namespace PKMDS_Save_Editor
             {
                 if (fileOpen.FileName != "")
                 {
-                    cbBoxes.SelectedIndex = -1;
-                    cbBoxes.Items.Clear();
-                    lstPokemon.Clear();
-                    lstParty.Clear();
+                    uiset = false;
                     savefile = fileOpen.FileName;
                     sav = PKMDS.ReadSaveFile(savefile);
-                    this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
-                    try
-                    {
-                        PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
-                        for (int slot = 0; slot < 6; slot++)
-                        {
-                            ppkm = sav.GetPartyPokemon(slot);
-                            System.Diagnostics.Debug.Write("");
-                            lstParty.Items.Add(ppkm.PokemonData.SpeciesName);
-                        }
-                        for (int box = 0; box < 24; box++)
-                        {
-                            cbBoxes.Items.Add(sav.GetBoxName(box));
-                        }
-                        cbBoxes.SelectedIndex = sav.CurrentBox;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-            }
-        }
-        private unsafe void cbBoxes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbBoxes.Items.Count > 0)
-            {
-                if (cbBoxes.SelectedIndex >= 0)
-                {
-                    sav.CurrentBox = cbBoxes.SelectedIndex;
-                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
-                    lstPokemon.Clear();
-                    for (int slot = 0; slot < 30; slot++)
-                    {
-                        pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, slot);
-                        lstPokemon.Items.Add(pkm.SpeciesName);
-                    }
-                    pbGender.Image = sav.GetBoxWallpaper(cbBoxes.SelectedIndex);
+                    SetSaveFile();
+                    uiset = true;
                 }
             }
         }
@@ -78,19 +54,6 @@ namespace PKMDS_Save_Editor
         {
             PKMDS.CloseDB();
             PKMDS.CloseImgDB();
-        }
-        private void lstPokemon_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbBoxes.SelectedIndex != -1)
-            {
-                if (lstPokemon.SelectedItems.Count > 0)
-                {
-                    lstParty.SelectedItems.Clear();
-                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
-                    pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
-                    pbSprite.Image = pkm.Sprite;
-                }
-            }
         }
         private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -100,40 +63,6 @@ namespace PKMDS_Save_Editor
                 if (fileSave.FileName != "")
                 {
                     sav.WriteToFile(fileSave.FileName);
-                }
-            }
-        }
-        private void lstParty_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lstParty.SelectedItems.Count > 0)
-            {
-                lstPokemon.SelectedItems.Clear();
-                PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
-                ppkm = sav.GetPartyPokemon(lstParty.SelectedItems[0].Index);
-                pbSprite.Image = ppkm.PokemonData.Sprite;
-            }
-        }
-        private void lstPokemon_DoubleClick(object sender, EventArgs e)
-        {
-            if (lstPokemon.Items.Count > 0)
-            {
-                if (lstPokemon.SelectedItems.Count > 0)
-                {
-                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
-                    pkm = sav.GetStoredPokemon(cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
-                    sav.SetStoredPokemon(ViewPokemon(pkm), cbBoxes.SelectedIndex, lstPokemon.SelectedItems[0].Index);
-                }
-            }
-        }
-        private void lstParty_DoubleClick(object sender, EventArgs e)
-        {
-            if (lstParty.Items.Count > 0)
-            {
-                if (lstParty.SelectedItems.Count > 0)
-                {
-                    PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
-                    ppkm = sav.GetPartyPokemon(lstParty.SelectedItems[0].Index);
-                    sav.SetPartyPokemon(ViewPokemon(ppkm), lstParty.SelectedItems[0].Index);
                 }
             }
         }
@@ -150,6 +79,532 @@ namespace PKMDS_Save_Editor
             PKMDS.PartyPokemon newppkm = new PKMDS.PartyPokemon();
             newppkm.PokemonData = pkmviewer.SharedPokemon.Clone();
             return newppkm;
+        }
+        private void SetSaveFile()
+        {
+            this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+            txtBoxName.Enabled = true;
+            splitMain.Panel2.Enabled = true;
+            UpdateParty();
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            UpdateBoxNameLabels();
+            UpdateBoxCountLabels();
+            UpdateBoxGrids();
+        }
+        private void UpdateParty()
+        {
+
+            for (int partySlot = 0; partySlot < 6; partySlot++)
+            {
+                PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
+                pokemon = sav.GetPartyPokemon(partySlot).PokemonData;
+                if ((pokemon.SpeciesID != 0) && (partySlot < sav.PartySize))
+                {
+                    partyPics[partySlot].Image = pokemon.Icon;
+                }
+                else
+                {
+                    partyPics[partySlot].Image = null;
+                }
+            }
+            lblPartySize.Text = "Party - " + sav.PartySize.ToString() + " / 6";
+            sav.RecalculateParty();
+        }
+        private void UpdateBox()
+        {
+            PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
+            for (int boxSlot = 0; boxSlot < 30; boxSlot++)
+            {
+                pokemon = sav.GetStoredPokemon(sav.CurrentBox, boxSlot);
+                if (pokemon.SpeciesID != 0)
+                {
+                    boxPics[boxSlot].Image = pokemon.Icon;
+                }
+                else
+                {
+                    boxPics[boxSlot].Image = null;
+                }
+            }
+        }
+        private void UpdateBoxWallpaper()
+        {
+            pnlBox.BackgroundImage = sav.GetBoxWallpaper(sav.CurrentBox);
+        }
+        private void UpdateBoxName()
+        {
+            txtBoxName.Text = sav.GetBoxName(sav.CurrentBox);
+        }
+        private void UpdateBoxNameLabel(int box)
+        {
+            boxNameLabels[box].Text = sav.GetBoxName(box);
+        }
+        private void UpdateBoxNameLabels()
+        {
+            for (int box = 0; box < 24; box++)
+            {
+                UpdateBoxNameLabel(box);
+            }
+        }
+        private void UpdateBoxCountLabel(int box)
+        {
+            boxcountLabels[box].Text = sav.BoxCount(box).ToString() + "/30";
+        }
+        private void UpdateBoxCountLabels()
+        {
+            for (int box = 0; box < 24; box++)
+            {
+                UpdateBoxCountLabel(box);
+            }
+        }
+        private void UpdateBoxGrid(int box)
+        {
+            boxGridPics[box].Image = sav.GetBoxGrid(box);
+        }
+        private void UpdateBoxGrids()
+        {
+            for (int box = 0; box < 24; box++)
+            {
+                UpdateBoxGrid(box);
+            }
+        }
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            partyPics.Add(pbPartySlot01);
+            partyPics.Add(pbPartySlot02);
+            partyPics.Add(pbPartySlot03);
+            partyPics.Add(pbPartySlot04);
+            partyPics.Add(pbPartySlot05);
+            partyPics.Add(pbPartySlot06);
+            boxPics.Add(pbBoxSlot01);
+            boxPics.Add(pbBoxSlot02);
+            boxPics.Add(pbBoxSlot03);
+            boxPics.Add(pbBoxSlot04);
+            boxPics.Add(pbBoxSlot05);
+            boxPics.Add(pbBoxSlot06);
+            boxPics.Add(pbBoxSlot07);
+            boxPics.Add(pbBoxSlot08);
+            boxPics.Add(pbBoxSlot09);
+            boxPics.Add(pbBoxSlot10);
+            boxPics.Add(pbBoxSlot11);
+            boxPics.Add(pbBoxSlot12);
+            boxPics.Add(pbBoxSlot13);
+            boxPics.Add(pbBoxSlot14);
+            boxPics.Add(pbBoxSlot15);
+            boxPics.Add(pbBoxSlot16);
+            boxPics.Add(pbBoxSlot17);
+            boxPics.Add(pbBoxSlot18);
+            boxPics.Add(pbBoxSlot19);
+            boxPics.Add(pbBoxSlot20);
+            boxPics.Add(pbBoxSlot21);
+            boxPics.Add(pbBoxSlot22);
+            boxPics.Add(pbBoxSlot23);
+            boxPics.Add(pbBoxSlot24);
+            boxPics.Add(pbBoxSlot25);
+            boxPics.Add(pbBoxSlot26);
+            boxPics.Add(pbBoxSlot27);
+            boxPics.Add(pbBoxSlot28);
+            boxPics.Add(pbBoxSlot29);
+            boxPics.Add(pbBoxSlot30);
+            boxGridPics.Add(pbBoxGrid01);
+            boxGridPics.Add(pbBoxGrid02);
+            boxGridPics.Add(pbBoxGrid03);
+            boxGridPics.Add(pbBoxGrid04);
+            boxGridPics.Add(pbBoxGrid05);
+            boxGridPics.Add(pbBoxGrid06);
+            boxGridPics.Add(pbBoxGrid07);
+            boxGridPics.Add(pbBoxGrid08);
+            boxGridPics.Add(pbBoxGrid09);
+            boxGridPics.Add(pbBoxGrid10);
+            boxGridPics.Add(pbBoxGrid11);
+            boxGridPics.Add(pbBoxGrid12);
+            boxGridPics.Add(pbBoxGrid13);
+            boxGridPics.Add(pbBoxGrid14);
+            boxGridPics.Add(pbBoxGrid15);
+            boxGridPics.Add(pbBoxGrid16);
+            boxGridPics.Add(pbBoxGrid17);
+            boxGridPics.Add(pbBoxGrid18);
+            boxGridPics.Add(pbBoxGrid19);
+            boxGridPics.Add(pbBoxGrid20);
+            boxGridPics.Add(pbBoxGrid21);
+            boxGridPics.Add(pbBoxGrid22);
+            boxGridPics.Add(pbBoxGrid23);
+            boxGridPics.Add(pbBoxGrid24);
+            boxNameLabels.Add(lblBoxGrid01);
+            boxNameLabels.Add(lblBoxGrid02);
+            boxNameLabels.Add(lblBoxGrid03);
+            boxNameLabels.Add(lblBoxGrid04);
+            boxNameLabels.Add(lblBoxGrid05);
+            boxNameLabels.Add(lblBoxGrid06);
+            boxNameLabels.Add(lblBoxGrid07);
+            boxNameLabels.Add(lblBoxGrid08);
+            boxNameLabels.Add(lblBoxGrid09);
+            boxNameLabels.Add(lblBoxGrid10);
+            boxNameLabels.Add(lblBoxGrid11);
+            boxNameLabels.Add(lblBoxGrid12);
+            boxNameLabels.Add(lblBoxGrid13);
+            boxNameLabels.Add(lblBoxGrid14);
+            boxNameLabels.Add(lblBoxGrid15);
+            boxNameLabels.Add(lblBoxGrid16);
+            boxNameLabels.Add(lblBoxGrid17);
+            boxNameLabels.Add(lblBoxGrid18);
+            boxNameLabels.Add(lblBoxGrid19);
+            boxNameLabels.Add(lblBoxGrid20);
+            boxNameLabels.Add(lblBoxGrid21);
+            boxNameLabels.Add(lblBoxGrid22);
+            boxNameLabels.Add(lblBoxGrid23);
+            boxNameLabels.Add(lblBoxGrid24);
+            boxcountLabels.Add(lblBoxCount01);
+            boxcountLabels.Add(lblBoxCount02);
+            boxcountLabels.Add(lblBoxCount03);
+            boxcountLabels.Add(lblBoxCount04);
+            boxcountLabels.Add(lblBoxCount05);
+            boxcountLabels.Add(lblBoxCount06);
+            boxcountLabels.Add(lblBoxCount07);
+            boxcountLabels.Add(lblBoxCount08);
+            boxcountLabels.Add(lblBoxCount09);
+            boxcountLabels.Add(lblBoxCount10);
+            boxcountLabels.Add(lblBoxCount11);
+            boxcountLabels.Add(lblBoxCount12);
+            boxcountLabels.Add(lblBoxCount13);
+            boxcountLabels.Add(lblBoxCount14);
+            boxcountLabels.Add(lblBoxCount15);
+            boxcountLabels.Add(lblBoxCount16);
+            boxcountLabels.Add(lblBoxCount17);
+            boxcountLabels.Add(lblBoxCount18);
+            boxcountLabels.Add(lblBoxCount19);
+            boxcountLabels.Add(lblBoxCount20);
+            boxcountLabels.Add(lblBoxCount21);
+            boxcountLabels.Add(lblBoxCount22);
+            boxcountLabels.Add(lblBoxCount23);
+            boxcountLabels.Add(lblBoxCount24);
+            foreach (PictureBox pb in partyPics)
+            {
+                ((Control)pb).AllowDrop = true;
+            }
+            foreach (PictureBox pb in boxPics)
+            {
+                ((Control)pb).AllowDrop = true;
+            }
+            foreach (PictureBox pb in boxGridPics)
+            {
+                ((Control)pb).AllowDrop = true;
+            }
+        }
+        private void txtBoxName_TextChanged(object sender, EventArgs e)
+        {
+            if (uiset)
+            {
+                sav.SetBoxName(sav.CurrentBox, txtBoxName.Text);
+                UpdateBoxNameLabel(sav.CurrentBox);
+            }
+        }
+        private void btnPreviousBox_Click(object sender, EventArgs e)
+        {
+            sav.CurrentBox--;
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+        }
+        private void btnNextBox_Click(object sender, EventArgs e)
+        {
+            sav.CurrentBox++;
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+        }
+        private void pbSlot_DoubleClick(object sender, EventArgs e)
+        {
+            int slot = 0;
+            PictureBox pb = (PictureBox)(sender);
+            if (pb.Name.Contains("Party"))
+            {
+                int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                slot--;
+                PKMDS.Pokemon pkm = sav.GetPartyPokemon(slot).PokemonData;
+                if ((pkm != null) && (pkm.SpeciesID != 0))
+                {
+                    sav.SetPartyPokemon(ViewPokemon(sav.GetPartyPokemon(slot)), slot);
+                    UpdateParty();
+                }
+            }
+            if (pb.Name.Contains("Box"))
+            {
+                int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                slot--;
+                PKMDS.Pokemon pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                if ((pkm != null) && (pkm.SpeciesID != 0))
+                {
+                    sav.SetStoredPokemon(ViewPokemon(sav.GetStoredPokemon(sav.CurrentBox, slot)), sav.CurrentBox, slot);
+                }
+                UpdateBox();
+                UpdateBoxGrid(sav.CurrentBox);
+            }
+        }
+        private void pbBoxGrid_Click(object sender, EventArgs e)
+        {
+            int box = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            sav.CurrentBox = box;
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+        }
+        private void lblBoxGrid_Click(object sender, EventArgs e)
+        {
+            int box = 0;
+            Label pb = (Label)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            sav.CurrentBox = box;
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+        }
+        private void pbPartyBoxSlot_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.Clicks == 1)
+            {
+                int slot = 0;
+                PictureBox pb = (PictureBox)(sender);
+                int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                slot--;
+                if (pb.Name.Contains("Party"))
+                {
+                    if (sav.GetPartyPokemon(slot).PokemonData.SpeciesID != 0)
+                    {
+                        if (sav.PartySize > 1)
+                        {
+                            pkm_from = sav.GetPartyPokemon(slot).PokemonData;
+                            dragfromparty = true;
+                            frombox = -1;
+                            fromslot = slot;
+                            partyPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
+                        }
+                    }
+                }
+                if (pb.Name.Contains("Box"))
+                {
+                    if (sav.GetStoredPokemon(sav.CurrentBox, slot).SpeciesID != 0)
+                    {
+                        pkm_from = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                        dragfromparty = false;
+                        frombox = sav.CurrentBox;
+                        fromslot = slot;
+                        boxPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
+                    }
+                }
+            }
+        }
+        private void pbPartyBoxSlot_DragDrop(object sender, DragEventArgs e)
+        {
+            int slot = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+            slot--;
+            if (pb.Name.Contains("Party"))
+            {
+                dragtoparty = true;
+                //dragtobox = false;
+                tobox = -1;
+                toslot = slot;
+                if (dragfromparty)
+                {
+                    if (dragtoparty)
+                    {
+                        if (pkm_to.SpeciesID == 0)
+                        {
+                            sav.WithdrawPokemon(sav.GetPartyPokemon(fromslot).PokemonData);
+                            sav.RemovePartyPokemon(fromslot);
+                        }
+                        else
+                        {
+                            PKMDS.SwapPartyParty(sav, fromslot, toslot);
+
+                        }
+                        UpdateParty();
+                    }
+                }
+                else
+                {
+                    if (dragtoparty)
+                    {
+                        if (pkm_to.SpeciesID == 0)
+                        {
+                            sav.WithdrawPokemon(sav.GetStoredPokemon(frombox, fromslot));
+                            sav.RemoveStoredPokemon(frombox, fromslot);
+                        }
+                        else
+                        {
+                            PKMDS.SwapBoxParty(sav, frombox, fromslot, toslot);
+                        }
+                        UpdateParty();
+                        UpdateBox();
+                        UpdateBoxGrid(sav.CurrentBox);
+                        UpdateBoxCountLabel(sav.CurrentBox);
+                    }
+                }
+            }
+            if (pb.Name.Contains("Box"))
+            {
+                dragtoparty = false;
+                //dragtobox = false;
+                tobox = sav.CurrentBox;
+                toslot = slot;
+                if (dragfromparty)
+                {
+                    if (!dragtoparty)
+                    {
+                        PKMDS.SwapPartyBox(sav, fromslot, tobox, toslot);
+                        if (pkm_to.SpeciesID == 0)
+                        {
+                            sav.RemovePartyPokemon(fromslot);
+                        }
+                        UpdateParty();
+                        UpdateBox();
+                        UpdateBoxGrid(sav.CurrentBox);
+                        UpdateBoxCountLabel(sav.CurrentBox);
+                    }
+                }
+                else
+                {
+                    if (!dragtoparty)
+                    {
+                        PKMDS.SwapBoxBox(sav, frombox, fromslot, tobox, toslot);
+                        UpdateParty();
+                        UpdateBox();
+                        UpdateBoxGrid(sav.CurrentBox);
+                        UpdateBoxCountLabel(sav.CurrentBox);
+                    }
+                }
+            }
+        }
+        private void pbPartyBoxSlot_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data != null)
+            {
+                PKMDS.Pokemon dragpkm = (PKMDS.Pokemon)(e.Data.GetData("PKMDS_CS.PKMDS+Pokemon"));
+                if (dragpkm.SpeciesID != 0)
+                {
+                    int slot = 0;
+                    PictureBox pb = (PictureBox)(sender);
+                    int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                    slot--;
+                    if (pb.Name.Contains("Party"))
+                    {
+                        dragtoparty = true;
+                        //dragtobox = false;
+                        pkm_to = sav.GetPartyPokemon(slot).PokemonData;
+                    }
+                    if (pb.Name.Contains("Box"))
+                    {
+                        dragtoparty = false;
+                        //dragtobox = false;
+                        pkm_to = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                    }
+                    e.Effect = DragDropEffects.Move;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None;
+                }
+            }
+        }
+        private void pbBoxGrid_DragEnter(object sender, DragEventArgs e)
+        {
+            int box = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            if (e.Data != null)
+            {
+                PKMDS.Pokemon dragpkm = (PKMDS.Pokemon)(e.Data.GetData("PKMDS_CS.PKMDS+Pokemon"));
+                if ((dragpkm.SpeciesID != 0) && (sav.BoxCount(box) < 30))
+                {
+                    pkm_to = dragpkm;
+                    e.Effect = DragDropEffects.Move;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None;
+                }
+            }
+        }
+        private void pbBoxGrid_DragDrop(object sender, DragEventArgs e)
+        {
+            int box = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            dragtoparty = false;
+            //dragtobox = true;
+            tobox = box;
+            toslot = -1;
+            if (fromslot != -1)
+            {
+                if (dragfromparty)
+                {
+                    sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
+                    sav.RemovePartyPokemon(fromslot);
+                    if (pkm_to.SpeciesID == 0)
+                    {
+                        sav.RemovePartyPokemon(fromslot);
+                    }
+                    UpdateParty();
+                }
+                else
+                {
+                    if (frombox != -1)
+                    {
+                        sav.DepositPokemon(sav.GetStoredPokemon(frombox, fromslot), tobox);
+                        sav.RemoveStoredPokemon(frombox, fromslot);
+                        UpdateBox();
+                        UpdateBoxGrid(frombox);
+                        UpdateBoxCountLabel(frombox);
+                    }
+                }
+                UpdateBoxGrid(tobox);
+                UpdateBoxCountLabel(tobox);
+                UpdateBox();
+            }
+        }
+        private void pbBoxGrid_MouseEnter(object sender, EventArgs e)
+        {
+            int box = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            dragtoparty = false;
+            //dragtobox = true;
+            tobox = box;
+            toslot = -1;
+        }
+        private void pbBoxGrid_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.Clicks == 1)
+            {
+                int box = 0;
+                PictureBox pb = (PictureBox)(sender);
+                int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+                box--;
+                dragtoparty = false;
+                //dragtobox = true;
+                tobox = box;
+                toslot = -1;
+            }
         }
     }
 }
