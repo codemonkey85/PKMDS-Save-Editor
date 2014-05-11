@@ -112,6 +112,7 @@ namespace PKMDS_Save_Editor
                 }
             }
             lblPartySize.Text = "Party - " + sav.PartySize.ToString() + " / 6";
+            sav.RecalculateParty();
         }
         private void UpdateBox()
         {
