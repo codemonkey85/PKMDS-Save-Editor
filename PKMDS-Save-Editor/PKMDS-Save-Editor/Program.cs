@@ -11,11 +11,16 @@ namespace PKMDS_Save_Editor
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            string filePath = "";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            if (args.Length > 0)
+            {
+                filePath = args[0];
+            }
+            Application.Run(new frmMain(filePath));
         }
     }
 }
