@@ -16,6 +16,7 @@ namespace PKMDS_Save_Editor
         private List<PictureBox> boxGridPics = new List<PictureBox>();
         private List<Label> boxNameLabels = new List<Label>();
         private List<Label> boxcountLabels = new List<Label>();
+        private List<Panel> boxPanels = new List<Panel>();
         string title = "";
         private string savefile = "";
         PKMDS.Save sav = new PKMDS.Save();
@@ -30,10 +31,12 @@ namespace PKMDS_Save_Editor
         int tobox = -1;
         int toslot = -1;
         bool uiset = false;
-        public frmMain()
+        string argfilename = "";
+        public frmMain(string filename)
         {
             InitializeComponent();
             title = this.Text;
+            argfilename = filename;
         }
         private void loadSaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -82,6 +85,7 @@ namespace PKMDS_Save_Editor
         }
         private void SetSaveFile()
         {
+            this.splitMain.Enabled = true;
             this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
             btnPreviousBox.Enabled = (sav.CurrentBox != 0);
             btnNextBox.Enabled = (sav.CurrentBox != 23);
@@ -94,6 +98,13 @@ namespace PKMDS_Save_Editor
             UpdateBoxNameLabels();
             UpdateBoxCountLabels();
             UpdateBoxGrids();
+            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+            splitMain.Panel2.PerformLayout();
+            foreach (Panel pan in boxPanels)
+            {
+                pan.BorderStyle = BorderStyle.None;
+            }
+            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
         }
         private void UpdateParty()
         {
@@ -281,6 +292,30 @@ namespace PKMDS_Save_Editor
             boxcountLabels.Add(lblBoxCount22);
             boxcountLabels.Add(lblBoxCount23);
             boxcountLabels.Add(lblBoxCount24);
+            boxPanels.Add(pnlBoxGrid01);
+            boxPanels.Add(pnlBoxGrid02);
+            boxPanels.Add(pnlBoxGrid03);
+            boxPanels.Add(pnlBoxGrid04);
+            boxPanels.Add(pnlBoxGrid05);
+            boxPanels.Add(pnlBoxGrid06);
+            boxPanels.Add(pnlBoxGrid07);
+            boxPanels.Add(pnlBoxGrid08);
+            boxPanels.Add(pnlBoxGrid09);
+            boxPanels.Add(pnlBoxGrid10);
+            boxPanels.Add(pnlBoxGrid11);
+            boxPanels.Add(pnlBoxGrid12);
+            boxPanels.Add(pnlBoxGrid13);
+            boxPanels.Add(pnlBoxGrid14);
+            boxPanels.Add(pnlBoxGrid15);
+            boxPanels.Add(pnlBoxGrid16);
+            boxPanels.Add(pnlBoxGrid17);
+            boxPanels.Add(pnlBoxGrid18);
+            boxPanels.Add(pnlBoxGrid19);
+            boxPanels.Add(pnlBoxGrid20);
+            boxPanels.Add(pnlBoxGrid21);
+            boxPanels.Add(pnlBoxGrid22);
+            boxPanels.Add(pnlBoxGrid23);
+            boxPanels.Add(pnlBoxGrid24);
             foreach (PictureBox pb in partyPics)
             {
                 ((Control)pb).AllowDrop = true;
@@ -292,6 +327,14 @@ namespace PKMDS_Save_Editor
             foreach (PictureBox pb in boxGridPics)
             {
                 ((Control)pb).AllowDrop = true;
+            }
+            if (argfilename != "")
+            {
+                uiset = false;
+                savefile = argfilename;
+                sav = PKMDS.ReadSaveFile(savefile);
+                SetSaveFile();
+                uiset = true;
             }
         }
         private void txtBoxName_TextChanged(object sender, EventArgs e)
@@ -310,6 +353,8 @@ namespace PKMDS_Save_Editor
             UpdateBoxName();
             btnPreviousBox.Enabled = (sav.CurrentBox != 0);
             btnNextBox.Enabled = (sav.CurrentBox != 23);
+            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+            splitMain.Panel2.PerformLayout();
         }
         private void btnNextBox_Click(object sender, EventArgs e)
         {
@@ -319,6 +364,8 @@ namespace PKMDS_Save_Editor
             UpdateBoxName();
             btnPreviousBox.Enabled = (sav.CurrentBox != 0);
             btnNextBox.Enabled = (sav.CurrentBox != 23);
+            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+            splitMain.Panel2.PerformLayout();
         }
         private void pbSlot_DoubleClick(object sender, EventArgs e)
         {
@@ -347,32 +394,6 @@ namespace PKMDS_Save_Editor
                 UpdateBox();
                 UpdateBoxGrid(sav.CurrentBox);
             }
-        }
-        private void pbBoxGrid_Click(object sender, EventArgs e)
-        {
-            int box = 0;
-            PictureBox pb = (PictureBox)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            sav.CurrentBox = box;
-            UpdateBox();
-            UpdateBoxWallpaper();
-            UpdateBoxName();
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
-        }
-        private void lblBoxGrid_Click(object sender, EventArgs e)
-        {
-            int box = 0;
-            Label pb = (Label)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            sav.CurrentBox = box;
-            UpdateBox();
-            UpdateBoxWallpaper();
-            UpdateBoxName();
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
         }
         private void pbPartyBoxSlot_MouseDown(object sender, MouseEventArgs e)
         {
@@ -581,17 +602,6 @@ namespace PKMDS_Save_Editor
                 UpdateBox();
             }
         }
-        private void pbBoxGrid_MouseEnter(object sender, EventArgs e)
-        {
-            int box = 0;
-            PictureBox pb = (PictureBox)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            dragtoparty = false;
-            //dragtobox = true;
-            tobox = box;
-            toslot = -1;
-        }
         private void pbBoxGrid_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && e.Clicks == 1)
@@ -605,6 +615,107 @@ namespace PKMDS_Save_Editor
                 tobox = box;
                 toslot = -1;
             }
+        }
+        private void lblBoxGrid_Click(object sender, EventArgs e)
+        {
+            int box = 0;
+            Label pb = (Label)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            sav.CurrentBox = box;
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+            foreach (Panel pan in boxPanels)
+            {
+                pan.BorderStyle = BorderStyle.None;
+            }
+            boxPanels[box].BorderStyle = BorderStyle.FixedSingle;
+        }
+        private void lblBoxGrid_MouseEnter(object sender, EventArgs e)
+        {
+            int box = 0;
+            Label pb = (Label)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            boxPanels[box].BackColor = Color.Orange;
+            this.splitMain.Panel2.Focus();
+        }
+        private void lblBoxGrid_MouseLeave(object sender, EventArgs e)
+        {
+            int box = 0;
+            Label pb = (Label)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            boxPanels[box].BackColor = Color.Transparent;
+        }
+        private void pbBoxGrid_Click(object sender, EventArgs e)
+        {
+            int box = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            sav.CurrentBox = box;
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+            foreach (Panel pan in boxPanels)
+            {
+                pan.BorderStyle = BorderStyle.None;
+            }
+            boxPanels[box].BorderStyle = BorderStyle.FixedSingle;
+        }
+        private void pbBoxGrid_MouseEnter(object sender, EventArgs e)
+        {
+            int box = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            dragtoparty = false;
+            //dragtobox = true;
+            tobox = box;
+            toslot = -1;
+            boxPanels[box].BackColor = Color.Orange;
+            this.splitMain.Panel2.Focus();
+        }
+        private void pbBoxGrid_MouseLeave(object sender, EventArgs e)
+        {
+            int box = 0;
+            PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+            box--;
+            boxPanels[box].BackColor = Color.Transparent;
+        }
+        private void pbPartyBoxSlot_Click(object sender, EventArgs e)
+        {
+            //PictureBox pb = (PictureBox)(sender);
+            //foreach (PictureBox pb_ in partyPics)
+            //{
+            //    pb_.BorderStyle = BorderStyle.None;
+            //}
+            //foreach (PictureBox pb_ in boxPics)
+            //{
+            //    pb_.BorderStyle = BorderStyle.None;
+            //}
+            //pb.BorderStyle = BorderStyle.FixedSingle;
+        }
+        private void pbPartyBoxSlot_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)(sender);
+            pb.BackColor = Color.Orange;
+        }
+        private void pbPartyBoxSlot_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)(sender);
+            pb.BackColor = Color.Transparent;
+        }
+        private void splitMain_Panel2_MouseEnter(object sender, EventArgs e)
+        {
+            this.splitMain.Panel2.Focus();
         }
     }
 }

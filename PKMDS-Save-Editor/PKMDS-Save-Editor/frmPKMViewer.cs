@@ -144,7 +144,16 @@ namespace PKMDS_Save_Editor
             SetForms();
             if (cbForm.Enabled)
             {
-                cbForm.SelectedIndex = TempPokemon.FormID;
+                if (cbForm.Items.Count < TempPokemon.FormID)
+                {
+                    TempPokemon.FormID = 0;
+                    cbForm.SelectedIndex = -1;
+                    cbForm.Text = "";
+                }
+                else 
+                {
+                    cbForm.SelectedIndex = TempPokemon.FormID;
+                }
             }
         }
         #endregion
@@ -999,9 +1008,13 @@ namespace PKMDS_Save_Editor
                 {
                     TempPokemon.SpeciesID = (UInt16)(cbSpecies.SelectedValue);
                     numSpecies.Value = (Decimal)(TempPokemon.SpeciesID);
+                    UpdateForm();
+                    if (!cbForm.Enabled) 
+                    {
+                        TempPokemon.FormID = 0;
+                    }
                     UpdateSprite();
                     UpdateTypes();
-                    UpdateForm();
                     UpdateGenderPic();
                     UISet = false;
                     UpdateLevel();
