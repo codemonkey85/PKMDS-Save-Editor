@@ -691,6 +691,12 @@ namespace PKMDS_Save_Editor
             location = new PKMDS.Location(30001);
             metlocations.Add(location);
             egglocations.Add(location);
+            location = new PKMDS.Location(30012);
+            metlocations.Add(location);
+            egglocations.Add(location);
+            location = new PKMDS.Location(30013);
+            metlocations.Add(location);
+            egglocations.Add(location);
             location = new PKMDS.Location(30015);
             metlocations.Add(location);
             egglocations.Add(location);

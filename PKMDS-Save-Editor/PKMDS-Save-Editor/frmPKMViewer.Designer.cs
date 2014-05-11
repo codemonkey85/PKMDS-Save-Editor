@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPKMViewer));
             this.tlMain = new System.Windows.Forms.TableLayoutPanel();
             this.tlButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnApply = new System.Windows.Forms.Button();
@@ -2601,6 +2602,7 @@
             this.ClientSize = new System.Drawing.Size(591, 390);
             this.Controls.Add(this.tlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmPKMViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
