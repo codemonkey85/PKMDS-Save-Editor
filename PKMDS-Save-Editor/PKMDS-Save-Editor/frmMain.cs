@@ -41,14 +41,14 @@ namespace PKMDS_Save_Editor
         }
         private void loadSaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fileOpen.FileName = "";
-            if (fileOpen.ShowDialog() != DialogResult.Cancel)
+            SaveFileOpen.FileName = "";
+            if (SaveFileOpen.ShowDialog() != DialogResult.Cancel)
             {
-                if (fileOpen.FileName != "")
+                if (SaveFileOpen.FileName != "")
                 {
                     try
                     {
-                        savefile = fileOpen.FileName;
+                        savefile = SaveFileOpen.FileName;
                         tempsav = PKMDS.ReadSaveFile(savefile);
                         string message = "";
                         if (!tempsav.Validate(out message))
@@ -77,12 +77,12 @@ namespace PKMDS_Save_Editor
         }
         private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fileSave.FileName = "";
-            if (fileSave.ShowDialog() != DialogResult.Cancel)
+            SaveFileSave.FileName = "";
+            if (SaveFileSave.ShowDialog() != DialogResult.Cancel)
             {
-                if (fileSave.FileName != "")
+                if (SaveFileSave.FileName != "")
                 {
-                    sav.WriteToFile(fileSave.FileName);
+                    sav.WriteToFile(SaveFileSave.FileName);
                 }
             }
         }
@@ -201,6 +201,7 @@ namespace PKMDS_Save_Editor
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
+            ClearPreview();
             partyPics.Add(pbPartySlot01);
             partyPics.Add(pbPartySlot02);
             partyPics.Add(pbPartySlot03);
@@ -347,11 +348,27 @@ namespace PKMDS_Save_Editor
             }
             if (argfilename != "")
             {
-                uiset = false;
-                savefile = argfilename;
-                sav = PKMDS.ReadSaveFile(savefile);
-                SetSaveFile();
-                uiset = true;
+                try
+                {
+                    savefile = argfilename;
+                    tempsav = PKMDS.ReadSaveFile(savefile);
+                    string message = "";
+                    if (!tempsav.Validate(out message))
+                    {
+                        throw new Exception(message);
+                    }
+                    savesavToolStripMenuItem.Enabled = false;
+                    uiset = false;
+                    sav = tempsav;
+                    SetSaveFile();
+                    uiset = true;
+                    savesavToolStripMenuItem.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
         }
         private void txtBoxName_TextChanged(object sender, EventArgs e)
@@ -732,17 +749,206 @@ namespace PKMDS_Save_Editor
         }
         private void pbPartyBoxSlot_MouseEnter(object sender, EventArgs e)
         {
+            int slot = 0;
             PictureBox pb = (PictureBox)(sender);
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+            slot--;
+            PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+            if (pb.Name.Contains("Party"))
+            {
+                if (sav.GetPartyPokemon(slot).PokemonData.SpeciesID != 0)
+                {
+                    if (sav.PartySize > 1)
+                    {
+                        pkm = sav.GetPartyPokemon(slot).PokemonData;
+                    }
+                }
+            }
+            if (pb.Name.Contains("Box"))
+            {
+                if (sav.GetStoredPokemon(sav.CurrentBox, slot).SpeciesID != 0)
+                {
+                    pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                }
+            }
             pb.BackColor = Color.Orange;
+            if (pkm.SpeciesID != 0)
+            {
+                PreviewPokemon(pkm);
+            }
+            else
+            {
+                ClearPreview();
+            }
         }
         private void pbPartyBoxSlot_MouseLeave(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)(sender);
             pb.BackColor = Color.Transparent;
+            ClearPreview();
+        }
+        private void PreviewPokemon(PKMDS.Pokemon pkm)
+        {
+            pbSprite.Image = pkm.Sprite;
+            pbGender.Image = pkm.GenderIcon;
+            pbHeldItem.Image = pkm.ItemPic;
+            pbBall.Image = pkm.BallPic;
+            lblHeldItem.Text = PKMDS.GetItemName(pkm.ItemID);
+            lblNickname.Text = pkm.Nickname;
+            lblLevel.Text = "Level " + pkm.Level.ToString("");
+        }
+        private void ClearPreview()
+        {
+            pbSprite.Image = null;
+            pbGender.Image = null;
+            pbHeldItem.Image = null;
+            pbBall.Image = null;
+            lblNickname.Text = "";
+            lblLevel.Text = "";
+            lblHeldItem.Text = "";
         }
         private void splitMain_Panel2_MouseEnter(object sender, EventArgs e)
         {
             this.splitMain.Panel2.Focus();
+        }
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripItem menuItem = sender as ToolStripItem;
+            if (menuItem != null)
+            {
+                ContextMenuStrip owner = menuItem.Owner as ContextMenuStrip;
+                if (owner != null)
+                {
+                    int slot = 0;
+                    PictureBox pb = (PictureBox)(owner.SourceControl);
+                    if (pb.Name.Contains("Party"))
+                    {
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        slot--;
+                        PKMDS.Pokemon pkm = sav.GetPartyPokemon(slot).PokemonData;
+                        if ((pkm != null) && (pkm.SpeciesID != 0))
+                        {
+                            sav.SetPartyPokemon(ViewPokemon(sav.GetPartyPokemon(slot)), slot);
+                            UpdateParty();
+                        }
+                    }
+                    if (pb.Name.Contains("Box"))
+                    {
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        slot--;
+                        PKMDS.Pokemon pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                        if ((pkm != null) && (pkm.SpeciesID != 0))
+                        {
+                            sav.SetStoredPokemon(ViewPokemon(sav.GetStoredPokemon(sav.CurrentBox, slot)), sav.CurrentBox, slot);
+                        }
+                        UpdateBox();
+                        UpdateBoxGrid(sav.CurrentBox);
+                    }
+                }
+            }
+        }
+        private void loadFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripItem menuItem = sender as ToolStripItem;
+            if (menuItem != null)
+            {
+                ContextMenuStrip owner = menuItem.Owner as ContextMenuStrip;
+                if (owner != null)
+                {
+                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+                    int slot = 0;
+                    PictureBox pb = (PictureBox)(owner.SourceControl);
+                    if (pb.Name.Contains("Party"))
+                    {
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        slot--;
+                        pkmFileOpen.FileName = "";
+                        if (pkmFileOpen.ShowDialog() != DialogResult.Cancel)
+                        {
+                            if (pkmFileOpen.FileName != "")
+                            {
+                                if (System.IO.File.Exists(pkmFileOpen.FileName))
+                                {
+                                    System.IO.FileInfo file = new System.IO.FileInfo(pkmFileOpen.FileName);
+                                    pkm = PKMDS.ReadPokemonFile(pkmFileOpen.FileName, file.Extension.ToLower() == "ek6");
+                                    if (pkm.SpeciesID != 0)
+                                    {
+                                        PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
+                                        ppkm.PokemonData = pkm;
+                                        sav.SetPartyPokemon(ppkm, slot);
+                                        UpdateParty();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (pb.Name.Contains("Box"))
+                    {
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        slot--;
+                        pkmFileOpen.FileName = "";
+                        if (pkmFileOpen.ShowDialog() != DialogResult.Cancel)
+                        {
+                            if (pkmFileOpen.FileName != "")
+                            {
+                                if (System.IO.File.Exists(pkmFileOpen.FileName))
+                                {
+                                    System.IO.FileInfo file = new System.IO.FileInfo(pkmFileOpen.FileName);
+                                    pkm = PKMDS.ReadPokemonFile(pkmFileOpen.FileName, file.Extension.ToLower() == "ek6");
+                                    if (pkm.SpeciesID != 0)
+                                    {
+                                        sav.SetStoredPokemon(pkm, sav.CurrentBox, slot);
+                                        UpdateBox();
+                                        UpdateBoxGrid(sav.CurrentBox);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void exportToFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripItem menuItem = sender as ToolStripItem;
+            if (menuItem != null)
+            {
+                ContextMenuStrip owner = menuItem.Owner as ContextMenuStrip;
+                if (owner != null)
+                {
+                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+                    int slot = 0;
+                    PictureBox pb = (PictureBox)(owner.SourceControl);
+                    if (pb.Name.Contains("Party"))
+                    {
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        slot--;
+                        pkm = sav.GetPartyPokemon(slot).PokemonData;
+                    }
+                    if (pb.Name.Contains("Box"))
+                    {
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        slot--;
+                        pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                    }
+                    if (pkm.SpeciesID == 0)
+                    {
+                        MessageBox.Show("Cannot export a null Pokemon!");
+                    }
+                    else
+                    {
+                        pkmFileSave.FileName = "";
+                        if (pkmFileSave.ShowDialog() != DialogResult.Cancel)
+                        {
+                            if (pkmFileSave.FileName != "")
+                            {
+                                System.IO.FileInfo file = new System.IO.FileInfo(pkmFileSave.FileName);
+                                pkm.WriteToFile(pkmFileSave.FileName, file.Extension.ToLower() == "ek6");
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
