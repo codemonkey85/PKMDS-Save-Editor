@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savesavToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileOpen = new System.Windows.Forms.OpenFileDialog();
-            this.fileSave = new System.Windows.Forms.SaveFileDialog();
+            this.SaveFileOpen = new System.Windows.Forms.OpenFileDialog();
+            this.SaveFileSave = new System.Windows.Forms.SaveFileDialog();
             this.tlParty = new System.Windows.Forms.TableLayoutPanel();
             this.pbPartySlot06 = new System.Windows.Forms.PictureBox();
             this.pbPartySlot05 = new System.Windows.Forms.PictureBox();
@@ -208,6 +209,12 @@
             this.lblLevel = new System.Windows.Forms.Label();
             this.pbGender = new System.Windows.Forms.PictureBox();
             this.pbBall = new System.Windows.Forms.PictureBox();
+            this.pkmFileOpen = new System.Windows.Forms.OpenFileDialog();
+            this.pkmFileSave = new System.Windows.Forms.SaveFileDialog();
+            this.BoxPartySlotContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.tlParty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot06)).BeginInit();
@@ -330,6 +337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBall)).BeginInit();
+            this.BoxPartySlotContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -366,13 +374,15 @@
             this.savesavToolStripMenuItem.Text = "Save .sav";
             this.savesavToolStripMenuItem.Click += new System.EventHandler(this.savesavToolStripMenuItem_Click);
             // 
-            // fileOpen
+            // SaveFileOpen
             // 
-            this.fileOpen.Filter = ".sav files|*.sav|All files|*.*";
+            this.SaveFileOpen.DefaultExt = "sav";
+            this.SaveFileOpen.Filter = ".sav files|*.sav|All files|*.*";
             // 
-            // fileSave
+            // SaveFileSave
             // 
-            this.fileSave.Filter = ".sav files|*.sav";
+            this.SaveFileSave.DefaultExt = "sav";
+            this.SaveFileSave.Filter = ".sav files|*.sav";
             // 
             // tlParty
             // 
@@ -400,6 +410,7 @@
             // 
             // pbPartySlot06
             // 
+            this.pbPartySlot06.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbPartySlot06.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbPartySlot06.Location = new System.Drawing.Point(160, 0);
             this.pbPartySlot06.Margin = new System.Windows.Forms.Padding(0);
@@ -418,6 +429,7 @@
             // 
             // pbPartySlot05
             // 
+            this.pbPartySlot05.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbPartySlot05.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbPartySlot05.Location = new System.Drawing.Point(128, 0);
             this.pbPartySlot05.Margin = new System.Windows.Forms.Padding(0);
@@ -436,6 +448,7 @@
             // 
             // pbPartySlot04
             // 
+            this.pbPartySlot04.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbPartySlot04.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbPartySlot04.Location = new System.Drawing.Point(96, 0);
             this.pbPartySlot04.Margin = new System.Windows.Forms.Padding(0);
@@ -454,6 +467,7 @@
             // 
             // pbPartySlot03
             // 
+            this.pbPartySlot03.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbPartySlot03.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbPartySlot03.Location = new System.Drawing.Point(64, 0);
             this.pbPartySlot03.Margin = new System.Windows.Forms.Padding(0);
@@ -472,6 +486,7 @@
             // 
             // pbPartySlot02
             // 
+            this.pbPartySlot02.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbPartySlot02.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbPartySlot02.Location = new System.Drawing.Point(32, 0);
             this.pbPartySlot02.Margin = new System.Windows.Forms.Padding(0);
@@ -490,6 +505,7 @@
             // 
             // pbPartySlot01
             // 
+            this.pbPartySlot01.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbPartySlot01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbPartySlot01.Location = new System.Drawing.Point(0, 0);
             this.pbPartySlot01.Margin = new System.Windows.Forms.Padding(0);
@@ -583,6 +599,7 @@
             // 
             // pbBoxSlot30
             // 
+            this.pbBoxSlot30.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot30.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot30.Location = new System.Drawing.Point(160, 128);
             this.pbBoxSlot30.Margin = new System.Windows.Forms.Padding(0);
@@ -601,6 +618,7 @@
             // 
             // pbBoxSlot29
             // 
+            this.pbBoxSlot29.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot29.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot29.Location = new System.Drawing.Point(128, 128);
             this.pbBoxSlot29.Margin = new System.Windows.Forms.Padding(0);
@@ -619,6 +637,7 @@
             // 
             // pbBoxSlot28
             // 
+            this.pbBoxSlot28.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot28.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot28.Location = new System.Drawing.Point(96, 128);
             this.pbBoxSlot28.Margin = new System.Windows.Forms.Padding(0);
@@ -637,6 +656,7 @@
             // 
             // pbBoxSlot27
             // 
+            this.pbBoxSlot27.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot27.Location = new System.Drawing.Point(64, 128);
             this.pbBoxSlot27.Margin = new System.Windows.Forms.Padding(0);
@@ -655,6 +675,7 @@
             // 
             // pbBoxSlot26
             // 
+            this.pbBoxSlot26.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot26.Location = new System.Drawing.Point(32, 128);
             this.pbBoxSlot26.Margin = new System.Windows.Forms.Padding(0);
@@ -673,6 +694,7 @@
             // 
             // pbBoxSlot25
             // 
+            this.pbBoxSlot25.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot25.Location = new System.Drawing.Point(0, 128);
             this.pbBoxSlot25.Margin = new System.Windows.Forms.Padding(0);
@@ -691,6 +713,7 @@
             // 
             // pbBoxSlot24
             // 
+            this.pbBoxSlot24.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot24.Location = new System.Drawing.Point(160, 96);
             this.pbBoxSlot24.Margin = new System.Windows.Forms.Padding(0);
@@ -709,6 +732,7 @@
             // 
             // pbBoxSlot23
             // 
+            this.pbBoxSlot23.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot23.Location = new System.Drawing.Point(128, 96);
             this.pbBoxSlot23.Margin = new System.Windows.Forms.Padding(0);
@@ -727,6 +751,7 @@
             // 
             // pbBoxSlot22
             // 
+            this.pbBoxSlot22.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot22.Location = new System.Drawing.Point(96, 96);
             this.pbBoxSlot22.Margin = new System.Windows.Forms.Padding(0);
@@ -745,6 +770,7 @@
             // 
             // pbBoxSlot21
             // 
+            this.pbBoxSlot21.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot21.Location = new System.Drawing.Point(64, 96);
             this.pbBoxSlot21.Margin = new System.Windows.Forms.Padding(0);
@@ -763,6 +789,7 @@
             // 
             // pbBoxSlot20
             // 
+            this.pbBoxSlot20.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot20.Location = new System.Drawing.Point(32, 96);
             this.pbBoxSlot20.Margin = new System.Windows.Forms.Padding(0);
@@ -781,6 +808,7 @@
             // 
             // pbBoxSlot19
             // 
+            this.pbBoxSlot19.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot19.Location = new System.Drawing.Point(0, 96);
             this.pbBoxSlot19.Margin = new System.Windows.Forms.Padding(0);
@@ -799,6 +827,7 @@
             // 
             // pbBoxSlot18
             // 
+            this.pbBoxSlot18.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot18.Location = new System.Drawing.Point(160, 64);
             this.pbBoxSlot18.Margin = new System.Windows.Forms.Padding(0);
@@ -817,6 +846,7 @@
             // 
             // pbBoxSlot17
             // 
+            this.pbBoxSlot17.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot17.Location = new System.Drawing.Point(128, 64);
             this.pbBoxSlot17.Margin = new System.Windows.Forms.Padding(0);
@@ -835,6 +865,7 @@
             // 
             // pbBoxSlot16
             // 
+            this.pbBoxSlot16.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot16.Location = new System.Drawing.Point(96, 64);
             this.pbBoxSlot16.Margin = new System.Windows.Forms.Padding(0);
@@ -853,6 +884,7 @@
             // 
             // pbBoxSlot15
             // 
+            this.pbBoxSlot15.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot15.Location = new System.Drawing.Point(64, 64);
             this.pbBoxSlot15.Margin = new System.Windows.Forms.Padding(0);
@@ -871,6 +903,7 @@
             // 
             // pbBoxSlot14
             // 
+            this.pbBoxSlot14.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot14.Location = new System.Drawing.Point(32, 64);
             this.pbBoxSlot14.Margin = new System.Windows.Forms.Padding(0);
@@ -889,6 +922,7 @@
             // 
             // pbBoxSlot13
             // 
+            this.pbBoxSlot13.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot13.Location = new System.Drawing.Point(0, 64);
             this.pbBoxSlot13.Margin = new System.Windows.Forms.Padding(0);
@@ -907,6 +941,7 @@
             // 
             // pbBoxSlot12
             // 
+            this.pbBoxSlot12.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot12.Location = new System.Drawing.Point(160, 32);
             this.pbBoxSlot12.Margin = new System.Windows.Forms.Padding(0);
@@ -925,6 +960,7 @@
             // 
             // pbBoxSlot11
             // 
+            this.pbBoxSlot11.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot11.Location = new System.Drawing.Point(128, 32);
             this.pbBoxSlot11.Margin = new System.Windows.Forms.Padding(0);
@@ -943,6 +979,7 @@
             // 
             // pbBoxSlot10
             // 
+            this.pbBoxSlot10.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot10.Location = new System.Drawing.Point(96, 32);
             this.pbBoxSlot10.Margin = new System.Windows.Forms.Padding(0);
@@ -961,6 +998,7 @@
             // 
             // pbBoxSlot01
             // 
+            this.pbBoxSlot01.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot01.Location = new System.Drawing.Point(0, 0);
             this.pbBoxSlot01.Margin = new System.Windows.Forms.Padding(0);
@@ -979,6 +1017,7 @@
             // 
             // pbBoxSlot09
             // 
+            this.pbBoxSlot09.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot09.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot09.Location = new System.Drawing.Point(64, 32);
             this.pbBoxSlot09.Margin = new System.Windows.Forms.Padding(0);
@@ -997,6 +1036,7 @@
             // 
             // pbBoxSlot08
             // 
+            this.pbBoxSlot08.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot08.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot08.Location = new System.Drawing.Point(32, 32);
             this.pbBoxSlot08.Margin = new System.Windows.Forms.Padding(0);
@@ -1015,6 +1055,7 @@
             // 
             // pbBoxSlot02
             // 
+            this.pbBoxSlot02.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot02.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot02.Location = new System.Drawing.Point(32, 0);
             this.pbBoxSlot02.Margin = new System.Windows.Forms.Padding(0);
@@ -1033,6 +1074,7 @@
             // 
             // pbBoxSlot06
             // 
+            this.pbBoxSlot06.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot06.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot06.Location = new System.Drawing.Point(160, 0);
             this.pbBoxSlot06.Margin = new System.Windows.Forms.Padding(0);
@@ -1051,6 +1093,7 @@
             // 
             // pbBoxSlot07
             // 
+            this.pbBoxSlot07.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot07.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot07.Location = new System.Drawing.Point(0, 32);
             this.pbBoxSlot07.Margin = new System.Windows.Forms.Padding(0);
@@ -1069,6 +1112,7 @@
             // 
             // pbBoxSlot03
             // 
+            this.pbBoxSlot03.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot03.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot03.Location = new System.Drawing.Point(64, 0);
             this.pbBoxSlot03.Margin = new System.Windows.Forms.Padding(0);
@@ -1087,6 +1131,7 @@
             // 
             // pbBoxSlot04
             // 
+            this.pbBoxSlot04.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot04.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot04.Location = new System.Drawing.Point(96, 0);
             this.pbBoxSlot04.Margin = new System.Windows.Forms.Padding(0);
@@ -1105,6 +1150,7 @@
             // 
             // pbBoxSlot05
             // 
+            this.pbBoxSlot05.ContextMenuStrip = this.BoxPartySlotContext;
             this.pbBoxSlot05.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbBoxSlot05.Location = new System.Drawing.Point(128, 0);
             this.pbBoxSlot05.Margin = new System.Windows.Forms.Padding(0);
@@ -2865,6 +2911,47 @@
             this.pbBall.TabIndex = 15;
             this.pbBall.TabStop = false;
             // 
+            // pkmFileOpen
+            // 
+            this.pkmFileOpen.DefaultExt = "pk5";
+            this.pkmFileOpen.Filter = ".pk5 files|*.pk5|.ek5 files|*.ek5|All files|*.*";
+            // 
+            // pkmFileSave
+            // 
+            this.pkmFileSave.DefaultExt = "pk5";
+            this.pkmFileSave.Filter = ".pk5 files|*.pk5|.ek5 files|*.ek5";
+            // 
+            // BoxPartySlotContext
+            // 
+            this.BoxPartySlotContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.loadFromFileToolStripMenuItem,
+            this.exportToFileToolStripMenuItem});
+            this.BoxPartySlotContext.Name = "BoxPartySlotContext";
+            this.BoxPartySlotContext.ShowImageMargin = false;
+            this.BoxPartySlotContext.Size = new System.Drawing.Size(124, 70);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // loadFromFileToolStripMenuItem
+            // 
+            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
+            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.loadFromFileToolStripMenuItem.Text = "Load from file";
+            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
+            // 
+            // exportToFileToolStripMenuItem
+            // 
+            this.exportToFileToolStripMenuItem.Name = "exportToFileToolStripMenuItem";
+            this.exportToFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.exportToFileToolStripMenuItem.Text = "Export to file";
+            this.exportToFileToolStripMenuItem.Click += new System.EventHandler(this.exportToFileToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3013,6 +3100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBall)).EndInit();
+            this.BoxPartySlotContext.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3023,8 +3111,8 @@
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadSaveToolStripMenuItem;
-        private System.Windows.Forms.OpenFileDialog fileOpen;
-        private System.Windows.Forms.SaveFileDialog fileSave;
+        private System.Windows.Forms.OpenFileDialog SaveFileOpen;
+        private System.Windows.Forms.SaveFileDialog SaveFileSave;
         private System.Windows.Forms.ToolStripMenuItem savesavToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tlParty;
         private System.Windows.Forms.Panel pnlParty;
@@ -3199,6 +3287,12 @@
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.PictureBox pbGender;
         private System.Windows.Forms.PictureBox pbBall;
+        private System.Windows.Forms.OpenFileDialog pkmFileOpen;
+        private System.Windows.Forms.SaveFileDialog pkmFileSave;
+        private System.Windows.Forms.ContextMenuStrip BoxPartySlotContext;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadFromFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToFileToolStripMenuItem;
     }
 }
 
