@@ -201,6 +201,13 @@
             this.lblBoxGrid01 = new System.Windows.Forms.Label();
             this.pbBoxGrid01 = new System.Windows.Forms.PictureBox();
             this.lblPartySize = new System.Windows.Forms.Label();
+            this.pbSprite = new System.Windows.Forms.PictureBox();
+            this.lblNickname = new System.Windows.Forms.Label();
+            this.pbHeldItem = new System.Windows.Forms.PictureBox();
+            this.lblHeldItem = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.pbGender = new System.Windows.Forms.PictureBox();
+            this.pbBall = new System.Windows.Forms.PictureBox();
             this.mainMenu.SuspendLayout();
             this.tlParty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot06)).BeginInit();
@@ -319,6 +326,10 @@
             this.pnlBoxGrid01.SuspendLayout();
             this.tlBoxGrid01.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBoxGrid01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBall)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -2781,11 +2792,91 @@
             this.lblPartySize.Size = new System.Drawing.Size(0, 13);
             this.lblPartySize.TabIndex = 8;
             // 
+            // pbSprite
+            // 
+            this.pbSprite.Location = new System.Drawing.Point(0, 255);
+            this.pbSprite.Margin = new System.Windows.Forms.Padding(0);
+            this.pbSprite.Name = "pbSprite";
+            this.pbSprite.Size = new System.Drawing.Size(100, 100);
+            this.pbSprite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbSprite.TabIndex = 9;
+            this.pbSprite.TabStop = false;
+            // 
+            // lblNickname
+            // 
+            this.lblNickname.AutoSize = true;
+            this.lblNickname.Location = new System.Drawing.Point(100, 277);
+            this.lblNickname.Margin = new System.Windows.Forms.Padding(0);
+            this.lblNickname.Name = "lblNickname";
+            this.lblNickname.Size = new System.Drawing.Size(35, 13);
+            this.lblNickname.TabIndex = 10;
+            this.lblNickname.Text = "TEST";
+            this.lblNickname.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbHeldItem
+            // 
+            this.pbHeldItem.Location = new System.Drawing.Point(103, 308);
+            this.pbHeldItem.Margin = new System.Windows.Forms.Padding(0);
+            this.pbHeldItem.Name = "pbHeldItem";
+            this.pbHeldItem.Size = new System.Drawing.Size(25, 25);
+            this.pbHeldItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbHeldItem.TabIndex = 11;
+            this.pbHeldItem.TabStop = false;
+            // 
+            // lblHeldItem
+            // 
+            this.lblHeldItem.AutoSize = true;
+            this.lblHeldItem.Location = new System.Drawing.Point(100, 333);
+            this.lblHeldItem.Margin = new System.Windows.Forms.Padding(0);
+            this.lblHeldItem.Name = "lblHeldItem";
+            this.lblHeldItem.Size = new System.Drawing.Size(35, 13);
+            this.lblHeldItem.TabIndex = 12;
+            this.lblHeldItem.Text = "TEST";
+            this.lblHeldItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblLevel
+            // 
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.Location = new System.Drawing.Point(100, 295);
+            this.lblLevel.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(35, 13);
+            this.lblLevel.TabIndex = 13;
+            this.lblLevel.Text = "TEST";
+            this.lblLevel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pbGender
+            // 
+            this.pbGender.Location = new System.Drawing.Point(123, 255);
+            this.pbGender.Margin = new System.Windows.Forms.Padding(0);
+            this.pbGender.Name = "pbGender";
+            this.pbGender.Size = new System.Drawing.Size(16, 16);
+            this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbGender.TabIndex = 14;
+            this.pbGender.TabStop = false;
+            // 
+            // pbBall
+            // 
+            this.pbBall.Location = new System.Drawing.Point(103, 255);
+            this.pbBall.Margin = new System.Windows.Forms.Padding(0);
+            this.pbBall.Name = "pbBall";
+            this.pbBall.Size = new System.Drawing.Size(20, 20);
+            this.pbBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbBall.TabIndex = 15;
+            this.pbBall.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 262);
+            this.ClientSize = new System.Drawing.Size(381, 355);
+            this.Controls.Add(this.lblNickname);
+            this.Controls.Add(this.pbBall);
+            this.Controls.Add(this.lblHeldItem);
+            this.Controls.Add(this.pbGender);
+            this.Controls.Add(this.lblLevel);
+            this.Controls.Add(this.pbHeldItem);
+            this.Controls.Add(this.pbSprite);
             this.Controls.Add(this.lblPartySize);
             this.Controls.Add(this.splitMain);
             this.Controls.Add(this.mainMenu);
@@ -2918,6 +3009,10 @@
             this.pnlBoxGrid01.ResumeLayout(false);
             this.tlBoxGrid01.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbBoxGrid01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSprite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3097,6 +3192,13 @@
         private System.Windows.Forms.Label lblBoxCount02;
         private System.Windows.Forms.Label lblBoxCount01;
         private System.Windows.Forms.Label lblPartySize;
+        private System.Windows.Forms.PictureBox pbSprite;
+        private System.Windows.Forms.Label lblNickname;
+        private System.Windows.Forms.PictureBox pbHeldItem;
+        private System.Windows.Forms.Label lblHeldItem;
+        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.PictureBox pbGender;
+        private System.Windows.Forms.PictureBox pbBall;
     }
 }
 
