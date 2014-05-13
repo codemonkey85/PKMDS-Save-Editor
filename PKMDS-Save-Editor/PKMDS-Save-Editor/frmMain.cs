@@ -348,11 +348,27 @@ namespace PKMDS_Save_Editor
             }
             if (argfilename != "")
             {
-                uiset = false;
-                savefile = argfilename;
-                sav = PKMDS.ReadSaveFile(savefile);
-                SetSaveFile();
-                uiset = true;
+                try
+                {
+                    savefile = argfilename;
+                    tempsav = PKMDS.ReadSaveFile(savefile);
+                    string message = "";
+                    if (!tempsav.Validate(out message))
+                    {
+                        throw new Exception(message);
+                    }
+                    savesavToolStripMenuItem.Enabled = false;
+                    uiset = false;
+                    sav = tempsav;
+                    SetSaveFile();
+                    uiset = true;
+                    savesavToolStripMenuItem.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
         }
         private void txtBoxName_TextChanged(object sender, EventArgs e)
