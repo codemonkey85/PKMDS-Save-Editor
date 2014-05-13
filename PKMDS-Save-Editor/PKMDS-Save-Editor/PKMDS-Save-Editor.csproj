@@ -105,6 +105,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dna-splicers.ico" />
+    <None Include="spot_4.png" />
+    <None Include="spot_3.png" />
+    <None Include="spot_2.png" />
+    <None Include="spot_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

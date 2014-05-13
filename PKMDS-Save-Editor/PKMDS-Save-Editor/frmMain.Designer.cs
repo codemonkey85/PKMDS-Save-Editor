@@ -343,14 +343,15 @@
             // loadSaveToolStripMenuItem
             // 
             this.loadSaveToolStripMenuItem.Name = "loadSaveToolStripMenuItem";
-            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.loadSaveToolStripMenuItem.Text = "Load .sav";
             this.loadSaveToolStripMenuItem.Click += new System.EventHandler(this.loadSaveToolStripMenuItem_Click);
             // 
             // savesavToolStripMenuItem
             // 
+            this.savesavToolStripMenuItem.Enabled = false;
             this.savesavToolStripMenuItem.Name = "savesavToolStripMenuItem";
-            this.savesavToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.savesavToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.savesavToolStripMenuItem.Text = "Save .sav";
             this.savesavToolStripMenuItem.Click += new System.EventHandler(this.savesavToolStripMenuItem_Click);
             // 
