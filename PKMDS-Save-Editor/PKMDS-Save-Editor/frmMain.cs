@@ -20,6 +20,7 @@ namespace PKMDS_Save_Editor
         string title = "";
         private string savefile = "";
         PKMDS.Save sav = new PKMDS.Save();
+        PKMDS.Save tempsav = new PKMDS.Save();
         PKMDS.Pokemon pkm_from = new PKMDS.Pokemon();
         PKMDS.Pokemon pkm_to = new PKMDS.Pokemon();
         frmPKMViewer pkmviewer = new frmPKMViewer();
@@ -45,11 +46,27 @@ namespace PKMDS_Save_Editor
             {
                 if (fileOpen.FileName != "")
                 {
-                    uiset = false;
-                    savefile = fileOpen.FileName;
-                    sav = PKMDS.ReadSaveFile(savefile);
-                    SetSaveFile();
-                    uiset = true;
+                    try
+                    {
+                        savefile = fileOpen.FileName;
+                        tempsav = PKMDS.ReadSaveFile(savefile);
+                        string message = "";
+                        if (!tempsav.Validate(out message))
+                        {
+                            throw new Exception(message);
+                        }
+                        savesavToolStripMenuItem.Enabled = false;
+                        uiset = false;
+                        sav = tempsav;
+                        SetSaveFile();
+                        uiset = true;
+                        savesavToolStripMenuItem.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                    }
                 }
             }
         }
@@ -355,6 +372,11 @@ namespace PKMDS_Save_Editor
             btnNextBox.Enabled = (sav.CurrentBox != 23);
             splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
             splitMain.Panel2.PerformLayout();
+            foreach (Panel pan in boxPanels)
+            {
+                pan.BorderStyle = BorderStyle.None;
+            }
+            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
         }
         private void btnNextBox_Click(object sender, EventArgs e)
         {
@@ -366,6 +388,11 @@ namespace PKMDS_Save_Editor
             btnNextBox.Enabled = (sav.CurrentBox != 23);
             splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
             splitMain.Panel2.PerformLayout();
+            foreach (Panel pan in boxPanels)
+            {
+                pan.BorderStyle = BorderStyle.None;
+            }
+            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
         }
         private void pbSlot_DoubleClick(object sender, EventArgs e)
         {

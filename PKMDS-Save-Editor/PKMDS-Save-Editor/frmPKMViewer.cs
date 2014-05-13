@@ -123,6 +123,7 @@ namespace PKMDS_Save_Editor
         private void UpdateBall()
         {
             pbBall.Image = TempPokemon.BallPic;
+            cbBall.SelectedValue = TempPokemon.BallID;
         }
         private void UpdatePokerus()
         {
