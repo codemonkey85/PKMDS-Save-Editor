@@ -151,7 +151,7 @@ namespace PKMDS_Save_Editor
                     cbForm.SelectedIndex = -1;
                     cbForm.Text = "";
                 }
-                else 
+                else
                 {
                     cbForm.SelectedIndex = TempPokemon.FormID;
                 }
@@ -383,9 +383,23 @@ namespace PKMDS_Save_Editor
             UInt16 moveid = TempPokemon.GetMoveIDs[0];
             cbMove1.SelectedValue = moveid;
             PKMDS.Move move = (PKMDS.Move)(cbMove1.SelectedItem);
-            lblMove1Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
             lblMove1Flavor.Text = move.MoveFlavor;
-            lblMove1Power.Text = move.MovePower.ToString();
+            if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
+            {
+                lblMove1Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+            }
+            else
+            {
+                lblMove1Accuracy.Text = "-";
+            }
+            if ((move.MovePower != 0) && (move.MovePower != 1))
+            {
+                lblMove1Power.Text = move.MovePower.ToString();
+            }
+            else
+            {
+                lblMove1Power.Text = "-";
+            }
             numMove1PP.Value = TempPokemon.GetMovePP(0);
             numMove1PPUps.Value = TempPokemon.GetMovePPUp(0);
             txtMove1MaxPP.Text = (move.MoveBasePP + (numMove1PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -416,9 +430,23 @@ namespace PKMDS_Save_Editor
                 numMove2PPUps.Enabled = true;
                 numMove2PP.Enabled = true;
                 PKMDS.Move move = (PKMDS.Move)(cbMove2.SelectedItem);
-                lblMove2Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
                 lblMove2Flavor.Text = move.MoveFlavor;
-                lblMove2Power.Text = move.MovePower.ToString();
+                if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
+                {
+                    lblMove2Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+                }
+                else
+                {
+                    lblMove2Accuracy.Text = "-";
+                }
+                if ((move.MovePower != 0) && (move.MovePower != 1))
+                {
+                    lblMove2Power.Text = move.MovePower.ToString();
+                }
+                else
+                {
+                    lblMove2Power.Text = "-";
+                }
                 numMove2PP.Value = TempPokemon.GetMovePP(1);
                 numMove2PPUps.Value = TempPokemon.GetMovePPUp(1);
                 txtMove2MaxPP.Text = (move.MoveBasePP + (numMove2PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -450,9 +478,23 @@ namespace PKMDS_Save_Editor
                 numMove3PPUps.Enabled = true;
                 numMove3PP.Enabled = true;
                 PKMDS.Move move = (PKMDS.Move)(cbMove3.SelectedItem);
-                lblMove3Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
                 lblMove3Flavor.Text = move.MoveFlavor;
-                lblMove3Power.Text = move.MovePower.ToString();
+                if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
+                {
+                    lblMove3Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+                }
+                else
+                {
+                    lblMove3Accuracy.Text = "-";
+                }
+                if ((move.MovePower != 0) && (move.MovePower != 1))
+                {
+                    lblMove3Power.Text = move.MovePower.ToString();
+                }
+                else
+                {
+                    lblMove3Power.Text = "-";
+                }
                 numMove3PP.Value = TempPokemon.GetMovePP(2);
                 numMove3PPUps.Value = TempPokemon.GetMovePPUp(2);
                 txtMove3MaxPP.Text = (move.MoveBasePP + (numMove3PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -484,9 +526,23 @@ namespace PKMDS_Save_Editor
                 numMove4PPUps.Enabled = true;
                 numMove4PP.Enabled = true;
                 PKMDS.Move move = (PKMDS.Move)(cbMove4.SelectedItem);
-                lblMove4Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
                 lblMove4Flavor.Text = move.MoveFlavor;
-                lblMove4Power.Text = move.MovePower.ToString();
+                if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
+                {
+                    lblMove4Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
+                }
+                else
+                {
+                    lblMove4Accuracy.Text = "-";
+                }
+                if ((move.MovePower != 0) && (move.MovePower != 1))
+                {
+                    lblMove4Power.Text = move.MovePower.ToString();
+                }
+                else
+                {
+                    lblMove4Power.Text = "-";
+                }
                 numMove4PP.Value = TempPokemon.GetMovePP(3);
                 numMove4PPUps.Value = TempPokemon.GetMovePPUp(3);
                 txtMove4MaxPP.Text = (move.MoveBasePP + (numMove4PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -1010,7 +1066,7 @@ namespace PKMDS_Save_Editor
                     TempPokemon.SpeciesID = (UInt16)(cbSpecies.SelectedValue);
                     numSpecies.Value = (Decimal)(TempPokemon.SpeciesID);
                     UpdateForm();
-                    if (!cbForm.Enabled) 
+                    if (!cbForm.Enabled)
                     {
                         TempPokemon.FormID = 0;
                     }
