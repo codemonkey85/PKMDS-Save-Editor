@@ -38,6 +38,10 @@
             this.SaveFileSave = new System.Windows.Forms.SaveFileDialog();
             this.tlParty = new System.Windows.Forms.TableLayoutPanel();
             this.pbPartySlot06 = new System.Windows.Forms.PictureBox();
+            this.BoxPartySlotContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbPartySlot05 = new System.Windows.Forms.PictureBox();
             this.pbPartySlot04 = new System.Windows.Forms.PictureBox();
             this.pbPartySlot03 = new System.Windows.Forms.PictureBox();
@@ -211,13 +215,11 @@
             this.pbBall = new System.Windows.Forms.PictureBox();
             this.pkmFileOpen = new System.Windows.Forms.OpenFileDialog();
             this.pkmFileSave = new System.Windows.Forms.SaveFileDialog();
-            this.BoxPartySlotContext = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbShiny = new System.Windows.Forms.PictureBox();
             this.mainMenu.SuspendLayout();
             this.tlParty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot06)).BeginInit();
+            this.BoxPartySlotContext.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot05)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot04)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot03)).BeginInit();
@@ -337,7 +339,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBall)).BeginInit();
-            this.BoxPartySlotContext.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShiny)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -362,7 +364,7 @@
             // loadSaveToolStripMenuItem
             // 
             this.loadSaveToolStripMenuItem.Name = "loadSaveToolStripMenuItem";
-            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.loadSaveToolStripMenuItem.Text = "Load .sav";
             this.loadSaveToolStripMenuItem.Click += new System.EventHandler(this.loadSaveToolStripMenuItem_Click);
             // 
@@ -370,7 +372,7 @@
             // 
             this.savesavToolStripMenuItem.Enabled = false;
             this.savesavToolStripMenuItem.Name = "savesavToolStripMenuItem";
-            this.savesavToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.savesavToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.savesavToolStripMenuItem.Text = "Save .sav";
             this.savesavToolStripMenuItem.Click += new System.EventHandler(this.savesavToolStripMenuItem_Click);
             // 
@@ -426,6 +428,37 @@
             this.pbPartySlot06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbPartySlot06.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbPartySlot06.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            // 
+            // BoxPartySlotContext
+            // 
+            this.BoxPartySlotContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.loadFromFileToolStripMenuItem,
+            this.exportToFileToolStripMenuItem});
+            this.BoxPartySlotContext.Name = "BoxPartySlotContext";
+            this.BoxPartySlotContext.ShowImageMargin = false;
+            this.BoxPartySlotContext.Size = new System.Drawing.Size(124, 70);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // loadFromFileToolStripMenuItem
+            // 
+            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
+            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.loadFromFileToolStripMenuItem.Text = "Load from file";
+            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
+            // 
+            // exportToFileToolStripMenuItem
+            // 
+            this.exportToFileToolStripMenuItem.Name = "exportToFileToolStripMenuItem";
+            this.exportToFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.exportToFileToolStripMenuItem.Text = "Export to file";
+            this.exportToFileToolStripMenuItem.Click += new System.EventHandler(this.exportToFileToolStripMenuItem_Click);
             // 
             // pbPartySlot05
             // 
@@ -2921,42 +2954,22 @@
             this.pkmFileSave.DefaultExt = "pk5";
             this.pkmFileSave.Filter = ".pk5 files|*.pk5|.ek5 files|*.ek5";
             // 
-            // BoxPartySlotContext
+            // pbShiny
             // 
-            this.BoxPartySlotContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.loadFromFileToolStripMenuItem,
-            this.exportToFileToolStripMenuItem});
-            this.BoxPartySlotContext.Name = "BoxPartySlotContext";
-            this.BoxPartySlotContext.ShowImageMargin = false;
-            this.BoxPartySlotContext.Size = new System.Drawing.Size(124, 70);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // loadFromFileToolStripMenuItem
-            // 
-            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
-            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.loadFromFileToolStripMenuItem.Text = "Load from file";
-            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
-            // 
-            // exportToFileToolStripMenuItem
-            // 
-            this.exportToFileToolStripMenuItem.Name = "exportToFileToolStripMenuItem";
-            this.exportToFileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.exportToFileToolStripMenuItem.Text = "Export to file";
-            this.exportToFileToolStripMenuItem.Click += new System.EventHandler(this.exportToFileToolStripMenuItem_Click);
+            this.pbShiny.Location = new System.Drawing.Point(139, 255);
+            this.pbShiny.Margin = new System.Windows.Forms.Padding(0);
+            this.pbShiny.Name = "pbShiny";
+            this.pbShiny.Size = new System.Drawing.Size(16, 16);
+            this.pbShiny.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbShiny.TabIndex = 16;
+            this.pbShiny.TabStop = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 355);
+            this.Controls.Add(this.pbShiny);
             this.Controls.Add(this.lblNickname);
             this.Controls.Add(this.pbBall);
             this.Controls.Add(this.lblHeldItem);
@@ -2980,6 +2993,7 @@
             this.mainMenu.PerformLayout();
             this.tlParty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot06)).EndInit();
+            this.BoxPartySlotContext.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot05)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot04)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot03)).EndInit();
@@ -3100,7 +3114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeldItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBall)).EndInit();
-            this.BoxPartySlotContext.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbShiny)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3293,6 +3307,7 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadFromFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToFileToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pbShiny;
     }
 }
 

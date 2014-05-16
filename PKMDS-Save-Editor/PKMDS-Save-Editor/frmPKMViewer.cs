@@ -19,8 +19,8 @@ namespace PKMDS_Save_Editor
         //private bool IsParty = false;
         public frmPKMViewer()
         {
-            PKMDS.OpenDB(Properties.Settings.Default.veekunpokedex);
-            PKMDS.OpenImgDB(Properties.Settings.Default.imagedb);
+            PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
+            PKMDS.SQL.OpenImgDB(Properties.Settings.Default.imagedb);
             InitializeComponent();
             SetUI();
         }
@@ -55,6 +55,7 @@ namespace PKMDS_Save_Editor
         }
         private void DisplayPokemon(PKMDS.Pokemon pkm)
         {
+            UpdateFormIcon();
             UpdateCommonInfo();
             UpdateBasicInfo();
             UpdateStatsInfo();
@@ -77,6 +78,12 @@ namespace PKMDS_Save_Editor
             //pbPokerus.Image = null;
             cbForm.Items.Clear();
             cbForm.Text = "";
+        }
+
+        private void UpdateFormIcon()
+        {
+            System.Drawing.Bitmap icon = (System.Drawing.Bitmap)(TempPokemon.Icon);
+            this.Icon = Icon.FromHandle(icon.GetHicon());
         }
 
         #region UpdateCommonInfo
@@ -1071,6 +1078,7 @@ namespace PKMDS_Save_Editor
                         TempPokemon.FormID = 0;
                     }
                     UpdateSprite();
+                    UpdateFormIcon();
                     UpdateTypes();
                     UpdateGenderPic();
                     UISet = false;
@@ -1094,6 +1102,7 @@ namespace PKMDS_Save_Editor
             {
                 TempPokemon.FormID = (Byte)(cbForm.SelectedIndex);
                 UpdateSprite();
+                UpdateFormIcon();
                 UpdateTypes();
                 UpdateCalculatedStats();
                 CheckApplyButton();
@@ -1505,6 +1514,7 @@ namespace PKMDS_Save_Editor
                 cbEggLocation.SelectedIndex = 0;
                 dtEggDate.Value = System.DateTime.Today;
                 UpdateSprite();
+                UpdateFormIcon();
                 CheckApplyButton();
             }
         }
