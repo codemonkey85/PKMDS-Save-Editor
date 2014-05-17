@@ -11,6 +11,13 @@ namespace PKMDS_Save_Editor
 {
     public partial class frmMain : Form
     {
+        private enum Mode
+        {
+            Single,
+            Group,
+            Item
+        }
+        private Mode mode;
         private List<PictureBox> partyPics = new List<PictureBox>();
         private List<PictureBox> boxPics = new List<PictureBox>();
         private List<PictureBox> boxGridPics = new List<PictureBox>();
@@ -108,6 +115,7 @@ namespace PKMDS_Save_Editor
             btnNextBox.Enabled = (sav.CurrentBox != 23);
             txtBoxName.Enabled = true;
             splitMain.Panel2.Enabled = true;
+            gbMode.Enabled = true;
             UpdateParty();
             UpdateBox();
             UpdateBoxWallpaper();
@@ -144,18 +152,23 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateBox()
         {
-            PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
-            for (int boxSlot = 0; boxSlot < 30; boxSlot++)
+            switch (mode)
             {
-                pokemon = sav.GetStoredPokemon(sav.CurrentBox, boxSlot);
-                if (pokemon.SpeciesID != 0)
-                {
-                    boxPics[boxSlot].Image = pokemon.Icon;
-                }
-                else
-                {
-                    boxPics[boxSlot].Image = null;
-                }
+                case Mode.Single:
+                    PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
+                    for (int boxSlot = 0; boxSlot < 30; boxSlot++)
+                    {
+                        pokemon = sav.GetStoredPokemon(sav.CurrentBox, boxSlot);
+                        if (pokemon.SpeciesID != 0)
+                        {
+                            boxPics[boxSlot].Image = pokemon.Icon;
+                        }
+                        else
+                        {
+                            boxPics[boxSlot].Image = null;
+                        }
+                    }
+                    break;
             }
         }
         private void UpdateBoxWallpaper()
@@ -958,6 +971,32 @@ namespace PKMDS_Save_Editor
                         }
                     }
                 }
+            }
+        }
+        private void rbSingle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (uiset)
+            {
+                mode = Mode.Single;
+                UpdateBox();
+            }
+        }
+        private void rbGroup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (uiset)
+            {
+                mode = Mode.Group;
+                UpdateBox();
+                // TODO: group Pokemon sorting
+
+            }
+        }
+        private void rbItems_CheckedChanged(object sender, EventArgs e)
+        {
+            if (uiset)
+            {
+                mode = Mode.Item;
+                UpdateBox();
             }
         }
     }

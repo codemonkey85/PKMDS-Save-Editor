@@ -216,6 +216,10 @@
             this.pkmFileOpen = new System.Windows.Forms.OpenFileDialog();
             this.pkmFileSave = new System.Windows.Forms.SaveFileDialog();
             this.pbShiny = new System.Windows.Forms.PictureBox();
+            this.gbMode = new System.Windows.Forms.GroupBox();
+            this.rbSingle = new System.Windows.Forms.RadioButton();
+            this.rbGroup = new System.Windows.Forms.RadioButton();
+            this.rbItems = new System.Windows.Forms.RadioButton();
             this.mainMenu.SuspendLayout();
             this.tlParty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot06)).BeginInit();
@@ -340,6 +344,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShiny)).BeginInit();
+            this.gbMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -408,7 +413,7 @@
             this.tlParty.RowCount = 1;
             this.tlParty.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tlParty.Size = new System.Drawing.Size(192, 32);
-            this.tlParty.TabIndex = 1;
+            this.tlParty.TabIndex = 0;
             // 
             // pbPartySlot06
             // 
@@ -628,7 +633,7 @@
             this.tlBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tlBox.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tlBox.Size = new System.Drawing.Size(192, 160);
-            this.tlBox.TabIndex = 4;
+            this.tlBox.TabIndex = 0;
             // 
             // pbBoxSlot30
             // 
@@ -1208,7 +1213,7 @@
             this.txtBoxName.MaxLength = 8;
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(128, 20);
-            this.txtBoxName.TabIndex = 4;
+            this.txtBoxName.TabIndex = 1;
             this.txtBoxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBoxName.TextChanged += new System.EventHandler(this.txtBoxName_TextChanged);
             // 
@@ -1220,7 +1225,7 @@
             this.btnNextBox.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.btnNextBox.Name = "btnNextBox";
             this.btnNextBox.Size = new System.Drawing.Size(32, 20);
-            this.btnNextBox.TabIndex = 5;
+            this.btnNextBox.TabIndex = 2;
             this.btnNextBox.Text = "-->";
             this.btnNextBox.UseVisualStyleBackColor = true;
             this.btnNextBox.Click += new System.EventHandler(this.btnNextBox_Click);
@@ -1233,7 +1238,7 @@
             this.btnPreviousBox.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.btnPreviousBox.Name = "btnPreviousBox";
             this.btnPreviousBox.Size = new System.Drawing.Size(32, 20);
-            this.btnPreviousBox.TabIndex = 6;
+            this.btnPreviousBox.TabIndex = 0;
             this.btnPreviousBox.Text = "<--";
             this.btnPreviousBox.UseVisualStyleBackColor = true;
             this.btnPreviousBox.Click += new System.EventHandler(this.btnPreviousBox_Click);
@@ -1245,7 +1250,7 @@
             this.splitMain.Enabled = false;
             this.splitMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitMain.IsSplitterFixed = true;
-            this.splitMain.Location = new System.Drawing.Point(0, 37);
+            this.splitMain.Location = new System.Drawing.Point(9, 85);
             this.splitMain.Margin = new System.Windows.Forms.Padding(0);
             this.splitMain.Name = "splitMain";
             // 
@@ -1290,7 +1295,7 @@
             this.splitMain.Size = new System.Drawing.Size(363, 218);
             this.splitMain.SplitterDistance = 192;
             this.splitMain.SplitterWidth = 1;
-            this.splitMain.TabIndex = 7;
+            this.splitMain.TabIndex = 3;
             // 
             // lblBoxCount24
             // 
@@ -2866,14 +2871,15 @@
             // lblPartySize
             // 
             this.lblPartySize.AutoSize = true;
-            this.lblPartySize.Location = new System.Drawing.Point(12, 24);
+            this.lblPartySize.Location = new System.Drawing.Point(12, 72);
             this.lblPartySize.Name = "lblPartySize";
-            this.lblPartySize.Size = new System.Drawing.Size(0, 13);
-            this.lblPartySize.TabIndex = 8;
+            this.lblPartySize.Size = new System.Drawing.Size(35, 13);
+            this.lblPartySize.TabIndex = 2;
+            this.lblPartySize.Text = "TEST";
             // 
             // pbSprite
             // 
-            this.pbSprite.Location = new System.Drawing.Point(0, 255);
+            this.pbSprite.Location = new System.Drawing.Point(9, 303);
             this.pbSprite.Margin = new System.Windows.Forms.Padding(0);
             this.pbSprite.Name = "pbSprite";
             this.pbSprite.Size = new System.Drawing.Size(100, 100);
@@ -2884,7 +2890,7 @@
             // lblNickname
             // 
             this.lblNickname.AutoSize = true;
-            this.lblNickname.Location = new System.Drawing.Point(100, 277);
+            this.lblNickname.Location = new System.Drawing.Point(109, 325);
             this.lblNickname.Margin = new System.Windows.Forms.Padding(0);
             this.lblNickname.Name = "lblNickname";
             this.lblNickname.Size = new System.Drawing.Size(35, 13);
@@ -2894,7 +2900,7 @@
             // 
             // pbHeldItem
             // 
-            this.pbHeldItem.Location = new System.Drawing.Point(103, 308);
+            this.pbHeldItem.Location = new System.Drawing.Point(112, 356);
             this.pbHeldItem.Margin = new System.Windows.Forms.Padding(0);
             this.pbHeldItem.Name = "pbHeldItem";
             this.pbHeldItem.Size = new System.Drawing.Size(25, 25);
@@ -2905,7 +2911,7 @@
             // lblHeldItem
             // 
             this.lblHeldItem.AutoSize = true;
-            this.lblHeldItem.Location = new System.Drawing.Point(100, 333);
+            this.lblHeldItem.Location = new System.Drawing.Point(109, 381);
             this.lblHeldItem.Margin = new System.Windows.Forms.Padding(0);
             this.lblHeldItem.Name = "lblHeldItem";
             this.lblHeldItem.Size = new System.Drawing.Size(35, 13);
@@ -2916,7 +2922,7 @@
             // lblLevel
             // 
             this.lblLevel.AutoSize = true;
-            this.lblLevel.Location = new System.Drawing.Point(100, 295);
+            this.lblLevel.Location = new System.Drawing.Point(109, 343);
             this.lblLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(35, 13);
@@ -2926,7 +2932,7 @@
             // 
             // pbGender
             // 
-            this.pbGender.Location = new System.Drawing.Point(123, 255);
+            this.pbGender.Location = new System.Drawing.Point(132, 303);
             this.pbGender.Margin = new System.Windows.Forms.Padding(0);
             this.pbGender.Name = "pbGender";
             this.pbGender.Size = new System.Drawing.Size(16, 16);
@@ -2936,7 +2942,7 @@
             // 
             // pbBall
             // 
-            this.pbBall.Location = new System.Drawing.Point(103, 255);
+            this.pbBall.Location = new System.Drawing.Point(112, 303);
             this.pbBall.Margin = new System.Windows.Forms.Padding(0);
             this.pbBall.Name = "pbBall";
             this.pbBall.Size = new System.Drawing.Size(20, 20);
@@ -2956,7 +2962,7 @@
             // 
             // pbShiny
             // 
-            this.pbShiny.Location = new System.Drawing.Point(139, 255);
+            this.pbShiny.Location = new System.Drawing.Point(148, 303);
             this.pbShiny.Margin = new System.Windows.Forms.Padding(0);
             this.pbShiny.Name = "pbShiny";
             this.pbShiny.Size = new System.Drawing.Size(16, 16);
@@ -2964,11 +2970,62 @@
             this.pbShiny.TabIndex = 16;
             this.pbShiny.TabStop = false;
             // 
+            // gbMode
+            // 
+            this.gbMode.Controls.Add(this.rbItems);
+            this.gbMode.Controls.Add(this.rbGroup);
+            this.gbMode.Controls.Add(this.rbSingle);
+            this.gbMode.Enabled = false;
+            this.gbMode.Location = new System.Drawing.Point(12, 27);
+            this.gbMode.Name = "gbMode";
+            this.gbMode.Size = new System.Drawing.Size(182, 42);
+            this.gbMode.TabIndex = 1;
+            this.gbMode.TabStop = false;
+            this.gbMode.Text = "Mode";
+            // 
+            // rbSingle
+            // 
+            this.rbSingle.AutoSize = true;
+            this.rbSingle.Checked = true;
+            this.rbSingle.Location = new System.Drawing.Point(6, 19);
+            this.rbSingle.Name = "rbSingle";
+            this.rbSingle.Size = new System.Drawing.Size(54, 17);
+            this.rbSingle.TabIndex = 0;
+            this.rbSingle.TabStop = true;
+            this.rbSingle.Text = "Single";
+            this.rbSingle.UseVisualStyleBackColor = true;
+            this.rbSingle.CheckedChanged += new System.EventHandler(this.rbSingle_CheckedChanged);
+            // 
+            // rbGroup
+            // 
+            this.rbGroup.AutoSize = true;
+            this.rbGroup.Enabled = false;
+            this.rbGroup.Location = new System.Drawing.Point(66, 19);
+            this.rbGroup.Name = "rbGroup";
+            this.rbGroup.Size = new System.Drawing.Size(54, 17);
+            this.rbGroup.TabIndex = 1;
+            this.rbGroup.Text = "Group";
+            this.rbGroup.UseVisualStyleBackColor = true;
+            this.rbGroup.Visible = false;
+            this.rbGroup.CheckedChanged += new System.EventHandler(this.rbGroup_CheckedChanged);
+            // 
+            // rbItems
+            // 
+            this.rbItems.AutoSize = true;
+            this.rbItems.Location = new System.Drawing.Point(126, 19);
+            this.rbItems.Name = "rbItems";
+            this.rbItems.Size = new System.Drawing.Size(50, 17);
+            this.rbItems.TabIndex = 2;
+            this.rbItems.Text = "Items";
+            this.rbItems.UseVisualStyleBackColor = true;
+            this.rbItems.CheckedChanged += new System.EventHandler(this.rbItems_CheckedChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 355);
+            this.ClientSize = new System.Drawing.Size(381, 412);
+            this.Controls.Add(this.gbMode);
             this.Controls.Add(this.pbShiny);
             this.Controls.Add(this.lblNickname);
             this.Controls.Add(this.pbBall);
@@ -3115,6 +3172,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShiny)).EndInit();
+            this.gbMode.ResumeLayout(false);
+            this.gbMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3308,6 +3367,10 @@
         private System.Windows.Forms.ToolStripMenuItem loadFromFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToFileToolStripMenuItem;
         private System.Windows.Forms.PictureBox pbShiny;
+        private System.Windows.Forms.GroupBox gbMode;
+        private System.Windows.Forms.RadioButton rbItems;
+        private System.Windows.Forms.RadioButton rbGroup;
+        private System.Windows.Forms.RadioButton rbSingle;
     }
 }
 
