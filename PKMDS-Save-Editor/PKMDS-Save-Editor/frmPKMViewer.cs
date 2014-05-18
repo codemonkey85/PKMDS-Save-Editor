@@ -992,6 +992,8 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.TID = (UInt16)(numTID.Value);
+                UpdateSprite();
+                UpdateShiny();
                 CheckApplyButton();
             }
         }
@@ -1000,6 +1002,8 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SID = (UInt16)(numSID.Value);
+                UpdateSprite();
+                UpdateShiny();
                 CheckApplyButton();
             }
         }
