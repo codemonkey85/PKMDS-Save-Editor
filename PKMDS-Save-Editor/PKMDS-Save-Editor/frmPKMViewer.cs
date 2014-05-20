@@ -20,7 +20,6 @@ namespace PKMDS_Save_Editor
         public frmPKMViewer()
         {
             PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
-            PKMDS.SQL.OpenImgDB(Properties.Settings.Default.imagedb);
             InitializeComponent();
             SetUI();
         }
