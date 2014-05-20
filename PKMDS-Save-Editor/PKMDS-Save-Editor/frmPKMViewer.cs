@@ -20,7 +20,6 @@ namespace PKMDS_Save_Editor
         public frmPKMViewer()
         {
             PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
-            PKMDS.SQL.OpenImgDB(Properties.Settings.Default.imagedb);
             InitializeComponent();
             SetUI();
         }
@@ -992,6 +991,8 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.TID = (UInt16)(numTID.Value);
+                UpdateSprite();
+                UpdateShiny();
                 CheckApplyButton();
             }
         }
@@ -1000,6 +1001,8 @@ namespace PKMDS_Save_Editor
             if (UISet && PokemonSet)
             {
                 TempPokemon.SID = (UInt16)(numSID.Value);
+                UpdateSprite();
+                UpdateShiny();
                 CheckApplyButton();
             }
         }
