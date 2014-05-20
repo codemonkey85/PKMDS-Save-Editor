@@ -7,3 +7,6 @@
 [submodule "externals/PKMDS-DB"]
 	path = externals/PKMDS-DB
 	url = git@github.com:codemonkey85/PKMDS-DB
+[submodule "PKMDS-Win32-DLL"]
+	path = PKMDS-Win32-DLL
+	url = git@github.com:codemonkey85/PKMDS-Win32-DLL.git
