@@ -1029,7 +1029,18 @@
             "1",
             "2",
             "3",
-            "4"});
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"});
             this.cbPKRSStrain.Location = new System.Drawing.Point(6, 32);
             this.cbPKRSStrain.Name = "cbPKRSStrain";
             this.cbPKRSStrain.Size = new System.Drawing.Size(51, 21);

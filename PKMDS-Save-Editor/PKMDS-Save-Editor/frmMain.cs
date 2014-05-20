@@ -80,7 +80,6 @@ namespace PKMDS_Save_Editor
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             PKMDS.SQL.CloseDB();
-            PKMDS.SQL.CloseImgDB();
         }
         private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
         {

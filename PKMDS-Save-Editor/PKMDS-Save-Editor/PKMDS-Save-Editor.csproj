@@ -78,10 +78,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="..\..\externals\PKMDS-DB\images.sqlite">
-      <Link>images.sqlite</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="..\..\externals\PKMDS-DB\veekun-pokedex.sqlite">
       <Link>veekun-pokedex.sqlite</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
