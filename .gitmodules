@@ -3,7 +3,7 @@
 	url = git://github.com/codemonkey85/PKMDS.git
 [submodule "externals/PKMDS-Win32-DLL"]
 	path = externals/PKMDS-Win32-DLL
-	url = git@github.com:codemonkey85/PKMDS-Win32-DLL.git
+	url = git@github.com:codemonkey85/PKMDS-Win32-DLL
 [submodule "externals/PKMDS-DB"]
 	path = externals/PKMDS-DB
 	url = git@github.com:codemonkey85/PKMDS-DB
