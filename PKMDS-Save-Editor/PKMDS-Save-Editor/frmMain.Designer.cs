@@ -217,9 +217,9 @@
             this.pkmFileSave = new System.Windows.Forms.SaveFileDialog();
             this.pbShiny = new System.Windows.Forms.PictureBox();
             this.gbMode = new System.Windows.Forms.GroupBox();
-            this.rbSingle = new System.Windows.Forms.RadioButton();
-            this.rbGroup = new System.Windows.Forms.RadioButton();
             this.rbItems = new System.Windows.Forms.RadioButton();
+            this.rbGroup = new System.Windows.Forms.RadioButton();
+            this.rbSingle = new System.Windows.Forms.RadioButton();
             this.mainMenu.SuspendLayout();
             this.tlParty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPartySlot06)).BeginInit();
@@ -433,6 +433,7 @@
             this.pbPartySlot06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbPartySlot06.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbPartySlot06.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbPartySlot06.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // BoxPartySlotContext
             // 
@@ -483,6 +484,7 @@
             this.pbPartySlot05.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbPartySlot05.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbPartySlot05.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbPartySlot05.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbPartySlot04
             // 
@@ -502,6 +504,7 @@
             this.pbPartySlot04.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbPartySlot04.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbPartySlot04.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbPartySlot04.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbPartySlot03
             // 
@@ -521,6 +524,7 @@
             this.pbPartySlot03.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbPartySlot03.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbPartySlot03.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbPartySlot03.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbPartySlot02
             // 
@@ -540,6 +544,7 @@
             this.pbPartySlot02.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbPartySlot02.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbPartySlot02.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbPartySlot02.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbPartySlot01
             // 
@@ -559,6 +564,7 @@
             this.pbPartySlot01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbPartySlot01.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbPartySlot01.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbPartySlot01.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlParty
             // 
@@ -653,6 +659,7 @@
             this.pbBoxSlot30.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot30.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot30.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot30.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot29
             // 
@@ -672,6 +679,7 @@
             this.pbBoxSlot29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot29.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot29.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot29.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot28
             // 
@@ -691,6 +699,7 @@
             this.pbBoxSlot28.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot28.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot28.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot28.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot27
             // 
@@ -710,6 +719,7 @@
             this.pbBoxSlot27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot27.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot27.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot27.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot26
             // 
@@ -729,6 +739,7 @@
             this.pbBoxSlot26.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot26.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot26.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot26.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot25
             // 
@@ -748,6 +759,7 @@
             this.pbBoxSlot25.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot25.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot25.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot25.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot24
             // 
@@ -767,6 +779,7 @@
             this.pbBoxSlot24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot24.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot24.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot24.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot23
             // 
@@ -786,6 +799,7 @@
             this.pbBoxSlot23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot23.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot23.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot23.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot22
             // 
@@ -805,6 +819,7 @@
             this.pbBoxSlot22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot22.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot22.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot22.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot21
             // 
@@ -824,6 +839,7 @@
             this.pbBoxSlot21.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot21.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot21.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot21.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot20
             // 
@@ -843,6 +859,7 @@
             this.pbBoxSlot20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot20.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot20.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot20.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot19
             // 
@@ -862,6 +879,7 @@
             this.pbBoxSlot19.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot19.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot19.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot19.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot18
             // 
@@ -881,6 +899,7 @@
             this.pbBoxSlot18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot18.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot18.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot18.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot17
             // 
@@ -900,6 +919,7 @@
             this.pbBoxSlot17.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot17.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot17.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot17.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot16
             // 
@@ -919,6 +939,7 @@
             this.pbBoxSlot16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot16.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot16.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot16.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot15
             // 
@@ -938,6 +959,7 @@
             this.pbBoxSlot15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot15.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot15.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot15.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot14
             // 
@@ -957,6 +979,7 @@
             this.pbBoxSlot14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot14.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot14.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot13
             // 
@@ -976,6 +999,7 @@
             this.pbBoxSlot13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot13.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot13.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot12
             // 
@@ -995,6 +1019,7 @@
             this.pbBoxSlot12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot12.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot12.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot11
             // 
@@ -1014,6 +1039,7 @@
             this.pbBoxSlot11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot11.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot11.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot10
             // 
@@ -1033,6 +1059,7 @@
             this.pbBoxSlot10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot10.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot10.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot01
             // 
@@ -1052,6 +1079,7 @@
             this.pbBoxSlot01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot01.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot01.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot01.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot09
             // 
@@ -1071,6 +1099,7 @@
             this.pbBoxSlot09.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot09.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot09.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot09.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot08
             // 
@@ -1090,6 +1119,7 @@
             this.pbBoxSlot08.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot08.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot08.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot08.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot02
             // 
@@ -1109,6 +1139,7 @@
             this.pbBoxSlot02.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot02.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot02.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot02.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot06
             // 
@@ -1128,6 +1159,7 @@
             this.pbBoxSlot06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot06.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot06.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot06.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot07
             // 
@@ -1147,6 +1179,7 @@
             this.pbBoxSlot07.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot07.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot07.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot07.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot03
             // 
@@ -1166,6 +1199,7 @@
             this.pbBoxSlot03.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot03.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot03.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot03.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot04
             // 
@@ -1185,6 +1219,7 @@
             this.pbBoxSlot04.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot04.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot04.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot04.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pbBoxSlot05
             // 
@@ -1204,6 +1239,7 @@
             this.pbBoxSlot05.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlot_MouseDown);
             this.pbBoxSlot05.MouseEnter += new System.EventHandler(this.pbPartyBoxSlot_MouseEnter);
             this.pbBoxSlot05.MouseLeave += new System.EventHandler(this.pbPartyBoxSlot_MouseLeave);
+            this.pbBoxSlot05.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // txtBoxName
             // 
@@ -1601,6 +1637,7 @@
             this.pbBoxGrid24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid24.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid24.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid24.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid23
             // 
@@ -1656,6 +1693,7 @@
             this.pbBoxGrid23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid23.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid23.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid23.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid22
             // 
@@ -1711,6 +1749,7 @@
             this.pbBoxGrid22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid22.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid22.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid22.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid21
             // 
@@ -1766,6 +1805,7 @@
             this.pbBoxGrid21.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid21.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid21.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid21.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid20
             // 
@@ -1821,6 +1861,7 @@
             this.pbBoxGrid20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid20.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid20.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid20.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid19
             // 
@@ -1876,6 +1917,7 @@
             this.pbBoxGrid19.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid19.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid19.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid19.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid18
             // 
@@ -1931,6 +1973,7 @@
             this.pbBoxGrid18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid18.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid18.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid18.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid17
             // 
@@ -1986,6 +2029,7 @@
             this.pbBoxGrid17.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid17.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid17.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid17.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid16
             // 
@@ -2041,6 +2085,7 @@
             this.pbBoxGrid16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid16.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid16.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid16.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid15
             // 
@@ -2096,6 +2141,7 @@
             this.pbBoxGrid15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid15.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid15.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid15.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid14
             // 
@@ -2151,6 +2197,7 @@
             this.pbBoxGrid14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid14.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid14.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid14.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid13
             // 
@@ -2206,6 +2253,7 @@
             this.pbBoxGrid13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid13.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid13.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid12
             // 
@@ -2261,6 +2309,7 @@
             this.pbBoxGrid12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid12.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid12.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid11
             // 
@@ -2316,6 +2365,7 @@
             this.pbBoxGrid11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid11.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid11.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid10
             // 
@@ -2371,6 +2421,7 @@
             this.pbBoxGrid10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid10.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid10.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid09
             // 
@@ -2426,6 +2477,7 @@
             this.pbBoxGrid09.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid09.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid09.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid09.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid08
             // 
@@ -2481,6 +2533,7 @@
             this.pbBoxGrid08.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid08.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid08.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid08.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid07
             // 
@@ -2536,6 +2589,7 @@
             this.pbBoxGrid07.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid07.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid07.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid07.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid06
             // 
@@ -2591,6 +2645,7 @@
             this.pbBoxGrid06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid06.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid06.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid06.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid05
             // 
@@ -2646,6 +2701,7 @@
             this.pbBoxGrid05.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid05.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid05.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid05.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid04
             // 
@@ -2701,6 +2757,7 @@
             this.pbBoxGrid04.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid04.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid04.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid04.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid03
             // 
@@ -2756,6 +2813,7 @@
             this.pbBoxGrid03.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid03.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid03.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid03.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid02
             // 
@@ -2811,6 +2869,7 @@
             this.pbBoxGrid02.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid02.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid02.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid02.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // pnlBoxGrid01
             // 
@@ -2867,6 +2926,7 @@
             this.pbBoxGrid01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxGrid_MouseDown);
             this.pbBoxGrid01.MouseEnter += new System.EventHandler(this.pbBoxGrid_MouseEnter);
             this.pbBoxGrid01.MouseLeave += new System.EventHandler(this.pbBoxGrid_MouseLeave);
+            this.pbBoxGrid01.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPartyBoxSlotBoxGrid_MouseUp);
             // 
             // lblPartySize
             // 
@@ -2983,18 +3043,16 @@
             this.gbMode.TabStop = false;
             this.gbMode.Text = "Mode";
             // 
-            // rbSingle
+            // rbItems
             // 
-            this.rbSingle.AutoSize = true;
-            this.rbSingle.Checked = true;
-            this.rbSingle.Location = new System.Drawing.Point(6, 19);
-            this.rbSingle.Name = "rbSingle";
-            this.rbSingle.Size = new System.Drawing.Size(54, 17);
-            this.rbSingle.TabIndex = 0;
-            this.rbSingle.TabStop = true;
-            this.rbSingle.Text = "Single";
-            this.rbSingle.UseVisualStyleBackColor = true;
-            this.rbSingle.CheckedChanged += new System.EventHandler(this.rbSingle_CheckedChanged);
+            this.rbItems.AutoSize = true;
+            this.rbItems.Location = new System.Drawing.Point(126, 19);
+            this.rbItems.Name = "rbItems";
+            this.rbItems.Size = new System.Drawing.Size(50, 17);
+            this.rbItems.TabIndex = 2;
+            this.rbItems.Text = "Items";
+            this.rbItems.UseVisualStyleBackColor = true;
+            this.rbItems.CheckedChanged += new System.EventHandler(this.rbItems_CheckedChanged);
             // 
             // rbGroup
             // 
@@ -3009,16 +3067,18 @@
             this.rbGroup.Visible = false;
             this.rbGroup.CheckedChanged += new System.EventHandler(this.rbGroup_CheckedChanged);
             // 
-            // rbItems
+            // rbSingle
             // 
-            this.rbItems.AutoSize = true;
-            this.rbItems.Location = new System.Drawing.Point(126, 19);
-            this.rbItems.Name = "rbItems";
-            this.rbItems.Size = new System.Drawing.Size(50, 17);
-            this.rbItems.TabIndex = 2;
-            this.rbItems.Text = "Items";
-            this.rbItems.UseVisualStyleBackColor = true;
-            this.rbItems.CheckedChanged += new System.EventHandler(this.rbItems_CheckedChanged);
+            this.rbSingle.AutoSize = true;
+            this.rbSingle.Checked = true;
+            this.rbSingle.Location = new System.Drawing.Point(6, 19);
+            this.rbSingle.Name = "rbSingle";
+            this.rbSingle.Size = new System.Drawing.Size(54, 17);
+            this.rbSingle.TabIndex = 0;
+            this.rbSingle.TabStop = true;
+            this.rbSingle.Text = "Single";
+            this.rbSingle.UseVisualStyleBackColor = true;
+            this.rbSingle.CheckedChanged += new System.EventHandler(this.rbSingle_CheckedChanged);
             // 
             // frmMain
             // 
@@ -3046,6 +3106,7 @@
             this.Text = "PKMDS Save Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmMain_MouseUp);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.tlParty.ResumeLayout(false);

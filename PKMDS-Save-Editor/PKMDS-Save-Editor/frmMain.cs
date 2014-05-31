@@ -40,6 +40,7 @@ namespace PKMDS_Save_Editor
         int toslot = -1;
         bool uiset = false;
         string argfilename = "";
+        Color SelectionColor = Color.FromArgb(100, Color.Orange.R, Color.Orange.G, Color.Orange.B);
         public frmMain(string filename)
         {
             InitializeComponent();
@@ -114,7 +115,7 @@ namespace PKMDS_Save_Editor
             btnNextBox.Enabled = (sav.CurrentBox != 23);
             txtBoxName.Enabled = true;
             splitMain.Panel2.Enabled = true;
-            gbMode.Enabled = true;
+            //gbMode.Enabled = true;
             UpdateParty();
             UpdateBox();
             UpdateBoxWallpaper();
@@ -132,19 +133,41 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateParty()
         {
-
-            for (int partySlot = 0; partySlot < 6; partySlot++)
+            switch (mode)
             {
-                PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
-                pokemon = sav.GetPartyPokemon(partySlot).PokemonData;
-                if ((pokemon.SpeciesID != 0) && (partySlot < sav.PartySize))
-                {
-                    partyPics[partySlot].Image = pokemon.Icon;
-                }
-                else
-                {
-                    partyPics[partySlot].Image = null;
-                }
+                case Mode.Single:
+                    for (int partySlot = 0; partySlot < 6; partySlot++)
+                    {
+                        PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
+                        pokemon = sav.GetPartyPokemon(partySlot).PokemonData;
+                        if ((pokemon.SpeciesID != 0) && (partySlot < sav.PartySize))
+                        {
+                            partyPics[partySlot].Image = pokemon.Icon;
+                        }
+                        else
+                        {
+                            partyPics[partySlot].Image = null;
+                        }
+                    }
+                    break;
+                case Mode.Group:
+
+                    break;
+                case Mode.Item:
+                    for (int slot = 0; slot < 6; slot++)
+                    {
+                        PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+                        pkm = sav.GetPartyPokemon(slot).PokemonData;
+                        if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0) && (slot < sav.PartySize))
+                        {
+                            partyPics[slot].Image = pkm.ItemPic;
+                        }
+                        else
+                        {
+                            partyPics[slot].Image = null;
+                        }
+                    }
+                    break;
             }
             lblPartySize.Text = "Party - " + sav.PartySize.ToString() + " / 6";
             sav.RecalculateParty();
@@ -167,6 +190,25 @@ namespace PKMDS_Save_Editor
                             boxPics[boxSlot].Image = null;
                         }
                     }
+                    break;
+                case Mode.Group:
+
+                    break;
+                case Mode.Item:
+                    for (int slot = 0; slot < 30; slot++)
+                    {
+                        PKMDS.Pokemon pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                        if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0))
+                        {
+                            boxPics[slot].Image = pkm.ItemPic;
+                        }
+                        else
+                        {
+                            boxPics[slot].Image = null;
+                        }
+                    }
+                    break;
+                default:
                     break;
             }
         }
@@ -382,6 +424,7 @@ namespace PKMDS_Save_Editor
                     System.Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
+            lblPartySize.Text = "";
         }
         private void txtBoxName_TextChanged(object sender, EventArgs e)
         {
@@ -453,36 +496,54 @@ namespace PKMDS_Save_Editor
         }
         private void pbPartyBoxSlot_MouseDown(object sender, MouseEventArgs e)
         {
+            PictureBox pb = (PictureBox)(sender);
+            if (pb.Image != null)
+            {
+                //this.Cursor = CreateCursor(pb.Image, 3, 3);
+                //pb.Image = null;
+            }
             if (e.Button == MouseButtons.Left && e.Clicks == 1)
             {
-                int slot = 0;
-                PictureBox pb = (PictureBox)(sender);
-                int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
-                slot--;
-                if (pb.Name.Contains("Party"))
+                switch (mode)
                 {
-                    if (sav.GetPartyPokemon(slot).PokemonData.SpeciesID != 0)
-                    {
-                        if (sav.PartySize > 1)
+                    case Mode.Single:
+                        int slot = 0;
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        slot--;
+                        if (pb.Name.Contains("Party"))
                         {
-                            pkm_from = sav.GetPartyPokemon(slot).PokemonData;
-                            dragfromparty = true;
-                            frombox = -1;
-                            fromslot = slot;
-                            partyPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
+                            if (sav.GetPartyPokemon(slot).PokemonData.SpeciesID != 0)
+                            {
+                                if (sav.PartySize > 1)
+                                {
+                                    pkm_from = sav.GetPartyPokemon(slot).PokemonData;
+                                    dragfromparty = true;
+                                    frombox = -1;
+                                    fromslot = slot;
+                                    partyPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
+                                }
+                            }
                         }
-                    }
-                }
-                if (pb.Name.Contains("Box"))
-                {
-                    if (sav.GetStoredPokemon(sav.CurrentBox, slot).SpeciesID != 0)
-                    {
-                        pkm_from = sav.GetStoredPokemon(sav.CurrentBox, slot);
-                        dragfromparty = false;
-                        frombox = sav.CurrentBox;
-                        fromslot = slot;
-                        boxPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
-                    }
+                        if (pb.Name.Contains("Box"))
+                        {
+                            if (sav.GetStoredPokemon(sav.CurrentBox, slot).SpeciesID != 0)
+                            {
+                                pkm_from = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                                dragfromparty = false;
+                                frombox = sav.CurrentBox;
+                                fromslot = slot;
+                                boxPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
+                            }
+                        }
+                        break;
+                    case Mode.Group:
+
+                        break;
+                    case Mode.Item:
+
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -567,6 +628,7 @@ namespace PKMDS_Save_Editor
                     }
                 }
             }
+            //this.Cursor = Cursors.Arrow;
         }
         private void pbPartyBoxSlot_DragEnter(object sender, DragEventArgs e)
         {
@@ -592,10 +654,16 @@ namespace PKMDS_Save_Editor
                         pkm_to = sav.GetStoredPokemon(sav.CurrentBox, slot);
                     }
                     e.Effect = DragDropEffects.Move;
+                    //this.Cursor = CreateCursor(dragpkm.Icon, 3, 3);
+                    //this.Cursor = new Cursor(typeof(System.Drawing.Image), "poke_ball");
+                    //this.Cursor = CreateCursor(dragpkm.Icon, 3, 3);
                 }
                 else
                 {
                     e.Effect = DragDropEffects.None;
+                    //this.Cursor = Cursors.Arrow;
+                    //UpdateBox();
+                    //UpdateParty();
                 }
             }
         }
@@ -612,10 +680,16 @@ namespace PKMDS_Save_Editor
                 {
                     pkm_to = dragpkm;
                     e.Effect = DragDropEffects.Move;
+                    //this.Cursor = CreateCursor(dragpkm.Icon, 3, 3);
+                    //this.Cursor = new Cursor(typeof(System.Drawing.Image), "poke_ball");
+                    //this.Cursor = CreateCursor(dragpkm.Icon, 3, 3);
                 }
                 else
                 {
                     e.Effect = DragDropEffects.None;
+                    //this.Cursor = Cursors.Arrow;
+                    //UpdateBox();
+                    //UpdateParty();
                 }
             }
         }
@@ -656,19 +730,34 @@ namespace PKMDS_Save_Editor
                 UpdateBoxCountLabel(tobox);
                 UpdateBox();
             }
+            //this.Cursor = Cursors.Arrow;
         }
         private void pbBoxGrid_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && e.Clicks == 1)
             {
-                int box = 0;
-                PictureBox pb = (PictureBox)(sender);
-                int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-                box--;
-                dragtoparty = false;
-                //dragtobox = true;
-                tobox = box;
-                toslot = -1;
+                switch (mode)
+                {
+                    case Mode.Single:
+                        int box = 0;
+                        PictureBox pb = (PictureBox)(sender);
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
+                        box--;
+                        dragtoparty = false;
+                        //dragtobox = true;
+                        tobox = box;
+                        toslot = -1;
+                        break;
+                    case Mode.Group:
+
+                        break;
+                    case Mode.Item:
+
+                        break;
+                    default:
+                        break;
+                }
+
             }
         }
         private void lblBoxGrid_Click(object sender, EventArgs e)
@@ -695,7 +784,7 @@ namespace PKMDS_Save_Editor
             Label pb = (Label)(sender);
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
             box--;
-            boxPanels[box].BackColor = Color.Orange;
+            boxPanels[box].BackColor = SelectionColor;
             this.splitMain.Panel2.Focus();
         }
         private void lblBoxGrid_MouseLeave(object sender, EventArgs e)
@@ -734,7 +823,7 @@ namespace PKMDS_Save_Editor
             //dragtobox = true;
             tobox = box;
             toslot = -1;
-            boxPanels[box].BackColor = Color.Orange;
+            boxPanels[box].BackColor = SelectionColor;
             this.splitMain.Panel2.Focus();
         }
         private void pbBoxGrid_MouseLeave(object sender, EventArgs e)
@@ -782,7 +871,7 @@ namespace PKMDS_Save_Editor
                     pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
                 }
             }
-            pb.BackColor = Color.Orange;
+            pb.BackColor = SelectionColor;
             if (pkm.SpeciesID != 0)
             {
                 PreviewPokemon(pkm);
@@ -978,6 +1067,7 @@ namespace PKMDS_Save_Editor
             {
                 mode = Mode.Single;
                 UpdateBox();
+                UpdateParty();
             }
         }
         private void rbGroup_CheckedChanged(object sender, EventArgs e)
@@ -986,6 +1076,7 @@ namespace PKMDS_Save_Editor
             {
                 mode = Mode.Group;
                 UpdateBox();
+                UpdateParty();
                 // TODO: group Pokemon sorting
 
             }
@@ -996,7 +1087,112 @@ namespace PKMDS_Save_Editor
             {
                 mode = Mode.Item;
                 UpdateBox();
+                UpdateParty();
             }
+        }
+        public struct IconInfo
+        {
+            public bool fIcon;
+            public int xHotspot;
+            public int yHotspot;
+            public IntPtr hbmMask;
+            public IntPtr hbmColor;
+        }
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+        public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
+        public static Cursor CreateCursor(Bitmap bmp, int xHotSpot, int yHotSpot)
+        {
+            bmp = ChangeImageOpacity(bmp, 0.65);
+            IntPtr ptr = bmp.GetHicon();
+            IconInfo tmp = new IconInfo();
+            GetIconInfo(ptr, ref tmp);
+            tmp.xHotspot = xHotSpot;
+            tmp.yHotspot = yHotSpot;
+            tmp.fIcon = false;
+            ptr = CreateIconIndirect(ref tmp);
+            return new Cursor(ptr);
+        }
+        public static Cursor CreateCursor(Image img, int xHotSpot, int yHotSpot)
+        {
+            return CreateCursor((Bitmap)(img), xHotSpot, yHotSpot);
+        }
+
+        private const int bytesPerPixel = 4;
+
+        public static Bitmap ChangeImageOpacity(Bitmap originalImage, double opacity)
+        {
+            if ((originalImage.PixelFormat & System.Drawing.Imaging.PixelFormat.Indexed) == System.Drawing.Imaging.PixelFormat.Indexed)
+            {
+                // Cannot modify an image with indexed colors
+                return originalImage;
+            }
+
+            Bitmap bmp = (Bitmap)originalImage.Clone();
+
+            // Specify a pixel format.
+            System.Drawing.Imaging.PixelFormat pxf = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
+
+            // Lock the bitmap's bits.
+            Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+            System.Drawing.Imaging.BitmapData bmpData = bmp.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, pxf);
+
+            // Get the address of the first line.
+            IntPtr ptr = bmpData.Scan0;
+
+            // Declare an array to hold the bytes of the bitmap.
+            // This code is specific to a bitmap with 32 bits per pixels 
+            // (32 bits = 4 bytes, 3 for RGB and 1 byte for alpha).
+            int numBytes = bmp.Width * bmp.Height * bytesPerPixel;
+            byte[] argbValues = new byte[numBytes];
+
+            // Copy the ARGB values into the array.
+            System.Runtime.InteropServices.Marshal.Copy(ptr, argbValues, 0, numBytes);
+
+            // Manipulate the bitmap, such as changing the
+            // RGB values for all pixels in the the bitmap.
+            for (int counter = 0; counter < argbValues.Length; counter += bytesPerPixel)
+            {
+                // argbValues is in format BGRA (Blue, Green, Red, Alpha)
+
+                // If 100% transparent, skip pixel
+                if (argbValues[counter + bytesPerPixel - 1] == 0)
+                    continue;
+
+                int pos = 0;
+                pos++; // B value
+                pos++; // G value
+                pos++; // R value
+
+                argbValues[counter + pos] = (byte)(argbValues[counter + pos] * opacity);
+            }
+
+            // Copy the ARGB values back to the bitmap
+            System.Runtime.InteropServices.Marshal.Copy(argbValues, 0, ptr, numBytes);
+
+            // Unlock the bits.
+            bmp.UnlockBits(bmpData);
+
+            return bmp;
+        }
+        public static Bitmap ChangeImageOpacity(Image originalImage, double opacity)
+        {
+            Bitmap bmp = (Bitmap)originalImage.Clone();
+            return ChangeImageOpacity(bmp, opacity);
+        }
+        private void pbPartyBoxSlotBoxGrid_MouseUp(object sender, MouseEventArgs e)
+        {
+            //this.Cursor = Cursors.Arrow;
+            //UpdateBox();
+            //UpdateParty();
+        }
+        private void frmMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            //this.Cursor = Cursors.Arrow;
+            //UpdateBox();
+            //UpdateParty();
         }
     }
 }
