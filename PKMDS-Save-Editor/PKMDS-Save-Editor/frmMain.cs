@@ -40,6 +40,7 @@ namespace PKMDS_Save_Editor
         int toslot = -1;
         bool uiset = false;
         string argfilename = "";
+        Color SelectionColor = Color.FromArgb(100, Color.Orange.R, Color.Orange.G, Color.Orange.B);
         public frmMain(string filename)
         {
             InitializeComponent();
@@ -114,7 +115,7 @@ namespace PKMDS_Save_Editor
             btnNextBox.Enabled = (sav.CurrentBox != 23);
             txtBoxName.Enabled = true;
             splitMain.Panel2.Enabled = true;
-            gbMode.Enabled = true;
+            //gbMode.Enabled = true;
             UpdateParty();
             UpdateBox();
             UpdateBoxWallpaper();
@@ -783,7 +784,7 @@ namespace PKMDS_Save_Editor
             Label pb = (Label)(sender);
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
             box--;
-            boxPanels[box].BackColor = Color.Orange;
+            boxPanels[box].BackColor = SelectionColor;
             this.splitMain.Panel2.Focus();
         }
         private void lblBoxGrid_MouseLeave(object sender, EventArgs e)
@@ -822,7 +823,7 @@ namespace PKMDS_Save_Editor
             //dragtobox = true;
             tobox = box;
             toslot = -1;
-            boxPanels[box].BackColor = Color.Orange;
+            boxPanels[box].BackColor = SelectionColor;
             this.splitMain.Panel2.Focus();
         }
         private void pbBoxGrid_MouseLeave(object sender, EventArgs e)
@@ -870,7 +871,7 @@ namespace PKMDS_Save_Editor
                     pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
                 }
             }
-            pb.BackColor = Color.Orange;
+            pb.BackColor = SelectionColor;
             if (pkm.SpeciesID != 0)
             {
                 PreviewPokemon(pkm);
