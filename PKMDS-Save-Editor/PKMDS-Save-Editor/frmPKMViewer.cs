@@ -109,12 +109,12 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateMarkings()
         {
-            pbCircle.Image = TempPokemon.GetMarkingImage(0);
-            pbTriangle.Image = TempPokemon.GetMarkingImage(1);
-            pbSquare.Image = TempPokemon.GetMarkingImage(2);
-            pbHeart.Image = TempPokemon.GetMarkingImage(3);
-            pbStar.Image = TempPokemon.GetMarkingImage(4);
-            pbDiamond.Image = TempPokemon.GetMarkingImage(5);
+            pbCircle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Circle, TempPokemon.Circle);
+            pbTriangle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Triangle, TempPokemon.Triangle);
+            pbSquare.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Square, TempPokemon.Square);
+            pbHeart.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Heart, TempPokemon.Heart);
+            pbStar.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Star, TempPokemon.Star);
+            pbDiamond.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Diamond, TempPokemon.Diamond);
         }
         private void UpdateHeldItem()
         {
@@ -898,38 +898,38 @@ namespace PKMDS_Save_Editor
         }
         private void pbCircle_Click(object sender, EventArgs e)
         {
-            TempPokemon.SetMarking(0, !(TempPokemon.GetMarking(0)));
-            pbCircle.Image = TempPokemon.GetMarkingImage(0);
+            TempPokemon.Circle = !(TempPokemon.Circle);
+            pbCircle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Circle, TempPokemon.Circle);
             CheckApplyButton();
         }
         private void pbTriangle_Click(object sender, EventArgs e)
         {
-            TempPokemon.SetMarking(1, !(TempPokemon.GetMarking(1)));
-            pbTriangle.Image = TempPokemon.GetMarkingImage(1);
+            TempPokemon.Triangle = !(TempPokemon.Triangle);
+            pbTriangle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Triangle, TempPokemon.Triangle);
             CheckApplyButton();
         }
         private void pbSquare_Click(object sender, EventArgs e)
         {
-            TempPokemon.SetMarking(2, !(TempPokemon.GetMarking(2)));
-            pbSquare.Image = TempPokemon.GetMarkingImage(2);
+            TempPokemon.Square = !(TempPokemon.Square);
+            pbSquare.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Square, TempPokemon.Square);
             CheckApplyButton();
         }
         private void pbHeart_Click(object sender, EventArgs e)
         {
-            TempPokemon.SetMarking(3, !(TempPokemon.GetMarking(3)));
-            pbHeart.Image = TempPokemon.GetMarkingImage(3);
+            TempPokemon.Heart = !(TempPokemon.Heart);
+            pbHeart.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Heart, TempPokemon.Heart);
             CheckApplyButton();
         }
         private void pbStar_Click(object sender, EventArgs e)
         {
-            TempPokemon.SetMarking(4, !(TempPokemon.GetMarking(4)));
-            pbStar.Image = TempPokemon.GetMarkingImage(4);
+            TempPokemon.Star = !(TempPokemon.Star);
+            pbStar.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Star, TempPokemon.Star);
             CheckApplyButton();
         }
         private void pbDiamond_Click(object sender, EventArgs e)
         {
-            TempPokemon.SetMarking(5, !(TempPokemon.GetMarking(5)));
-            pbDiamond.Image = TempPokemon.GetMarkingImage(5);
+            TempPokemon.Diamond = !(TempPokemon.Diamond);
+            pbDiamond.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Diamond, TempPokemon.Diamond);
             CheckApplyButton();
         }
         private void frmPKMViewer_FormClosing(object sender, FormClosingEventArgs e)
