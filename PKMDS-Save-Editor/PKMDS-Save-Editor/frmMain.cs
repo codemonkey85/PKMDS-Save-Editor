@@ -59,10 +59,10 @@ namespace PKMDS_Save_Editor
                         savefile = SaveFileOpen.FileName;
                         tempsav = PKMDS.ReadSaveFile(savefile);
                         string message = "";
-                        if (!tempsav.Validate(out message))
-                        {
-                            throw new Exception(message);
-                        }
+                        //if (!tempsav.Validate(out message))
+                        //{
+                        //    throw new Exception(message);
+                        //}
                         savesavToolStripMenuItem.Enabled = false;
                         uiset = false;
                         sav = tempsav;
