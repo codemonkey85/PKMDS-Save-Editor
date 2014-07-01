@@ -137,8 +137,7 @@ namespace PKMDS_Save_Editor
                 case Mode.Single:
                     for (int partySlot = 0; partySlot < 6; partySlot++)
                     {
-                        PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
-                        pokemon = sav.Party[partySlot].PokemonData;
+                        PKMDS.Pokemon pokemon = sav.Party[partySlot].PokemonData;
                         if ((pokemon.SpeciesID != 0) && (partySlot < sav.PartySize))
                         {
                             partyPics[partySlot].Image = pokemon.Icon;
@@ -565,13 +564,12 @@ namespace PKMDS_Save_Editor
                     {
                         if (pkm_to.SpeciesID == 0)
                         {
-                            // TODO: refactor withdrawal / removal / swap functions
-                            //sav.WithdrawPokemon(sav.GetPartyPokemon(fromslot).PokemonData);
-                            //sav.RemovePartyPokemon(fromslot);
+                            sav.WithdrawPokemon(sav.Party[fromslot].PokemonData);
+                            sav.RemovePartyPokemon(fromslot);
                         }
                         else
                         {
-                            //PKMDS.SwapPartyParty(sav, fromslot, toslot);
+                            PKMDS.SwapPartyParty(sav, fromslot, toslot);
                         }
                         UpdateParty();
                     }
@@ -582,13 +580,12 @@ namespace PKMDS_Save_Editor
                     {
                         if (pkm_to.SpeciesID == 0)
                         {
-                            // TODO: refactor withdrawal / removal / swap functions
-                            //sav.WithdrawPokemon(sav.GetStoredPokemon(frombox, fromslot));
-                            //sav.RemoveStoredPokemon(frombox, fromslot);
+                            sav.WithdrawPokemon(sav.PCStorage[frombox][fromslot]);
+                            sav.RemoveStoredPokemon(frombox, fromslot);
                         }
                         else
                         {
-                            //PKMDS.SwapBoxParty(sav, frombox, fromslot, toslot);
+                            PKMDS.SwapBoxParty(sav, frombox, fromslot, toslot);
                         }
                         UpdateParty();
                         UpdateBox();
@@ -607,11 +604,10 @@ namespace PKMDS_Save_Editor
                 {
                     if (!dragtoparty)
                     {
-                        // TODO: refactor withdrawal / removal / swap functions
-                        //PKMDS.SwapPartyBox(sav, fromslot, tobox, toslot);
+                        PKMDS.SwapPartyBox(sav, fromslot, tobox, toslot);
                         if (pkm_to.SpeciesID == 0)
                         {
-                            //sav.RemovePartyPokemon(fromslot);
+                            sav.RemovePartyPokemon(fromslot);
                         }
                         UpdateParty();
                         UpdateBox();
@@ -622,8 +618,8 @@ namespace PKMDS_Save_Editor
                 else
                 {
                     if (!dragtoparty)
-                    {   // TODO: refactor withdrawal / removal / swap functions
-                        //PKMDS.SwapBoxBox(sav, frombox, fromslot, tobox, toslot);
+                    {
+                        PKMDS.SwapBoxBox(sav, frombox, fromslot, tobox, toslot);
                         UpdateParty();
                         UpdateBox();
                         UpdateBoxGrid(sav.CurrentBox);
@@ -710,12 +706,11 @@ namespace PKMDS_Save_Editor
             {
                 if (dragfromparty)
                 {
-                    // TODO: refactor withdrawal / removal / swap functions
-                    //sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
-                    //sav.RemovePartyPokemon(fromslot);
+                    sav.DepositPokemon(sav.Party[fromslot].PokemonData, tobox);
+                    sav.RemovePartyPokemon(fromslot);
                     if (pkm_to.SpeciesID == 0)
                     {
-                        //sav.RemovePartyPokemon(fromslot);
+                        sav.RemovePartyPokemon(fromslot);
                     }
                     UpdateParty();
                 }
@@ -723,9 +718,8 @@ namespace PKMDS_Save_Editor
                 {
                     if (frombox != -1)
                     {
-                        // TODO: refactor withdrawal / removal / swap functions
-                        //sav.DepositPokemon(sav.GetStoredPokemon(frombox, fromslot), tobox);
-                        //sav.RemoveStoredPokemon(frombox, fromslot);
+                        sav.DepositPokemon(sav.PCStorage[frombox][fromslot], tobox);
+                        sav.RemoveStoredPokemon(frombox, fromslot);
                         UpdateBox();
                         UpdateBoxGrid(frombox);
                         UpdateBoxCountLabel(frombox);
@@ -985,8 +979,7 @@ namespace PKMDS_Save_Editor
                                         ppkm.PokemonData = pkm;
                                         if (sav.Party[slot].PokemonData.SpeciesID == 0)
                                         {
-                                            // TODO: refactor withdrawal / removal / swap functions
-                                            //sav.WithdrawPokemon(ppkm.PokemonData);
+                                            sav.WithdrawPokemon(ppkm.PokemonData);
                                         }
                                         else
                                         {
