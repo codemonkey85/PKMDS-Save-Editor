@@ -54,6 +54,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPKMList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPKMList.Designer.cs">
+      <DependentUpon>frmPKMList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPKMViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPKMList.resx">
+      <DependentUpon>frmPKMList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPKMViewer.resx">
       <DependentUpon>frmPKMViewer.cs</DependentUpon>
