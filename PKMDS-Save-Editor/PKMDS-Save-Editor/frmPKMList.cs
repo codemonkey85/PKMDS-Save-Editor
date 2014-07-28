@@ -26,9 +26,12 @@ namespace PKMDS_Save_Editor
 
     public partial class frmPKMList : Form
     {
+        List<ListViewItem> ListViewItemsAll;
+
         public frmPKMList()
         {
             InitializeComponent();
+            ListViewItemsAll = new List<ListViewItem>();
 
             columnHeaderPokedexNumber.Tag = ColumnType.SpeciesID;
             columnHeaderSpeciesName.Tag = ColumnType.SpeciesName;
@@ -77,6 +80,7 @@ namespace PKMDS_Save_Editor
 
         public void loadFromSave(PKMDS.Save sav)
         {
+            SuspendLayout();
             for (int i = 0; i < sav.Party.Count; ++i)
             {
                 var pkm = sav.Party[i].PokemonData;
@@ -97,7 +101,9 @@ namespace PKMDS_Save_Editor
                     }
                 }
             }
-            ReColorizeListView();
+
+            FilterAll();
+            ResumeLayout(true);
         }
 
         private Color GetBackgroundColor(bool even, int column, int group)
@@ -154,7 +160,7 @@ namespace PKMDS_Save_Editor
             }
         }
 
-        struct PokemonWithLocation
+        class PokemonWithLocation : IComparable<PokemonWithLocation>
         {
             public PKMDS.Pokemon Pokemon;
             public short Box;
@@ -164,6 +170,11 @@ namespace PKMDS_Save_Editor
                 this.Pokemon = pkm;
                 this.Box = box;
                 this.Slot = slot;
+            }
+
+            public int CompareTo(PokemonWithLocation py)
+            {
+                return (Box * 32 + Slot).CompareTo(py.Box * 32 + py.Slot);
             }
         }
         // box should be -1 for party
@@ -263,7 +274,7 @@ namespace PKMDS_Save_Editor
 
             string mark =
                 (pkm.Circle ? "●" : "") + (pkm.Triangle ? "▲" : "") + (pkm.Square ? "■" : "") +
-                (pkm.Square ? "♥" : "") + (pkm.Star ? "★" : "") + (pkm.Diamond ? "♦" : "");
+                (pkm.Heart ? "♥" : "") + (pkm.Star ? "★" : "") + (pkm.Diamond ? "♦" : "");
             item = new ListViewItem.ListViewSubItem(lvm, mark);
             item.Tag = ColumnType.Markings;
             lvm.SubItems.Add(item);
@@ -305,7 +316,7 @@ namespace PKMDS_Save_Editor
             lvm.SubItems.Add(item);
 
 
-            listView1.Items.Add(lvm);
+            ListViewItemsAll.Add(lvm);
         }
 
         public void ReColorizeListView()
@@ -416,6 +427,16 @@ namespace PKMDS_Save_Editor
                 return iy.CompareTo(ix);
             }
         }
+        class ListViewItemComparerArea : IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                PokemonWithLocation px = (PokemonWithLocation)(((ListViewItem)x).Tag);
+                PokemonWithLocation py = (PokemonWithLocation)(((ListViewItem)y).Tag);
+                return px.CompareTo(py);
+            }
+        }
+
         private int sortColumn = -1;
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
@@ -463,13 +484,23 @@ namespace PKMDS_Save_Editor
                     return;
                 case ColumnType.Gender:
                     // show only specific gender
+                    menu.MenuItems.Add(new MenuItem("Male", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByGender, 0); })));
+                    menu.MenuItems.Add(new MenuItem("Female", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByGender, 1); })));
+                    menu.MenuItems.Add(new MenuItem("Genderless", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByGender, 2); })));
                     break;
                 case ColumnType.Area:
-                    // sort by area; maybe only show specific areas?
+                    // sort by area
+                    SortDataByArea();
+                    ReColorizeListView();
                     break;
                 case ColumnType.Type1:
                 case ColumnType.Type2:
                     // show only specific type(s)
+                    for (int t = 0; t < 17; ++t)
+                    {
+                        int x = t; // intentional, using loop var in delegate doesn't work as you might expect
+                        menu.MenuItems.Add(new MenuItem(PKMDS.GetTypeName(t), new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByType, x); })));
+                    }
                     break;
                 case ColumnType.Move1:
                 case ColumnType.Move2:
@@ -482,18 +513,34 @@ namespace PKMDS_Save_Editor
                     break;
                 case ColumnType.Nature:
                     // show only specific nature
+                    for (int n = 0; n < 25; ++n)
+                    {
+                        int x = n;
+                        menu.MenuItems.Add(new MenuItem(PKMDS.GetNatureName(n), new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByNature, x); })));
+                    }
                     break;
                 case ColumnType.Markings:
                     // show only specific marking(s)
+                    menu.MenuItems.Add(new MenuItem("●", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByMarking, 0); })));
+                    menu.MenuItems.Add(new MenuItem("▲", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByMarking, 1); })));
+                    menu.MenuItems.Add(new MenuItem("■", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByMarking, 2); })));
+                    menu.MenuItems.Add(new MenuItem("♥", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByMarking, 3); })));
+                    menu.MenuItems.Add(new MenuItem("★", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByMarking, 4); })));
+                    menu.MenuItems.Add(new MenuItem("♦", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByMarking, 5); })));
                     break;
                 case ColumnType.HeldItem:
                     // show only specific item
                     break;
                 case ColumnType.Shiny:
                     // show only shiny
+                    menu.MenuItems.Add(new MenuItem("Normal", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByShiny, 0); })));
+                    menu.MenuItems.Add(new MenuItem("Shiny", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByShiny, 1); })));
                     break;
                 case ColumnType.Pokerus:
                     // show only infected/prev. infected
+                    menu.MenuItems.Add(new MenuItem("Not infected", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByPokerus, 0); })));
+                    menu.MenuItems.Add(new MenuItem("Infected", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByPokerus, 1); })));
+                    menu.MenuItems.Add(new MenuItem("Cured", new System.EventHandler(delegate(object _sender, EventArgs _e) { FilterMethod(FilterByPokerus, 2); })));
                     break;
                 default:
                     throw new Exception("Unknown ColumnType in column tag. (" + type.ToString() + ")");
@@ -504,6 +551,7 @@ namespace PKMDS_Save_Editor
         }
         private void SortData(int column, bool numerically)
         {
+            SuspendLayout();
             if (column != sortColumn)
             {
                 sortColumn = column;
@@ -542,6 +590,94 @@ namespace PKMDS_Save_Editor
             }
 
             listView1.Sort();
+            ResumeLayout();
+        }
+        private void SortDataByArea()
+        {
+            SuspendLayout();
+            sortColumn = -1;
+            listView1.Sorting = SortOrder.Ascending;
+            listView1.ListViewItemSorter = new ListViewItemComparerArea();
+            listView1.Sort();
+            ResumeLayout();
+        }
+
+        private void FilterAll()
+        {
+            SuspendLayout();
+            listView1.Items.Clear();
+            foreach (var lvm in ListViewItemsAll)
+            {
+                listView1.Items.Add(lvm);
+            }
+            ReColorizeListView();
+            ResumeLayout();
+        }
+        private void FilterMethod(Func<PokemonWithLocation, int, bool> filter, int filterData)
+        {
+            SuspendLayout();
+            for (int i = listView1.Items.Count - 1; i >= 0; --i)
+            {
+                ListViewItem lvm = listView1.Items[i];
+                if (!filter(((PokemonWithLocation)lvm.Tag), filterData))
+                {
+                    listView1.Items.RemoveAt(i);
+                }
+            }
+            ReColorizeListView();
+            ResumeLayout();
+        }
+        private bool FilterByGender(PokemonWithLocation pkmWithLoc, int genderId)
+        {
+            return pkmWithLoc.Pokemon.GenderID == genderId;
+        }
+        private bool FilterByType(PokemonWithLocation pkmWithLoc, int typeId)
+        {
+            return pkmWithLoc.Pokemon.GetType(1) == typeId || pkmWithLoc.Pokemon.GetType(2) == typeId;
+        }
+        private bool FilterByNature(PokemonWithLocation pkmWithLoc, int natureId)
+        {
+            return pkmWithLoc.Pokemon.NatureID == natureId;
+        }
+        private bool FilterByMarking(PokemonWithLocation pkmWithLoc, int markingNumber)
+        {
+            switch (markingNumber)
+            {
+                case 0: return pkmWithLoc.Pokemon.Circle;
+                case 1: return pkmWithLoc.Pokemon.Triangle;
+                case 2: return pkmWithLoc.Pokemon.Square;
+                case 3: return pkmWithLoc.Pokemon.Heart;
+                case 4: return pkmWithLoc.Pokemon.Star;
+                case 5: return pkmWithLoc.Pokemon.Diamond;
+            }
+            throw new Exception("Unknown Marking " + markingNumber + " in FilterByMarking!");
+        }
+        private bool FilterByShiny(PokemonWithLocation pkmWithLoc, int shiny)
+        {
+            if (shiny > 0)
+            {
+                return pkmWithLoc.Pokemon.IsShiny;
+            }
+            else
+            {
+                return !pkmWithLoc.Pokemon.IsShiny;
+            }
+        }
+        private bool FilterByPokerus(PokemonWithLocation pkmWithLoc, int pokerusStatus)
+        {
+            switch (pokerusStatus)
+            {
+                case 0: return pkmWithLoc.Pokemon.PokerusStrain == 0;
+                case 1: return pkmWithLoc.Pokemon.PokerusStrain > 0 && pkmWithLoc.Pokemon.PokerusDays > 0;
+                case 2: return pkmWithLoc.Pokemon.PokerusStrain > 0 && pkmWithLoc.Pokemon.PokerusDays == 0;
+            }
+            throw new Exception("Unknown Pokerus Status " + pokerusStatus + " in FilterByPokerus!");
+
+        }
+
+        private void buttonResetFilters_Click(object sender, EventArgs e)
+        {
+            FilterAll();
         }
     }
 }
