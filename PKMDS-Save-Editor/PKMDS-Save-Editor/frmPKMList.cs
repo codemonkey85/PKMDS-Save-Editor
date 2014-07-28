@@ -99,6 +99,60 @@ namespace PKMDS_Save_Editor
             }
         }
 
+        private Color GetBackgroundColor(bool even, int column, int group)
+        {
+            if (even)
+            {
+                if (group % 2 == 0)
+                {
+                    if (column % 2 == 0)
+                    {
+                        return Color.White;
+                    }
+                    else
+                    {
+                        return Color.FromArgb(0xFF, 0xF7, 0xF7, 0xF7);
+                    }
+                }
+                else
+                {
+                    if (column % 2 == 0)
+                    {
+                        return Color.FromArgb(0xFF, 0xDF, 0xDF, 0xDF);
+                    }
+                    else
+                    {
+                        return Color.FromArgb(0xFF, 0xD7, 0xD7, 0xD7);
+                    }
+                }
+            }
+            else
+            {
+                if (group % 2 == 0)
+                {
+                    if (column % 2 == 0)
+                    {
+                        return Color.FromArgb(0xFF, 0xEF, 0xEF, 0xEF);
+                    }
+                    else
+                    {
+                        return Color.FromArgb(0xFF, 0xE7, 0xE7, 0xE7);
+                    }
+                }
+                else
+                {
+                    if (column % 2 == 0)
+                    {
+                        return Color.FromArgb(0xFF, 0xCF, 0xCF, 0xCF);
+                    }
+                    else
+                    {
+                        return Color.FromArgb(0xFF, 0xC7, 0xC7, 0xC7);
+                    }
+                }
+            }
+        }
+
         struct PokemonWithLocation
         {
             public PKMDS.Pokemon Pokemon;
@@ -114,40 +168,56 @@ namespace PKMDS_Save_Editor
         // box should be -1 for party
         public void AddPokemon(PKMDS.Pokemon pkm, string areaString, int box, int slot)
         {
+            bool even = listView1.Items.Count % 2 == 0;
+            int columnCount = 0;
+            int group = 0;
+
             ListViewItem lvm = new ListViewItem();
+            lvm.UseItemStyleForSubItems = false;
             lvm.Tag = new PokemonWithLocation(pkm, (short)box, (short)slot);
 
             ListViewItem.ListViewSubItem item = new ListViewItem.ListViewSubItem(lvm, pkm.SpeciesID.ToString("000"));
             item.Tag = ColumnType.SpeciesID;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems[0] = item;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.SpeciesName);
             item.Tag = ColumnType.SpeciesName;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.Nickname);
             item.Tag = ColumnType.Nickname;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.GenderID == 0 ? "♂" : pkm.GenderID == 1 ? "♀" : "");
             item.Tag = ColumnType.Gender;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
+            item.ForeColor = pkm.GenderID == 0 ? Color.Blue : pkm.GenderID == 1 ? Color.Red : Color.Black;
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, areaString);
             item.Tag = ColumnType.Area;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
+            item.ForeColor = box == -1 ? Color.Green : Color.DarkCyan;
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetTypeName(pkm.GetType(1)));
             item.Tag = ColumnType.Type1;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetTypeName(pkm.GetType(2)));
             item.Tag = ColumnType.Type2;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
+            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.Level.ToString());
             item.Tag = ColumnType.Level;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             int[] stats = pkm.GetStats;
@@ -155,91 +225,118 @@ namespace PKMDS_Save_Editor
             {
                 item = new ListViewItem.ListViewSubItem(lvm, stats[i].ToString());
                 item.Tag = (ColumnType)(ColumnType.StatHP + i);
+                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
+            group++;
 
             int summedIV = pkm.HPIV + pkm.AttackIV + pkm.DefenseIV + pkm.SpecialAttackIV + pkm.SpecialDefenseIV + pkm.SpeedIV;
             item = new ListViewItem.ListViewSubItem(lvm, summedIV.ToString());
             item.Tag = ColumnType.IVTotal;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             for (int i = 0; i < stats.Length; ++i)
             {
                 item = new ListViewItem.ListViewSubItem(lvm, pkm.GetIV(i).ToString());
                 item.Tag = (ColumnType)(ColumnType.IVHP + i);
+                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
+            group++;
 
             int summedEV = pkm.HPEV + pkm.AttackEV + pkm.DefenseEV + pkm.SpecialAttackEV + pkm.SpecialDefenseEV + pkm.SpeedEV;
             item = new ListViewItem.ListViewSubItem(lvm, summedEV.ToString());
             item.Tag = ColumnType.EVTotal;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             for (int i = 0; i < stats.Length; ++i)
             {
                 item = new ListViewItem.ListViewSubItem(lvm, pkm.GetEV(i).ToString());
                 item.Tag = (ColumnType)(ColumnType.EVHP + i);
+                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
+            group++;
 
             ushort[] moveIds = pkm.GetMoveIDs;
             for (int i = 0; i < moveIds.Length; ++i)
             {
                 item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetMoveName(moveIds[i]));
                 item.Tag = (ColumnType)(ColumnType.Move1 + i);
+                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
+            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetAbilityName(pkm.AbilityID));
             item.Tag = ColumnType.Ability;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.NatureName);
             item.Tag = ColumnType.Nature;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
+
+            group++;
 
             string mark =
                 (pkm.Circle ? "●" : "") + (pkm.Triangle ? "▲" : "") + (pkm.Square ? "■" : "") +
                 (pkm.Square ? "♥" : "") + (pkm.Star ? "★" : "") + (pkm.Diamond ? "♦" : "");
             item = new ListViewItem.ListViewSubItem(lvm, mark);
             item.Tag = ColumnType.Markings;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, "");
             item.Tag = ColumnType.Ribbons;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
+            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.OTName);
             item.Tag = ColumnType.TrainerName;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
+            item.ForeColor = pkm.OTIsMale ? Color.Blue : pkm.OTIsFemale ? Color.Red : Color.Black;
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.TID.ToString("00000"));
             item.Tag = ColumnType.TrainerID;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.SID.ToString("00000"));
             item.Tag = ColumnType.TrainerSecretID;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.Tameness.ToString());
             item.Tag = ColumnType.Tameness;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
+
+            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.ItemName);
             item.Tag = ColumnType.HeldItem;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.IsShiny ? "★" : "");
             item.Tag = ColumnType.Shiny;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.PokerusStrain > 0 ? pkm.PokerusDays > 0 ? "●" : "○" : "");
             item.Tag = ColumnType.Pokerus;
+            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
 
