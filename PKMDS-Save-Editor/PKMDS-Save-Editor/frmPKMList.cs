@@ -97,6 +97,7 @@ namespace PKMDS_Save_Editor
                     }
                 }
             }
+            ReColorizeListView();
         }
 
         private Color GetBackgroundColor(bool even, int column, int group)
@@ -168,56 +169,43 @@ namespace PKMDS_Save_Editor
         // box should be -1 for party
         public void AddPokemon(PKMDS.Pokemon pkm, string areaString, int box, int slot)
         {
-            bool even = listView1.Items.Count % 2 == 0;
-            int columnCount = 0;
-            int group = 0;
-
             ListViewItem lvm = new ListViewItem();
             lvm.UseItemStyleForSubItems = false;
             lvm.Tag = new PokemonWithLocation(pkm, (short)box, (short)slot);
 
             ListViewItem.ListViewSubItem item = new ListViewItem.ListViewSubItem(lvm, pkm.SpeciesID.ToString("000"));
             item.Tag = ColumnType.SpeciesID;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems[0] = item;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.SpeciesName);
             item.Tag = ColumnType.SpeciesName;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.Nickname);
             item.Tag = ColumnType.Nickname;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.GenderID == 0 ? "♂" : pkm.GenderID == 1 ? "♀" : "");
             item.Tag = ColumnType.Gender;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             item.ForeColor = pkm.GenderID == 0 ? Color.Blue : pkm.GenderID == 1 ? Color.Red : Color.Black;
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, areaString);
             item.Tag = ColumnType.Area;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             item.ForeColor = box == -1 ? Color.Green : Color.DarkCyan;
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetTypeName(pkm.GetType(1)));
             item.Tag = ColumnType.Type1;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetTypeName(pkm.GetType(2)));
             item.Tag = ColumnType.Type2;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
-            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.Level.ToString());
             item.Tag = ColumnType.Level;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             int[] stats = pkm.GetStats;
@@ -225,122 +213,134 @@ namespace PKMDS_Save_Editor
             {
                 item = new ListViewItem.ListViewSubItem(lvm, stats[i].ToString());
                 item.Tag = (ColumnType)(ColumnType.StatHP + i);
-                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
-            group++;
 
             int summedIV = pkm.HPIV + pkm.AttackIV + pkm.DefenseIV + pkm.SpecialAttackIV + pkm.SpecialDefenseIV + pkm.SpeedIV;
             item = new ListViewItem.ListViewSubItem(lvm, summedIV.ToString());
             item.Tag = ColumnType.IVTotal;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             for (int i = 0; i < stats.Length; ++i)
             {
                 item = new ListViewItem.ListViewSubItem(lvm, pkm.GetIV(i).ToString());
                 item.Tag = (ColumnType)(ColumnType.IVHP + i);
-                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
-            group++;
 
             int summedEV = pkm.HPEV + pkm.AttackEV + pkm.DefenseEV + pkm.SpecialAttackEV + pkm.SpecialDefenseEV + pkm.SpeedEV;
             item = new ListViewItem.ListViewSubItem(lvm, summedEV.ToString());
             item.Tag = ColumnType.EVTotal;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             for (int i = 0; i < stats.Length; ++i)
             {
                 item = new ListViewItem.ListViewSubItem(lvm, pkm.GetEV(i).ToString());
                 item.Tag = (ColumnType)(ColumnType.EVHP + i);
-                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
-            group++;
 
             ushort[] moveIds = pkm.GetMoveIDs;
             for (int i = 0; i < moveIds.Length; ++i)
             {
                 item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetMoveName(moveIds[i]));
                 item.Tag = (ColumnType)(ColumnType.Move1 + i);
-                item.BackColor = GetBackgroundColor(even, columnCount++, group);
                 lvm.SubItems.Add(item);
             }
 
-            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, PKMDS.GetAbilityName(pkm.AbilityID));
             item.Tag = ColumnType.Ability;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.NatureName);
             item.Tag = ColumnType.Nature;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
-            group++;
 
             string mark =
                 (pkm.Circle ? "●" : "") + (pkm.Triangle ? "▲" : "") + (pkm.Square ? "■" : "") +
                 (pkm.Square ? "♥" : "") + (pkm.Star ? "★" : "") + (pkm.Diamond ? "♦" : "");
             item = new ListViewItem.ListViewSubItem(lvm, mark);
             item.Tag = ColumnType.Markings;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
-            item = new ListViewItem.ListViewSubItem(lvm, "");
+            // TODO: Insert Ribbon count here.
+            item = new ListViewItem.ListViewSubItem(lvm, "0");
             item.Tag = ColumnType.Ribbons;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
-            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.OTName);
             item.Tag = ColumnType.TrainerName;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             item.ForeColor = pkm.OTIsMale ? Color.Blue : pkm.OTIsFemale ? Color.Red : Color.Black;
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.TID.ToString("00000"));
             item.Tag = ColumnType.TrainerID;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.SID.ToString("00000"));
             item.Tag = ColumnType.TrainerSecretID;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.Tameness.ToString());
             item.Tag = ColumnType.Tameness;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
-            group++;
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.ItemName);
             item.Tag = ColumnType.HeldItem;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.IsShiny ? "★" : "");
             item.Tag = ColumnType.Shiny;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
             item = new ListViewItem.ListViewSubItem(lvm, pkm.PokerusStrain > 0 ? pkm.PokerusDays > 0 ? "●" : "○" : "");
             item.Tag = ColumnType.Pokerus;
-            item.BackColor = GetBackgroundColor(even, columnCount++, group);
             lvm.SubItems.Add(item);
 
 
             listView1.Items.Add(lvm);
+        }
+
+        public void ReColorizeListView()
+        {
+            int row = 0;
+            foreach (ListViewItem lvm in listView1.Items)
+            {
+                ReColorizeListViewItem(lvm, row++);
+            }
+        }
+        public void ReColorizeListViewItem(ListViewItem lvm, int row)
+        {
+            bool even = row % 2 == 0;
+            int group = 0;
+
+            for (int i = 0; i < lvm.SubItems.Count; ++i)
+            {
+                var item = lvm.SubItems[i];
+
+                switch ((ColumnType)(item.Tag))
+                {
+                    case ColumnType.Level:
+                    case ColumnType.IVTotal:
+                    case ColumnType.EVTotal:
+                    case ColumnType.Move1:
+                    case ColumnType.Ability:
+                    case ColumnType.Markings:
+                    case ColumnType.TrainerName:
+                    case ColumnType.HeldItem:
+                        ++group;
+                        break;
+                }
+
+                item.BackColor = GetBackgroundColor(even, i, group);
+            }
         }
 
         private void listView1_ItemActivate(object sender, EventArgs e)
@@ -348,14 +348,14 @@ namespace PKMDS_Save_Editor
 
         }
 
-        class ListViewItemComparer : IComparer
+        class ListViewItemComparerAlphaAsc : IComparer
         {
             private int col;
-            public ListViewItemComparer()
+            public ListViewItemComparerAlphaAsc()
             {
                 col = 0;
             }
-            public ListViewItemComparer(int column)
+            public ListViewItemComparerAlphaAsc(int column)
             {
                 col = column;
             }
@@ -364,14 +364,14 @@ namespace PKMDS_Save_Editor
                 return String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
             }
         }
-        class ListViewItemComparerDesc : IComparer
+        class ListViewItemComparerAlphaDesc : IComparer
         {
             private int col;
-            public ListViewItemComparerDesc()
+            public ListViewItemComparerAlphaDesc()
             {
                 col = 0;
             }
-            public ListViewItemComparerDesc(int column)
+            public ListViewItemComparerAlphaDesc(int column)
             {
                 col = column;
             }
@@ -380,13 +380,133 @@ namespace PKMDS_Save_Editor
                 return -String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
             }
         }
+        class ListViewItemComparerNumberAsc : IComparer
+        {
+            private int col;
+            public ListViewItemComparerNumberAsc()
+            {
+                col = 0;
+            }
+            public ListViewItemComparerNumberAsc(int column)
+            {
+                col = column;
+            }
+            public int Compare(object x, object y)
+            {
+                int ix = Int32.Parse(((ListViewItem)x).SubItems[col].Text);
+                int iy = Int32.Parse(((ListViewItem)y).SubItems[col].Text);
+                return ix.CompareTo(iy);
+            }
+        }
+        class ListViewItemComparerNumberDesc : IComparer
+        {
+            private int col;
+            public ListViewItemComparerNumberDesc()
+            {
+                col = 0;
+            }
+            public ListViewItemComparerNumberDesc(int column)
+            {
+                col = column;
+            }
+            public int Compare(object x, object y)
+            {
+                int ix = Int32.Parse(((ListViewItem)x).SubItems[col].Text);
+                int iy = Int32.Parse(((ListViewItem)y).SubItems[col].Text);
+                return iy.CompareTo(ix);
+            }
+        }
         private int sortColumn = -1;
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
+            ContextMenu menu = new System.Windows.Forms.ContextMenu();
 
-            if (e.Column != sortColumn)
+            ColumnType type = (ColumnType)listView1.Columns[e.Column].Tag;
+            switch (type)
             {
-                sortColumn = e.Column;
+                case ColumnType.SpeciesID:
+                case ColumnType.Level:
+                case ColumnType.StatHP:
+                case ColumnType.StatAtk:
+                case ColumnType.StatDef:
+                case ColumnType.StatSpAtk:
+                case ColumnType.StatSpDef:
+                case ColumnType.StatSpeed:
+                case ColumnType.IVTotal:
+                case ColumnType.IVHP:
+                case ColumnType.IVAtk:
+                case ColumnType.IVDef:
+                case ColumnType.IVSpAtk:
+                case ColumnType.IVSpDef:
+                case ColumnType.IVSpeed:
+                case ColumnType.EVTotal:
+                case ColumnType.EVHP:
+                case ColumnType.EVAtk:
+                case ColumnType.EVDef:
+                case ColumnType.EVSpAtk:
+                case ColumnType.EVSpDef:
+                case ColumnType.EVSpeed:
+                case ColumnType.Ribbons:
+                case ColumnType.TrainerID:
+                case ColumnType.TrainerSecretID:
+                case ColumnType.Tameness:
+                    // sort numerically
+                    SortData(e.Column, true);
+                    ReColorizeListView();
+                    return;
+                case ColumnType.SpeciesName:
+                case ColumnType.Nickname:
+                case ColumnType.TrainerName:
+                    // sort alpha
+                    SortData(e.Column, false);
+                    ReColorizeListView();
+                    return;
+                case ColumnType.Gender:
+                    // show only specific gender
+                    break;
+                case ColumnType.Area:
+                    // sort by area; maybe only show specific areas?
+                    break;
+                case ColumnType.Type1:
+                case ColumnType.Type2:
+                    // show only specific type(s)
+                    break;
+                case ColumnType.Move1:
+                case ColumnType.Move2:
+                case ColumnType.Move3:
+                case ColumnType.Move4:
+                    // show only specific move(s)
+                    break;
+                case ColumnType.Ability:
+                    // show only specific ability
+                    break;
+                case ColumnType.Nature:
+                    // show only specific nature
+                    break;
+                case ColumnType.Markings:
+                    // show only specific marking(s)
+                    break;
+                case ColumnType.HeldItem:
+                    // show only specific item
+                    break;
+                case ColumnType.Shiny:
+                    // show only shiny
+                    break;
+                case ColumnType.Pokerus:
+                    // show only infected/prev. infected
+                    break;
+                default:
+                    throw new Exception("Unknown ColumnType in column tag. (" + type.ToString() + ")");
+            }
+
+            menu.Show(this, this.PointToClient(MousePosition));
+            return;
+        }
+        private void SortData(int column, bool numerically)
+        {
+            if (column != sortColumn)
+            {
+                sortColumn = column;
                 listView1.Sorting = SortOrder.Ascending;
             }
             else
@@ -400,10 +520,24 @@ namespace PKMDS_Save_Editor
             switch (listView1.Sorting)
             {
                 case SortOrder.Ascending:
-                    listView1.ListViewItemSorter = new ListViewItemComparer(e.Column);
+                    if (numerically)
+                    {
+                        listView1.ListViewItemSorter = new ListViewItemComparerNumberAsc(column);
+                    }
+                    else
+                    {
+                        listView1.ListViewItemSorter = new ListViewItemComparerAlphaAsc(column);
+                    }
                     break;
                 case SortOrder.Descending:
-                    listView1.ListViewItemSorter = new ListViewItemComparerDesc(e.Column);
+                    if (numerically)
+                    {
+                        listView1.ListViewItemSorter = new ListViewItemComparerNumberDesc(column);
+                    }
+                    else
+                    {
+                        listView1.ListViewItemSorter = new ListViewItemComparerAlphaDesc(column);
+                    }
                     break;
             }
 
