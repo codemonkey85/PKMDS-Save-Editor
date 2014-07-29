@@ -160,7 +160,7 @@ namespace PKMDS_Save_Editor
             }
         }
 
-        class PokemonWithLocation : IComparable<PokemonWithLocation>
+        public class PokemonWithLocation : IComparable<PokemonWithLocation>
         {
             public PKMDS.Pokemon Pokemon;
             public short Box;
@@ -441,6 +441,7 @@ namespace PKMDS_Save_Editor
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ContextMenu menu = new System.Windows.Forms.ContextMenu();
+            frmFilterSelection filterWindow;
 
             ColumnType type = (ColumnType)listView1.Columns[e.Column].Tag;
             switch (type)
@@ -507,9 +508,17 @@ namespace PKMDS_Save_Editor
                 case ColumnType.Move3:
                 case ColumnType.Move4:
                     // show only specific move(s)
+                    filterWindow = new frmFilterSelection();
+                    filterWindow.FillWithMovesFromList(listView1.Items);
+                    filterWindow.ShowDialog();
+                    if (filterWindow.Accepted) { FilterMethod(FilterByMove, filterWindow.Selection); }
                     break;
                 case ColumnType.Ability:
                     // show only specific ability
+                    filterWindow = new frmFilterSelection();
+                    filterWindow.FillWithAbilitiesFromList(listView1.Items);
+                    filterWindow.ShowDialog();
+                    if (filterWindow.Accepted) { FilterMethod(FilterByAbility, filterWindow.Selection); }
                     break;
                 case ColumnType.Nature:
                     // show only specific nature
@@ -530,6 +539,10 @@ namespace PKMDS_Save_Editor
                     break;
                 case ColumnType.HeldItem:
                     // show only specific item
+                    filterWindow = new frmFilterSelection();
+                    filterWindow.FillWithItemsFromList(listView1.Items);
+                    filterWindow.ShowDialog();
+                    if (filterWindow.Accepted) { FilterMethod(FilterByHeldItem, filterWindow.Selection); }
                     break;
                 case ColumnType.Shiny:
                     // show only shiny
@@ -638,6 +651,19 @@ namespace PKMDS_Save_Editor
         private bool FilterByNature(PokemonWithLocation pkmWithLoc, int natureId)
         {
             return pkmWithLoc.Pokemon.NatureID == natureId;
+        }
+        private bool FilterByAbility(PokemonWithLocation pkmWithLoc, int abilityId)
+        {
+            return pkmWithLoc.Pokemon.AbilityID == abilityId;
+        }
+        private bool FilterByMove(PokemonWithLocation pkmWithLoc, int moveId)
+        {
+            return pkmWithLoc.Pokemon.Move1ID == moveId || pkmWithLoc.Pokemon.Move2ID == moveId
+                || pkmWithLoc.Pokemon.Move3ID == moveId || pkmWithLoc.Pokemon.Move4ID == moveId;
+        }
+        private bool FilterByHeldItem(PokemonWithLocation pkmWithLoc, int itemId)
+        {
+            return pkmWithLoc.Pokemon.ItemID == itemId;
         }
         private bool FilterByMarking(PokemonWithLocation pkmWithLoc, int markingNumber)
         {
