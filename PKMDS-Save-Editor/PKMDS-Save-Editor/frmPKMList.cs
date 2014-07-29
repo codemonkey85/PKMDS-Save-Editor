@@ -27,6 +27,7 @@ namespace PKMDS_Save_Editor
     public partial class frmPKMList : Form
     {
         List<ListViewItem> ListViewItemsAll;
+        int SaveFileCounter = 0;
 
         public frmPKMList()
         {
@@ -80,13 +81,16 @@ namespace PKMDS_Save_Editor
 
         public void loadFromSave(PKMDS.Save sav)
         {
+            SaveFileCounter++;
+            string saveFileAreaPrefix = SaveFileCounter > 1 ? SaveFileCounter + ": " : "";
+
             SuspendLayout();
             for (int i = 0; i < sav.Party.Count; ++i)
             {
                 var pkm = sav.Party[i].PokemonData;
                 if (pkm.SpeciesID != 0)
                 {
-                    AddPokemon(pkm, "Party", -1, i);
+                    AddPokemon(pkm, saveFileAreaPrefix + "Party", -1, i);
                 }
             }
             for (int i = 0; i < sav.PCStorage.Count; ++i)
@@ -97,7 +101,7 @@ namespace PKMDS_Save_Editor
                     var pkm = box[j];
                     if (pkm.SpeciesID != 0)
                     {
-                        AddPokemon(pkm, sav.BoxNames[i].Name, i, j);
+                        AddPokemon(pkm, saveFileAreaPrefix + sav.BoxNames[i].Name, i, j);
                     }
                 }
             }
@@ -163,18 +167,13 @@ namespace PKMDS_Save_Editor
         public class PokemonWithLocation : IComparable<PokemonWithLocation>
         {
             public PKMDS.Pokemon Pokemon;
-            public short Box;
-            public short Slot;
-            public PokemonWithLocation(PKMDS.Pokemon pkm, short box, short slot)
-            {
-                this.Pokemon = pkm;
-                this.Box = box;
-                this.Slot = slot;
-            }
+            public int Box;
+            public int Slot;
+            public int SaveFileNumber;
 
             public int CompareTo(PokemonWithLocation py)
             {
-                return (Box * 32 + Slot).CompareTo(py.Box * 32 + py.Slot);
+                return (SaveFileNumber * 1024 + Box * 32 + Slot).CompareTo(py.SaveFileNumber * 1024 + py.Box * 32 + py.Slot);
             }
         }
         // box should be -1 for party
@@ -182,7 +181,7 @@ namespace PKMDS_Save_Editor
         {
             ListViewItem lvm = new ListViewItem();
             lvm.UseItemStyleForSubItems = false;
-            lvm.Tag = new PokemonWithLocation(pkm, (short)box, (short)slot);
+            lvm.Tag = new PokemonWithLocation() { Pokemon = pkm, Box = box, Slot = slot, SaveFileNumber = SaveFileCounter };
 
             ListViewItem.ListViewSubItem item = new ListViewItem.ListViewSubItem(lvm, pkm.SpeciesID.ToString("000"));
             item.Tag = ColumnType.SpeciesID;
@@ -704,6 +703,25 @@ namespace PKMDS_Save_Editor
         private void buttonResetFilters_Click(object sender, EventArgs e)
         {
             FilterAll();
+        }
+
+        private void buttonLoadSave_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = ".sav files|*.sav|All files|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var sav = new PKMDS.Save(dialog.FileName);
+                    loadFromSave(sav);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
         }
     }
 }

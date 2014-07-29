@@ -68,6 +68,7 @@
             this.columnHeaderShiny = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPokeRus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonResetFilters = new System.Windows.Forms.Button();
+            this.buttonLoadSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -121,9 +122,9 @@
             this.columnHeaderPokeRus});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(12, 42);
+            this.listView1.Location = new System.Drawing.Point(12, 41);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1166, 374);
+            this.listView1.Size = new System.Drawing.Size(1166, 375);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -374,19 +375,31 @@
             // buttonResetFilters
             // 
             this.buttonResetFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonResetFilters.Location = new System.Drawing.Point(1102, 13);
+            this.buttonResetFilters.Location = new System.Drawing.Point(1013, 12);
             this.buttonResetFilters.Name = "buttonResetFilters";
-            this.buttonResetFilters.Size = new System.Drawing.Size(75, 23);
+            this.buttonResetFilters.Size = new System.Drawing.Size(165, 23);
             this.buttonResetFilters.TabIndex = 1;
             this.buttonResetFilters.Text = "Reset Filter";
             this.buttonResetFilters.UseVisualStyleBackColor = true;
             this.buttonResetFilters.Click += new System.EventHandler(this.buttonResetFilters_Click);
+            // 
+            // buttonLoadSave
+            // 
+            this.buttonLoadSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLoadSave.Location = new System.Drawing.Point(887, 12);
+            this.buttonLoadSave.Name = "buttonLoadSave";
+            this.buttonLoadSave.Size = new System.Drawing.Size(120, 23);
+            this.buttonLoadSave.TabIndex = 2;
+            this.buttonLoadSave.Text = "Load Additional Save";
+            this.buttonLoadSave.UseVisualStyleBackColor = true;
+            this.buttonLoadSave.Click += new System.EventHandler(this.buttonLoadSave_Click);
             // 
             // frmPKMList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1190, 428);
+            this.Controls.Add(this.buttonLoadSave);
             this.Controls.Add(this.buttonResetFilters);
             this.Controls.Add(this.listView1);
             this.Name = "frmPKMList";
@@ -442,5 +455,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderShiny;
         private System.Windows.Forms.ColumnHeader columnHeaderPokeRus;
         private System.Windows.Forms.Button buttonResetFilters;
+        private System.Windows.Forms.Button buttonLoadSave;
 	}
 }
