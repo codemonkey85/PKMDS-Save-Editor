@@ -23,6 +23,7 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPKMList));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeaderPokedexNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderSpeciesName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -124,7 +125,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(12, 41);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1166, 375);
+            this.listView1.Size = new System.Drawing.Size(760, 375);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -375,7 +376,7 @@
             // buttonResetFilters
             // 
             this.buttonResetFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonResetFilters.Location = new System.Drawing.Point(1013, 12);
+            this.buttonResetFilters.Location = new System.Drawing.Point(607, 12);
             this.buttonResetFilters.Name = "buttonResetFilters";
             this.buttonResetFilters.Size = new System.Drawing.Size(165, 23);
             this.buttonResetFilters.TabIndex = 1;
@@ -386,7 +387,7 @@
             // buttonLoadSave
             // 
             this.buttonLoadSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLoadSave.Location = new System.Drawing.Point(887, 12);
+            this.buttonLoadSave.Location = new System.Drawing.Point(481, 12);
             this.buttonLoadSave.Name = "buttonLoadSave";
             this.buttonLoadSave.Size = new System.Drawing.Size(120, 23);
             this.buttonLoadSave.TabIndex = 2;
@@ -398,12 +399,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 428);
+            this.ClientSize = new System.Drawing.Size(784, 428);
             this.Controls.Add(this.buttonLoadSave);
             this.Controls.Add(this.buttonResetFilters);
             this.Controls.Add(this.listView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPKMList";
-            this.Text = "frmPKMList";
+            this.Text = "Pokémon List";
             this.ResumeLayout(false);
 
 		}
