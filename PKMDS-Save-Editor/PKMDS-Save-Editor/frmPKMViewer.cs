@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PKMDS_CS;
+using System.IO;
+using System.Reflection;
 namespace PKMDS_Save_Editor
 {
     public partial class frmPKMViewer : Form
@@ -19,6 +21,21 @@ namespace PKMDS_Save_Editor
         //private bool IsParty = false;
         public frmPKMViewer()
         {
+            if (!(File.Exists(Properties.Settings.Default.veekunpokedex)))
+            {
+                string myTempFile = Path.Combine(Path.GetTempPath(), "veekun-pokedex.sqlite");
+                var dbFullPath = myTempFile;
+                if (File.Exists(dbFullPath))
+                {
+                    File.WriteAllBytes(dbFullPath, Properties.Resources.veekun_pokedex);
+                }
+                Properties.Settings.Default.veekunpokedex = myTempFile;
+                MessageBox.Show(Properties.Settings.Default.veekunpokedex, "File created!");
+            }
+            else
+            {
+                MessageBox.Show(Properties.Settings.Default.veekunpokedex, "File exists!");
+            }
             PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
             InitializeComponent();
             SetUI();

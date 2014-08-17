@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKMDS-Save-Editor", "PKMDS-Save-Editor\PKMDS-Save-Editor.csproj", "{A384CAE1-F072-489C-912B-B878F9B82DA1}"
 	ProjectSection(ProjectDependencies) = postProject
-		{8E70CFEC-312E-4B71-8496-996C7848166F} = {8E70CFEC-312E-4B71-8496-996C7848166F}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKMDS_CS", "..\externals\PKMDS-Win32-DLL\PKMDS-Win32-DLL\PKMDS_CS\PKMDS_CS.csproj", "{8E70CFEC-312E-4B71-8496-996C7848166F}"
-	ProjectSection(ProjectDependencies) = postProject
 		{E0D24125-BB5B-4E72-B13E-637EC39ADD37} = {E0D24125-BB5B-4E72-B13E-637EC39ADD37}
 	EndProjectSection
 EndProject
@@ -39,18 +34,6 @@ Global
 		{A384CAE1-F072-489C-912B-B878F9B82DA1}.Release|Win32.ActiveCfg = Release|x86
 		{A384CAE1-F072-489C-912B-B878F9B82DA1}.Release|x86.ActiveCfg = Release|x86
 		{A384CAE1-F072-489C-912B-B878F9B82DA1}.Release|x86.Build.0 = Release|x86
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Release|Win32.ActiveCfg = Release|Any CPU
-		{8E70CFEC-312E-4B71-8496-996C7848166F}.Release|x86.ActiveCfg = Release|Any CPU
 		{E0D24125-BB5B-4E72-B13E-637EC39ADD37}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{E0D24125-BB5B-4E72-B13E-637EC39ADD37}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{E0D24125-BB5B-4E72-B13E-637EC39ADD37}.Debug|Mixed Platforms.Build.0 = Debug|Win32
