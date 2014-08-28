@@ -34,6 +34,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savesavToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveFileOpen = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileSave = new System.Windows.Forms.SaveFileDialog();
             this.tlParty = new System.Windows.Forms.TableLayoutPanel();
@@ -350,7 +352,8 @@
             // mainMenu
             // 
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
             this.mainMenu.Size = new System.Drawing.Size(381, 24);
@@ -380,6 +383,22 @@
             this.savesavToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.savesavToolStripMenuItem.Text = "Save .sav";
             this.savesavToolStripMenuItem.Click += new System.EventHandler(this.savesavToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewlistToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // viewlistToolStripMenuItem
+            // 
+            this.viewlistToolStripMenuItem.Enabled = false;
+            this.viewlistToolStripMenuItem.Name = "viewlistToolStripMenuItem";
+            this.viewlistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewlistToolStripMenuItem.Text = "List";
+            this.viewlistToolStripMenuItem.Click += new System.EventHandler(this.viewlistToolStripMenuItem_Click);
             // 
             // SaveFileOpen
             // 
@@ -3432,6 +3451,8 @@
         private System.Windows.Forms.RadioButton rbItems;
         private System.Windows.Forms.RadioButton rbGroup;
         private System.Windows.Forms.RadioButton rbSingle;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewlistToolStripMenuItem;
     }
 }
 

@@ -56,10 +56,220 @@ namespace PKMDS_Save_Editor
             ConfigureForm();
             SetDataBindings();
         }
-        private void ConfigureForm()
+<<<<<<< HEAD
+        private void loadSaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileOpen.FileName = "";
+            if (SaveFileOpen.ShowDialog() != DialogResult.Cancel)
+            {
+                if (SaveFileOpen.FileName != "")
+                {
+                    try
+                    {
+                        savefile = SaveFileOpen.FileName;
+                        tempsav = new PKMDS.Save(savefile);
+                        //string message = "";
+                        //if (!tempsav.Validate(out message))
+                        //{
+                        //    throw new Exception(message);
+                        //}
+                        savesavToolStripMenuItem.Enabled = false;
                         viewlistToolStripMenuItem.Enabled = false;
+                        uiset = false;
+                        sav = tempsav;
+                        SetSaveFile();
+                        uiset = true;
+                        savesavToolStripMenuItem.Enabled = true;
                         viewlistToolStripMenuItem.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                    }
+                }
+            }
+        }
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            PKMDS.SQL.CloseDB();
+        }
+        private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileSave.FileName = "";
+            if (SaveFileSave.ShowDialog() != DialogResult.Cancel)
+            {
+                if (SaveFileSave.FileName != "")
+                {
+                    sav.WriteToFile(SaveFileSave.FileName);
+                }
+            }
+        }
+        private PKMDS.Pokemon ViewPokemon(PKMDS.Pokemon pkm)
+        {
+            pkmviewer.SetPokemon(pkm);
+            pkmviewer.ShowDialog();
+            return pkmviewer.SharedPokemon;
+        }
+        private PKMDS.PartyPokemon ViewPokemon(PKMDS.PartyPokemon ppkm)
+        {
+            pkmviewer.SetPokemon(ppkm.PokemonData.Clone());
+            pkmviewer.ShowDialog();
+            PKMDS.PartyPokemon newppkm = new PKMDS.PartyPokemon();
+            newppkm.PokemonData = pkmviewer.SharedPokemon.Clone();
+            return newppkm;
+        }
+        private void SetSaveFile()
+        {
+            this.splitMain.Enabled = true;
+            this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
+            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+            btnNextBox.Enabled = (sav.CurrentBox != 23);
+            txtBoxName.Enabled = true;
+            splitMain.Panel2.Enabled = true;
+            //gbMode.Enabled = true;
+            UpdateParty();
+            UpdateBox();
+            UpdateBoxWallpaper();
+            UpdateBoxName();
+            UpdateBoxNameLabels();
+            UpdateBoxCountLabels();
+            UpdateBoxGrids();
+            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+            splitMain.Panel2.PerformLayout();
+            foreach (Panel pan in boxPanels)
+            {
+                pan.BorderStyle = BorderStyle.None;
+            }
+            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
+        }
+        private void UpdateParty()
+        {
+            switch (mode)
+            {
+                case Mode.Single:
+                    for (int partySlot = 0; partySlot < 6; partySlot++)
+                    {
+                        PKMDS.Pokemon pokemon = sav.Party[partySlot].PokemonData;
+                        if ((pokemon.SpeciesID != 0) && (partySlot < sav.PartySize))
+                        {
+                            partyPics[partySlot].Image = pokemon.Icon;
+                        }
+                        else
+                        {
+                            partyPics[partySlot].Image = null;
+                        }
+                    }
+                    break;
+                case Mode.Group:
+
+                    break;
+                case Mode.Item:
+                    for (int slot = 0; slot < 6; slot++)
+                    {
+                        PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+                        pkm = sav.Party[slot].PokemonData;
+                        if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0) && (slot < sav.PartySize))
+                        {
+                            partyPics[slot].Image = pkm.ItemPic;
+                        }
+                        else
+                        {
+                            partyPics[slot].Image = null;
+                        }
+                    }
+                    break;
+            }
+            lblPartySize.Text = "Party - " + sav.PartySize.ToString() + " / 6";
+            sav.RecalculateParty();
+        }
+        private void UpdateBox()
+        {
+            switch (mode)
+            {
+                case Mode.Single:
+                    PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
+                    for (int boxSlot = 0; boxSlot < 30; boxSlot++)
+                    {
+                        pokemon = sav.PCStorage[sav.CurrentBox][boxSlot];
+                        if (pokemon.SpeciesID != 0)
+                        {
+                            boxPics[boxSlot].Image = pokemon.Icon;
+                        }
+                        else
+                        {
+                            boxPics[boxSlot].Image = null;
+                        }
+                    }
+                    break;
+                case Mode.Group:
+
+                    break;
+                case Mode.Item:
+                    for (int slot = 0; slot < 30; slot++)
+                    {
+                        PKMDS.Pokemon pkm = sav.PCStorage[sav.CurrentBox][slot];
+                        if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0))
+                        {
+                            boxPics[slot].Image = pkm.ItemPic;
+                        }
+                        else
+                        {
+                            boxPics[slot].Image = null;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void UpdateBoxWallpaper()
+        {
+            pnlBox.BackgroundImage = sav.BoxWallpapers[sav.CurrentBox].Wallpaper;
+        }
+        private void UpdateBoxName()
+        {
+            txtBoxName.Text = sav.BoxNames[sav.CurrentBox].Name;
+        }
+        private void UpdateBoxNameLabel(int box)
+        {
+            boxNameLabels[box].Text = sav.BoxNames[box].Name;
+        }
+        private void UpdateBoxNameLabels()
+        {
+            for (int box = 0; box < 24; box++)
+            {
+                UpdateBoxNameLabel(box);
+            }
+        }
+        private void UpdateBoxCountLabel(int box)
+        {
+
+            boxcountLabels[box].Text = sav.BoxCount(box).ToString() + "/30";
+        }
+        private void UpdateBoxCountLabels()
+        {
+            for (int box = 0; box < 24; box++)
+            {
+                UpdateBoxCountLabel(box);
+            }
+        }
+        private void UpdateBoxGrid(int box)
+        {
+            boxGridPics[box].Image = sav.PCStorage[box].Grid;
+        }
+        private void UpdateBoxGrids()
+        {
+            for (int box = 0; box < 24; box++)
+            {
+                UpdateBoxGrid(box);
+            }
+        }
+        private void frmMain_Load(object sender, EventArgs e)
+=======
+        private void ConfigureForm()
+>>>>>>> origin/databinding2
+        {
             ClearPreview();
             partyPics.Add(pbPartySlot01);
             partyPics.Add(pbPartySlot02);
