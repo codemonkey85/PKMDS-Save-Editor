@@ -63,11 +63,13 @@ namespace PKMDS_Save_Editor
                         //    throw new Exception(message);
                         //}
                         savesavToolStripMenuItem.Enabled = false;
+                        viewlistToolStripMenuItem.Enabled = false;
                         uiset = false;
                         sav = tempsav;
                         SetSaveFile();
                         uiset = true;
                         savesavToolStripMenuItem.Enabled = true;
+                        viewlistToolStripMenuItem.Enabled = true;
                     }
                     catch (Exception ex)
                     {
@@ -411,11 +413,13 @@ namespace PKMDS_Save_Editor
                     //    throw new Exception(message);
                     //}
                     savesavToolStripMenuItem.Enabled = false;
+                    viewlistToolStripMenuItem.Enabled = false;
                     uiset = false;
                     sav = tempsav;
                     SetSaveFile();
                     uiset = true;
                     savesavToolStripMenuItem.Enabled = true;
+                    viewlistToolStripMenuItem.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -1192,6 +1196,13 @@ namespace PKMDS_Save_Editor
             //this.Cursor = Cursors.Arrow;
             //UpdateBox();
             //UpdateParty();
+        }
+
+        private void viewlistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var list = new frmPKMList();
+            list.loadFromSave(sav);
+            list.Show();
         }
     }
 }
