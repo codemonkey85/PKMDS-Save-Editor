@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace PKMDS_Save_Editor
@@ -13,7 +11,7 @@ namespace PKMDS_Save_Editor
         [STAThread]
         static void Main(string[] args)
         {
-            string filePath = "";
+            string filePath = string.Empty;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (args.Length > 0)

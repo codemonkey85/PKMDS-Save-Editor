@@ -1,41 +1,41 @@
-﻿using System;
+﻿using PKMDS_CS;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Windows.Forms;
-using PKMDS_CS;
+using static PKMDS_CS.PKMDS;
+
 namespace PKMDS_Save_Editor
 {
     public partial class frmPKMViewer : Form
     {
-        public PKMDS.Pokemon SharedPokemon = new PKMDS.Pokemon();
-        private PKMDS.Pokemon TempPokemon = new PKMDS.Pokemon();
-        public PKMDS.PartyPokemon SharedPartyPokemon = new PKMDS.PartyPokemon();
+        public Pokemon SharedPokemon = new Pokemon();
+        private Pokemon TempPokemon = new Pokemon();
+        public PartyPokemon SharedPartyPokemon = new PartyPokemon();
         private bool UISet = false;
         private bool PokemonSet = false;
         //private bool IsParty = false;
         public frmPKMViewer()
         {
-            PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
+            SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
             InitializeComponent();
             SetUI();
         }
-        public void SetPokemon(PKMDS.Pokemon pkm)
+        public void SetPokemon(Pokemon pkm)
         {
             PokemonSet = false;
-            this.SharedPokemon = pkm.Clone();
-            this.TempPokemon = pkm.Clone();
+            SharedPokemon = pkm.Clone();
+            TempPokemon = pkm.Clone();
             //this.IsParty = false;
         }
-        public void SetPokemon(PKMDS.PartyPokemon ppkm)
+        public void SetPokemon(PartyPokemon ppkm)
         {
             PokemonSet = false;
             //SetPokemon(ppkm.PokemonData);
-            this.SharedPokemon = ppkm.PokemonData.Clone();
-            this.TempPokemon = ppkm.PokemonData.Clone();
+            SharedPokemon = ppkm.PokemonData.Clone();
+            TempPokemon = ppkm.PokemonData.Clone();
             //this.IsParty = true;
         }
         private void frmPKMViewer_Load(object sender, EventArgs e)
@@ -47,12 +47,12 @@ namespace PKMDS_Save_Editor
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
             ClearForm();
             DisplayPokemon(TempPokemon);
         }
-        private void DisplayPokemon(PKMDS.Pokemon pkm)
+        private void DisplayPokemon(Pokemon pkm)
         {
             UpdateFormIcon();
             UpdateCommonInfo();
@@ -76,13 +76,13 @@ namespace PKMDS_Save_Editor
             //pbShiny.Image = null;
             //pbPokerus.Image = null;
             cbForm.Items.Clear();
-            cbForm.Text = "";
+            cbForm.Text = string.Empty;
         }
 
         private void UpdateFormIcon()
         {
-            System.Drawing.Bitmap icon = (System.Drawing.Bitmap)(TempPokemon.Icon);
-            this.Icon = Icon.FromHandle(icon.GetHicon());
+            Bitmap icon = (Bitmap)TempPokemon.Icon;
+            Icon = Icon.FromHandle(icon.GetHicon());
         }
 
         #region UpdateCommonInfo
@@ -109,18 +109,18 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateMarkings()
         {
-            pbCircle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Circle, TempPokemon.Circle);
-            pbTriangle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Triangle, TempPokemon.Triangle);
-            pbSquare.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Square, TempPokemon.Square);
-            pbHeart.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Heart, TempPokemon.Heart);
-            pbStar.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Star, TempPokemon.Star);
-            pbDiamond.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Diamond, TempPokemon.Diamond);
+            pbCircle.Image = GetMarkingImage(Markings.Circle, TempPokemon.Circle);
+            pbTriangle.Image = GetMarkingImage(Markings.Triangle, TempPokemon.Triangle);
+            pbSquare.Image = GetMarkingImage(Markings.Square, TempPokemon.Square);
+            pbHeart.Image = GetMarkingImage(Markings.Heart, TempPokemon.Heart);
+            pbStar.Image = GetMarkingImage(Markings.Star, TempPokemon.Star);
+            pbDiamond.Image = GetMarkingImage(Markings.Diamond, TempPokemon.Diamond);
         }
         private void UpdateHeldItem()
         {
             cbHeldItem.SelectedValue = TempPokemon.ItemID;
-            pbHeldItem.Image = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemImage;
-            lblHeldItemFlavor.Text = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemFlavor;
+            pbHeldItem.Image = ((Item)cbHeldItem.SelectedItem).ItemImage;
+            lblHeldItemFlavor.Text = ((Item)cbHeldItem.SelectedItem).ItemFlavor;
         }
         private void UpdateShiny()
         {
@@ -140,7 +140,7 @@ namespace PKMDS_Save_Editor
         private void UpdateSpecies()
         {
             cbSpecies.SelectedValue = TempPokemon.SpeciesID;
-            numSpecies.Value = (Decimal)(TempPokemon.SpeciesID);
+            numSpecies.Value = TempPokemon.SpeciesID;
         }
         private void UpdateLevel()
         {
@@ -155,7 +155,7 @@ namespace PKMDS_Save_Editor
                 {
                     TempPokemon.FormID = 0;
                     cbForm.SelectedIndex = -1;
-                    cbForm.Text = "";
+                    cbForm.Text = string.Empty;
                 }
                 else
                 {
@@ -195,14 +195,7 @@ namespace PKMDS_Save_Editor
         private void UpdateOTName()
         {
             txtOTName.Text = TempPokemon.OTName;
-            if (TempPokemon.OTGenderID == 0)
-            {
-                txtOTName.ForeColor = Color.Blue;
-            }
-            else
-            {
-                txtOTName.ForeColor = Color.Red;
-            }
+            txtOTName.ForeColor = TempPokemon.OTGenderID == 0 ? Color.Blue : Color.Red;
         }
         private void UpdateTIDSID()
         {
@@ -217,7 +210,7 @@ namespace PKMDS_Save_Editor
         private void UpdateAbility()
         {
             cbAbility.SelectedValue = TempPokemon.AbilityID;
-            lblAbilityFlavor.Text = ((PKMDS.Ability)(cbAbility.SelectedItem)).AbilityFlavor;
+            lblAbilityFlavor.Text = ((Ability)cbAbility.SelectedItem).AbilityFlavor;
         }
         private void UpdateEXP()
         {
@@ -228,17 +221,17 @@ namespace PKMDS_Save_Editor
                 pbTNL.Minimum = 0;
                 pbTNL.Maximum = 1;
                 pbTNL.Value = 0;
-                txtTNL.Text = (0).ToString();
+                txtTNL.Text = 0.ToString();
                 txtTNLPercent.Visible = false;
             }
             else
             {
                 pbTNL.Minimum = 0;
-                pbTNL.Maximum = (int)((int)(TempPokemon.EXPAtGivenLevel(TempPokemon.Level + 1)) - TempPokemon.EXPAtCurLevel); // (int)(TempPokemon.EXPAtGivenLevel(TempPokemon.Level + 1));
+                pbTNL.Maximum = (int)((int)TempPokemon.EXPAtGivenLevel(TempPokemon.Level + 1) - TempPokemon.EXPAtCurLevel); // (int)(TempPokemon.EXPAtGivenLevel(TempPokemon.Level + 1));
                 pbTNL.Value = (int)(TempPokemon.EXP - TempPokemon.EXPAtCurLevel);
                 txtTNL.Text = TempPokemon.TNL.ToString();
                 txtTNLPercent.Visible = true;
-                int percent = (100 * pbTNL.Value) / pbTNL.Maximum;
+                int percent = 100 * pbTNL.Value / pbTNL.Maximum;
                 txtTNLPercent.Text = percent.ToString("0") + "%";
             }
         }
@@ -288,12 +281,12 @@ namespace PKMDS_Save_Editor
         private void UpdateTotalEVs()
         {
             int totalEVs =
-                ((int)(numHPEV.Value) +
-                (int)(numAtkEV.Value) +
-                (int)(numDefEV.Value) +
-                (int)(numSpAtkEV.Value) +
-                (int)(numSpDefEV.Value) +
-                (int)(numSpeedEV.Value));
+                (int)numHPEV.Value +
+                (int)numAtkEV.Value +
+                (int)numDefEV.Value +
+                (int)numSpAtkEV.Value +
+                (int)numSpDefEV.Value +
+                (int)numSpeedEV.Value;
             txtTotalEVs.Text = totalEVs.ToString();
             SetControlFont(ref txtTotalEVs, totalEVs >= 510);
         }
@@ -317,25 +310,11 @@ namespace PKMDS_Save_Editor
                 statcolor = Color.Black;
                 if (inc == i)
                 {
-                    if (dec == i)
-                    {
-                        statcolor = Color.Black;
-                    }
-                    else
-                    {
-                        statcolor = Color.Red;
-                    }
+                    statcolor = dec == i ? Color.Black : Color.Red;
                 }
                 if (dec == i)
                 {
-                    if (inc == i)
-                    {
-                        statcolor = Color.Black;
-                    }
-                    else
-                    {
-                        statcolor = Color.Blue;
-                    }
+                    statcolor = inc == i ? Color.Black : Color.Blue;
                 }
                 statlbls[i].ForeColor = statcolor;
             }
@@ -370,15 +349,15 @@ namespace PKMDS_Save_Editor
             UpdateMove4();
         }
 
-        private void AutosizeFont(ref System.Windows.Forms.Label ctrl)
+        private void AutosizeFont(ref Label ctrl)
         {
             //       while ((Decimal)(ctrl.Width) > (Decimal)(System.Windows.Forms.TextRenderer.MeasureText(ctrl.Text,
             //new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width) / 1.00M)
             //       {
             //           ctrl.Font = new Font(ctrl.Font.FontFamily, ctrl.Font.Size + 0.5f, ctrl.Font.Style);
             //       }
-            while ((Decimal)(ctrl.Width) < (Decimal)(System.Windows.Forms.TextRenderer.MeasureText(ctrl.Text,
-     new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width) / 1.90M)
+            while (ctrl.Width < TextRenderer.MeasureText(ctrl.Text,
+     new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width / 1.90M)
             {
                 ctrl.Font = new Font(ctrl.Font.FontFamily, ctrl.Font.Size - 0.5f, ctrl.Font.Style);
             }
@@ -386,26 +365,12 @@ namespace PKMDS_Save_Editor
 
         private void UpdateMove1()
         {
-            UInt16 moveid = TempPokemon.GetMoveIDs[0];
+            ushort moveid = TempPokemon.GetMoveIDs[0];
             cbMove1.SelectedValue = moveid;
-            PKMDS.Move move = (PKMDS.Move)(cbMove1.SelectedItem);
+            Move move = (Move)cbMove1.SelectedItem;
             lblMove1Flavor.Text = move.MoveFlavor;
-            if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
-            {
-                lblMove1Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
-            }
-            else
-            {
-                lblMove1Accuracy.Text = "-";
-            }
-            if ((move.MovePower != 0) && (move.MovePower != 1))
-            {
-                lblMove1Power.Text = move.MovePower.ToString();
-            }
-            else
-            {
-                lblMove1Power.Text = "-";
-            }
+            lblMove1Accuracy.Text = (move.MoveAccuracy != 0) && (move.MoveAccuracy != 1) ? move.MoveAccuracy.ToString("0") + "%" : "-";
+            lblMove1Power.Text = (move.MovePower != 0) && (move.MovePower != 1) ? move.MovePower.ToString() : "-";
             numMove1PP.Value = TempPokemon.GetMovePP(0);
             numMove1PPUps.Value = TempPokemon.GetMovePPUp(0);
             txtMove1MaxPP.Text = (move.MoveBasePP + (numMove1PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -415,18 +380,18 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateMove2()
         {
-            UInt16 moveid = TempPokemon.GetMoveIDs[1];
+            ushort moveid = TempPokemon.GetMoveIDs[1];
             if (moveid == 0)
             {
                 cbMove2.SelectedIndex = -1;
                 numMove2PPUps.Enabled = false;
                 numMove2PP.Enabled = false;
-                lblMove2Accuracy.Text = "";
-                lblMove2Flavor.Text = "";
-                lblMove2Power.Text = "";
+                lblMove2Accuracy.Text = string.Empty;
+                lblMove2Flavor.Text = string.Empty;
+                lblMove2Power.Text = string.Empty;
                 numMove2PP.Value = 0M;
                 numMove2PPUps.Value = 0M;
-                txtMove2MaxPP.Text = "";
+                txtMove2MaxPP.Text = string.Empty;
                 pbMove2Type.Image = null;
                 pbMove2Category.Image = null;
             }
@@ -435,24 +400,10 @@ namespace PKMDS_Save_Editor
                 cbMove2.SelectedValue = moveid;
                 numMove2PPUps.Enabled = true;
                 numMove2PP.Enabled = true;
-                PKMDS.Move move = (PKMDS.Move)(cbMove2.SelectedItem);
+                Move move = (Move)cbMove2.SelectedItem;
                 lblMove2Flavor.Text = move.MoveFlavor;
-                if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
-                {
-                    lblMove2Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
-                }
-                else
-                {
-                    lblMove2Accuracy.Text = "-";
-                }
-                if ((move.MovePower != 0) && (move.MovePower != 1))
-                {
-                    lblMove2Power.Text = move.MovePower.ToString();
-                }
-                else
-                {
-                    lblMove2Power.Text = "-";
-                }
+                lblMove2Accuracy.Text = (move.MoveAccuracy != 0) && (move.MoveAccuracy != 1) ? move.MoveAccuracy.ToString("0") + "%" : "-";
+                lblMove2Power.Text = (move.MovePower != 0) && (move.MovePower != 1) ? move.MovePower.ToString() : "-";
                 numMove2PP.Value = TempPokemon.GetMovePP(1);
                 numMove2PPUps.Value = TempPokemon.GetMovePPUp(1);
                 txtMove2MaxPP.Text = (move.MoveBasePP + (numMove2PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -463,18 +414,18 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateMove3()
         {
-            UInt16 moveid = TempPokemon.GetMoveIDs[2];
+            ushort moveid = TempPokemon.GetMoveIDs[2];
             if (moveid == 0)
             {
                 cbMove3.SelectedIndex = -1;
                 numMove3PPUps.Enabled = false;
                 numMove3PP.Enabled = false;
-                lblMove3Accuracy.Text = "";
-                lblMove3Flavor.Text = "";
-                lblMove3Power.Text = "";
+                lblMove3Accuracy.Text = string.Empty;
+                lblMove3Flavor.Text = string.Empty;
+                lblMove3Power.Text = string.Empty;
                 numMove3PP.Value = 0M;
                 numMove3PPUps.Value = 0M;
-                txtMove3MaxPP.Text = "";
+                txtMove3MaxPP.Text = string.Empty;
                 pbMove3Type.Image = null;
                 pbMove3Category.Image = null;
             }
@@ -483,24 +434,10 @@ namespace PKMDS_Save_Editor
                 cbMove3.SelectedValue = moveid;
                 numMove3PPUps.Enabled = true;
                 numMove3PP.Enabled = true;
-                PKMDS.Move move = (PKMDS.Move)(cbMove3.SelectedItem);
+                Move move = (Move)cbMove3.SelectedItem;
                 lblMove3Flavor.Text = move.MoveFlavor;
-                if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
-                {
-                    lblMove3Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
-                }
-                else
-                {
-                    lblMove3Accuracy.Text = "-";
-                }
-                if ((move.MovePower != 0) && (move.MovePower != 1))
-                {
-                    lblMove3Power.Text = move.MovePower.ToString();
-                }
-                else
-                {
-                    lblMove3Power.Text = "-";
-                }
+                lblMove3Accuracy.Text = (move.MoveAccuracy != 0) && (move.MoveAccuracy != 1) ? move.MoveAccuracy.ToString("0") + "%" : "-";
+                lblMove3Power.Text = (move.MovePower != 0) && (move.MovePower != 1) ? move.MovePower.ToString() : "-";
                 numMove3PP.Value = TempPokemon.GetMovePP(2);
                 numMove3PPUps.Value = TempPokemon.GetMovePPUp(2);
                 txtMove3MaxPP.Text = (move.MoveBasePP + (numMove3PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -511,18 +448,18 @@ namespace PKMDS_Save_Editor
         }
         private void UpdateMove4()
         {
-            UInt16 moveid = TempPokemon.GetMoveIDs[3];
+            ushort moveid = TempPokemon.GetMoveIDs[3];
             if (moveid == 0)
             {
                 cbMove4.SelectedIndex = -1;
                 numMove4PPUps.Enabled = false;
                 numMove4PP.Enabled = false;
-                lblMove4Accuracy.Text = "";
-                lblMove4Flavor.Text = "";
-                lblMove4Power.Text = "";
+                lblMove4Accuracy.Text = string.Empty;
+                lblMove4Flavor.Text = string.Empty;
+                lblMove4Power.Text = string.Empty;
                 numMove4PP.Value = 0M;
                 numMove4PPUps.Value = 0M;
-                txtMove4MaxPP.Text = "";
+                txtMove4MaxPP.Text = string.Empty;
                 pbMove4Type.Image = null;
                 pbMove4Category.Image = null;
             }
@@ -531,24 +468,10 @@ namespace PKMDS_Save_Editor
                 cbMove4.SelectedValue = moveid;
                 numMove4PPUps.Enabled = true;
                 numMove4PP.Enabled = true;
-                PKMDS.Move move = (PKMDS.Move)(cbMove4.SelectedItem);
+                Move move = (Move)cbMove4.SelectedItem;
                 lblMove4Flavor.Text = move.MoveFlavor;
-                if ((move.MoveAccuracy != 0) && (move.MoveAccuracy != 1))
-                {
-                    lblMove4Accuracy.Text = move.MoveAccuracy.ToString("0") + "%";
-                }
-                else
-                {
-                    lblMove4Accuracy.Text = "-";
-                }
-                if ((move.MovePower != 0) && (move.MovePower != 1))
-                {
-                    lblMove4Power.Text = move.MovePower.ToString();
-                }
-                else
-                {
-                    lblMove4Power.Text = "-";
-                }
+                lblMove4Accuracy.Text = (move.MoveAccuracy != 0) && (move.MoveAccuracy != 1) ? move.MoveAccuracy.ToString("0") + "%" : "-";
+                lblMove4Power.Text = (move.MovePower != 0) && (move.MovePower != 1) ? move.MovePower.ToString() : "-";
                 numMove4PP.Value = TempPokemon.GetMovePP(3);
                 numMove4PPUps.Value = TempPokemon.GetMovePPUp(3);
                 txtMove4MaxPP.Text = (move.MoveBasePP + (numMove4PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -563,13 +486,13 @@ namespace PKMDS_Save_Editor
         #region UpdateOriginsInfo
         private void UpdateOriginsInfo()
         {
-            numMetLevel.Value = (Decimal)(TempPokemon.MetLevel);
+            numMetLevel.Value = TempPokemon.MetLevel;
             cbIsEgg.Checked = TempPokemon.IsEgg;
             UpdateHatchSteps();
             cbNsPokemon.Checked = TempPokemon.IsNsPokemon;
             cbFateful.Checked = TempPokemon.IsFateful;
-            cbGame.SelectedValue = (Byte)(TempPokemon.HometownID);
-            cbCountry.SelectedValue = (Byte)(TempPokemon.LanguageID);
+            cbGame.SelectedValue = TempPokemon.HometownID;
+            cbCountry.SelectedValue = TempPokemon.LanguageID;
             cbMetLocation.SelectedValue = TempPokemon.MetLocationID;
             dtMetDate.Value = TempPokemon.MetDate;
             cbMetAsEgg.Checked = TempPokemon.MetAsEgg;
@@ -604,25 +527,11 @@ namespace PKMDS_Save_Editor
 
         private void SetControlFont(ref NumericUpDown control, bool bold = false)
         {
-            if (bold)
-            {
-                control.Font = new Font(control.Font, FontStyle.Bold);
-            }
-            else
-            {
-                control.Font = new Font(control.Font, FontStyle.Regular);
-            }
+            control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
         }
         private void SetControlFont(ref TextBox control, bool bold = false)
         {
-            if (bold)
-            {
-                control.Font = new Font(control.Font, FontStyle.Bold);
-            }
-            else
-            {
-                control.Font = new Font(control.Font, FontStyle.Regular);
-            }
+            control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
         }
 
         private void SetUI()
@@ -643,12 +552,12 @@ namespace PKMDS_Save_Editor
             cbForm.Items.Clear();
             if (TempPokemon.SpeciesID != 0)
             {
-                string[] formnames = PKMDS.GetPKMFormNames(TempPokemon.SpeciesID);
+                string[] formnames = GetPKMFormNames(TempPokemon.SpeciesID);
                 if (formnames.Length != 0)
                 {
-                    if (!((formnames.Length == 1) && (formnames[0] == "")))
+                    if (!((formnames.Length == 1) && (formnames[0] == string.Empty)))
                     {
-                        cbForm.Items.AddRange(PKMDS.GetPKMFormNames(TempPokemon.SpeciesID));
+                        cbForm.Items.AddRange(GetPKMFormNames(TempPokemon.SpeciesID));
                         cbForm.Enabled = true;
                     }
                     else
@@ -664,13 +573,13 @@ namespace PKMDS_Save_Editor
         }
         private void SetItems()
         {
-            List<PKMDS.Item> items = new List<PKMDS.Item>();
-            PKMDS.Item item = new PKMDS.Item();
+            List<Item> items = new List<Item>();
+            Item item = new Item();
             items.Add(item);
-            for (UInt16 itemindex = 0; itemindex <= 0x027E; itemindex++)
+            for (ushort itemindex = 0; itemindex <= 0x027E; itemindex++)
             {
-                item = new PKMDS.Item(itemindex);
-                if ((item.ItemName != "") & (item.ItemName != null))
+                item = new Item(itemindex);
+                if ((item.ItemName != string.Empty) & (item.ItemName != null))
                 {
                     items.Add(item);
                 }
@@ -681,12 +590,12 @@ namespace PKMDS_Save_Editor
         }
         private void SetAbilities()
         {
-            List<PKMDS.Ability> abilities = new List<PKMDS.Ability>();
-            PKMDS.Ability ability = new PKMDS.Ability();
-            for (UInt16 abilityindex = 0; abilityindex <= 164; abilityindex++)
+            List<Ability> abilities = new List<Ability>();
+            Ability ability = new Ability();
+            for (ushort abilityindex = 0; abilityindex <= 164; abilityindex++)
             {
-                ability = new PKMDS.Ability(abilityindex);
-                if ((ability.AbilityName != "") & (ability.AbilityName != null) & (ability.AbilityID != 0))
+                ability = new Ability(abilityindex);
+                if ((ability.AbilityName != string.Empty) & (ability.AbilityName != null) & (ability.AbilityID != 0))
                 {
                     abilities.Add(ability);
                 }
@@ -697,12 +606,12 @@ namespace PKMDS_Save_Editor
         }
         private void SetSpecies()
         {
-            List<PKMDS.Species> species_l = new List<PKMDS.Species>();
-            PKMDS.Species species = new PKMDS.Species();
-            for (UInt16 speciesindex = 0; speciesindex <= 649; speciesindex++)
+            List<Species> species_l = new List<Species>();
+            Species species = new Species();
+            for (ushort speciesindex = 0; speciesindex <= 649; speciesindex++)
             {
-                species = new PKMDS.Species(speciesindex);
-                if ((species.SpeciesName != "") & (species.SpeciesName != null) & (species.SpeciesID != 0))
+                species = new Species(speciesindex);
+                if ((species.SpeciesName != string.Empty) & (species.SpeciesName != null) & (species.SpeciesID != 0))
                 {
                     species_l.Add(species);
                 }
@@ -713,12 +622,12 @@ namespace PKMDS_Save_Editor
         }
         private void SetBalls()
         {
-            List<PKMDS.Ball> balls = new List<PKMDS.Ball>();
-            PKMDS.Ball ball = new PKMDS.Ball();
-            for (Byte ballindex = 0; ballindex <= 25; ballindex++)
+            List<Ball> balls = new List<Ball>();
+            Ball ball = new Ball();
+            for (byte ballindex = 0; ballindex <= 25; ballindex++)
             {
-                ball = new PKMDS.Ball(ballindex);
-                if ((ball.BallName != "") & (ball.BallName != null))
+                ball = new Ball(ballindex);
+                if ((ball.BallName != string.Empty) & (ball.BallName != null))
                 {
                     balls.Add(ball);
                 }
@@ -729,12 +638,12 @@ namespace PKMDS_Save_Editor
         }
         private void SetNatures()
         {
-            List<PKMDS.Nature> natures = new List<PKMDS.Nature>();
-            PKMDS.Nature nature = new PKMDS.Nature();
-            for (Byte natureindex = 0; natureindex <= 24; natureindex++)
+            List<Nature> natures = new List<Nature>();
+            Nature nature = new Nature();
+            for (byte natureindex = 0; natureindex <= 24; natureindex++)
             {
-                nature = new PKMDS.Nature(natureindex);
-                if ((nature.NatureName != "") & (nature.NatureName != null))
+                nature = new Nature(natureindex);
+                if ((nature.NatureName != string.Empty) & (nature.NatureName != null))
                 {
                     natures.Add(nature);
                 }
@@ -745,40 +654,40 @@ namespace PKMDS_Save_Editor
         }
         private void SetLocations()
         {
-            List<PKMDS.Location> metlocations = new List<PKMDS.Location>();
-            List<PKMDS.Location> egglocations = new List<PKMDS.Location>();
-            PKMDS.Location location = new PKMDS.Location();
-            for (UInt16 locationindex = 0; locationindex <= 153; locationindex++)
+            List<Location> metlocations = new List<Location>();
+            List<Location> egglocations = new List<Location>();
+            Location location = new Location();
+            for (ushort locationindex = 0; locationindex <= 153; locationindex++)
             {
-                location = new PKMDS.Location(locationindex);
-                if ((location.LocationName != "") & (location.LocationName != null) & (location.LocationID != 0))
+                location = new Location(locationindex);
+                if ((location.LocationName != string.Empty) & (location.LocationName != null) & (location.LocationID != 0))
                 {
                     metlocations.Add(location);
                     egglocations.Add(location);
                 }
             }
-            location = new PKMDS.Location(2000);
+            location = new Location(2000);
             metlocations.Add(location);
             egglocations.Add(location);
-            location = new PKMDS.Location(30001);
+            location = new Location(30001);
             metlocations.Add(location);
             egglocations.Add(location);
-            location = new PKMDS.Location(30012);
+            location = new Location(30012);
             metlocations.Add(location);
             egglocations.Add(location);
-            location = new PKMDS.Location(30013);
+            location = new Location(30013);
             metlocations.Add(location);
             egglocations.Add(location);
-            location = new PKMDS.Location(30015);
+            location = new Location(30015);
             metlocations.Add(location);
             egglocations.Add(location);
-            location = new PKMDS.Location(40001);
+            location = new Location(40001);
             metlocations.Add(location);
             egglocations.Add(location);
-            location = new PKMDS.Location(40069);
+            location = new Location(40069);
             metlocations.Add(location);
             egglocations.Add(location);
-            location = new PKMDS.Location(60002);
+            location = new Location(60002);
             metlocations.Add(location);
             egglocations.Add(location);
 
@@ -791,15 +700,15 @@ namespace PKMDS_Save_Editor
         }
         private void SetMoves()
         {
-            List<PKMDS.Move> moves1 = new List<PKMDS.Move>();
-            List<PKMDS.Move> moves2 = new List<PKMDS.Move>();
-            List<PKMDS.Move> moves3 = new List<PKMDS.Move>();
-            List<PKMDS.Move> moves4 = new List<PKMDS.Move>();
-            PKMDS.Move move = new PKMDS.Move();
-            for (UInt16 moveindex = 0; moveindex <= 559; moveindex++)
+            List<Move> moves1 = new List<Move>();
+            List<Move> moves2 = new List<Move>();
+            List<Move> moves3 = new List<Move>();
+            List<Move> moves4 = new List<Move>();
+            Move move = new Move();
+            for (ushort moveindex = 0; moveindex <= 559; moveindex++)
             {
-                move = new PKMDS.Move(moveindex);
-                if ((move.MoveName != "") & (move.MoveName != null) & (move.MoveID != 0))
+                move = new Move(moveindex);
+                if ((move.MoveName != string.Empty) & (move.MoveName != null) & (move.MoveID != 0))
                 {
                     moves1.Add(move);
                 }
@@ -822,9 +731,9 @@ namespace PKMDS_Save_Editor
         }
         private void SetHometowns()
         {
-            List<PKMDS.Hometown> hometowns = new List<PKMDS.Hometown>();
-            PKMDS.Hometown hometown = new PKMDS.Hometown();
-            for (Byte hometownindex = 0; hometownindex <= 25; hometownindex++)
+            List<Hometown> hometowns = new List<Hometown>();
+            Hometown hometown = new Hometown();
+            for (byte hometownindex = 0; hometownindex <= 25; hometownindex++)
             {
                 if ((hometownindex != 6) ||
                     (hometownindex != 9) ||
@@ -835,8 +744,8 @@ namespace PKMDS_Save_Editor
                     (hometownindex != 18) ||
                     (hometownindex != 19))
                 {
-                    hometown = new PKMDS.Hometown(hometownindex);
-                    if ((hometown.HometownName != "") & (hometown.HometownName != null) & (hometown.HometownID != 0))
+                    hometown = new Hometown(hometownindex);
+                    if ((hometown.HometownName != string.Empty) & (hometown.HometownName != null) & (hometown.HometownID != 0))
                     {
                         hometowns.Add(hometown);
                     }
@@ -848,14 +757,14 @@ namespace PKMDS_Save_Editor
         }
         private void SetCountries()
         {
-            List<PKMDS.Country> countries = new List<PKMDS.Country>();
-            PKMDS.Country country = new PKMDS.Country();
-            for (Byte countryindex = 0; countryindex <= 8; countryindex++)
+            List<Country> countries = new List<Country>();
+            Country country = new Country();
+            for (byte countryindex = 0; countryindex <= 8; countryindex++)
             {
                 if (countryindex != 6)
                 {
-                    country = new PKMDS.Country(countryindex);
-                    if ((country.CountryName != "") & (country.CountryName != null) & (country.CountryID != 0))
+                    country = new Country(countryindex);
+                    if ((country.CountryName != string.Empty) & (country.CountryName != null) & (country.CountryID != 0))
                     {
                         countries.Add(country);
                     }
@@ -868,27 +777,31 @@ namespace PKMDS_Save_Editor
         private void btnSave_Click(object sender, EventArgs e)
         {
             TempPokemon.FixChecksum();
-            this.SharedPokemon = this.TempPokemon.Clone();
-            this.SharedPartyPokemon = new PKMDS.PartyPokemon();
-            this.SharedPartyPokemon.PokemonData = this.TempPokemon.Clone();
-            this.Close();
+            SharedPokemon = TempPokemon.Clone();
+            SharedPartyPokemon = new PartyPokemon
+            {
+                PokemonData = TempPokemon.Clone()
+            };
+            Close();
         }
         private void btnApply_Click(object sender, EventArgs e)
         {
             TempPokemon.FixChecksum();
-            this.SharedPokemon = this.TempPokemon.Clone();
-            this.SharedPartyPokemon = new PKMDS.PartyPokemon();
-            this.SharedPartyPokemon.PokemonData = this.TempPokemon.Clone();
+            SharedPokemon = TempPokemon.Clone();
+            SharedPartyPokemon = new PartyPokemon
+            {
+                PokemonData = TempPokemon.Clone()
+            };
             CheckApplyButton();
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
-            fileSave.FileName = "";
+            fileSave.FileName = string.Empty;
             if (fileSave.ShowDialog() != DialogResult.Cancel)
             {
-                if (fileSave.FileName != "")
+                if (fileSave.FileName != string.Empty)
                 {
-                    TempPokemon.WriteToFile(fileSave.FileName, System.IO.Path.GetExtension(fileSave.FileName).ToLower() == ".ek5");
+                    TempPokemon.WriteToFile(fileSave.FileName, Path.GetExtension(fileSave.FileName).ToLower() == ".ek5");
                 }
             }
         }
@@ -898,45 +811,45 @@ namespace PKMDS_Save_Editor
         }
         private void pbCircle_Click(object sender, EventArgs e)
         {
-            TempPokemon.Circle = !(TempPokemon.Circle);
-            pbCircle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Circle, TempPokemon.Circle);
+            TempPokemon.Circle = !TempPokemon.Circle;
+            pbCircle.Image = GetMarkingImage(Markings.Circle, TempPokemon.Circle);
             CheckApplyButton();
         }
         private void pbTriangle_Click(object sender, EventArgs e)
         {
-            TempPokemon.Triangle = !(TempPokemon.Triangle);
-            pbTriangle.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Triangle, TempPokemon.Triangle);
+            TempPokemon.Triangle = !TempPokemon.Triangle;
+            pbTriangle.Image = GetMarkingImage(Markings.Triangle, TempPokemon.Triangle);
             CheckApplyButton();
         }
         private void pbSquare_Click(object sender, EventArgs e)
         {
-            TempPokemon.Square = !(TempPokemon.Square);
-            pbSquare.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Square, TempPokemon.Square);
+            TempPokemon.Square = !TempPokemon.Square;
+            pbSquare.Image = GetMarkingImage(Markings.Square, TempPokemon.Square);
             CheckApplyButton();
         }
         private void pbHeart_Click(object sender, EventArgs e)
         {
-            TempPokemon.Heart = !(TempPokemon.Heart);
-            pbHeart.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Heart, TempPokemon.Heart);
+            TempPokemon.Heart = !TempPokemon.Heart;
+            pbHeart.Image = GetMarkingImage(Markings.Heart, TempPokemon.Heart);
             CheckApplyButton();
         }
         private void pbStar_Click(object sender, EventArgs e)
         {
-            TempPokemon.Star = !(TempPokemon.Star);
-            pbStar.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Star, TempPokemon.Star);
+            TempPokemon.Star = !TempPokemon.Star;
+            pbStar.Image = GetMarkingImage(Markings.Star, TempPokemon.Star);
             CheckApplyButton();
         }
         private void pbDiamond_Click(object sender, EventArgs e)
         {
-            TempPokemon.Diamond = !(TempPokemon.Diamond);
-            pbDiamond.Image = PKMDS.GetMarkingImage(PKMDS.Markings.Diamond, TempPokemon.Diamond);
+            TempPokemon.Diamond = !TempPokemon.Diamond;
+            pbDiamond.Image = GetMarkingImage(Markings.Diamond, TempPokemon.Diamond);
             CheckApplyButton();
         }
         private void frmPKMViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (TempPokemon.IsModified)
             {
-                if (MessageBox.Show("Cancel changes?", "Close", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+                if (MessageBox.Show("Cancel changes?", "Close", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     e.Cancel = true;
                 }
@@ -948,9 +861,9 @@ namespace PKMDS_Save_Editor
             {
                 if (cbHeldItem.SelectedIndex != -1)
                 {
-                    TempPokemon.ItemID = (UInt16)(cbHeldItem.SelectedValue);
-                    pbHeldItem.Image = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemImage;
-                    lblHeldItemFlavor.Text = ((PKMDS.Item)(cbHeldItem.SelectedItem)).ItemFlavor;
+                    TempPokemon.ItemID = (ushort)cbHeldItem.SelectedValue;
+                    pbHeldItem.Image = ((Item)cbHeldItem.SelectedItem).ItemImage;
+                    lblHeldItemFlavor.Text = ((Item)cbHeldItem.SelectedItem).ItemFlavor;
                     CheckApplyButton();
                 }
             }
@@ -990,7 +903,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.TID = (UInt16)(numTID.Value);
+                TempPokemon.TID = (ushort)numTID.Value;
                 UpdateSprite();
                 UpdateShiny();
                 CheckApplyButton();
@@ -1000,7 +913,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SID = (UInt16)(numSID.Value);
+                TempPokemon.SID = (ushort)numSID.Value;
                 UpdateSprite();
                 UpdateShiny();
                 CheckApplyButton();
@@ -1036,8 +949,8 @@ namespace PKMDS_Save_Editor
             {
                 if (cbAbility.SelectedIndex != -1)
                 {
-                    TempPokemon.AbilityID = (UInt16)(cbAbility.SelectedValue);
-                    lblAbilityFlavor.Text = ((PKMDS.Ability)(cbAbility.SelectedItem)).AbilityFlavor;
+                    TempPokemon.AbilityID = (ushort)cbAbility.SelectedValue;
+                    lblAbilityFlavor.Text = ((Ability)cbAbility.SelectedItem).AbilityFlavor;
                     CheckApplyButton();
                 }
             }
@@ -1046,7 +959,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.EXP = (UInt32)(numEXP.Value);
+                TempPokemon.EXP = (uint)numEXP.Value;
                 UISet = false;
                 UpdateLevel();
                 UpdateEXP();
@@ -1061,7 +974,7 @@ namespace PKMDS_Save_Editor
             {
                 if (cbBall.SelectedIndex != -1)
                 {
-                    TempPokemon.BallID = (Byte)(cbBall.SelectedValue);
+                    TempPokemon.BallID = (byte)cbBall.SelectedValue;
                     UpdateBall();
                     CheckApplyButton();
                 }
@@ -1073,8 +986,8 @@ namespace PKMDS_Save_Editor
             {
                 if (cbSpecies.SelectedIndex != -1)
                 {
-                    TempPokemon.SpeciesID = (UInt16)(cbSpecies.SelectedValue);
-                    numSpecies.Value = (Decimal)(TempPokemon.SpeciesID);
+                    TempPokemon.SpeciesID = (ushort)cbSpecies.SelectedValue;
+                    numSpecies.Value = TempPokemon.SpeciesID;
                     UpdateForm();
                     if (!cbForm.Enabled)
                     {
@@ -1103,7 +1016,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.FormID = (Byte)(cbForm.SelectedIndex);
+                TempPokemon.FormID = (byte)cbForm.SelectedIndex;
                 UpdateSprite();
                 UpdateFormIcon();
                 UpdateTypes();
@@ -1115,7 +1028,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.Level = (int)(numLevel.Value);
+                TempPokemon.Level = (int)numLevel.Value;
                 UISet = false;
                 UpdateEXP();
                 UISet = true;
@@ -1127,7 +1040,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetIV(0, (int)(numHPIV.Value));
+                TempPokemon.SetIV(0, (int)numHPIV.Value);
                 SetControlFont(ref numHPIV, numHPIV.Value == numHPIV.Maximum);
                 UpdateCharacteristic();
                 UpdateCalculatedStats();
@@ -1138,7 +1051,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetIV(1, (int)(numAtkIV.Value));
+                TempPokemon.SetIV(1, (int)numAtkIV.Value);
                 SetControlFont(ref numAtkIV, numAtkIV.Value == numAtkIV.Maximum);
                 UpdateCharacteristic();
                 UpdateCalculatedStats();
@@ -1149,7 +1062,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetIV(2, (int)(numDefIV.Value));
+                TempPokemon.SetIV(2, (int)numDefIV.Value);
                 SetControlFont(ref numDefIV, numDefIV.Value == numDefIV.Maximum);
                 UpdateCharacteristic();
                 UpdateCalculatedStats();
@@ -1160,7 +1073,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetIV(3, (int)(numSpAtkIV.Value));
+                TempPokemon.SetIV(3, (int)numSpAtkIV.Value);
                 SetControlFont(ref numSpAtkIV, numSpAtkIV.Value == numSpAtkIV.Maximum);
                 UpdateCharacteristic();
                 UpdateCalculatedStats();
@@ -1171,7 +1084,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetIV(4, (int)(numSpDefIV.Value));
+                TempPokemon.SetIV(4, (int)numSpDefIV.Value);
                 SetControlFont(ref numSpDefIV, numSpDefIV.Value == numSpDefIV.Maximum);
                 UpdateCharacteristic();
                 UpdateCalculatedStats();
@@ -1182,7 +1095,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetIV(5, (int)(numSpeedIV.Value));
+                TempPokemon.SetIV(5, (int)numSpeedIV.Value);
                 SetControlFont(ref numSpeedIV, numSpeedIV.Value == numSpeedIV.Maximum);
                 UpdateCharacteristic();
                 UpdateCalculatedStats();
@@ -1193,7 +1106,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetEV(0, (int)(numHPEV.Value));
+                TempPokemon.SetEV(0, (int)numHPEV.Value);
                 SetControlFont(ref numHPEV, numHPEV.Value >= 252M);
                 UpdateTotalEVs();
                 UpdateCalculatedStats();
@@ -1204,7 +1117,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetEV(1, (int)(numAtkEV.Value));
+                TempPokemon.SetEV(1, (int)numAtkEV.Value);
                 SetControlFont(ref numAtkEV, numAtkEV.Value >= 252M);
                 UpdateTotalEVs();
                 UpdateCalculatedStats();
@@ -1215,7 +1128,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetEV(2, (int)(numDefEV.Value));
+                TempPokemon.SetEV(2, (int)numDefEV.Value);
                 SetControlFont(ref numDefEV, numDefEV.Value >= 252M);
                 UpdateTotalEVs();
                 UpdateCalculatedStats();
@@ -1226,7 +1139,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetEV(3, (int)(numSpAtkEV.Value));
+                TempPokemon.SetEV(3, (int)numSpAtkEV.Value);
                 SetControlFont(ref numSpAtkEV, numSpAtkEV.Value >= 252M);
                 UpdateTotalEVs();
                 UpdateCalculatedStats();
@@ -1237,7 +1150,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetEV(4, (int)(numSpDefEV.Value));
+                TempPokemon.SetEV(4, (int)numSpDefEV.Value);
                 SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
                 UpdateTotalEVs();
                 UpdateCalculatedStats();
@@ -1248,7 +1161,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetEV(5, (int)(numSpeedEV.Value));
+                TempPokemon.SetEV(5, (int)numSpeedEV.Value);
                 SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
                 UpdateTotalEVs();
                 UpdateCalculatedStats();
@@ -1259,7 +1172,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.NatureID = (Byte)(cbNature.SelectedValue);
+                TempPokemon.NatureID = (byte)cbNature.SelectedValue;
                 UpdateNature();
                 UpdateCalculatedStats();
                 CheckApplyButton();
@@ -1269,7 +1182,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.Tameness = (int)(numTameness.Value);
+                TempPokemon.Tameness = (int)numTameness.Value;
                 SetControlFont(ref numTameness, numTameness.Value == numTameness.Maximum);
                 UpdateHatchSteps();
                 CheckApplyButton();
@@ -1279,8 +1192,8 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMoveID(0, (UInt16)(cbMove1.SelectedValue));
-                numMove1PP.Value = (Decimal)(((PKMDS.Move)(cbMove1.SelectedItem)).MoveBasePP);
+                TempPokemon.SetMoveID(0, (ushort)cbMove1.SelectedValue);
+                numMove1PP.Value = ((Move)cbMove1.SelectedItem).MoveBasePP;
                 UpdateMove1();
                 CheckApplyButton();
             }
@@ -1297,10 +1210,10 @@ namespace PKMDS_Save_Editor
                 }
                 else
                 {
-                    TempPokemon.SetMoveID(1, (UInt16)(cbMove2.SelectedValue));
+                    TempPokemon.SetMoveID(1, (ushort)cbMove2.SelectedValue);
                     numMove2PPUps.Enabled = true;
                     numMove2PP.Enabled = true;
-                    numMove2PP.Value = (Decimal)(((PKMDS.Move)(cbMove2.SelectedItem)).MoveBasePP);
+                    numMove2PP.Value = ((Move)cbMove2.SelectedItem).MoveBasePP;
                 }
                 UpdateMove2();
                 CheckApplyButton();
@@ -1318,10 +1231,10 @@ namespace PKMDS_Save_Editor
                 }
                 else
                 {
-                    TempPokemon.SetMoveID(2, (UInt16)(cbMove3.SelectedValue));
+                    TempPokemon.SetMoveID(2, (ushort)cbMove3.SelectedValue);
                     numMove3PPUps.Enabled = true;
                     numMove3PP.Enabled = true;
-                    numMove3PP.Value = (Decimal)(((PKMDS.Move)(cbMove3.SelectedItem)).MoveBasePP);
+                    numMove3PP.Value = ((Move)cbMove3.SelectedItem).MoveBasePP;
                 }
                 UpdateMove3();
                 CheckApplyButton();
@@ -1339,10 +1252,10 @@ namespace PKMDS_Save_Editor
                 }
                 else
                 {
-                    TempPokemon.SetMoveID(3, (UInt16)(cbMove4.SelectedValue));
+                    TempPokemon.SetMoveID(3, (ushort)cbMove4.SelectedValue);
                     numMove4PPUps.Enabled = true;
                     numMove4PP.Enabled = true;
-                    numMove4PP.Value = (Decimal)(((PKMDS.Move)(cbMove4.SelectedItem)).MoveBasePP);
+                    numMove4PP.Value = ((Move)cbMove4.SelectedItem).MoveBasePP;
                 }
                 UpdateMove4();
                 CheckApplyButton();
@@ -1352,8 +1265,8 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePPUp(0, (int)(numMove1PPUps.Value));
-                PKMDS.Move move = ((PKMDS.Move)(cbMove1.SelectedItem));
+                TempPokemon.SetMovePPUp(0, (int)numMove1PPUps.Value);
+                Move move = (Move)cbMove1.SelectedItem;
                 if (move != null)
                 {
                     txtMove1MaxPP.Text = (move.MoveBasePP + (numMove1PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -1365,7 +1278,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePP(0, (int)(numMove1PP.Value));
+                TempPokemon.SetMovePP(0, (int)numMove1PP.Value);
                 CheckApplyButton();
             }
         }
@@ -1373,8 +1286,8 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePPUp(1, (int)(numMove2PPUps.Value));
-                PKMDS.Move move = ((PKMDS.Move)(cbMove2.SelectedItem));
+                TempPokemon.SetMovePPUp(1, (int)numMove2PPUps.Value);
+                Move move = (Move)cbMove2.SelectedItem;
                 if (move != null)
                 {
                     txtMove2MaxPP.Text = (move.MoveBasePP + (numMove2PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -1386,7 +1299,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePP(1, (int)(numMove2PP.Value));
+                TempPokemon.SetMovePP(1, (int)numMove2PP.Value);
                 CheckApplyButton();
             }
         }
@@ -1394,8 +1307,8 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePPUp(2, (int)(numMove3PPUps.Value));
-                PKMDS.Move move = ((PKMDS.Move)(cbMove3.SelectedItem));
+                TempPokemon.SetMovePPUp(2, (int)numMove3PPUps.Value);
+                Move move = (Move)cbMove3.SelectedItem;
                 if (move != null)
                 {
                     txtMove3MaxPP.Text = (move.MoveBasePP + (numMove3PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -1407,7 +1320,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePP(2, (int)(numMove3PP.Value));
+                TempPokemon.SetMovePP(2, (int)numMove3PP.Value);
                 CheckApplyButton();
             }
         }
@@ -1415,8 +1328,8 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePPUp(3, (int)(numMove4PPUps.Value));
-                PKMDS.Move move = ((PKMDS.Move)(cbMove4.SelectedItem));
+                TempPokemon.SetMovePPUp(3, (int)numMove4PPUps.Value);
+                Move move = (Move)cbMove4.SelectedItem;
                 if (move != null)
                 {
                     txtMove4MaxPP.Text = (move.MoveBasePP + (numMove4PPUps.Value * (move.MoveBasePP / 5))).ToString("0");
@@ -1428,7 +1341,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.SetMovePP(3, (int)(numMove4PP.Value));
+                TempPokemon.SetMovePP(3, (int)numMove4PP.Value);
                 CheckApplyButton();
             }
         }
@@ -1436,7 +1349,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.MetLocationID = (UInt16)(cbMetLocation.SelectedValue);
+                TempPokemon.MetLocationID = (ushort)cbMetLocation.SelectedValue;
                 CheckApplyButton();
             }
         }
@@ -1452,7 +1365,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.EggLocationID = (UInt16)(cbEggLocation.SelectedValue);
+                TempPokemon.EggLocationID = (ushort)cbEggLocation.SelectedValue;
                 CheckApplyButton();
             }
         }
@@ -1487,7 +1400,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.MetLevel = (Byte)(numMetLevel.Value);
+                TempPokemon.MetLevel = (byte)numMetLevel.Value;
                 CheckApplyButton();
             }
         }
@@ -1495,7 +1408,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.HometownID = (Byte)(cbGame.SelectedValue);
+                TempPokemon.HometownID = (byte)cbGame.SelectedValue;
                 CheckApplyButton();
             }
         }
@@ -1503,7 +1416,7 @@ namespace PKMDS_Save_Editor
         {
             if (UISet && PokemonSet)
             {
-                TempPokemon.LanguageID = (Byte)(cbCountry.SelectedValue);
+                TempPokemon.LanguageID = (byte)cbCountry.SelectedValue;
                 CheckApplyButton();
             }
         }
@@ -1515,7 +1428,7 @@ namespace PKMDS_Save_Editor
                 UpdateHatchSteps();
                 cbMetAsEgg.Checked = true;
                 cbEggLocation.SelectedIndex = 0;
-                dtEggDate.Value = System.DateTime.Today;
+                dtEggDate.Value = DateTime.Today;
                 UpdateSprite();
                 UpdateFormIcon();
                 CheckApplyButton();
@@ -1531,7 +1444,7 @@ namespace PKMDS_Save_Editor
             else
             {
                 txtMinHatchSteps.Enabled = false;
-                txtMinHatchSteps.Text = "";
+                txtMinHatchSteps.Text = string.Empty;
             }
         }
         private void cbNsPokemon_CheckedChanged(object sender, EventArgs e)
