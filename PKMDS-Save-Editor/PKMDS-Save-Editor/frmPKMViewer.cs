@@ -19,7 +19,7 @@ namespace PKMDS_Save_Editor
         //private bool IsParty = false;
         public frmPKMViewer()
         {
-            SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
+            PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
             InitializeComponent();
             SetUI();
         }
