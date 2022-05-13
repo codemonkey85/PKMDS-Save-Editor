@@ -90,3 +90,9 @@ packages/
 
 #Test files
 *.testsettings
+*.db
+*.lock
+*.db-shm
+*.db-wal
+*.opendb
+*.vsidx
