@@ -3,15 +3,15 @@ using System.Windows.Forms;
 
 namespace PKMDS_Save_Editor
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            string filePath = string.Empty;
+            var filePath = string.Empty;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (args.Length > 0)
