@@ -99,3 +99,4 @@ packages/
 *.bin
 *.v2
 *.v1
+*/.vs/*
