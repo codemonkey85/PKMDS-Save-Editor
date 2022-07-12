@@ -327,7 +327,7 @@ public partial class frmPKMViewer : Form
         UpdateMove4();
     }
 
-    private void AutosizeFont(ref Label ctrl)
+    private static void AutosizeFont(ref Label ctrl)
     {
         //       while ((Decimal)(ctrl.Width) > (Decimal)(System.Windows.Forms.TextRenderer.MeasureText(ctrl.Text,
         //new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width) / 1.00M)
@@ -488,7 +488,7 @@ public partial class frmPKMViewer : Form
     #endregion
 
     #region UpdateRibbonsInfo
-    private void UpdateRibbonsInfo()
+    private static void UpdateRibbonsInfo()
     {
         // TODO: Ribbons
     }
@@ -496,17 +496,17 @@ public partial class frmPKMViewer : Form
     #endregion
 
     #region UpdateMiscInfo
-    private void UpdateMiscInfo()
+    private static void UpdateMiscInfo()
     {
         // TODO: Misc
     }
 
     #endregion
 
-    private void SetControlFont(ref NumericUpDown control, bool bold = false) =>
+    private static void SetControlFont(ref NumericUpDown control, bool bold = false) =>
         control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
 
-    private void SetControlFont(ref TextBox control, bool bold = false) =>
+    private static void SetControlFont(ref TextBox control, bool bold = false) =>
         control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
 
     private void SetUI()
