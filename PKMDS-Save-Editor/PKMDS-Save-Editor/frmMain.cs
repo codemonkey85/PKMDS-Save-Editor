@@ -32,6 +32,7 @@ public partial class frmMain : Form
     private bool uiset = false;
     private readonly string argfilename = string.Empty;
     private readonly Color SelectionColor = Color.FromArgb(100, Color.Orange.R, Color.Orange.G, Color.Orange.B);
+    private const string p = $"{nameof(PKMDS_CS)}+{nameof(Pokemon)}";
     public frmMain(string filename)
     {
         InitializeComponent();
@@ -572,7 +573,7 @@ public partial class frmMain : Form
             return;
         }
 
-        var dragpkm = (Pokemon)e.Data.GetData("PKMDS_CS.PKMDS+Pokemon");
+        var dragpkm = (Pokemon)e.Data.GetData(p);
         if (dragpkm is null)
         {
             return;
@@ -616,7 +617,7 @@ public partial class frmMain : Form
         {
             return;
         }
-        var dragpkm = (Pokemon)e.Data.GetData("PKMDS_CS.PKMDS+Pokemon");
+        var dragpkm = (Pokemon)e.Data.GetData(p);
         if (dragpkm.SpeciesID != 0 && sav.BoxCount(box) < 30)
         {
             pkm_to = dragpkm;
