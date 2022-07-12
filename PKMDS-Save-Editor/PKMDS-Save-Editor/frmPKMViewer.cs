@@ -129,18 +129,19 @@ public partial class frmPKMViewer : Form
     private void UpdateForm()
     {
         SetForms();
-        if (cbForm.Enabled)
+        if (!cbForm.Enabled)
         {
-            if (cbForm.Items.Count < TempPokemon.FormID)
-            {
-                TempPokemon.FormID = 0;
-                cbForm.SelectedIndex = -1;
-                cbForm.Text = string.Empty;
-            }
-            else
-            {
-                cbForm.SelectedIndex = TempPokemon.FormID;
-            }
+            return;
+        }
+        if (cbForm.Items.Count < TempPokemon.FormID)
+        {
+            TempPokemon.FormID = 0;
+            cbForm.SelectedIndex = -1;
+            cbForm.Text = string.Empty;
+        }
+        else
+        {
+            cbForm.SelectedIndex = TempPokemon.FormID;
         }
     }
     #endregion
@@ -502,8 +503,11 @@ public partial class frmPKMViewer : Form
 
     #endregion
 
-    private void SetControlFont(ref NumericUpDown control, bool bold = false) => control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
-    private void SetControlFont(ref TextBox control, bool bold = false) => control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
+    private void SetControlFont(ref NumericUpDown control, bool bold = false) =>
+        control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
+
+    private void SetControlFont(ref TextBox control, bool bold = false) =>
+        control.Font = bold ? new Font(control.Font, FontStyle.Bold) : new Font(control.Font, FontStyle.Regular);
 
     private void SetUI()
     {
@@ -563,10 +567,9 @@ public partial class frmPKMViewer : Form
     private void SetAbilities()
     {
         var abilities = new List<Ability>();
-        var ability = new Ability();
         for (ushort abilityindex = 0; abilityindex <= 164; abilityindex++)
         {
-            ability = new Ability(abilityindex);
+            var ability = new Ability(abilityindex);
             if (ability is { AbilityName.Length: > 0, AbilityID: not 0 })
             {
                 abilities.Add(ability);
@@ -579,10 +582,9 @@ public partial class frmPKMViewer : Form
     private void SetSpecies()
     {
         var species_l = new List<Species>();
-        var species = new Species();
         for (ushort speciesindex = 0; speciesindex <= 649; speciesindex++)
         {
-            species = new Species(speciesindex);
+            var species = new Species(speciesindex);
             if (species is { SpeciesName.Length: > 0, SpeciesID: not 0 })
             {
                 species_l.Add(species);
@@ -595,10 +597,9 @@ public partial class frmPKMViewer : Form
     private void SetBalls()
     {
         var balls = new List<Ball>();
-        Ball ball;
         for (byte ballindex = 0; ballindex <= 25; ballindex++)
         {
-            ball = new Ball(ballindex);
+            var ball = new Ball(ballindex);
             if (ball.BallName is { Length: > 0 })
             {
                 balls.Add(ball);
@@ -611,10 +612,9 @@ public partial class frmPKMViewer : Form
     private void SetNatures()
     {
         var natures = new List<Nature>();
-        Nature nature;
         for (byte natureindex = 0; natureindex <= 24; natureindex++)
         {
-            nature = new Nature(natureindex);
+            var nature = new Nature(natureindex);
             if (nature.NatureName is { Length: > 0 })
             {
                 natures.Add(nature);
@@ -676,10 +676,9 @@ public partial class frmPKMViewer : Form
         var moves2 = new List<Move>();
         var moves3 = new List<Move>();
         var moves4 = new List<Move>();
-        Move move;
         for (ushort moveindex = 0; moveindex <= 559; moveindex++)
         {
-            move = new Move(moveindex);
+            var move = new Move(moveindex);
             if (move is { MoveName.Length: > 0, MoveID: not 0 })
             {
                 moves1.Add(move);
@@ -719,12 +718,11 @@ public partial class frmPKMViewer : Form
     private void SetCountries()
     {
         var countries = new List<Country>();
-        Country country;
         for (byte countryindex = 0; countryindex <= 8; countryindex++)
         {
             if (countryindex != 6)
             {
-                country = new Country(countryindex);
+                var country = new Country(countryindex);
                 if (country is { CountryName.Length: > 0, CountryID: not 0 })
                 {
                     countries.Add(country);

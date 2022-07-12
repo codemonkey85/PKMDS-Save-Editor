@@ -42,31 +42,28 @@ public partial class frmMain : Form
     private void loadSaveToolStripMenuItem_Click(object sender, EventArgs e)
     {
         SaveFileOpen.FileName = string.Empty;
-        if (SaveFileOpen.ShowDialog() != DialogResult.Cancel)
+        if (SaveFileOpen.ShowDialog() != DialogResult.Cancel && SaveFileOpen.FileName != string.Empty)
         {
-            if (SaveFileOpen.FileName != string.Empty)
+            try
             {
-                try
-                {
-                    savefile = SaveFileOpen.FileName;
-                    tempsav = new Save(savefile);
-                    //string message = string.Empty;
-                    //if (!tempsav.Validate(out message))
-                    //{
-                    //    throw new Exception(message);
-                    //}
-                    savesavToolStripMenuItem.Enabled = false;
-                    uiset = false;
-                    sav = tempsav;
-                    SetSaveFile();
-                    uiset = true;
-                    savesavToolStripMenuItem.Enabled = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    Debug.WriteLine(ex.Message);
-                }
+                savefile = SaveFileOpen.FileName;
+                tempsav = new Save(savefile);
+                //string message = string.Empty;
+                //if (!tempsav.Validate(out message))
+                //{
+                //    throw new Exception(message);
+                //}
+                savesavToolStripMenuItem.Enabled = false;
+                uiset = false;
+                sav = tempsav;
+                SetSaveFile();
+                uiset = true;
+                savesavToolStripMenuItem.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
         }
     }
@@ -74,12 +71,9 @@ public partial class frmMain : Form
     private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
     {
         SaveFileSave.FileName = string.Empty;
-        if (SaveFileSave.ShowDialog() != DialogResult.Cancel)
+        if (SaveFileSave.ShowDialog() != DialogResult.Cancel && SaveFileSave.FileName is { Length: > 0 })
         {
-            if (SaveFileSave.FileName is { Length: > 0 })
-            {
-                sav.WriteToFile(SaveFileSave.FileName);
-            }
+            sav.WriteToFile(SaveFileSave.FileName);
         }
     }
     private Pokemon ViewPokemon(Pokemon pkm)
@@ -152,10 +146,9 @@ public partial class frmMain : Form
         switch (mode)
         {
             case Mode.Single:
-                Pokemon pokemon;
                 for (var boxSlot = 0; boxSlot < 30; boxSlot++)
                 {
-                    pokemon = sav.PCStorage[sav.CurrentBox][boxSlot];
+                    var pokemon = sav.PCStorage[sav.CurrentBox][boxSlot];
                     boxPics[boxSlot].Image = pokemon.SpeciesID != 0 ? pokemon.Icon : null;
                 }
                 break;
@@ -882,31 +875,25 @@ public partial class frmMain : Form
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             pkmFileOpen.FileName = string.Empty;
-            if (pkmFileOpen.ShowDialog() != DialogResult.Cancel)
+            if (pkmFileOpen.ShowDialog() != DialogResult.Cancel && pkmFileOpen.FileName != string.Empty && File.Exists(pkmFileOpen.FileName))
             {
-                if (pkmFileOpen.FileName != string.Empty)
+                var file = new FileInfo(pkmFileOpen.FileName);
+                pkm = ReadPokemonFile(pkmFileOpen.FileName, file.Extension.ToLower() == "ek6");
+                if (pkm.SpeciesID != 0)
                 {
-                    if (File.Exists(pkmFileOpen.FileName))
+                    var ppkm = new PartyPokemon
                     {
-                        var file = new FileInfo(pkmFileOpen.FileName);
-                        pkm = ReadPokemonFile(pkmFileOpen.FileName, file.Extension.ToLower() == "ek6");
-                        if (pkm.SpeciesID != 0)
-                        {
-                            var ppkm = new PartyPokemon
-                            {
-                                PokemonData = pkm
-                            };
-                            if (sav.Party[slot].PokemonData.SpeciesID == 0)
-                            {
-                                sav.WithdrawPokemon(ppkm.PokemonData);
-                            }
-                            else
-                            {
-                                sav.Party[slot] = ppkm;
-                            }
-                            UpdateParty();
-                        }
+                        PokemonData = pkm
+                    };
+                    if (sav.Party[slot].PokemonData.SpeciesID == 0)
+                    {
+                        sav.WithdrawPokemon(ppkm.PokemonData);
                     }
+                    else
+                    {
+                        sav.Party[slot] = ppkm;
+                    }
+                    UpdateParty();
                 }
             }
         }
