@@ -1,13 +1,4 @@
-﻿using PKMDS_CS;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-using static PKMDS_CS.PKMDS;
-
-namespace PKMDS_Save_Editor;
+﻿namespace PKMDS_Save_Editor;
 
 public partial class frmPKMViewer : Form
 {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace PKMDS_Save_Editor;
+﻿namespace PKMDS_Save_Editor;
 
 internal static class Program
 {
