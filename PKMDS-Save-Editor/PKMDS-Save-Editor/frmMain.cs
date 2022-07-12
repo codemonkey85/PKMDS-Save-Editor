@@ -69,7 +69,7 @@ public partial class frmMain : Form
             }
         }
     }
-    private void frmMain_FormClosing(object sender, FormClosingEventArgs e) => PKMDS.SQL.CloseDB();
+    private void frmMain_FormClosing(object sender, FormClosingEventArgs e) => SQL.CloseDB();
     private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
     {
         SaveFileSave.FileName = string.Empty;

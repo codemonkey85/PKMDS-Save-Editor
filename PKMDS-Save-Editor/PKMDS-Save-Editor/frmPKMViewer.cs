@@ -11,7 +11,7 @@ public partial class frmPKMViewer : Form
     //private bool IsParty = false;
     public frmPKMViewer()
     {
-        PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
+        SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
         InitializeComponent();
         SetUI();
     }
