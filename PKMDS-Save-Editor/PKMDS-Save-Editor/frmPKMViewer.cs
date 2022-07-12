@@ -1,5 +1,6 @@
 ﻿namespace PKMDS_Save_Editor;
 
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public partial class frmPKMViewer : Form
 {
     public Pokemon SharedPokemon = new();
@@ -333,7 +334,7 @@ public partial class frmPKMViewer : Form
         //           ctrl.Font = new Font(ctrl.Font.FontFamily, ctrl.Font.Size + 0.5f, ctrl.Font.Style);
         //       }
         while (ctrl.Width < TextRenderer.MeasureText(ctrl.Text,
- new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width / 1.90M)
+            new Font(ctrl.Font.FontFamily, ctrl.Font.Size, ctrl.Font.Style)).Width / 1.90M)
         {
             ctrl.Font = new Font(ctrl.Font.FontFamily, ctrl.Font.Size - 0.5f, ctrl.Font.Style);
         }
@@ -520,25 +521,26 @@ public partial class frmPKMViewer : Form
     private void SetForms()
     {
         cbForm.Items.Clear();
-        if (TempPokemon.SpeciesID != 0)
+        if (TempPokemon.SpeciesID == 0)
         {
-            var formnames = GetPKMFormNames(TempPokemon.SpeciesID);
-            if (formnames.Length != 0)
+            return;
+        }
+        var formnames = GetPKMFormNames(TempPokemon.SpeciesID);
+        if (formnames.Length != 0)
+        {
+            if (!(formnames.Length == 1 && formnames[0] == string.Empty))
             {
-                if (!(formnames.Length == 1 && formnames[0] == string.Empty))
-                {
-                    cbForm.Items.AddRange(GetPKMFormNames(TempPokemon.SpeciesID));
-                    cbForm.Enabled = true;
-                }
-                else
-                {
-                    cbForm.Enabled = false;
-                }
+                cbForm.Items.AddRange(GetPKMFormNames(TempPokemon.SpeciesID));
+                cbForm.Enabled = true;
             }
             else
             {
                 cbForm.Enabled = false;
             }
+        }
+        else
+        {
+            cbForm.Enabled = false;
         }
     }
     private void SetItems()
@@ -702,23 +704,12 @@ public partial class frmPKMViewer : Form
     private void SetHometowns()
     {
         var hometowns = new List<Hometown>();
-        Hometown hometown;
         for (byte hometownindex = 0; hometownindex <= 25; hometownindex++)
         {
-            if (hometownindex is not 6 or
-                not 9 or
-                not 13 or
-                not 14 or
-                not 16 or
-                not 17 or
-                not 18 or
-                not 19)
+            var hometown = new Hometown(hometownindex);
+            if ((hometown.HometownName != string.Empty) & (hometown.HometownName != null) & (hometown.HometownID != 0))
             {
-                hometown = new Hometown(hometownindex);
-                if ((hometown.HometownName != string.Empty) & (hometown.HometownName != null) & (hometown.HometownID != 0))
-                {
-                    hometowns.Add(hometown);
-                }
+                hometowns.Add(hometown);
             }
         }
         cbGame.DataSource = hometowns;
@@ -767,12 +758,9 @@ public partial class frmPKMViewer : Form
     private void btnExport_Click(object sender, EventArgs e)
     {
         fileSave.FileName = string.Empty;
-        if (fileSave.ShowDialog() != DialogResult.Cancel)
+        if (fileSave.ShowDialog() != DialogResult.Cancel && fileSave.FileName != string.Empty)
         {
-            if (fileSave.FileName != string.Empty)
-            {
-                TempPokemon.WriteToFile(fileSave.FileName, Path.GetExtension(fileSave.FileName).ToLower() == ".ek5");
-            }
+            TempPokemon.WriteToFile(fileSave.FileName, Path.GetExtension(fileSave.FileName).ToLower() == ".ek5");
         }
     }
     private void CheckApplyButton() => btnApply.Enabled = TempPokemon.IsModified;
@@ -814,592 +802,621 @@ public partial class frmPKMViewer : Form
     }
     private void frmPKMViewer_FormClosing(object sender, FormClosingEventArgs e)
     {
-        if (TempPokemon.IsModified)
+        if (TempPokemon.IsModified && MessageBox.Show("Cancel changes?", "Close", MessageBoxButtons.YesNo) == DialogResult.No)
         {
-            if (MessageBox.Show("Cancel changes?", "Close", MessageBoxButtons.YesNo) == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
+            e.Cancel = true;
         }
     }
     private void cbHeldItem_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet || cbHeldItem.SelectedIndex == -1)
         {
-            if (cbHeldItem.SelectedIndex != -1)
-            {
-                TempPokemon.ItemID = (ushort)cbHeldItem.SelectedValue;
-                pbHeldItem.Image = ((Item)cbHeldItem.SelectedItem).ItemImage;
-                lblHeldItemFlavor.Text = ((Item)cbHeldItem.SelectedItem).ItemFlavor;
-                CheckApplyButton();
-            }
+            return;
         }
+        TempPokemon.ItemID = (ushort)cbHeldItem.SelectedValue;
+        pbHeldItem.Image = ((Item)cbHeldItem.SelectedItem).ItemImage;
+        lblHeldItemFlavor.Text = ((Item)cbHeldItem.SelectedItem).ItemFlavor;
+        CheckApplyButton();
     }
     private void chkNicknamed_CheckedChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.IsNicknamed = chkNicknamed.Checked;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.IsNicknamed = chkNicknamed.Checked;
+        CheckApplyButton();
     }
     private void txtNickname_TextChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet || txtNickname.Text.Length == 0)
         {
-            if (txtNickname.Text.Length != 0)
-            {
-                TempPokemon.Nickname = txtNickname.Text;
-                chkNicknamed.Checked = true;
-                CheckApplyButton();
-            }
+            return;
         }
+        TempPokemon.Nickname = txtNickname.Text;
+        chkNicknamed.Checked = true;
+        CheckApplyButton();
     }
     private void txtOTName_TextChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet || txtOTName.Text.Length == 0)
         {
-            if (txtOTName.Text.Length != 0)
-            {
-                TempPokemon.OTName = txtOTName.Text;
-                CheckApplyButton();
-            }
+            return;
         }
+        TempPokemon.OTName = txtOTName.Text;
+        CheckApplyButton();
     }
     private void numTID_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.TID = (ushort)numTID.Value;
-            UpdateSprite();
-            UpdateShiny();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.TID = (ushort)numTID.Value;
+        UpdateSprite();
+        UpdateShiny();
+        CheckApplyButton();
     }
     private void numSID_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SID = (ushort)numSID.Value;
-            UpdateSprite();
-            UpdateShiny();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SID = (ushort)numSID.Value;
+        UpdateSprite();
+        UpdateShiny();
+        CheckApplyButton();
     }
     private void rbOTMale_CheckedChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            if (rbOTMale.Checked)
-            {
-                TempPokemon.OTGenderID = 0;
-                txtOTName.ForeColor = Color.Blue;
-            }
-            CheckApplyButton();
+            return;
         }
+        if (rbOTMale.Checked)
+        {
+            TempPokemon.OTGenderID = 0;
+            txtOTName.ForeColor = Color.Blue;
+        }
+        CheckApplyButton();
     }
     private void rbOTFemale_CheckedChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            if (rbOTFemale.Checked)
-            {
-                TempPokemon.OTGenderID = 1;
-                txtOTName.ForeColor = Color.Red;
-            }
-            CheckApplyButton();
+            return;
         }
+        if (rbOTFemale.Checked)
+        {
+            TempPokemon.OTGenderID = 1;
+            txtOTName.ForeColor = Color.Red;
+        }
+        CheckApplyButton();
     }
     private void cbAbility_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet || cbAbility.SelectedIndex == -1)
         {
-            if (cbAbility.SelectedIndex != -1)
-            {
-                TempPokemon.AbilityID = (ushort)cbAbility.SelectedValue;
-                lblAbilityFlavor.Text = ((Ability)cbAbility.SelectedItem).AbilityFlavor;
-                CheckApplyButton();
-            }
+            return;
         }
+        TempPokemon.AbilityID = (ushort)cbAbility.SelectedValue;
+        lblAbilityFlavor.Text = ((Ability)cbAbility.SelectedItem).AbilityFlavor;
+        CheckApplyButton();
     }
     private void numEXP_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.EXP = (uint)numEXP.Value;
-            UISet = false;
-            UpdateLevel();
-            UpdateEXP();
-            UISet = true;
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.EXP = (uint)numEXP.Value;
+        UISet = false;
+        UpdateLevel();
+        UpdateEXP();
+        UISet = true;
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void cbBall_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet || cbBall.SelectedIndex == -1)
         {
-            if (cbBall.SelectedIndex != -1)
-            {
-                TempPokemon.BallID = (byte)cbBall.SelectedValue;
-                UpdateBall();
-                CheckApplyButton();
-            }
+            return;
         }
+        TempPokemon.BallID = (byte)cbBall.SelectedValue;
+        UpdateBall();
+        CheckApplyButton();
     }
     private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet || cbSpecies.SelectedIndex == -1)
         {
-            if (cbSpecies.SelectedIndex != -1)
-            {
-                TempPokemon.SpeciesID = (ushort)cbSpecies.SelectedValue;
-                numSpecies.Value = TempPokemon.SpeciesID;
-                UpdateForm();
-                if (!cbForm.Enabled)
-                {
-                    TempPokemon.FormID = 0;
-                }
-                UpdateSprite();
-                UpdateFormIcon();
-                UpdateTypes();
-                UpdateGenderPic();
-                UISet = false;
-                UpdateLevel();
-                UISet = true;
-                UpdateCalculatedStats();
-                CheckApplyButton();
-            }
+            return;
         }
+        TempPokemon.SpeciesID = (ushort)cbSpecies.SelectedValue;
+        numSpecies.Value = TempPokemon.SpeciesID;
+        UpdateForm();
+        if (!cbForm.Enabled)
+        {
+            TempPokemon.FormID = 0;
+        }
+        UpdateSprite();
+        UpdateFormIcon();
+        UpdateTypes();
+        UpdateGenderPic();
+        UISet = false;
+        UpdateLevel();
+        UISet = true;
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numSpecies_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet && (int)(numSpecies.Value - 1) != cbSpecies.SelectedIndex)
+        if (!UISet || !PokemonSet || (int)(numSpecies.Value - 1) == cbSpecies.SelectedIndex)
         {
-            cbSpecies.SelectedIndex = (int)(numSpecies.Value - 1);
+            return;
         }
+        cbSpecies.SelectedIndex = (int)(numSpecies.Value - 1);
     }
     private void cbForm_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.FormID = (byte)cbForm.SelectedIndex;
-            UpdateSprite();
-            UpdateFormIcon();
-            UpdateTypes();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.FormID = (byte)cbForm.SelectedIndex;
+        UpdateSprite();
+        UpdateFormIcon();
+        UpdateTypes();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numLevel_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.Level = (int)numLevel.Value;
-            UISet = false;
-            UpdateEXP();
-            UISet = true;
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.Level = (int)numLevel.Value;
+        UISet = false;
+        UpdateEXP();
+        UISet = true;
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numHPIV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetIV(0, (int)numHPIV.Value);
-            SetControlFont(ref numHPIV, numHPIV.Value == numHPIV.Maximum);
-            UpdateCharacteristic();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetIV(0, (int)numHPIV.Value);
+        SetControlFont(ref numHPIV, numHPIV.Value == numHPIV.Maximum);
+        UpdateCharacteristic();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numAtkIV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetIV(1, (int)numAtkIV.Value);
-            SetControlFont(ref numAtkIV, numAtkIV.Value == numAtkIV.Maximum);
-            UpdateCharacteristic();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetIV(1, (int)numAtkIV.Value);
+        SetControlFont(ref numAtkIV, numAtkIV.Value == numAtkIV.Maximum);
+        UpdateCharacteristic();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numDefIV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetIV(2, (int)numDefIV.Value);
-            SetControlFont(ref numDefIV, numDefIV.Value == numDefIV.Maximum);
-            UpdateCharacteristic();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetIV(2, (int)numDefIV.Value);
+        SetControlFont(ref numDefIV, numDefIV.Value == numDefIV.Maximum);
+        UpdateCharacteristic();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numSpAtkIV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetIV(3, (int)numSpAtkIV.Value);
-            SetControlFont(ref numSpAtkIV, numSpAtkIV.Value == numSpAtkIV.Maximum);
-            UpdateCharacteristic();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetIV(3, (int)numSpAtkIV.Value);
+        SetControlFont(ref numSpAtkIV, numSpAtkIV.Value == numSpAtkIV.Maximum);
+        UpdateCharacteristic();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numSpDefIV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetIV(4, (int)numSpDefIV.Value);
-            SetControlFont(ref numSpDefIV, numSpDefIV.Value == numSpDefIV.Maximum);
-            UpdateCharacteristic();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetIV(4, (int)numSpDefIV.Value);
+        SetControlFont(ref numSpDefIV, numSpDefIV.Value == numSpDefIV.Maximum);
+        UpdateCharacteristic();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numSpeedIV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetIV(5, (int)numSpeedIV.Value);
-            SetControlFont(ref numSpeedIV, numSpeedIV.Value == numSpeedIV.Maximum);
-            UpdateCharacteristic();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetIV(5, (int)numSpeedIV.Value);
+        SetControlFont(ref numSpeedIV, numSpeedIV.Value == numSpeedIV.Maximum);
+        UpdateCharacteristic();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numHPEV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetEV(0, (int)numHPEV.Value);
-            SetControlFont(ref numHPEV, numHPEV.Value >= 252M);
-            UpdateTotalEVs();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetEV(0, (int)numHPEV.Value);
+        SetControlFont(ref numHPEV, numHPEV.Value >= 252M);
+        UpdateTotalEVs();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numAtkEV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetEV(1, (int)numAtkEV.Value);
-            SetControlFont(ref numAtkEV, numAtkEV.Value >= 252M);
-            UpdateTotalEVs();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetEV(1, (int)numAtkEV.Value);
+        SetControlFont(ref numAtkEV, numAtkEV.Value >= 252M);
+        UpdateTotalEVs();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numDefEV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetEV(2, (int)numDefEV.Value);
-            SetControlFont(ref numDefEV, numDefEV.Value >= 252M);
-            UpdateTotalEVs();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetEV(2, (int)numDefEV.Value);
+        SetControlFont(ref numDefEV, numDefEV.Value >= 252M);
+        UpdateTotalEVs();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numSpAtkEV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetEV(3, (int)numSpAtkEV.Value);
-            SetControlFont(ref numSpAtkEV, numSpAtkEV.Value >= 252M);
-            UpdateTotalEVs();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetEV(3, (int)numSpAtkEV.Value);
+        SetControlFont(ref numSpAtkEV, numSpAtkEV.Value >= 252M);
+        UpdateTotalEVs();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numSpDefEV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetEV(4, (int)numSpDefEV.Value);
-            SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
-            UpdateTotalEVs();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetEV(4, (int)numSpDefEV.Value);
+        SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
+        UpdateTotalEVs();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numSpeedEV_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetEV(5, (int)numSpeedEV.Value);
-            SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
-            UpdateTotalEVs();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetEV(5, (int)numSpeedEV.Value);
+        SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
+        UpdateTotalEVs();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void cbNature_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.NatureID = (byte)cbNature.SelectedValue;
-            UpdateNature();
-            UpdateCalculatedStats();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.NatureID = (byte)cbNature.SelectedValue;
+        UpdateNature();
+        UpdateCalculatedStats();
+        CheckApplyButton();
     }
     private void numTameness_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.Tameness = (int)numTameness.Value;
-            SetControlFont(ref numTameness, numTameness.Value == numTameness.Maximum);
-            UpdateHatchSteps();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.Tameness = (int)numTameness.Value;
+        SetControlFont(ref numTameness, numTameness.Value == numTameness.Maximum);
+        UpdateHatchSteps();
+        CheckApplyButton();
     }
     private void cbMove1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMoveID(0, (ushort)cbMove1.SelectedValue);
-            numMove1PP.Value = ((Move)cbMove1.SelectedItem).MoveBasePP;
-            UpdateMove1();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMoveID(0, (ushort)cbMove1.SelectedValue);
+        numMove1PP.Value = ((Move)cbMove1.SelectedItem).MoveBasePP;
+        UpdateMove1();
+        CheckApplyButton();
     }
     private void cbMove2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            if (cbMove2.SelectedValue == null)
-            {
-                TempPokemon.SetMoveID(1, 0);
-                numMove2PPUps.Enabled = false;
-                numMove2PP.Enabled = false;
-            }
-            else
-            {
-                TempPokemon.SetMoveID(1, (ushort)cbMove2.SelectedValue);
-                numMove2PPUps.Enabled = true;
-                numMove2PP.Enabled = true;
-                numMove2PP.Value = ((Move)cbMove2.SelectedItem).MoveBasePP;
-            }
-            UpdateMove2();
-            CheckApplyButton();
+            return;
         }
+        if (cbMove2.SelectedValue == null)
+        {
+            TempPokemon.SetMoveID(1, 0);
+            numMove2PPUps.Enabled = false;
+            numMove2PP.Enabled = false;
+        }
+        else
+        {
+            TempPokemon.SetMoveID(1, (ushort)cbMove2.SelectedValue);
+            numMove2PPUps.Enabled = true;
+            numMove2PP.Enabled = true;
+            numMove2PP.Value = ((Move)cbMove2.SelectedItem).MoveBasePP;
+        }
+        UpdateMove2();
+        CheckApplyButton();
     }
     private void cbMove3_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            if (cbMove3.SelectedValue == null)
-            {
-                TempPokemon.SetMoveID(2, 0);
-                numMove3PPUps.Enabled = false;
-                numMove3PP.Enabled = false;
-            }
-            else
-            {
-                TempPokemon.SetMoveID(2, (ushort)cbMove3.SelectedValue);
-                numMove3PPUps.Enabled = true;
-                numMove3PP.Enabled = true;
-                numMove3PP.Value = ((Move)cbMove3.SelectedItem).MoveBasePP;
-            }
-            UpdateMove3();
-            CheckApplyButton();
+            return;
         }
+        if (cbMove3.SelectedValue == null)
+        {
+            TempPokemon.SetMoveID(2, 0);
+            numMove3PPUps.Enabled = false;
+            numMove3PP.Enabled = false;
+        }
+        else
+        {
+            TempPokemon.SetMoveID(2, (ushort)cbMove3.SelectedValue);
+            numMove3PPUps.Enabled = true;
+            numMove3PP.Enabled = true;
+            numMove3PP.Value = ((Move)cbMove3.SelectedItem).MoveBasePP;
+        }
+        UpdateMove3();
+        CheckApplyButton();
     }
     private void cbMove4_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            if (cbMove4.SelectedValue == null)
-            {
-                TempPokemon.SetMoveID(3, 0);
-                numMove4PPUps.Enabled = false;
-                numMove4PP.Enabled = false;
-            }
-            else
-            {
-                TempPokemon.SetMoveID(3, (ushort)cbMove4.SelectedValue);
-                numMove4PPUps.Enabled = true;
-                numMove4PP.Enabled = true;
-                numMove4PP.Value = ((Move)cbMove4.SelectedItem).MoveBasePP;
-            }
-            UpdateMove4();
-            CheckApplyButton();
+            return;
         }
+        if (cbMove4.SelectedValue == null)
+        {
+            TempPokemon.SetMoveID(3, 0);
+            numMove4PPUps.Enabled = false;
+            numMove4PP.Enabled = false;
+        }
+        else
+        {
+            TempPokemon.SetMoveID(3, (ushort)cbMove4.SelectedValue);
+            numMove4PPUps.Enabled = true;
+            numMove4PP.Enabled = true;
+            numMove4PP.Value = ((Move)cbMove4.SelectedItem).MoveBasePP;
+        }
+        UpdateMove4();
+        CheckApplyButton();
     }
     private void numMove1PPUps_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePPUp(0, (int)numMove1PPUps.Value);
-            var move = (Move)cbMove1.SelectedItem;
-            if (move != null)
-            {
-                txtMove1MaxPP.Text = (move.MoveBasePP + numMove1PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
-            }
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePPUp(0, (int)numMove1PPUps.Value);
+        var move = (Move)cbMove1.SelectedItem;
+        if (move != null)
+        {
+            txtMove1MaxPP.Text = (move.MoveBasePP + numMove1PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
+        }
+        CheckApplyButton();
     }
     private void numMove1PP_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePP(0, (int)numMove1PP.Value);
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePP(0, (int)numMove1PP.Value);
+        CheckApplyButton();
     }
     private void numMove2PPUps_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePPUp(1, (int)numMove2PPUps.Value);
-            var move = (Move)cbMove2.SelectedItem;
-            if (move != null)
-            {
-                txtMove2MaxPP.Text = (move.MoveBasePP + numMove2PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
-            }
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePPUp(1, (int)numMove2PPUps.Value);
+        var move = (Move)cbMove2.SelectedItem;
+        if (move != null)
+        {
+            txtMove2MaxPP.Text = (move.MoveBasePP + numMove2PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
+        }
+        CheckApplyButton();
     }
     private void numMove2PP_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePP(1, (int)numMove2PP.Value);
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePP(1, (int)numMove2PP.Value);
+        CheckApplyButton();
     }
     private void numMove3PPUps_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePPUp(2, (int)numMove3PPUps.Value);
-            var move = (Move)cbMove3.SelectedItem;
-            if (move != null)
-            {
-                txtMove3MaxPP.Text = (move.MoveBasePP + numMove3PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
-            }
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePPUp(2, (int)numMove3PPUps.Value);
+        var move = (Move)cbMove3.SelectedItem;
+        if (move != null)
+        {
+            txtMove3MaxPP.Text = (move.MoveBasePP + numMove3PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
+        }
+        CheckApplyButton();
     }
     private void numMove3PP_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePP(2, (int)numMove3PP.Value);
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePP(2, (int)numMove3PP.Value);
+        CheckApplyButton();
     }
     private void numMove4PPUps_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePPUp(3, (int)numMove4PPUps.Value);
-            var move = (Move)cbMove4.SelectedItem;
-            if (move != null)
-            {
-                txtMove4MaxPP.Text = (move.MoveBasePP + numMove4PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
-            }
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePPUp(3, (int)numMove4PPUps.Value);
+        var move = (Move)cbMove4.SelectedItem;
+        if (move != null)
+        {
+            txtMove4MaxPP.Text = (move.MoveBasePP + numMove4PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
+        }
+        CheckApplyButton();
     }
     private void numMove4PP_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.SetMovePP(3, (int)numMove4PP.Value);
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.SetMovePP(3, (int)numMove4PP.Value);
+        CheckApplyButton();
     }
     private void cbMetLocation_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.MetLocationID = (ushort)cbMetLocation.SelectedValue;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.MetLocationID = (ushort)cbMetLocation.SelectedValue;
+        CheckApplyButton();
     }
     private void dtMetDate_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.MetDate = dtMetDate.Value;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.MetDate = dtMetDate.Value;
+        CheckApplyButton();
     }
     private void cbEggLocation_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.EggLocationID = (ushort)cbEggLocation.SelectedValue;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.EggLocationID = (ushort)cbEggLocation.SelectedValue;
+        CheckApplyButton();
     }
     private void dtEggDate_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.EggDate = dtEggDate.Value;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.EggDate = dtEggDate.Value;
+        CheckApplyButton();
     }
     private void cbMetAsEgg_CheckedChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            if (cbMetAsEgg.Checked)
-            {
-                cbEggLocation.Enabled = true;
-                dtEggDate.Enabled = true;
-                TempPokemon.EggDate = dtEggDate.Value;
-            }
-            else
-            {
-                cbEggLocation.Enabled = false;
-                dtEggDate.Enabled = false;
-                TempPokemon.SetNoEggDate();
-            }
-            CheckApplyButton();
+            return;
         }
+        if (cbMetAsEgg.Checked)
+        {
+            cbEggLocation.Enabled = true;
+            dtEggDate.Enabled = true;
+            TempPokemon.EggDate = dtEggDate.Value;
+        }
+        else
+        {
+            cbEggLocation.Enabled = false;
+            dtEggDate.Enabled = false;
+            TempPokemon.SetNoEggDate();
+        }
+        CheckApplyButton();
     }
     private void numMetLevel_ValueChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.MetLevel = (byte)numMetLevel.Value;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.MetLevel = (byte)numMetLevel.Value;
+        CheckApplyButton();
     }
     private void cbGame_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.HometownID = (byte)cbGame.SelectedValue;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.HometownID = (byte)cbGame.SelectedValue;
+        CheckApplyButton();
     }
     private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.LanguageID = (byte)cbCountry.SelectedValue;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.LanguageID = (byte)cbCountry.SelectedValue;
+        CheckApplyButton();
     }
     private void cbIsEgg_CheckedChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.IsEgg = cbIsEgg.Checked;
-            UpdateHatchSteps();
-            cbMetAsEgg.Checked = true;
-            cbEggLocation.SelectedIndex = 0;
-            dtEggDate.Value = DateTime.Today;
-            UpdateSprite();
-            UpdateFormIcon();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.IsEgg = cbIsEgg.Checked;
+        UpdateHatchSteps();
+        cbMetAsEgg.Checked = true;
+        cbEggLocation.SelectedIndex = 0;
+        dtEggDate.Value = DateTime.Today;
+        UpdateSprite();
+        UpdateFormIcon();
+        CheckApplyButton();
     }
     private void UpdateHatchSteps()
     {
@@ -1416,36 +1433,40 @@ public partial class frmPKMViewer : Form
     }
     private void cbNsPokemon_CheckedChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.IsNsPokemon = cbNsPokemon.Checked;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.IsNsPokemon = cbNsPokemon.Checked;
+        CheckApplyButton();
     }
     private void cbFateful_CheckedChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.IsFateful = cbFateful.Checked;
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.IsFateful = cbFateful.Checked;
+        CheckApplyButton();
     }
     private void cbPKRSStrain_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.PokerusStrain = cbPKRSStrain.SelectedIndex;
-            UpdatePokerus();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.PokerusStrain = cbPKRSStrain.SelectedIndex;
+        UpdatePokerus();
+        CheckApplyButton();
     }
     private void cbPKRSDays_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (UISet && PokemonSet)
+        if (!UISet || !PokemonSet)
         {
-            TempPokemon.PokerusDays = cbPKRSDays.SelectedIndex;
-            UpdatePokerus();
-            CheckApplyButton();
+            return;
         }
+        TempPokemon.PokerusDays = cbPKRSDays.SelectedIndex;
+        UpdatePokerus();
+        CheckApplyButton();
     }
 }
