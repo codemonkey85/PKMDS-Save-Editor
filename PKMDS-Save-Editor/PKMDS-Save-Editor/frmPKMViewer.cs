@@ -551,7 +551,7 @@ public partial class frmPKMViewer : Form
         for (ushort itemindex = 0; itemindex <= 0x027E; itemindex++)
         {
             item = new Item(itemindex);
-            if ((item.ItemName != string.Empty) & (item.ItemName != null))
+            if ((item.ItemName is not "") & (item.ItemName is not null))
             {
                 items.Add(item);
             }
@@ -567,7 +567,7 @@ public partial class frmPKMViewer : Form
         for (ushort abilityindex = 0; abilityindex <= 164; abilityindex++)
         {
             ability = new Ability(abilityindex);
-            if ((ability.AbilityName != string.Empty) & (ability.AbilityName != null) & (ability.AbilityID != 0))
+            if ((ability.AbilityName is not "") & (ability.AbilityName is not null) & (ability.AbilityID != 0))
             {
                 abilities.Add(ability);
             }
@@ -583,7 +583,7 @@ public partial class frmPKMViewer : Form
         for (ushort speciesindex = 0; speciesindex <= 649; speciesindex++)
         {
             species = new Species(speciesindex);
-            if ((species.SpeciesName != string.Empty) & (species.SpeciesName != null) & (species.SpeciesID != 0))
+            if ((species.SpeciesName is not "") & (species.SpeciesName is not null) & (species.SpeciesID != 0))
             {
                 species_l.Add(species);
             }
@@ -599,7 +599,7 @@ public partial class frmPKMViewer : Form
         for (byte ballindex = 0; ballindex <= 25; ballindex++)
         {
             ball = new Ball(ballindex);
-            if ((ball.BallName != string.Empty) & (ball.BallName != null))
+            if ((ball.BallName is not "") & (ball.BallName is not null))
             {
                 balls.Add(ball);
             }
@@ -615,7 +615,7 @@ public partial class frmPKMViewer : Form
         for (byte natureindex = 0; natureindex <= 24; natureindex++)
         {
             nature = new Nature(natureindex);
-            if ((nature.NatureName != string.Empty) & (nature.NatureName != null))
+            if ((nature.NatureName is not "") & (nature.NatureName is not null))
             {
                 natures.Add(nature);
             }
@@ -632,7 +632,7 @@ public partial class frmPKMViewer : Form
         for (ushort locationindex = 0; locationindex <= 153; locationindex++)
         {
             location = new Location(locationindex);
-            if ((location.LocationName != string.Empty) & (location.LocationName != null) & (location.LocationID != 0))
+            if ((location.LocationName is not "") & (location.LocationName is not null) & (location.LocationID != 0))
             {
                 metlocations.Add(location);
                 egglocations.Add(location);
@@ -680,7 +680,7 @@ public partial class frmPKMViewer : Form
         for (ushort moveindex = 0; moveindex <= 559; moveindex++)
         {
             move = new Move(moveindex);
-            if ((move.MoveName != string.Empty) & (move.MoveName != null) & (move.MoveID != 0))
+            if ((move.MoveName is not "") & (move.MoveName is not null) & (move.MoveID != 0))
             {
                 moves1.Add(move);
             }
@@ -707,7 +707,7 @@ public partial class frmPKMViewer : Form
         for (byte hometownindex = 0; hometownindex <= 25; hometownindex++)
         {
             var hometown = new Hometown(hometownindex);
-            if ((hometown.HometownName != string.Empty) & (hometown.HometownName != null) & (hometown.HometownID != 0))
+            if ((hometown.HometownName is not "") & (hometown.HometownName is not null) & (hometown.HometownID != 0))
             {
                 hometowns.Add(hometown);
             }
@@ -725,7 +725,7 @@ public partial class frmPKMViewer : Form
             if (countryindex != 6)
             {
                 country = new Country(countryindex);
-                if ((country.CountryName != string.Empty) & (country.CountryName != null) & (country.CountryID != 0))
+                if ((country.CountryName is not "") & (country.CountryName is not null) & (country.CountryID != 0))
                 {
                     countries.Add(country);
                 }
@@ -1168,7 +1168,7 @@ public partial class frmPKMViewer : Form
         {
             return;
         }
-        if (cbMove2.SelectedValue == null)
+        if (cbMove2.SelectedValue is null)
         {
             TempPokemon.SetMoveID(1, 0);
             numMove2PPUps.Enabled = false;
@@ -1190,7 +1190,7 @@ public partial class frmPKMViewer : Form
         {
             return;
         }
-        if (cbMove3.SelectedValue == null)
+        if (cbMove3.SelectedValue is null)
         {
             TempPokemon.SetMoveID(2, 0);
             numMove3PPUps.Enabled = false;
@@ -1212,7 +1212,7 @@ public partial class frmPKMViewer : Form
         {
             return;
         }
-        if (cbMove4.SelectedValue == null)
+        if (cbMove4.SelectedValue is null)
         {
             TempPokemon.SetMoveID(3, 0);
             numMove4PPUps.Enabled = false;
@@ -1236,7 +1236,7 @@ public partial class frmPKMViewer : Form
         }
         TempPokemon.SetMovePPUp(0, (int)numMove1PPUps.Value);
         var move = (Move)cbMove1.SelectedItem;
-        if (move != null)
+        if (move is not null)
         {
             txtMove1MaxPP.Text = (move.MoveBasePP + numMove1PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
         }
@@ -1259,7 +1259,7 @@ public partial class frmPKMViewer : Form
         }
         TempPokemon.SetMovePPUp(1, (int)numMove2PPUps.Value);
         var move = (Move)cbMove2.SelectedItem;
-        if (move != null)
+        if (move is not null)
         {
             txtMove2MaxPP.Text = (move.MoveBasePP + numMove2PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
         }
@@ -1282,7 +1282,7 @@ public partial class frmPKMViewer : Form
         }
         TempPokemon.SetMovePPUp(2, (int)numMove3PPUps.Value);
         var move = (Move)cbMove3.SelectedItem;
-        if (move != null)
+        if (move is not null)
         {
             txtMove3MaxPP.Text = (move.MoveBasePP + numMove3PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
         }
@@ -1305,7 +1305,7 @@ public partial class frmPKMViewer : Form
         }
         TempPokemon.SetMovePPUp(3, (int)numMove4PPUps.Value);
         var move = (Move)cbMove4.SelectedItem;
-        if (move != null)
+        if (move is not null)
         {
             txtMove4MaxPP.Text = (move.MoveBasePP + numMove4PPUps.Value * (move.MoveBasePP / 5)).ToString("0");
         }

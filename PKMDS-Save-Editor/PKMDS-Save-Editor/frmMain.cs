@@ -420,7 +420,7 @@ public partial class frmMain : Form
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             var pkm = sav.Party[slot].PokemonData;
-            if (pkm != null && pkm.SpeciesID != 0)
+            if (pkm is not null && pkm.SpeciesID != 0)
             {
                 sav.Party[slot] = ViewPokemon(sav.Party[slot]);
                 UpdateParty();
@@ -431,7 +431,7 @@ public partial class frmMain : Form
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             var pkm = sav.PCStorage[sav.CurrentBox][slot];
-            if (pkm != null && pkm.SpeciesID != 0)
+            if (pkm is not null && pkm.SpeciesID != 0)
             {
                 sav.PCStorage[sav.CurrentBox][slot] = ViewPokemon(sav.PCStorage[sav.CurrentBox][slot]);
             }
@@ -442,7 +442,7 @@ public partial class frmMain : Form
     private void pbPartyBoxSlot_MouseDown(object sender, MouseEventArgs e)
     {
         var pb = (PictureBox)sender;
-        if (pb.Image != null)
+        if (pb.Image is not null)
         {
             //this.Cursor = CreateCursor(pb.Image, 3, 3);
             //pb.Image = null;
@@ -847,7 +847,7 @@ public partial class frmMain : Form
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             var pkm = sav.Party[slot].PokemonData;
-            if (pkm != null && pkm.SpeciesID != 0)
+            if (pkm is not null && pkm.SpeciesID != 0)
             {
                 sav.Party[slot] = ViewPokemon(sav.Party[slot]);
                 UpdateParty();
@@ -858,7 +858,7 @@ public partial class frmMain : Form
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             var pkm = sav.PCStorage[sav.CurrentBox][slot];
-            if (pkm != null && pkm.SpeciesID != 0)
+            if (pkm is not null && pkm.SpeciesID != 0)
             {
                 sav.PCStorage[sav.CurrentBox][slot] = ViewPokemon(sav.PCStorage[sav.CurrentBox][slot]);
             }
