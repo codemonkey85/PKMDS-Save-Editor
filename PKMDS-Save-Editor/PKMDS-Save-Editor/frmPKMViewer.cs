@@ -551,7 +551,7 @@ public partial class frmPKMViewer : Form
         for (ushort itemindex = 0; itemindex <= 0x027E; itemindex++)
         {
             item = new Item(itemindex);
-            if ((item.ItemName is not "") & (item.ItemName is not null))
+            if (item.ItemName is { Length: > 0 })
             {
                 items.Add(item);
             }
@@ -567,7 +567,7 @@ public partial class frmPKMViewer : Form
         for (ushort abilityindex = 0; abilityindex <= 164; abilityindex++)
         {
             ability = new Ability(abilityindex);
-            if ((ability.AbilityName is not "") & (ability.AbilityName is not null) & (ability.AbilityID != 0))
+            if (ability is { AbilityName.Length: > 0, AbilityID: not 0 })
             {
                 abilities.Add(ability);
             }
@@ -583,7 +583,7 @@ public partial class frmPKMViewer : Form
         for (ushort speciesindex = 0; speciesindex <= 649; speciesindex++)
         {
             species = new Species(speciesindex);
-            if ((species.SpeciesName is not "") & (species.SpeciesName is not null) & (species.SpeciesID != 0))
+            if (species is { SpeciesName.Length: > 0, SpeciesID: not 0 })
             {
                 species_l.Add(species);
             }
@@ -599,7 +599,7 @@ public partial class frmPKMViewer : Form
         for (byte ballindex = 0; ballindex <= 25; ballindex++)
         {
             ball = new Ball(ballindex);
-            if ((ball.BallName is not "") & (ball.BallName is not null))
+            if (ball.BallName is { Length: > 0 })
             {
                 balls.Add(ball);
             }
@@ -615,7 +615,7 @@ public partial class frmPKMViewer : Form
         for (byte natureindex = 0; natureindex <= 24; natureindex++)
         {
             nature = new Nature(natureindex);
-            if ((nature.NatureName is not "") & (nature.NatureName is not null))
+            if (nature.NatureName is { Length: > 0 })
             {
                 natures.Add(nature);
             }
@@ -632,7 +632,7 @@ public partial class frmPKMViewer : Form
         for (ushort locationindex = 0; locationindex <= 153; locationindex++)
         {
             location = new Location(locationindex);
-            if ((location.LocationName is not "") & (location.LocationName is not null) & (location.LocationID != 0))
+            if (location is { LocationName.Length: > 0, LocationID: not 0 })
             {
                 metlocations.Add(location);
                 egglocations.Add(location);
@@ -680,7 +680,7 @@ public partial class frmPKMViewer : Form
         for (ushort moveindex = 0; moveindex <= 559; moveindex++)
         {
             move = new Move(moveindex);
-            if ((move.MoveName is not "") & (move.MoveName is not null) & (move.MoveID != 0))
+            if (move is { MoveName.Length: > 0, MoveID: not 0 })
             {
                 moves1.Add(move);
             }
@@ -707,7 +707,7 @@ public partial class frmPKMViewer : Form
         for (byte hometownindex = 0; hometownindex <= 25; hometownindex++)
         {
             var hometown = new Hometown(hometownindex);
-            if ((hometown.HometownName is not "") & (hometown.HometownName is not null) & (hometown.HometownID != 0))
+            if (hometown is { HometownName.Length: > 0, HometownID: not 0 })
             {
                 hometowns.Add(hometown);
             }
@@ -725,7 +725,7 @@ public partial class frmPKMViewer : Form
             if (countryindex != 6)
             {
                 country = new Country(countryindex);
-                if ((country.CountryName is not "") & (country.CountryName is not null) & (country.CountryID != 0))
+                if (country is { CountryName.Length: > 0, CountryID: not 0 })
                 {
                     countries.Add(country);
                 }
