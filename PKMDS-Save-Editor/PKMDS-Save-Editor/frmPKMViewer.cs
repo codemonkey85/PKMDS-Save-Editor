@@ -212,7 +212,7 @@ public partial class frmPKMViewer : Form
             txtTNL.Text = TempPokemon.TNL.ToString();
             txtTNLPercent.Visible = true;
             var percent = 100 * pbTNL.Value / pbTNL.Maximum;
-            txtTNLPercent.Text = percent.ToString("0") + "%";
+            txtTNLPercent.Text = $"{percent:0}%";
         }
     }
     #endregion
@@ -346,7 +346,7 @@ public partial class frmPKMViewer : Form
         cbMove1.SelectedValue = moveid;
         var move = (Move)cbMove1.SelectedItem;
         lblMove1Flavor.Text = move.MoveFlavor;
-        lblMove1Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? move.MoveAccuracy.ToString("0") + "%" : "-";
+        lblMove1Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? $"{move.MoveAccuracy:0}%" : "-";
         lblMove1Power.Text = move.MovePower is not 0 and not 1 ? move.MovePower.ToString() : "-";
         numMove1PP.Value = TempPokemon.GetMovePP(0);
         numMove1PPUps.Value = TempPokemon.GetMovePPUp(0);
@@ -379,7 +379,7 @@ public partial class frmPKMViewer : Form
             numMove2PP.Enabled = true;
             var move = (Move)cbMove2.SelectedItem;
             lblMove2Flavor.Text = move.MoveFlavor;
-            lblMove2Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? move.MoveAccuracy.ToString("0") + "%" : "-";
+            lblMove2Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? $"{move.MoveAccuracy:0}%" : "-";
             lblMove2Power.Text = move.MovePower is not 0 and not 1 ? move.MovePower.ToString() : "-";
             numMove2PP.Value = TempPokemon.GetMovePP(1);
             numMove2PPUps.Value = TempPokemon.GetMovePPUp(1);
@@ -413,7 +413,7 @@ public partial class frmPKMViewer : Form
             numMove3PP.Enabled = true;
             var move = (Move)cbMove3.SelectedItem;
             lblMove3Flavor.Text = move.MoveFlavor;
-            lblMove3Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? move.MoveAccuracy.ToString("0") + "%" : "-";
+            lblMove3Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? $"{move.MoveAccuracy:0}%" : "-";
             lblMove3Power.Text = move.MovePower is not 0 and not 1 ? move.MovePower.ToString() : "-";
             numMove3PP.Value = TempPokemon.GetMovePP(2);
             numMove3PPUps.Value = TempPokemon.GetMovePPUp(2);
@@ -447,7 +447,7 @@ public partial class frmPKMViewer : Form
             numMove4PP.Enabled = true;
             var move = (Move)cbMove4.SelectedItem;
             lblMove4Flavor.Text = move.MoveFlavor;
-            lblMove4Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? move.MoveAccuracy.ToString("0") + "%" : "-";
+            lblMove4Accuracy.Text = move.MoveAccuracy is not 0 and not 1 ? $"{move.MoveAccuracy:0}%" : "-";
             lblMove4Power.Text = move.MovePower is not 0 and not 1 ? move.MovePower.ToString() : "-";
             numMove4PP.Value = TempPokemon.GetMovePP(3);
             numMove4PPUps.Value = TempPokemon.GetMovePPUp(3);
