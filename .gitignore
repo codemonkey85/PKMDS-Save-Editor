@@ -97,3 +97,4 @@ packages/
 *.opendb
 *.vsidx
 *.bin
+*.v2
