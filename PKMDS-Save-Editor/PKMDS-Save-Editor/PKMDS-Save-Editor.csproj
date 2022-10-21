@@ -1,33 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows7.0</TargetFramework>
+		<TargetFramework>net7.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<OutputType>WinExe</OutputType>
 		<StartupObject>PKMDS_Save_Editor.Program</StartupObject>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_").Replace("-", "_"))</RootNamespace>
 		<ApplicationIcon>dna-splicers.ico</ApplicationIcon>
-		<PlatformTarget>x86</PlatformTarget>
+		<Nullable>enable</Nullable>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
+
 	<ItemGroup>
-	  <Content Include="dna-splicers.ico" />
+		<Content Include="dna-splicers.ico" />
 	</ItemGroup>
+
 	<ItemGroup>
-	  <None Include="..\..\externals\PKMDS-DB\veekun-pokedex.sqlite" Link="veekun-pokedex.sqlite">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Include="..\..\externals\PKMDS-DB\veekun-pokedex.sqlite" Link="veekun-pokedex.sqlite">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
+
 	<ItemGroup>
-	  <ProjectReference Include="..\..\externals\PKMDS-Win32-DLL\PKMDS-Win32-DLL\PKMDS-Win32-DLL\PKMDS-Win32-DLL.vcxproj">
-	    <Private></Private>
-	    <CopyLocalSatelliteAssemblies></CopyLocalSatelliteAssemblies>
-	  </ProjectReference>
-	  <ProjectReference Include="..\..\externals\PKMDS-Win32-DLL\PKMDS-Win32-DLL\PKMDS_CS\PKMDS_CS.csproj" />
+		<ProjectReference Include="..\..\externals\PKMDS-Win32-DLL\PKMDS-Win32-DLL\PKMDS_CS\PKMDS_CS.csproj" />
 	</ItemGroup>
+
 	<ItemGroup>
-	  <None Update="Test-Save-White-2.sav">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Update="Test-Save-White-2.sav">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
+
 </Project>
