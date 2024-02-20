@@ -1,4 +1,5 @@
-﻿namespace PKMDS_Save_Editor;
+﻿#pragma warning disable CA1416 // Validate platform compatibility
+namespace PKMDS_Save_Editor;
 
 internal static class Program
 {
@@ -18,3 +19,4 @@ internal static class Program
         Application.Run(new frmMain(filePath));
     }
 }
+#pragma warning restore CA1416 // Validate platform compatibility

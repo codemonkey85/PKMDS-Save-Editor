@@ -9,12 +9,14 @@ public partial class frmPKMViewer : Form
     private bool UISet = false;
     private bool PokemonSet = false;
     //private bool IsParty = false;
+
     public frmPKMViewer()
     {
         SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
         InitializeComponent();
         SetUI();
     }
+
     public void SetPokemon(Pokemon pkm)
     {
         PokemonSet = false;
@@ -22,6 +24,7 @@ public partial class frmPKMViewer : Form
         TempPokemon = pkm.Clone();
         //this.IsParty = false;
     }
+
     public void SetPokemon(PartyPokemon ppkm)
     {
         PokemonSet = false;
@@ -30,6 +33,7 @@ public partial class frmPKMViewer : Form
         TempPokemon = ppkm.PokemonData.Clone();
         //this.IsParty = true;
     }
+
     private void frmPKMViewer_Load(object sender, EventArgs e)
     {
         try
@@ -44,6 +48,7 @@ public partial class frmPKMViewer : Form
         ClearForm();
         DisplayPokemon(TempPokemon);
     }
+
     private void DisplayPokemon(Pokemon pkm)
     {
         UpdateFormIcon();
@@ -56,6 +61,7 @@ public partial class frmPKMViewer : Form
         UpdateMiscInfo();
         PokemonSet = true;
     }
+
     private void ClearForm()
     {
         btnApply.Enabled = false;
@@ -91,8 +97,11 @@ public partial class frmPKMViewer : Form
         UpdateLevel();
         UpdateForm();
     }
+
     private void UpdateSprite() => pbSprite.Image = TempPokemon.Sprite;
+
     private void UpdateGenderPic() => pbGender.Image = TempPokemon.GenderIcon;
+
     private void UpdateMarkings()
     {
         pbCircle.Image = GetMarkingImage(Markings.Circle, TempPokemon.Circle);
@@ -102,30 +111,37 @@ public partial class frmPKMViewer : Form
         pbStar.Image = GetMarkingImage(Markings.Star, TempPokemon.Star);
         pbDiamond.Image = GetMarkingImage(Markings.Diamond, TempPokemon.Diamond);
     }
+
     private void UpdateHeldItem()
     {
         cbHeldItem.SelectedValue = TempPokemon.ItemID;
         pbHeldItem.Image = ((Item)cbHeldItem.SelectedItem).ItemImage;
         lblHeldItemFlavor.Text = ((Item)cbHeldItem.SelectedItem).ItemFlavor;
     }
+
     private void UpdateShiny() => pbShiny.Image = TempPokemon.ShinyIcon;
+
     private void UpdateBall()
     {
         pbBall.Image = TempPokemon.BallPic;
         cbBall.SelectedValue = TempPokemon.BallID;
     }
+
     private void UpdatePokerus()
     {
         pbPokerus.Image = TempPokemon.PokerusIcon;
         cbPKRSStrain.SelectedIndex = TempPokemon.PokerusStrain;
         cbPKRSDays.SelectedIndex = TempPokemon.PokerusDays;
     }
+
     private void UpdateSpecies()
     {
         cbSpecies.SelectedValue = TempPokemon.SpeciesID;
         numSpecies.Value = TempPokemon.SpeciesID;
     }
+
     private void UpdateLevel() => numLevel.Value = TempPokemon.Level;
+
     private void UpdateForm()
     {
         SetForms();
@@ -157,11 +173,13 @@ public partial class frmPKMViewer : Form
         UpdateAbility();
         UpdateEXP();
     }
+
     private void UpdateNickname()
     {
         txtNickname.Text = TempPokemon.Nickname;
         chkNicknamed.Checked = TempPokemon.IsNicknamed;
     }
+
     private void UpdateOTGender()
     {
         if (TempPokemon.OTGenderID == 1)
@@ -173,26 +191,31 @@ public partial class frmPKMViewer : Form
             rbOTMale.Checked = true;
         }
     }
+
     private void UpdateOTName()
     {
         txtOTName.Text = TempPokemon.OTName;
         txtOTName.ForeColor = TempPokemon.OTGenderID == 0 ? Color.Blue : Color.Red;
     }
+
     private void UpdateTIDSID()
     {
         numTID.Value = TempPokemon.TID;
         numSID.Value = TempPokemon.SID;
     }
+
     private void UpdateTypes()
     {
         pbType1.Image = TempPokemon.GetTypePic(1);
         pbType2.Image = TempPokemon.GetTypePic(2);
     }
+
     private void UpdateAbility()
     {
         cbAbility.SelectedValue = TempPokemon.AbilityID;
         lblAbilityFlavor.Text = ((Ability)cbAbility.SelectedItem).AbilityFlavor;
     }
+
     private void UpdateEXP()
     {
         numEXP.Value = TempPokemon.EXP;
@@ -229,6 +252,7 @@ public partial class frmPKMViewer : Form
         UpdateTameness();
         UpdateCharacteristic();
     }
+
     private void UpdateIVs()
     {
         numHPIV.Value = TempPokemon.GetIV(0);
@@ -244,6 +268,7 @@ public partial class frmPKMViewer : Form
         SetControlFont(ref numSpDefIV, numSpDefIV.Value == numSpDefIV.Maximum);
         SetControlFont(ref numSpeedIV, numSpeedIV.Value == numSpeedIV.Maximum);
     }
+
     private void UpdateEVs()
     {
         numHPEV.Value = TempPokemon.GetEV(0);
@@ -259,6 +284,7 @@ public partial class frmPKMViewer : Form
         SetControlFont(ref numSpDefEV, numSpDefEV.Value >= 252M);
         SetControlFont(ref numSpeedEV, numSpeedEV.Value >= 252M);
     }
+
     private void UpdateTotalEVs()
     {
         var totalEVs =
@@ -271,6 +297,7 @@ public partial class frmPKMViewer : Form
         txtTotalEVs.Text = totalEVs.ToString();
         SetControlFont(ref txtTotalEVs, totalEVs >= 510);
     }
+
     private void UpdateNature()
     {
         cbNature.SelectedValue = TempPokemon.NatureID;
@@ -278,14 +305,14 @@ public partial class frmPKMViewer : Form
         var dec = TempPokemon.NatureDecrease - 1;
         Color statcolor;
         Label[] statlbls =
-        {
+        [
             lblHPStats,
             lblAtkStats,
             lblDefStats,
             lblSpAtkStats,
             lblSpDefStats,
             lblSpeedStats
-        };
+        ];
         for (var i = 0; i < 6; i++)
         {
             statcolor = Color.Black;
@@ -300,6 +327,7 @@ public partial class frmPKMViewer : Form
             statlbls[i].ForeColor = statcolor;
         }
     }
+
     private void UpdateCalculatedStats()
     {
         var calcstats = TempPokemon.GetStats;
@@ -310,11 +338,13 @@ public partial class frmPKMViewer : Form
         txtCalcSpDef.Text = calcstats[4].ToString();
         txtCalcSpeed.Text = calcstats[5].ToString();
     }
+
     private void UpdateTameness()
     {
         numTameness.Value = TempPokemon.Tameness;
         SetControlFont(ref numTameness, numTameness.Value == numTameness.Maximum);
     }
+
     private void UpdateCharacteristic() => lblCharacteristic.Text = TempPokemon.Characteristic;
     #endregion
 
@@ -356,6 +386,7 @@ public partial class frmPKMViewer : Form
         pbMove1Category.Image = move.MoveCategoryImage;
         AutosizeFont(ref lblMove1Flavor);
     }
+
     private void UpdateMove2()
     {
         var moveid = TempPokemon.GetMoveIDs[1];
@@ -390,6 +421,7 @@ public partial class frmPKMViewer : Form
             AutosizeFont(ref lblMove2Flavor);
         }
     }
+
     private void UpdateMove3()
     {
         var moveid = TempPokemon.GetMoveIDs[2];
@@ -424,6 +456,7 @@ public partial class frmPKMViewer : Form
             AutosizeFont(ref lblMove3Flavor);
         }
     }
+
     private void UpdateMove4()
     {
         var moveid = TempPokemon.GetMoveIDs[3];
@@ -522,6 +555,7 @@ public partial class frmPKMViewer : Form
         SetCountries();
         UISet = true;
     }
+
     private void SetForms()
     {
         cbForm.Items.Clear();
@@ -547,6 +581,7 @@ public partial class frmPKMViewer : Form
             cbForm.Enabled = false;
         }
     }
+
     private void SetItems()
     {
         var items = new List<Item>();
@@ -564,6 +599,7 @@ public partial class frmPKMViewer : Form
         cbHeldItem.DisplayMember = "ItemName";
         cbHeldItem.ValueMember = "ItemID";
     }
+
     private void SetAbilities()
     {
         var abilities = new List<Ability>();
@@ -579,6 +615,7 @@ public partial class frmPKMViewer : Form
         cbAbility.DisplayMember = "AbilityName";
         cbAbility.ValueMember = "AbilityID";
     }
+
     private void SetSpecies()
     {
         var species_l = new List<Species>();
@@ -594,6 +631,7 @@ public partial class frmPKMViewer : Form
         cbSpecies.DisplayMember = "SpeciesName";
         cbSpecies.ValueMember = "SpeciesID";
     }
+
     private void SetBalls()
     {
         var balls = new List<Ball>();
@@ -609,6 +647,7 @@ public partial class frmPKMViewer : Form
         cbBall.DisplayMember = "BallName";
         cbBall.ValueMember = "BallID";
     }
+
     private void SetNatures()
     {
         var natures = new List<Nature>();
@@ -624,6 +663,7 @@ public partial class frmPKMViewer : Form
         cbNature.DisplayMember = "NatureName";
         cbNature.ValueMember = "NatureID";
     }
+
     private void SetLocations()
     {
         var metlocations = new List<Location>();
@@ -670,6 +710,7 @@ public partial class frmPKMViewer : Form
         cbEggLocation.DisplayMember = "LocationName";
         cbEggLocation.ValueMember = "LocationID";
     }
+
     private void SetMoves()
     {
         var moves1 = new List<Move>();
@@ -700,6 +741,7 @@ public partial class frmPKMViewer : Form
         cbMove4.DisplayMember = "MoveName";
         cbMove4.ValueMember = "MoveID";
     }
+
     private void SetHometowns()
     {
         var hometowns = new List<Hometown>();
@@ -715,6 +757,7 @@ public partial class frmPKMViewer : Form
         cbGame.DisplayMember = "HometownName";
         cbGame.ValueMember = "HometownID";
     }
+
     private void SetCountries()
     {
         var countries = new List<Country>();
@@ -733,6 +776,7 @@ public partial class frmPKMViewer : Form
         cbCountry.DisplayMember = "CountryName";
         cbCountry.ValueMember = "CountryID";
     }
+
     private void btnSave_Click(object sender, EventArgs e)
     {
         TempPokemon.FixChecksum();
@@ -743,6 +787,7 @@ public partial class frmPKMViewer : Form
         };
         Close();
     }
+
     private void btnApply_Click(object sender, EventArgs e)
     {
         TempPokemon.FixChecksum();
@@ -753,6 +798,7 @@ public partial class frmPKMViewer : Form
         };
         CheckApplyButton();
     }
+
     private void btnExport_Click(object sender, EventArgs e)
     {
         fileSave.FileName = string.Empty;
@@ -761,43 +807,51 @@ public partial class frmPKMViewer : Form
             TempPokemon.WriteToFile(fileSave.FileName, Path.GetExtension(fileSave.FileName).ToLower() == ".ek5");
         }
     }
+
     private void CheckApplyButton() => btnApply.Enabled = TempPokemon.IsModified;
+
     private void pbCircle_Click(object sender, EventArgs e)
     {
         TempPokemon.Circle = !TempPokemon.Circle;
         pbCircle.Image = GetMarkingImage(Markings.Circle, TempPokemon.Circle);
         CheckApplyButton();
     }
+
     private void pbTriangle_Click(object sender, EventArgs e)
     {
         TempPokemon.Triangle = !TempPokemon.Triangle;
         pbTriangle.Image = GetMarkingImage(Markings.Triangle, TempPokemon.Triangle);
         CheckApplyButton();
     }
+
     private void pbSquare_Click(object sender, EventArgs e)
     {
         TempPokemon.Square = !TempPokemon.Square;
         pbSquare.Image = GetMarkingImage(Markings.Square, TempPokemon.Square);
         CheckApplyButton();
     }
+
     private void pbHeart_Click(object sender, EventArgs e)
     {
         TempPokemon.Heart = !TempPokemon.Heart;
         pbHeart.Image = GetMarkingImage(Markings.Heart, TempPokemon.Heart);
         CheckApplyButton();
     }
+
     private void pbStar_Click(object sender, EventArgs e)
     {
         TempPokemon.Star = !TempPokemon.Star;
         pbStar.Image = GetMarkingImage(Markings.Star, TempPokemon.Star);
         CheckApplyButton();
     }
+
     private void pbDiamond_Click(object sender, EventArgs e)
     {
         TempPokemon.Diamond = !TempPokemon.Diamond;
         pbDiamond.Image = GetMarkingImage(Markings.Diamond, TempPokemon.Diamond);
         CheckApplyButton();
     }
+
     private void frmPKMViewer_FormClosing(object sender, FormClosingEventArgs e)
     {
         if (TempPokemon.IsModified && MessageBox.Show("Cancel changes?", "Close", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -805,6 +859,7 @@ public partial class frmPKMViewer : Form
             e.Cancel = true;
         }
     }
+
     private void cbHeldItem_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet || cbHeldItem.SelectedIndex == -1)
@@ -816,6 +871,7 @@ public partial class frmPKMViewer : Form
         lblHeldItemFlavor.Text = ((Item)cbHeldItem.SelectedItem).ItemFlavor;
         CheckApplyButton();
     }
+
     private void chkNicknamed_CheckedChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -825,6 +881,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.IsNicknamed = chkNicknamed.Checked;
         CheckApplyButton();
     }
+
     private void txtNickname_TextChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet || txtNickname.Text.Length == 0)
@@ -835,6 +892,7 @@ public partial class frmPKMViewer : Form
         chkNicknamed.Checked = true;
         CheckApplyButton();
     }
+
     private void txtOTName_TextChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet || txtOTName.Text.Length == 0)
@@ -844,6 +902,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.OTName = txtOTName.Text;
         CheckApplyButton();
     }
+
     private void numTID_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -855,6 +914,7 @@ public partial class frmPKMViewer : Form
         UpdateShiny();
         CheckApplyButton();
     }
+
     private void numSID_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -866,6 +926,7 @@ public partial class frmPKMViewer : Form
         UpdateShiny();
         CheckApplyButton();
     }
+
     private void rbOTMale_CheckedChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -879,6 +940,7 @@ public partial class frmPKMViewer : Form
         }
         CheckApplyButton();
     }
+
     private void rbOTFemale_CheckedChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -892,6 +954,7 @@ public partial class frmPKMViewer : Form
         }
         CheckApplyButton();
     }
+
     private void cbAbility_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet || cbAbility.SelectedIndex == -1)
@@ -902,6 +965,7 @@ public partial class frmPKMViewer : Form
         lblAbilityFlavor.Text = ((Ability)cbAbility.SelectedItem).AbilityFlavor;
         CheckApplyButton();
     }
+
     private void numEXP_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -916,6 +980,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void cbBall_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet || cbBall.SelectedIndex == -1)
@@ -926,6 +991,7 @@ public partial class frmPKMViewer : Form
         UpdateBall();
         CheckApplyButton();
     }
+
     private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet || cbSpecies.SelectedIndex == -1)
@@ -949,6 +1015,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numSpecies_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet || (int)(numSpecies.Value - 1) == cbSpecies.SelectedIndex)
@@ -957,6 +1024,7 @@ public partial class frmPKMViewer : Form
         }
         cbSpecies.SelectedIndex = (int)(numSpecies.Value - 1);
     }
+
     private void cbForm_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -970,6 +1038,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numLevel_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -983,6 +1052,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numHPIV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -995,6 +1065,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numAtkIV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1007,6 +1078,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numDefIV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1019,6 +1091,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numSpAtkIV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1031,6 +1104,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numSpDefIV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1043,6 +1117,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numSpeedIV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1055,6 +1130,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numHPEV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1067,6 +1143,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numAtkEV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1079,6 +1156,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numDefEV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1091,6 +1169,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numSpAtkEV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1103,6 +1182,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numSpDefEV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1115,6 +1195,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numSpeedEV_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1127,6 +1208,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void cbNature_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1138,6 +1220,7 @@ public partial class frmPKMViewer : Form
         UpdateCalculatedStats();
         CheckApplyButton();
     }
+
     private void numTameness_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1149,6 +1232,7 @@ public partial class frmPKMViewer : Form
         UpdateHatchSteps();
         CheckApplyButton();
     }
+
     private void cbMove1_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1160,6 +1244,7 @@ public partial class frmPKMViewer : Form
         UpdateMove1();
         CheckApplyButton();
     }
+
     private void cbMove2_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1182,6 +1267,7 @@ public partial class frmPKMViewer : Form
         UpdateMove2();
         CheckApplyButton();
     }
+
     private void cbMove3_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1204,6 +1290,7 @@ public partial class frmPKMViewer : Form
         UpdateMove3();
         CheckApplyButton();
     }
+
     private void cbMove4_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1226,6 +1313,7 @@ public partial class frmPKMViewer : Form
         UpdateMove4();
         CheckApplyButton();
     }
+
     private void numMove1PPUps_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1240,6 +1328,7 @@ public partial class frmPKMViewer : Form
         }
         CheckApplyButton();
     }
+
     private void numMove1PP_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1249,6 +1338,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.SetMovePP(0, (int)numMove1PP.Value);
         CheckApplyButton();
     }
+
     private void numMove2PPUps_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1263,6 +1353,7 @@ public partial class frmPKMViewer : Form
         }
         CheckApplyButton();
     }
+
     private void numMove2PP_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1272,6 +1363,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.SetMovePP(1, (int)numMove2PP.Value);
         CheckApplyButton();
     }
+
     private void numMove3PPUps_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1286,6 +1378,7 @@ public partial class frmPKMViewer : Form
         }
         CheckApplyButton();
     }
+
     private void numMove3PP_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1295,6 +1388,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.SetMovePP(2, (int)numMove3PP.Value);
         CheckApplyButton();
     }
+
     private void numMove4PPUps_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1309,6 +1403,7 @@ public partial class frmPKMViewer : Form
         }
         CheckApplyButton();
     }
+
     private void numMove4PP_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1318,6 +1413,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.SetMovePP(3, (int)numMove4PP.Value);
         CheckApplyButton();
     }
+
     private void cbMetLocation_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1327,6 +1423,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.MetLocationID = (ushort)cbMetLocation.SelectedValue;
         CheckApplyButton();
     }
+
     private void dtMetDate_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1336,6 +1433,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.MetDate = dtMetDate.Value;
         CheckApplyButton();
     }
+
     private void cbEggLocation_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1345,6 +1443,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.EggLocationID = (ushort)cbEggLocation.SelectedValue;
         CheckApplyButton();
     }
+
     private void dtEggDate_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1354,6 +1453,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.EggDate = dtEggDate.Value;
         CheckApplyButton();
     }
+
     private void cbMetAsEgg_CheckedChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1374,6 +1474,7 @@ public partial class frmPKMViewer : Form
         }
         CheckApplyButton();
     }
+
     private void numMetLevel_ValueChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1383,6 +1484,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.MetLevel = (byte)numMetLevel.Value;
         CheckApplyButton();
     }
+
     private void cbGame_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1392,6 +1494,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.HometownID = (byte)cbGame.SelectedValue;
         CheckApplyButton();
     }
+
     private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1401,6 +1504,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.LanguageID = (byte)cbCountry.SelectedValue;
         CheckApplyButton();
     }
+
     private void cbIsEgg_CheckedChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1416,6 +1520,7 @@ public partial class frmPKMViewer : Form
         UpdateFormIcon();
         CheckApplyButton();
     }
+
     private void UpdateHatchSteps()
     {
         if (TempPokemon.IsEgg)
@@ -1429,6 +1534,7 @@ public partial class frmPKMViewer : Form
             txtMinHatchSteps.Text = string.Empty;
         }
     }
+
     private void cbNsPokemon_CheckedChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1438,6 +1544,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.IsNsPokemon = cbNsPokemon.Checked;
         CheckApplyButton();
     }
+
     private void cbFateful_CheckedChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1447,6 +1554,7 @@ public partial class frmPKMViewer : Form
         TempPokemon.IsFateful = cbFateful.Checked;
         CheckApplyButton();
     }
+
     private void cbPKRSStrain_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
@@ -1457,6 +1565,7 @@ public partial class frmPKMViewer : Form
         UpdatePokerus();
         CheckApplyButton();
     }
+
     private void cbPKRSDays_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (!UISet || !PokemonSet)
