@@ -6,28 +6,21 @@ A save file editor based on the PKMDS library
 PKMDS
 =====
 
-A Pokémon save hacking library written in C++! (currently supports Gen V and limited portions of Gen III / VI)
+A Pokémon save hacking library written in C++! (supports Gen V and limited portions of Gen III / VI)
 
-See pictures of the library in action: http://goo.gl/Fg7J1r
-
-Project outline: http://goo.gl/4KRDxN
-
-Collaboration document: http://goo.gl/iCTKme
-
-Created by Michael Bond (aka Codemonkey85): https://github.com/codemonkey85
-
-Follow me on Google+: https://plus.google.com/+MichaelBond
-*********************************************************************
-
-The database files required by portions of this library can be obtained from this repo: https://github.com/codemonkey85/PKMDS-DB
+Created by Michael Bond (aka codemonkey85): [https://github.com/codemonkey85](bondcodes.com)
 
 *********************************************************************
 
-Thanks to Alex "eevee" Munroe (@eevee) at http://veekun.com/ for his SQLite Pokedex database, which powers this software. "veekun-pokedex.sqlite" was built from his database.
+The database files required by portions of this library can be obtained from this repo: [https://github.com/codemonkey85/PKMDS-DB](https://github.com/codemonkey85/PKMDS-DB)
 
-Thanks to the fine folks at SQLite.org for making it possible to use the Pokedex database... the source files "sqlite3.c" and "sqlite3.h" came from these people.
+*********************************************************************
 
-Thanks to those of Project Pokemon (http://projectpokemon.org/) who have helped research and document the underlying structure of Pokemon game save files.
+Thanks to @eevee at [http://veekun.com/](http://veekun.com/) for their SQLite Pokédex database, which powers this software. "veekun-pokedex.sqlite" was built from their database.
+
+Thanks to the fine folks at [https://www.sqlite.org/](SQLite.org) for making it possible to use the Pokédex database... the source files "sqlite3.c" and "sqlite3.h" came from these people.
+
+Thanks to those of Project Pokémon ([http://projectpokemon.org/](http://projectpokemon.org/)) who have helped research and document the underlying structure of Pokémon game save files.
 
 Thanks to Nicholas Corgan (@ncorgan) for contributing directly to this project's code, making it more portable.
 
@@ -37,7 +30,7 @@ Thanks to the folks at Smogon for the stat formula and other things.
 
 Special thanks to @SCV, @Sabresite, loadingNOW, Poryhack, GatorShark, @Chase-san, Jiggy-Ninja, Codr, @Bond697, mingot, Guested, Kaphotics (@kwsch), @Kazo, @coolbho3k and of course, COM.
 
-Some save file documentation available at: http://www.projectpokemon.org/wiki/
+Some save file documentation available at: [http://www.projectpokemon.org/wiki/](http://www.projectpokemon.org/wiki/)
 
 *********************************************************************
 
